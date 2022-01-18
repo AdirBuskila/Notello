@@ -2,3 +2,7 @@
 
 @import url('./base/base.css');
 @import url('./base/helpers.css');
+
+/* PAGES  */
+
+@import url('./pages/home-page.css');
