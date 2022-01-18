@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Link } from 'react-router-dom';
 
-import { taskService } from '../services/task.service';
 import {groupService} from '../services/group.service'
 
 import { GroupList } from '../cmps/group-list.jsx'
@@ -25,7 +24,6 @@ export class BoardDetails extends React.Component {
   render() {
     const {groups} = this.state
     if (!groups || !groups.length) return ( <q>Loading...</q> )
-    console.log("groups: ", groups);
     return (
       <div className='board-details-container flex column align-center'>
         Welcome To The Board Details Page
