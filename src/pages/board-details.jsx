@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Link } from 'react-router-dom';
-
+import { Card } from '../cmps/UI/Card';
 import { groupService } from '../services/group.service';
 
 import { GroupList } from '../cmps/group-list.jsx';
