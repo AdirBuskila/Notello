@@ -23,3 +23,7 @@ function makeLorem(size = 100) {
         size--;
         txt += words[Math.floor(Math.random() * words.length)] + ' ';
     }
+}
+
+
+function func()
