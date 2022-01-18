@@ -4,7 +4,7 @@ import logo from '../assets/img/notello-logo-static.png';
 
 export const AppHeader = () => {
   return (
-    <section className='app-header'>
+    <section className='home-header'>
       <header className='flex space-between align-center'>
         <NavLink to='/' className='flex'>
           <img className='logo-img' src={logo} />
