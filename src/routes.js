@@ -2,7 +2,8 @@ import HomePage from './pages/home-page'
 
 
 
-const routes = [{
+const routes = [
+    {
         path: '/home',
         component: HomePage,
     },
