@@ -39,6 +39,12 @@ select {
     cursor: pointer;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 .card {
     border-radius: 3px;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
