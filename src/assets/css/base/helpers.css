@@ -1,0 +1,31 @@
+.flex {
+    display: flex;
+    gap: 1rem;
+}
+
+.flex.justify-center {
+    justify-content: center;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.main-layout {
+    max-width: 1020px;
+    margin: auto;
+}
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
