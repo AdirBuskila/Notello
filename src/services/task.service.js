@@ -47,8 +47,8 @@ function _createTasks() {
     return gTasks;
 }
 
-async function query(filter = null) {
-    if (!filter) return storageService.query(STORAGE_KEY)
+async function query(filter = {group: ''}) {
+    if (!filter.group) return storageService.query(STORAGE_KEY)
     
     let tasks = await storageService.query(STORAGE_KEY);
     tasks = tasks.filter(task => {
