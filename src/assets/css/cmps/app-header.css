@@ -1,0 +1,7 @@
+.app-header {
+    background-color: rgb(72, 139, 197);
+}
+
+.app-header .logo-img:hover {
+    background-image: url('../../img/notello-logo.gif');
+}
