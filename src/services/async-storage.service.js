@@ -37,7 +37,7 @@ async function put(entityType, updatedEntity) {
     return updatedEntity
 }
 
-function remove(entityType, entityId) {
+async function remove(entityType, entityId) {
     let entities = await query(entityType);
     const idx = entities.findIndex(entity => entity._id === entityId)
     entities.splice(idx, 1)
