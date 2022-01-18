@@ -2,7 +2,7 @@ import { HomePage } from './pages/home-page'
 
 
 
-const routes = [
+export const routes = [
     {
         path: '/home',
         component: HomePage,
@@ -10,4 +10,3 @@ const routes = [
 
 ]
 
-export default routes;
