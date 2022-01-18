@@ -1,4 +1,11 @@
-.task,
-q {
-    background-color: grey;
+.task-list-container {
+    align-items: flex-start;
+    .task,
+    q {
+        background-color: #d6e5fa;
+        gap: 1rem;
+        border: 1px solid black;
+        padding: 1rem;
+        width: 100%;
+    }
 }
