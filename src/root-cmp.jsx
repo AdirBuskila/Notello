@@ -1,17 +1,29 @@
-// import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 
 import { AppHeader } from './cmps/app-header.jsx';
+import routes from './routes';
 // import AppFooter from './cmps/AppFooter';
 
 export const RootCmp = () => {
   return (
-    <div className='App'>
+    <div className='page-contianer flex column'>
       <AppHeader />
       <main>
-        <h1>We Start Here</h1>
-        <h1>Nati G made a change</h1>
-        <h1>Nati C made a change</h1>
+        <Switch>
+          <Route path='/' exact>
+            <Redirect to='/home' />
+          </Route>
+          {routes.map((route) => (
+            <Route
+              key={route.path}
+              exact
+              component={route.component}
+              path={route.path}
+            />
+          ))}
+        </Switch>
       </main>
+      {/* <AppFooter /> */}
     </div>
   );
 };

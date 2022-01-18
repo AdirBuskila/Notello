@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './assets/css/main.css';
-import {RootCmp} from './root-cmp';
+import { RootCmp } from './root-cmp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <RootCmp />
+    {/* <Provider store={store}> */}{' '}
+    <Router>
+      <RootCmp />
+    </Router>
+    {/* </Provider>{' '} */}{' '}
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -4,9 +4,9 @@ export const AppHeader = () => {
   return (
     <section className='app-header'>
       <header className=' flex space-between align-center'>
-        {/* <NavLink to='/'>
+        <NavLink to='/'>
           <div className='logo'> Notello </div>{' '}
-        </NavLink> */}
+        </NavLink>
         <nav className='nav-links clean-list flex align-center'>
           {' '}
           {/* <NavLink to='/login'>Login</NavLink> | */}{' '}
