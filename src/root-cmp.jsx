@@ -1,13 +1,11 @@
 import { Switch, Route, Redirect } from 'react-router';
 
-import { AppHeader } from './cmps/app-header.jsx';
 import { routes } from './routes';
 // import AppFooter from './cmps/AppFooter';
 
 export const RootCmp = () => {
   return (
     <div className='page-contianer flex column'>
-      <AppHeader />
       <main>
         <Switch>
           <Route path='/' exact>
