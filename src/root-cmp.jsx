@@ -1,12 +1,12 @@
 // import { Switch, Route, Redirect } from 'react-router';
 
-import AppHeader from './cmps/app-header';
+import { AppHeader } from './cmps/app-header.jsx';
 // import AppFooter from './cmps/AppFooter';
 
 export const RootCmp = () => {
   return (
     <div className='App'>
-      {/* <AppHeader /> */}
+      <AppHeader />
       <main>
         <h1>We Start Here</h1>
         <h1>Nati G made a change</h1>
