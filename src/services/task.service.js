@@ -58,7 +58,6 @@ function save(task) {
     if (task._id) {
         return storageService.put(STORAGE_KEY, task)
     } else {
-        task.owner = userService.getLoggedinUser()
         return storageService.post(STORAGE_KEY, task)
     }
 }
