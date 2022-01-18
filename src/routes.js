@@ -1,7 +1,7 @@
 import { HomePage } from './pages/home-page'
 import { Board } from './pages/board-page'
 import { BoardDetails } from './pages/board-details'
-import { Login } from './pages/login'
+import { Login } from './pages/login-page'
 
 
 
