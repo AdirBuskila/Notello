@@ -47,7 +47,7 @@ class _MyLogin extends React.Component {
               alignItems: 'center',
             }}
           >
-            <Avatar style={{ margin: 1, backgroundColor: '#9c27b0' }}></Avatar>
+            <Avatar style={{ margin: 1, backgroundColor: '#488bc5' }}></Avatar>
             <Typography component='h1' variant='h5'>
               Log In
             </Typography>
