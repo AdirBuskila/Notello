@@ -11,16 +11,28 @@ export class GroupPreview extends React.Component {
     }
 
     loadTasks() {
-        const {tasks} = this.state;
-        this.setState({tasks});
+        const { tasks } = this.props;
+        this.setState({ tasks });
     }
 
     render() {
-        const {tasks} = this.state;
-        if (!tasks || !tasks.length) return ( <q>No tasks to preivew</q> )
+        const { tasks } = this.state;
+        if (!tasks || !tasks.length) return (<q>No tasks to preivew</q>)
         return (
             <div>
-                <h2>This is the GroupPreview</h2>
+                {tasks.map(task => {
+                    return (<div className="task">
+                        <p>ID: {task._id}</p>
+                        <p>{task.title}</p>
+                        <ul>
+                            {task.labels.map(label => {
+                                return (
+                                    <li>{label}</li>
+                                )
+                            })}
+                        </ul>
+                    </div>)
+                })}
             </div>
         )
     }

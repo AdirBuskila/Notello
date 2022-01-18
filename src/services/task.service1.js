@@ -14,7 +14,7 @@ export const taskService = {
 const STORAGE_KEY = 'task_DB'
 var gTasks;
 
-_createTasks()
+// _createTasks()
 
 function _createTasks() {
     gTasks = pathToStorage.loadFromStorage(STORAGE_KEY) || []
@@ -25,21 +25,18 @@ function _createTasks() {
                 title: 'Notello is the GOAT',
                 labels: ['Important', 'Relavent'],
                 createdAt: Date.now(),
-                group: 'n1'
             },
             {
                 _id: utilService.makeId(),
                 title: 'Gurevich loves scrolling (specially Y axis)',
                 labels: ['Work', 'Relavent'],
                 createdAt: Date.now(),
-                group: 'n1'
             },
             {
                 _id: utilService.makeId(),
                 title: 'Adir you are a SAVAGE!',
                 labels: ['Special', 'Work'],
                 createdAt: Date.now(),
-                group: 'n2'
             }
         ]
         pathToStorage.saveToStorage(STORAGE_KEY, gTasks);
@@ -47,20 +44,14 @@ function _createTasks() {
     return gTasks;
 }
 
-async function query(filter = null) {
-    if (!filter) return storageService.query(STORAGE_KEY)
-    
-    let tasks = await storageService.query(STORAGE_KEY);
-    tasks = tasks.filter(task => {
-        return task.group === filter.group
-    })
-    return tasks;
-    
+function query() {
+    return storageService.query(STORAGE_KEY)
 }
 function getById(taskId) {
     return storageService.get(STORAGE_KEY, taskId)
 }
 function remove(taskId) {
+    // return Promise.reject('Not now!');
     return storageService.remove(STORAGE_KEY, taskId)
 }
 function save(task) {
@@ -70,5 +61,15 @@ function save(task) {
         return storageService.post(STORAGE_KEY, task)
     }
 }
+
+function getEmptyTask() {
+    return { 
+        vendor: 'Susita-' + (Date.now() % 1000),
+        price: utilService.getRandomIntInclusive(1000, 9000),  
+    };
+}
+
+// TEST DATA
+// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
 
 

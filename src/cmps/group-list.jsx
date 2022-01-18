@@ -1,10 +1,10 @@
 import {GroupPreview} from './group-preview'
 
-export const GroupList = ({tasks}) => {
-    if (!tasks.length) return ( <q>No tasks</q> )
+export const GroupList = ({groups}) => {
+    if (!groups.length) return ( <q>No groups</q> )
     return (
         <section className='groups-container'>
-        {tasks.map(task => <GroupPreview key={task._id} tasks={tasks} /> )}
+        {groups.map(group => <GroupPreview key={group._id} group={group} /> )}
             </section>
     )
 }
