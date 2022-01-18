@@ -5,7 +5,7 @@ import {utilService} from './util.service.js'
 import { taskService } from './task.service.js'
 
 
-export const groupServie = {
+export const groupService = {
     query,
     getById,
     save,
@@ -25,19 +25,19 @@ function _createGroups() {
                 _id: utilService.makeId(),
                 title: 'n1',
                 createdAt: Date.now(),
-                tasks: taskService.query({group: title})
+                tasks: taskService.query({group: 'n1'})
             },
             {
                 _id: utilService.makeId(),
                 title: 'n2',
                 createdAt: Date.now(),
-                tasks: taskService.query({group: title})
+                tasks: taskService.query({group: 'n2'})
             },
             {
                 _id: utilService.makeId(),
                 title: 'n3',
                 createdAt: Date.now(),
-                tasks: taskService.query({group: title})
+                tasks: taskService.query({group: 'n3'})
             }
         ]
         pathToStorage.saveToStorage(STORAGE_KEY, gGroups);
