@@ -1,14 +1,32 @@
 .home-container {
   background: linear-gradient(0deg, #fff, #eae6ff 100%);
-}
 
-.hero-container {
+  .hero-container {
     display: flex;
     width: 90%;
     justify-content: flex-end;
-}
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-bottom: 100px;
 
-.home-container .hero-img {
-    width:  300px;
-}
+  }
 
+  .hero-img {
+    width: 300px;
+  }
+
+  .hero2-container{
+    width: 70%;
+  }
+    .home-link {
+      padding: 13px;
+      font-weight: bold;
+      border-radius: 6px;
+      font-family: outfit,sans-serif;
+      font-size: 1.75rem;
+      line-height: 5;
+      color: white;
+      background-color: #0065ff;
+    }
+  
+}
