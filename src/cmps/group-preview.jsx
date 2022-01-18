@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export class GroupPreview extends React.Component {
     state = {
         tasks: [],
@@ -11,7 +10,7 @@ export class GroupPreview extends React.Component {
     }
 
     loadTasks() {
-        const { tasks } = this.props;
+        const { tasks } = this.props.group;
         this.setState({ tasks });
     }
 

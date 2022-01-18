@@ -17,32 +17,38 @@ var gGroups;
 
 _createGroups()
 
-function _createGroups() {
+async function _createGroups() {
     gGroups = pathToStorage.loadFromStorage(STORAGE_KEY) || []
     if (!gGroups || !gGroups.length) {
-        gGroups = [
-            {
-                _id: utilService.makeId(),
-                title: 'n1',
-                createdAt: Date.now(),
-                tasks: taskService.query({group: 'n1'})
-            },
-            {
-                _id: utilService.makeId(),
-                title: 'n2',
-                createdAt: Date.now(),
-                tasks: taskService.query({group: 'n2'})
-            },
-            {
-                _id: utilService.makeId(),
-                title: 'n3',
-                createdAt: Date.now(),
-                tasks: taskService.query({group: 'n3'})
-            }
-        ]
-        pathToStorage.saveToStorage(STORAGE_KEY, gGroups);
+
+        try {
+            gGroups = [
+                {
+                    _id: utilService.makeId(),
+                    title: 'n1',
+                    createdAt: Date.now(),
+                    tasks: await taskService.query({group: 'n1'})
+                },
+                {
+                    _id: utilService.makeId(),
+                    title: 'n2',
+                    createdAt: Date.now(),
+                    tasks: await taskService.query({group: 'n2'})
+                },
+                {
+                    _id: utilService.makeId(),
+                    title: 'n3',
+                    createdAt: Date.now(),
+                    tasks: await taskService.query({group: 'n3'})
+                }
+            ]
+            pathToStorage.saveToStorage(STORAGE_KEY, gGroups);
+            return gGroups;
+        } catch (err) {
+            console.log('Cant load groups');
+            throw new Error(err);
+        }
     }
-    return gGroups;
 }
 
 function query() {
