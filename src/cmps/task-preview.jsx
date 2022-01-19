@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Card } from '../cmps/UI/Card';
 
 export const TaskPreview = ({ task }) => {
-  console.log(task);
+  //   console.log(task);
   return (
     <div>
       <Link key={task._id} to={`/c/${task._id}`}>

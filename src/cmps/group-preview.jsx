@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Card } from './UI/Card';
 import { TaskPreview } from './task-preview';
-import { addTask } from '../store/actions/board.action';
+// import { addTask } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 
 class _GroupPreview extends React.Component {
@@ -41,11 +41,11 @@ class _GroupPreview extends React.Component {
 
   onAddCard = async () => {
     let { newTask } = this.state;
-    const groupId = this.props.group._id
-    const boardId = this.props.board._id
+    const groupId = this.props.group._id;
+    const boardId = this.props.board._id;
     try {
       // await this.props.addTask(boardId, groupId, newTask);
-      await boardService.addTask(boardId, groupId, newTask)
+      await boardService.addTask(boardId, groupId, newTask);
       this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
       this.loadTasks();
     } catch (err) {
@@ -99,11 +99,12 @@ function mapStateToProps({ boardModule }) {
   };
 }
 
-const mapDispatchToProps = {
-  addTask,
-};
+// const mapDispatchToProps = {
+//   addTask,
+// };
 
 export const GroupPreview = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
+  //   ,
+  //   mapDispatchToProps
 )(_GroupPreview);
