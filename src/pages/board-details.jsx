@@ -1,48 +1,51 @@
-import React ,{useState, useEffect} from 'react';
+import React from 'react';
 import { render } from '@testing-library/react';
 import { Card } from '../cmps/UI/Card';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
 import { loadBoard } from '../store/actions/board.action';
 
 import { GroupList } from '../cmps/group-list.jsx';
 
-// export const BoardDetails = () => {
-//   const counter = useSelector((state) => state.counter)
-//   return <div>{counter}</div>
-// }
+class _BoardDetails extends React.Component {
 
-export const BoardDetails = () => {
+  state = {
+  }
 
-  const board = useSelector(state => state.board)
-  
-  useEffect(() => {
-    
-    console.log("board: ", board);
-  }, [board])
-  
-  // const [board, setBoard] = useState([]);
+  componentDidMount() {
+    this.loadBoard()
+  }
 
-    // if (!board || !board.length) return ( <q>Loading...</q> )
+  loadBoard = async () => {
+    try {
+      const { id } = this.props.match.params;
+      this.props.loadBoard(id)
+    } catch (err) {
+      console.log('Cant load current board');
+      throw new Error(err);
+    }
+  }
+
+  render() {
+    const { board } = this.props;
+    if (!board || board.length === 0) return (<q>Loading...</q>)
     return (
       <Card className='board-details-container flex column '>
         Welcome To The Board Details Page
-        {/* <GroupList groups={board.groups} /> */}
+        <GroupList groups={board.groups} />
       </Card>
-    );
+    )
   }
+}
 
-// function mapStateToProps({ boardModule }) {
-//   return {
-//     board: boardModule.board,
-//   };
-// }
+function mapStateToProps({ boardModule }) {
+  return {
+    board: boardModule.board,
+  };
+}
 
-// const mapDispatchToProps = {
-//   loadBoard,
-// };
+const mapDispatchToProps = {
+  loadBoard,
+};
 
-// export const BoardDetails = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(_BoardDetails);
+export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails);

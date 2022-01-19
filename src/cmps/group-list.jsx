@@ -2,7 +2,7 @@ import { GroupPreview } from './group-preview';
 import { Card } from './UI/Card';
 
 export const GroupList = ({ groups }) => {
-  if (!groups.length) return <q>No groups</q>;
+  if (!groups) return <q>No groups</q>;
   return (
     <Card className='groups-container flex'>
       {groups.map((group) => (
