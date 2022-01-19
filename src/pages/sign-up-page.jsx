@@ -1,16 +1,22 @@
 import React from 'react';
+
+
 import left from '../assets/img/left.svg';
 import right from '../assets/img/right.svg';
 import { MySignUp } from '../cmps/sign-up.jsx';
-import logo from '../assets/img/notello-clear.png'
-       
+import logo from '../assets/img/notello-clear.png';
+import { Link } from 'react-router-dom';
+
 
 
 export class SignUp extends React.Component {
+
   render() {
     return (
       <div className='sign-up-container flex column align-center'>
-      <img src={logo} className='sign-up-logo' />  
+        <Link className='clean-link' to='/'>
+          <img src={logo} className='sign-up-logo' />
+        </Link>
         <MySignUp />
         <div className='imgs-container flex row'>
           <div className='svg-container'>
