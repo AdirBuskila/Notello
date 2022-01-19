@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -10,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 const theme = createTheme();
 // console.log('theme', theme);
@@ -40,16 +41,19 @@ class _MyLogin extends React.Component {
         <Container component='main' maxWidth='xs' className='login-container'>
           <CssBaseline />
           <Box
-            style={{
-              marginTop: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar style={{ margin: 1, backgroundColor: '#488bc5' }}></Avatar>
-            <Typography component='h1' variant='h5'>
-              Log In
+          style={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#FFFFFF',
+            borderRadius: '3px',
+            padding: '25px',
+            boxShadow: 'rgb(0 0 0 / 10%) 0 0 10px',
+          }}
+        >
+            <Typography component='h2' variant='h5'>
+              Log In to Notello
             </Typography>
             <Box
               component='form'
@@ -91,17 +95,18 @@ class _MyLogin extends React.Component {
                 Login
               </Button>
             </Box>
+            <hr
+          style={{
+            color: 'grey',
+            marginTop: '30px',
+            marginBottom: '10px',
+            backgroundColor: 'grey',
+            width: '300px'
+          }}
+          />
+            <Link className='clean-link blue-link' to='/signup' >
             Not a Member?
-            <Button
-              fullWidth
-              variant='contained'
-              onClick={() => {
-                this.props.onChangeState(true);
-              }}
-              style={{ marginTop: 3, marginBottom: 2 }}
-            >
-              Sign Up
-            </Button>
+      </Link>
           </Box>
         </Container>
       </ThemeProvider>

@@ -1,16 +1,17 @@
 import React from 'react';
 import left from '../assets/img/left.svg';
 import right from '../assets/img/right.svg';
-import { MyLogin } from '../cmps/login.jsx';
+import { MySignUp } from '../cmps/sign-up.jsx';
 import logo from '../assets/img/notello-clear.png'
+       
 
 
-export class Login extends React.Component {
+export class SignUp extends React.Component {
   render() {
     return (
-      <div className='login-container flex column align-center'>
-        <img src={logo} className='login-logo' />
-        <MyLogin />
+      <div className='sign-up-container flex column align-center'>
+      <img src={logo} className='sign-up-logo' />  
+        <MySignUp />
         <div className='imgs-container flex row'>
           <div className='svg-container'>
             <img src={left} className='left' alt='logo' />
