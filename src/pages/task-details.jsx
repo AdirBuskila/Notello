@@ -1,5 +1,5 @@
 import { boardService } from '../services/board.service';
-import { Card } from '../cmps/UI';
+import { Card } from '../cmps/UI/Card';
 
 export const TaskDetails = () => {
   // console.log(boardService.);
