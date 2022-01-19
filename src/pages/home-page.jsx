@@ -5,8 +5,6 @@ import hero from '../assets/img/hero.png';
 import hero2 from '../assets/img/board.png';
 
 export class HomePage extends React.Component {
-
-
   render() {
     return (
       <div className='home-container flex column align-center'>
@@ -25,7 +23,13 @@ export class HomePage extends React.Component {
             </Link>
           </div>
         </div>
-        <div className='hero2-container'>
+        <div className='hero2-container flex column align-center'>
+          <h2>It's more than work. It's a way of working together.</h2>
+          <p>
+            Start with a Notello board, lists, and cards. Customize and expand
+            with more features as your teamwork grows. Manage projects, organize
+            tasks, and build team spirit—all in one place.
+          </p>
           <img className='hero2-img' src={hero2} />
         </div>
       </div>

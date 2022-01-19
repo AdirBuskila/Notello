@@ -17,6 +17,10 @@
     }
     .hero2-container {
         width: 70%;
+        p {
+            text-align: center;
+            margin-bottom: rem(40px);
+        }
     }
     .home-link {
         padding: rem(13px);
