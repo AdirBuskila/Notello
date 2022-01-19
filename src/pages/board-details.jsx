@@ -1,5 +1,5 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import React, { useEffect } from 'react';
+
 import { Card } from '../cmps/UI/Card';
 import { connect } from 'react-redux';
 
@@ -7,45 +7,42 @@ import { loadBoard } from '../store/actions/board.action';
 
 import { GroupList } from '../cmps/group-list.jsx';
 
-class _BoardDetails extends React.Component {
+const _BoardDetails = (props) => {
+  useEffect(() => {
+    onLoadBoard();
+  }, []);
 
-  state = {
-  }
-
-  componentDidMount() {
-    this.onLoadBoard()
-  }
-
-  onLoadBoard = async () => {
+  const onLoadBoard = async () => {
     try {
-      const { id } = this.props.match.params;
-      await this.props.loadBoard(id)
+      const { id } = props.match.params;
+      await props.loadBoard(id);
     } catch (err) {
       console.log('Cant load current board');
       throw new Error(err);
     }
-  }
+  };
 
-  render() {
-    const { board } = this.props;
-    if (!board || board.length === 0) return (<q>Loading...</q>)
-    return (
-      <Card className='board-details-container flex column '>
-        Welcome To The Board Details Page
-        <GroupList onLoadBoard={this.onLoadBoard} groups={board.groups} />
-      </Card>
-    )
-  }
-}
+  const { board } = props;
+  if (!board || board.length === 0) return <q>Loading...</q>;
+  return (
+    <Card className='board-details-container flex column '>
+      Welcome To The Board Details Page
+      <GroupList onLoadBoard={onLoadBoard} groups={board.groups} />
+    </Card>
+  );
+};
 
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
-  }
+  };
 }
 
 const mapDispatchToProps = {
   loadBoard,
 };
 
-export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails);
+export const BoardDetails = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_BoardDetails);
