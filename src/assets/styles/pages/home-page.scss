@@ -3,6 +3,16 @@
     font-family: rebrand;
     line-height: 2;
     font-size: rem(16px);
+    .home-link {
+        padding: rem(13px);
+        font-weight: bold;
+        border-radius: 6px;
+        font-family: outfit, sans-serif;
+        font-size: 1.4rem;
+        line-height: 5;
+        color: white;
+        background-color: #0065ff;
+    }
     .hero-container {
         padding-top: rem(50px);
         display: flex;
@@ -16,21 +26,25 @@
         width: rem(300px);
     }
     .hero2-container {
-        width: 70%;
+        width: 80%;
         p {
             text-align: center;
             margin-bottom: rem(40px);
         }
     }
-    .home-link {
-        padding: rem(13px);
-        font-weight: bold;
-        border-radius: 6px;
-        font-family: outfit, sans-serif;
-        font-size: 1.4rem;
-        line-height: 5;
-        color: white;
-        background-color: #0065ff;
+
+}
+
+.features {
+    width: 80%;
+    p {
+        max-width: 40ch;
+    }
+    .hero3-img {
+        width: rem(350px);
+    }
+    .card-info {
+        margin-bottom: rem(35px);
     }
 }
 
