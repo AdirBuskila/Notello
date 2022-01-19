@@ -8,33 +8,31 @@ import { loadBoard } from '../store/actions/board.action';
 import { GroupList } from '../cmps/group-list.jsx';
 
 class _BoardDetails extends React.Component {
-
-  state = {
-  }
+  state = {};
 
   componentDidMount() {
-    this.loadBoard()
+    this.loadBoard();
   }
 
   loadBoard = async () => {
     try {
       const { id } = this.props.match.params;
-      this.props.loadBoard(id)
+      this.props.loadBoard(id);
     } catch (err) {
       console.log('Cant load current board');
       throw new Error(err);
     }
-  }
+  };
 
   render() {
     const { board } = this.props;
-    if (!board || board.length === 0) return (<q>Loading...</q>)
+    if (!board || board.length === 0) return <q>Loading...</q>;
     return (
       <Card className='board-details-container flex column '>
-        Welcome To The Board Details Page
+        <h1>Welcome To The Board Details Page</h1>
         <GroupList groups={board.groups} />
       </Card>
-    )
+    );
   }
 }
 
@@ -48,4 +46,7 @@ const mapDispatchToProps = {
   loadBoard,
 };
 
-export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails);
+export const BoardDetails = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_BoardDetails);
