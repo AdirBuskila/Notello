@@ -17,7 +17,7 @@ export const routes = [
     component: BoardWorkspaces,
   },
   {
-    path: '/b:id',
+    path: '/b/:id',
     component: BoardDetails,
   },
 ];

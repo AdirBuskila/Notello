@@ -22,7 +22,7 @@ export const BoardWorkspaces = () => {
       <h1>Welcome To The Board Page</h1>
       {boards.map((board) => {
         return (
-          <Link key={board._id} to={`/b-${board._id}`}>
+          <Link key={board._id} to={`/b/${board._id}`}>
             {board.title}
           </Link>
         );

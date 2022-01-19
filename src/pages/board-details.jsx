@@ -18,10 +18,12 @@ class _BoardDetails extends React.Component {
 
   loadBoard = async () => {
     const { board } = this.props;
-    const { boardId } = this.props.match.params;
+    let { id } = this.props.match.params;
+    console.log('Id',id);
+    console.log(this.props.match.params);
     try {
-      await this.props.loadBoard(boardId);
-      console.log(board);
+      await this.props.loadBoard(id);
+      console.log('board',board);
       this.setState({ board });
     } catch (err) {
       console.log('Cant load board from store');
