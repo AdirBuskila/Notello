@@ -20,7 +20,6 @@ _createGroups()
 async function _createGroups() {
     gGroups = pathToStorage.loadFromStorage(STORAGE_KEY) || []
     if (!gGroups || !gGroups.length) {
-
         try {
             gGroups = [
                 {
@@ -51,8 +50,15 @@ async function _createGroups() {
     }
 }
 
-function query() {
-    return storageService.query(STORAGE_KEY)
+async function query() {
+    try {
+        const groups = await storageService.query(STORAGE_KEY)
+        console.log("groups: ", groups);
+        return groups
+    } catch (err) {
+        console.log('Cant load tasks');
+        throw new Error(err);
+    }
 }
 function getById(groupId) {
     return storageService.get(STORAGE_KEY, groupId)

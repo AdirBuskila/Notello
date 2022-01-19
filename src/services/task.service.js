@@ -31,7 +31,7 @@ function _createTasks() {
                     }
                 ],
                 createdAt: Date.now(),
-                group: 'n1'
+                group: 'g1'
             },
             {
                 _id: utilService.makeId(),
@@ -46,7 +46,7 @@ function _createTasks() {
                     }
                 ],
                 createdAt: Date.now(),
-                group: 'n1'
+                group: 'g1'
             },
             {
                 _id: utilService.makeId(),
@@ -61,7 +61,7 @@ function _createTasks() {
                     }
                 ],
                 createdAt: Date.now(),
-                group: 'n2'
+                group: 'g2'
             }
         ]
         pathToStorage.saveToStorage(STORAGE_KEY, gTasks);

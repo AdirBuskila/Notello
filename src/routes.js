@@ -1,5 +1,5 @@
 import { HomePage } from './pages/home-page'
-import { Board } from './pages/board-page'
+import { BoardWorkspaces } from './pages/board-workspaces'
 import { BoardDetails } from './pages/board-details'
 import { Login } from './pages/login-page'
 
@@ -16,12 +16,12 @@ export const routes = [
     },
     {
         path: '/board',
-        component: Board,
-    },
-    {
-        path: '/board-details',
-        component: BoardDetails,
-    },
+        component: BoardWorkspaces,
+    }
+    // {
+    //     path: '/b:id',
+    //     component: BoardDetails,
+    // },
 
 ]
 

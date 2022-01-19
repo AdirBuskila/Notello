@@ -1,34 +1,55 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Link } from 'react-router-dom';
 import { Card } from '../cmps/UI/Card';
-import { groupService } from '../services/group.service';
+import { connect } from 'react-redux';
+
+import {loadBoard} from '../store/actions/board.action'
 
 import { GroupList } from '../cmps/group-list.jsx';
 
-export class BoardDetails extends React.Component {
+class _BoardDetails extends React.Component {
   state = {
-    groups: [],
+    board: {}
   };
 
   componentDidMount() {
-    this.loadGroups();
+    this.loadBoard();
   }
   
 
-  loadGroups = async () => {
-    const groups = await groupService.query();
-    if (groups) this.setState({ groups });
+  loadBoard = async () => {
+    const {board} = this.props;
+    const {boardId} = this.props.match.params
+    try {
+      await this.props.loadBoard(boardId);
+      this.setState({board})
+    } catch (err) {
+      console.log('Cant load board from store');
+      throw new Error(err)
+    }
   };
 
   render() {
-    const { groups } = this.state;
-    if (!groups || !groups.length) return <q>Loading...</q>;
+    const { board } = this.state;
+    if (!board || !board.length) return <q>Loading...</q>;
     return (
       <Card className='board-details-container flex column '>
         Welcome To The Board Details Page
-        <GroupList groups={groups} />
+        <GroupList groups={board.groups} />
       </Card>
     );
   }
 }
+
+
+function mapStateToProps({boardModule}) {
+  return {
+    board: boardModule.board,
+  }
+}
+
+const mapDispatchToProps = {
+  loadBoard,
+};
+
+export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails)

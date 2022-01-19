@@ -11,8 +11,8 @@ export function taskReducer(state = initialState, action) {
         case 'SET_TASKS':
             newState = { ...state, tasks: action.tasks }
             break;
-        case 'ADD_TASK': 
-            newState = { ...state, tasks: [...state.tasks, action.task]}
+        case 'ADD_TASK':
+            newState = { ...state, tasks: [...state.tasks, action.task] }
             break;
     }
     return newState;

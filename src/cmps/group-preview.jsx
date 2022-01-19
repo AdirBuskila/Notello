@@ -2,13 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card } from './UI/Card';
 
-import { loadTasks } from '../store/actions/task.action'
-  //  addTask, removeTask }
-
-// import { utilService } from '../services/util.service';
 import { taskService } from '../services/task.service';
 
-class _GroupPreview extends React.Component {
+export class GroupPreview extends React.Component {
   state = {
     tasks: [],
     isAdding: false,
@@ -22,16 +18,9 @@ class _GroupPreview extends React.Component {
     this.loadTasks();
   }
 
-  loadTasks = async () => {
-    // const {tasks} = this.props;
-    const { title } = this.props.group;
-    try {
-      const tasks = await this.props.loadTasks(title)
-      this.setState({ tasks });
-    } catch (err) {
-      console.log('Cant load tasks per group');
-      throw new Error(err)
-    }
+  loadTasks = () => {
+    const {tasks} = this.props.group;
+    this.setState({tasks})
   }
 
   onHandleNewCardState = () => {
@@ -58,7 +47,7 @@ class _GroupPreview extends React.Component {
 
   render() {
     const { tasks, isAdding } = this.state;
-    if (!tasks || !tasks.length) return <q>No tasks to preivew</q>;
+    if (!tasks || !tasks.length) return (<q>No tasks to preivew</q>)
     return (
       <div className='flex column'>
         <div className='task-list-container flex column'>
@@ -106,17 +95,3 @@ class _GroupPreview extends React.Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    tasks: state.taskModule.tasks
-  }
-}
-
-const mapDispatchToProps = {
-  loadTasks,
-  // addTask,
-  // removeTask,
-};
-
-export const GroupPreview = connect(mapStateToProps, mapDispatchToProps)(_GroupPreview)

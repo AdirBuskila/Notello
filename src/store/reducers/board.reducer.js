@@ -1,9 +1,5 @@
 const initialState = {
-    filterBy: {
-        name: '',
-        labels: [],
-    },
-    selectedBoard: null
+    board: {},
 }
 
 export function boardReducer(state = initialState, action) {
@@ -12,9 +8,11 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARD':
-            newState = { ...state, selectedBoard: [...action.board] }
+            newState = { ...state, board: action.board }
             break;
-        default:
+        // case 'ADD_TASK':
+        //     newState = { ...state, tasks: [...state.tasks, action.task] }
+        //     break;
     }
     return newState;
 }
