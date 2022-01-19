@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Card } from './UI/Card';
 import { TaskPreview } from './task-preview';
-import { addTask } from '../store/actions/board.action';
+// import { addTask } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 
 class _GroupPreview extends React.Component {
