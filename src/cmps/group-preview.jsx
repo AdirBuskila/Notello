@@ -3,39 +3,42 @@ import { connect } from 'react-redux';
 
 import { Card } from './UI/Card';
 
-import { addTask } from '../store/actions/board.action'
-
+import { addTask } from '../store/actions/board.action';
+import { boardService } from '../services/board.service';
 import { taskService } from '../services/task.service';
-
 
 class _GroupPreview extends React.Component {
   state = {
     tasks: [],
     isAdding: false,
     newTask: {
-      title: ''
-    }
-  }
+      title: '',
+    },
+  };
 
   componentDidMount() {
     this.loadTasks();
   }
 
   loadTasks = () => {
-    this.props.onLoadBoard()
+    this.props.onLoadBoard();
     const { tasks } = this.props.group;
-    this.setState({ tasks })
-  }
+    this.setState({ tasks });
+  };
 
   onHandleNewCardState = () => {
     const { isAdding } = this.state;
-    (isAdding) ? this.setState({ isAdding: false }) : this.setState({ isAdding: true })
-  }
+    isAdding
+      ? this.setState({ isAdding: false })
+      : this.setState({ isAdding: true });
+  };
 
   onHandleChange = ({ target }) => {
     const value = target.value;
-    this.setState(prevState => ({ newTask: { ...prevState.newTask, title: value } }))
-  }
+    this.setState((prevState) => ({
+      newTask: { ...prevState.newTask, title: value },
+    }));
+  };
 
   onAddCard = async () => {
     let { newTask } = this.state;
@@ -43,7 +46,9 @@ class _GroupPreview extends React.Component {
     try {
       newTask.group = this.props.group.title;
       await this.props.addTask(groupIdx, newTask);
-      this.loadTasks()
+      boardService.save(this.props.board);
+      this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
+      this.loadTasks();
     } catch (err) {
       console.log('Cant add new task');
       throw new Error(err);
@@ -53,11 +58,12 @@ class _GroupPreview extends React.Component {
 
   render() {
     const { tasks, isAdding } = this.state;
-    if (!tasks || tasks.length === 0) return (
-      <Card className='task flex column'>
-        <button>+ Add a list</button>
-      </Card>
-    )
+    if (!tasks || tasks.length === 0)
+      return (
+        <Card className='task flex column'>
+          <button>+ Add a list</button>
+        </Card>
+      );
     return (
       <div className='flex column'>
         <div className='task-list-container flex column'>
@@ -94,9 +100,7 @@ class _GroupPreview extends React.Component {
               rows='5'
               placeholder='Enter a title for this card...'></textarea>
             <div className='new-card-actions'>
-              <button onClick={this.onAddCard}>
-                Add card
-              </button>
+              <button onClick={this.onAddCard}>Add card</button>
               <a href='#' onClick={this.onHandleNewCardState}>
                 ✕
               </a>
@@ -118,4 +122,7 @@ const mapDispatchToProps = {
   addTask,
 };
 
-export const GroupPreview = connect(mapStateToProps, mapDispatchToProps)(_GroupPreview);
+export const GroupPreview = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_GroupPreview);
