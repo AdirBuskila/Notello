@@ -1,21 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { boardService } from "../services/board.service";
+import { boardService } from '../services/board.service';
 
-export const BoardWorkspaces = async () => {
-    const boards = await boardService.query();
-    console.log("boards: ", boards);
-    if (!boards || !boards.length) return ( <q>Loading...</q> )
-      return (
-        <div className='board-container flex column align-center'>
-          <h1>Welcome To The Board Page</h1>
-          {/* {boards.map(board => {
-              <Link to={`/b-${board._id}`}>
-                {board.title}
-                </Link>
-          })} */}
-        </div>
-      ) 
-  };
-      
+export const BoardWorkspaces = () => {
+  const [boards, setBoards] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const boards = await boardService.query();
+        setBoards(boards);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+  console.log(boards);
+  if (!boards || !boards.length) return <q>Loading...</q>;
+  return (
+    <div className='board-container flex column align-center'>
+      <h1>Welcome To The Board Page</h1>
+      {boards.map((board) => {
+        return (
+          <Link key={board._id} to={`/b-${board._id}`}>
+            {board.title}
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
