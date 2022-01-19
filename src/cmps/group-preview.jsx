@@ -1,42 +1,48 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Card } from './UI/Card';
 
-import { utilService } from '../services/util.service';
+import { loadTasks } from '../store/actions/task.action'
+  //  addTask, removeTask }
 
+// import { utilService } from '../services/util.service';
 import { taskService } from '../services/task.service';
 
-export class GroupPreview extends React.Component {
+class _GroupPreview extends React.Component {
   state = {
     tasks: [],
     isAdding: false,
     newTask: {
       title: '',
-      group: this.props.group.title,
-    },
+      group: ''
+    }
   };
 
   componentDidMount() {
     this.loadTasks();
   }
 
-  loadTasks() {
-    const { tasks } = this.props.group;
-    this.setState({ tasks });
+  loadTasks = async () => {
+    // const {tasks} = this.props;
+    const { title } = this.props.group;
+    try {
+      const tasks = await this.props.loadTasks(title)
+      this.setState({ tasks });
+    } catch (err) {
+      console.log('Cant load tasks per group');
+      throw new Error(err)
+    }
   }
 
   onHandleNewCardState = () => {
     const { isAdding } = this.state;
-    isAdding
-      ? this.setState({ isAdding: false })
-      : this.setState({ isAdding: true });
-  };
+    (isAdding) ? this.setState({ isAdding: false }) : this.setState({ isAdding: true })
+  }
 
   onHandleChange = ({ target }) => {
     const value = target.value;
-    this.setState((prevState) => ({
-      newTask: { ...prevState.newTask, title: value },
-    }));
-  };
+    this.setState(prevState => ({ newTask: { ...prevState.newTask, title: value } }))
+  }
 
   onAddCard = async () => {
     let { newTask } = this.state;
@@ -100,3 +106,17 @@ export class GroupPreview extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    tasks: state.taskModule.tasks
+  }
+}
+
+const mapDispatchToProps = {
+  loadTasks,
+  // addTask,
+  // removeTask,
+};
+
+export const GroupPreview = connect(mapStateToProps, mapDispatchToProps)(_GroupPreview)
