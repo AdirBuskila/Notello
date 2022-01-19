@@ -1,15 +1,13 @@
-
 import { taskService } from "../../services/task.service";
 
-export function loadTasks(tasksGroup) {
+export function addTask(newTask) {
     return async (dispatch) => {
         try {
-            // debugger
-            const tasks = await taskService.query({group: tasksGroup})
-            const action = {type: 'SET_TASKS', tasks}
+            const task = await taskService.save(newTask);
+            const action = {type: 'ADD_TASK', task}
             dispatch(action) 
         } catch (err) {
-            console.log('cant load tasks per group');
+            console.log('cant add task');
             throw new Error(err);
         }
     };

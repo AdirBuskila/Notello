@@ -77,7 +77,6 @@ async function query(filter = { group: '' }) {
         return task.group === filter.group
     })
     return tasks;
-
 }
 
 function getById(taskId) {
@@ -90,8 +89,10 @@ function remove(taskId) {
 
 function save(task) {
     if (task._id) {
+        console.log(task, 'with ID');
         return storageService.put(STORAGE_KEY, task)
     } else {
+        console.log(task, 'withOUT ID');
         return storageService.post(STORAGE_KEY, task)
     }
 }
