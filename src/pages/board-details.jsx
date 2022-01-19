@@ -14,10 +14,11 @@ export class BoardDetails extends React.Component {
   componentDidMount() {
     this.loadGroups();
   }
+  
 
   loadGroups = async () => {
-    const groups = (await groupService.query()) || [];
-    this.setState({ groups });
+    const groups = await groupService.query();
+    if (groups) this.setState({ groups });
   };
 
   render() {

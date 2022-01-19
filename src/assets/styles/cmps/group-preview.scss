@@ -8,4 +8,20 @@
         padding: 1rem;
         width: 200px;
     }
+    li {
+        font-size: 12px;
+        padding: 5px;
+        border-radius: 5px; 
+    }
+}
+button {
+    background-color: inherit;
+    color: #5e6c84;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #091e4214;
+    color: #172b4d; 
 }

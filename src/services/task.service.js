@@ -23,14 +23,32 @@ function _createTasks() {
             {
                 _id: utilService.makeId(),
                 title: 'Notello is the GOAT',
-                labels: ['Important', 'Relavent'],
+                labels: [
+                    {
+                        name: 'Important',
+                        bgc: '#FF5677'
+                    },
+                    {
+                        name: 'Relavent',
+                        bgc: '#F0BB62'
+                    }
+                ],
                 createdAt: Date.now(),
                 group: 'n1'
             },
             {
                 _id: utilService.makeId(),
                 title: 'Gurevich loves scrolling (specially Y axis)',
-                labels: ['Work', 'Relavent'],
+                labels: [
+                    {
+                        name: 'Work',
+                        bgc: '#8E806A'
+                    },
+                    {
+                        name: 'Relavent',
+                        bgc: '#F0BB62'
+                    }
+                ],
                 createdAt: Date.now(),
                 group: 'n1'
             },
@@ -38,6 +56,16 @@ function _createTasks() {
                 _id: utilService.makeId(),
                 title: 'Adir you are a SAVAGE!',
                 labels: ['Special', 'Work'],
+                labels: [
+                    {
+                        name: 'Special',
+                        bgc: '#F999B7'
+                    },
+                    {
+                        name: 'Work',
+                        bgc: '#8E806A'
+                    }
+                ],
                 createdAt: Date.now(),
                 group: 'n2'
             }

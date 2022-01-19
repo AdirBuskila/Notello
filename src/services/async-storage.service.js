@@ -23,8 +23,9 @@ async function get(entityType, entityId) {
 
 async function post(entityType, newEntity) {
     newEntity._id = utilService.makeId()
+    newEntity.createdAt = Date.now()
     let entities = await query(entityType);
-    entities.push(newEntity)
+    entities = [...entities, newEntity];
     _save(entityType, entities)
     return newEntity
 }
