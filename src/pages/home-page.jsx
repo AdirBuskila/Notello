@@ -1,4 +1,3 @@
-import { HomeHeader } from '../cmps/home-header';
 import { HomeHeader1 } from '../cmps/home-header1';
 import { Link } from 'react-router-dom';
 import hero from '../assets/img/hero.png';
@@ -8,7 +7,6 @@ export const HomePage = () => {
   return (
     <div className='home-container flex column align-center'>
       <HomeHeader1 />
-      <h3> Welcome To The Home Page</h3>
       <div className='hero-container flex '>
         <img className='hero-img' src={hero} />
         <div className='home-txt'>

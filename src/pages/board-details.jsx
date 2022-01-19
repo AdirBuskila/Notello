@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Card } from '../cmps/UI/Card';
 import { connect } from 'react-redux';
+import { HomeHeader } from '../cmps/home-header';
+
 
 import { loadBoard } from '../store/actions/board.action';
 
@@ -29,6 +31,7 @@ class _BoardDetails extends React.Component {
     if (!board || board.length === 0) return <q>Loading...</q>;
     return (
       <Card className='board-details-container flex column '>
+      <HomeHeader / >
         <h1>Welcome To The Board Details Page</h1>
         <GroupList groups={board.groups} />
       </Card>
