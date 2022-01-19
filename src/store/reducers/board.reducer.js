@@ -14,7 +14,6 @@ export function boardReducer(state = initialState, action) {
             let {groups} = state.board;
             groups[action.addAction.idx].tasks.push(action.addAction.task)
             newState = {...state, board: {...state.board, groups}}
-            console.log("newState: ", newState);
             break;
     }
     return newState;
