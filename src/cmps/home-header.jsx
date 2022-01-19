@@ -8,7 +8,6 @@ export const HomeHeader = () => {
         <NavLink to='/' className='flex logo-img'></NavLink>
         <nav className='nav-links clean-list flex align-center'>
           <NavLink to='/board'>Board</NavLink>
-          <NavLink to='/login'>Login</NavLink>
         </nav>
       </header>
     </section>
