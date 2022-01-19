@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 
 import { Card } from './UI/Card';
 import { TaskPreview } from './task-preview';
-import { addTask } from '../store/actions/board.action';
+// import { addTask } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
-import { taskService } from '../services/task.service';
 
 class _GroupPreview extends React.Component {
   state = {
@@ -21,9 +20,11 @@ class _GroupPreview extends React.Component {
   }
 
   loadTasks = () => {
+    console.log('tasks before load', this.state.tasks);
     this.props.onLoadBoard();
     const { tasks } = this.props.group;
     this.setState({ tasks });
+    console.log('tasks after', this.state.tasks);
   };
 
   onHandleNewCardState = () => {
@@ -42,13 +43,13 @@ class _GroupPreview extends React.Component {
 
   onAddCard = async () => {
     let { newTask } = this.state;
-    const { groupIdx } = this.props;
+    const { group, board } = this.props;
     try {
-      newTask.group = this.props.group.title;
-      await this.props.addTask(groupIdx, newTask);
-      boardService.save(this.props.board);
-      this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
+      // await this.props.addTask(boardId, groupId, newTask);
+      await boardService.addTask(board._id, group._id, newTask);
       this.loadTasks();
+      this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
+      console.log(this.state);
     } catch (err) {
       console.log('Cant add new task');
       throw new Error(err);
@@ -100,11 +101,12 @@ function mapStateToProps({ boardModule }) {
   };
 }
 
-const mapDispatchToProps = {
-  addTask,
-};
+// const mapDispatchToProps = {
+//   addTask,
+// };
 
 export const GroupPreview = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
+  //   ,
+  //   mapDispatchToProps
 )(_GroupPreview);

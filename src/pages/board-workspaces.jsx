@@ -15,18 +15,18 @@ export const BoardWorkspaces = () => {
       }
     })();
   }, []);
-  console.log(boards);
+  // console.log(boards);
   if (!boards || !boards.length) return <q>Loading...</q>;
   return (
     <div className='board-container flex column align-center'>
-      <HomeHeader / >
+      <HomeHeader />
       <h1>Welcome To The Board Page</h1>
       {boards.map((board) => {
         return (
           <Link key={board._id} to={`/b/${board._id}`}>
             {board.title}
           </Link>
-        )
+        );
       })}
     </div>
   );
