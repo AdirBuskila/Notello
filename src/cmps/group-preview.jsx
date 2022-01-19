@@ -5,7 +5,6 @@ import { Card } from './UI/Card';
 import { TaskPreview } from './task-preview';
 import { addTask } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
-import { taskService } from '../services/task.service';
 
 class _GroupPreview extends React.Component {
   state = {
@@ -42,11 +41,11 @@ class _GroupPreview extends React.Component {
 
   onAddCard = async () => {
     let { newTask } = this.state;
-    const { groupIdx } = this.props;
+    const groupId = this.props.group._id
+    const boardId = this.props.board._id
     try {
-      newTask.group = this.props.group.title;
-      await this.props.addTask(groupIdx, newTask);
-      boardService.save(this.props.board);
+      // await this.props.addTask(boardId, groupId, newTask);
+      await boardService.addTask(boardId, groupId, newTask)
       this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
       this.loadTasks();
     } catch (err) {

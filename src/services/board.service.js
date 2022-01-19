@@ -1,7 +1,6 @@
 
 import { storageService } from './async-storage.service.js'
 import { pathToStorage } from './storage.service.js'
-import { taskService } from './task.service.js'
 import { utilService } from './util.service.js'
 
 
@@ -146,16 +145,16 @@ async function _createBoards() {
                             },
                             tasks: [
                                 {
-                                    _id: 't101',
-                                    title: 'Gurevich loves scrolling (specially Y axis)',
+                                    _id: 't108',
+                                    title: 'Waiting for ilai!',
                                     labels: [
                                         {
-                                            name: 'Work',
-                                            bgc: '#8E806A'
+                                            name: 'General',
+                                            bgc: '#8E6A'
                                         },
                                         {
-                                            name: 'Relavent',
-                                            bgc: '#F0BB62'
+                                            name: 'Education',
+                                            bgc: '#F03362'
                                         }
                                     ],
                                     createdAt: Date.now(),
@@ -229,13 +228,15 @@ async function _createBoards() {
     }
 }
 
-async function addTask(boardId, groupId, task, activity) {
+async function addTask(boardId, groupId, task, activity = '') {
+    task._id = utilService.makeId();
+    console.log("task: ", task);
     try {
         let board = getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board.groups[groupIdx].tasks.push(task);
         board.activities.unshift(activity)
-        const updatedBoard = saveBoard(board)
+        const updatedBoard = await saveBoard(board)
         return updatedBoard
     } catch (err) {
         console.log(`Cant add task ${task._Id} from board`);
@@ -379,6 +380,7 @@ function remove(boardId) {
     return storageService.remove(STORAGE_KEY, boardId)
 }
 function saveBoard(board) {
+    console.log("board: ", board);
     if (board._id) {
         return storageService.put(STORAGE_KEY, board)
     } else {
