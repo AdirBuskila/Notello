@@ -3,13 +3,16 @@ import left from '../assets/img/left.svg';
 import right from '../assets/img/right.svg';
 import { MyLogin } from '../cmps/login.jsx';
 import logo from '../assets/img/notello-clear.png'
+import { Link } from 'react-router-dom';
 
 
 export class Login extends React.Component {
   render() {
     return (
       <div className='login-container flex column align-center'>
+        <Link className='clean-link' to='/' >
         <img src={logo} className='login-logo' />
+        </Link>
         <MyLogin />
         <div className='imgs-container flex row'>
           <div className='svg-container'>
