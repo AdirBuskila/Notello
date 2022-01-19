@@ -50,7 +50,7 @@ export class HomePage extends React.Component {
               <h2>The board is just the beginning</h2>
               <p>
                 Lists and cards are the building blocks of organizing work on a
-                Sweelo board. Grow from there with task assignments, timelines,
+                Notello board. Grow from there with task assignments, timelines,
                 productivity metrics, calendars, and more.
               </p>
             </div>
