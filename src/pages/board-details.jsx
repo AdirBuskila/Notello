@@ -17,7 +17,6 @@ class _BoardDetails extends React.Component {
   }
 
   onLoadBoard = async () => {
-    console.log('Im loading the board')
     try {
       const { id } = this.props.match.params;
       await this.props.loadBoard(id)

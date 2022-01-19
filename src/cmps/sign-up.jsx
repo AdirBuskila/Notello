@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 const theme = createTheme();
 // console.log('theme', theme);
@@ -30,19 +30,23 @@ export class MySignUp extends React.Component {
   
   return (
     <ThemeProvider theme={theme}>
-      <Container component='main' maxWidth='xs' className='login-container'>
+      <Container component='main' maxWidth='xs' className='sign-up-container'>
         <CssBaseline />
         <Box
+          className='sign-up-form'
           style={{
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            backgroundColor: '#FFFFFF',
+            borderRadius: '3px',
+            padding: '25px',
+            boxShadow: 'rgb(0 0 0 / 10%) 0 0 10px',
           }}
         >
-          <Avatar style={{ margin: 1, backgroundColor: '#488bc5' }}></Avatar>
-          <Typography component='h1' variant='h5'>
-            Sign Up
+          <Typography component='h2' variant='h5'>
+            Sign up for your account
           </Typography>
           <Box
             component='form'
@@ -94,17 +98,18 @@ export class MySignUp extends React.Component {
               Sign Up
             </Button>
           </Box>
+          <hr
+          style={{
+            color: 'grey',
+            marginTop: '30px',
+            marginBottom: '10px',
+            backgroundColor: 'grey',
+            width: '300px'
+          }}
+          />
+      <Link className='clean-link  blue-link' to='/login' >
           Already a Member?
-          <Button
-              fullWidth
-              variant='contained'
-              onClick={()=> {
-                this.props.onChangeState(false)
-              }}
-              style={{ marginTop: 3, marginBottom: 2 }}
-            >
-              Log In
-            </Button>
+      </Link>
         </Box>
       </Container>
     </ThemeProvider>

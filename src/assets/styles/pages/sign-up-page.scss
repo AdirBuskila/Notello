@@ -1,4 +1,4 @@
-.login-container {
+.sign-up-container {
     .left,.right {
         max-width: 30%;
         width: rem(400px);
@@ -11,16 +11,16 @@
     .left {
         left: 0;
     }
-    .login-logo {
+    .sign-up-logo {
         margin-top: rem(50px);
         margin-bottom: rem(20px);
         width: rem(200px);
     }
 }
 
-
-hr {
-    color: 'grey';
-    background-color: 'grey';
-    width: '300px'
+.blue-link {
+    color: #0052CC;
+}
+.blue-link:hover {
+    text-decoration: underline;
 }
