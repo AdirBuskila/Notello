@@ -18,21 +18,7 @@ _createTasks()
 function _createTasks() {
     gTasks = pathToStorage.loadFromStorage(STORAGE_KEY) || []
     if (!gTasks || !gTasks.length) {
-        gTasks = [{
-                _id: utilService.makeId(),
-                title: 'Notello is the GOAT',
-                labels: [{
-                        name: 'Important',
-                        bgc: '#FF5677'
-                    },
-                    {
-                        name: 'Relavent',
-                        bgc: '#F0BB62'
-                    }
-                ],
-                createdAt: Date.now(),
-                group: 'g1'
-            },
+        gTasks = [,
             {
                 _id: utilService.makeId(),
                 title: 'Gurevich loves scrolling (specially Y axis)',
@@ -68,6 +54,12 @@ function _createTasks() {
     }
     return gTasks;
 }
+
+
+
+
+
+
 
 async function query(filter = { group: '' }) {
     if (!filter.group) return storageService.query(STORAGE_KEY)
