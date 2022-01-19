@@ -1,4 +1,3 @@
-
 import { storageService } from './async-storage.service.js'
 import { pathToStorage } from './storage.service.js'
 import { utilService } from './util.service.js'
@@ -6,9 +5,9 @@ import { utilService } from './util.service.js'
 
 export const boardService = {
     query,
-    getById,
+    getBoardById,
     saveBoard,
-    remove,
+    remove: removeBoard,
     addTask,
     removeTask,
     updateTask,
@@ -29,88 +28,79 @@ async function _createBoards() {
     gBoards = pathToStorage.loadFromStorage(STORAGE_KEY) || []
     if (!gBoards || gBoards.length === 0) {
         try {
-            gBoards = [
-                {
-                    _id: 'b101',
-                    title: 'Board1',
-                    createdAt: Date.now(),
-                    createdBy: {
-                        _id: 'u101',
-                        fullname: "Netanel C",
-                        imgUrl: ""
+            gBoards = [{
+                _id: 'b101',
+                title: 'Board1',
+                createdAt: Date.now(),
+                createdBy: {
+                    _id: 'u101',
+                    fullname: "Netanel C",
+                    imgUrl: ""
+                },
+                style: {
+                    bgColor: '#222'
+                },
+                labels: [{
+                        _id: utilService.makeId(),
+                        name: 'Work',
+                        bgc: '#8E806A'
                     },
-                    style: {
-                        bgColor: '#222'
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Relavent',
+                        bgc: '#F0BB62'
                     },
-                    labels: [
-                        {
-                            _id: utilService.makeId(),
-                            name: 'Work',
-                            bgc: '#8E806A'
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Special',
+                        bgc: '#F999B7'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Important',
+                        bgc: '#FF5677'
+                    }
+                ],
+                members: [{
+                    _id: 'm101',
+                    fullname: 'Adir adir',
+                    imgUrl: ''
+                }],
+                groups: [{
+                        _id: 'g101',
+                        title: 'Group 1',
+                        dueDate: 1826212211,
+                        style: {
+                            bgColor: '#f2f3'
                         },
-                        {
-                            _id: utilService.makeId(),
-                            name: 'Relavent',
-                            bgc: '#F0BB62'
-                        },
-                        {
-                            _id: utilService.makeId(),
-                            name: 'Special',
-                            bgc: '#F999B7'
-                        },
-                        {
-                            _id: utilService.makeId(),
-                            name: 'Important',
-                            bgc: '#FF5677'
-                        }
-                    ],
-                    members: [
-                        {
-                            _id: 'm101',
-                            fullname: 'Adir adir',
-                            imgUrl: ''
-                        }
-                    ],
-                    groups: [
-                        {
-                            _id: 'g101',
-                            title: 'Group 1',
-                            dueDate: 1826212211,
-                            style: {
-                                bgColor: '#f2f3'
-                            },
-                            tasks: [
-                                {
-                                    _id: 't101',
-                                    title: 'Gurevich loves scrolling (specially Y axis)',
-                                    labels: [
-                                        {
-                                            name: 'Work',
-                                            bgc: '#8E806A'
-                                        },
-                                        {
-                                            name: 'Relavent',
-                                            bgc: '#F0BB62'
-                                        }
-                                    ],
+                        tasks: [{
+                                _id: 't101',
+                                title: 'Gurevich loves scrolling (specially Y axis)',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#F0BB62'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
                                     createdAt: Date.now(),
-                                    comments: [
-                                        {
-                                            id: utilService.makeId(),
-                                            txt: 'We are changing the json',
-                                            createdAt: Date.now(),
-                                            byMember: {
-                                                _id: 'm102',
-                                                fullname: 'Netanel G',
-                                                imgUrl: ''
-                                            }
-                                        }
-                                    ],
-                                },
-                                {
-                                    _id: 't102',
-                                    title: 'Adir you are a SAVAGE!',
-                                    labels: [{
+                                    byMember: {
+                                        _id: 'm102',
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: 't102',
+                                title: 'Adir you are a SAVAGE!',
+                                labels: [{
                                         name: 'Special',
                                         bgc: '#F999B7'
                                     },
@@ -118,63 +108,55 @@ async function _createBoards() {
                                         name: 'Work',
                                         bgc: '#8E806A'
                                     }
-                                    ],
-                                    createdAt: Date.now(),
-                                    checklists: [
-                                        {
-                                            id: utilService.makeId(),
-                                            title: 'Checklist',
-                                            todos: [
-                                                {
-                                                    id: 'todo101',
-                                                    title: 'To Do 1',
-                                                    isDone: false
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                }
-                            ],
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: 'todo101',
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }
+                        ],
+                    },
+                    {
+                        _id: 'g102',
+                        title: 'Group 2',
+                        dueDate: 1846712211,
+                        style: {
+                            bgColor: '#ee3'
                         },
-                        {
-                            _id: 'g102',
-                            title: 'Group 2',
-                            dueDate: 1846712211,
-                            style: {
-                                bgColor: '#ee3'
-                            },
-                            tasks: [
-                                {
-                                    _id: 't108',
-                                    title: 'Waiting for ilai!',
-                                    labels: [
-                                        {
-                                            name: 'General',
-                                            bgc: '#8E6A'
-                                        },
-                                        {
-                                            name: 'Education',
-                                            bgc: '#F03362'
-                                        }
-                                    ],
+                        tasks: [{
+                                _id: 't108',
+                                title: 'Waiting for ilai!',
+                                labels: [{
+                                        name: 'General',
+                                        bgc: '#8E6A'
+                                    },
+                                    {
+                                        name: 'Education',
+                                        bgc: '#F03362'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
                                     createdAt: Date.now(),
-                                    comments: [
-                                        {
-                                            id: utilService.makeId(),
-                                            txt: 'We are changing the json',
-                                            createdAt: Date.now(),
-                                            byMember: {
-                                                _id: 'm102',
-                                                fullname: 'Netanel G',
-                                                imgUrl: ''
-                                            }
-                                        }
-                                    ],
-                                },
-                                {
-                                    _id: 't103',
-                                    title: 'EFRAIM rulesss!',
-                                    labels: [{
+                                    byMember: {
+                                        _id: 'm102',
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: 't103',
+                                title: 'EFRAIM rulesss!',
+                                labels: [{
                                         name: 'new',
                                         bgc: '#F9B7'
                                     },
@@ -182,43 +164,36 @@ async function _createBoards() {
                                         name: 'Special',
                                         bgc: '#806A'
                                     }
-                                    ],
-                                    createdAt: Date.now(),
-                                    checklists: [
-                                        {
-                                            id: utilService.makeId(),
-                                            title: 'Checklist2',
-                                            todos: [
-                                                {
-                                                    id: 'todo102',
-                                                    title: 'To Do 2',
-                                                    isDone: true
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                }
-                            ],
-                        }
-                    ],
-                    activities: [
-                        {
-                            id: 'a101',
-                            txt: 'Changed Color',
-                            createdAt: 1545212324,
-                            byMember: {
-                                _id: 'u101',
-                                fullname: "Adir B",
-                                imgUrl: ""
-                            },
-                            task: {
-                                id: 'c102',
-                                title: 'Notello'
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist2',
+                                    todos: [{
+                                        id: 'todo102',
+                                        title: 'To Do 2',
+                                        isDone: true
+                                    }]
+                                }],
                             }
-                        }
-                    ]
-                },
-            ]
+                        ],
+                    }
+                ],
+                activities: [{
+                    id: 'a101',
+                    txt: 'Changed Color',
+                    createdAt: 1545212324,
+                    byMember: {
+                        _id: 'u101',
+                        fullname: "Adir B",
+                        imgUrl: ""
+                    },
+                    task: {
+                        id: 'c102',
+                        title: 'Notello'
+                    }
+                }]
+            }, ]
             pathToStorage.saveToStorage(STORAGE_KEY, gBoards);
             return gBoards;
         } catch (err) {
@@ -230,9 +205,8 @@ async function _createBoards() {
 
 async function addTask(boardId, groupId, task, activity = '') {
     task._id = utilService.makeId();
-    console.log("task: ", task);
     try {
-        let board = getById(boardId)
+        let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board.groups[groupIdx].tasks.push(task);
         board.activities.unshift(activity)
@@ -245,7 +219,7 @@ async function addTask(boardId, groupId, task, activity = '') {
 
 async function removeTask(boardId, groupId, taskId, activity) {
     try {
-        let board = getById(boardId)
+        let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board = board.groups[groupIdx].tasks.filter(task => {
             return (task._id !== taskId)
@@ -260,7 +234,7 @@ async function removeTask(boardId, groupId, taskId, activity) {
 
 async function updateTask(boardId, groupId, updatedTask, activity) {
     try {
-        let board = getById(boardId)
+        let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board = board.groups[groupIdx].tasks.map(task => {
             return (task._id === updatedTask._id) ? updatedTask : task
@@ -268,14 +242,13 @@ async function updateTask(boardId, groupId, updatedTask, activity) {
         board.activities.unshift(activity)
         const updatedBoard = await saveBoard(board)
         return updatedBoard
-    }
-    catch (err) {
+    } catch (err) {
         console.log(`Cant update task ${updatedTask._id} in board`);
     }
 }
 
-function getTaskById(boardId, groupId, taskId) {
-    let board = getById(boardId)
+async function getTaskById(boardId, groupId, taskId) {
+    let board = await getBoardById(boardId)
     const groupIdx = getGroupIdxById(board, groupId)
     const task = board.groups[groupIdx].tasks.filter(task => {
         return task._id === taskId
@@ -285,7 +258,7 @@ function getTaskById(boardId, groupId, taskId) {
 
 async function addGroup(boardId, group, activity) {
     try {
-        let board = getById(boardId)
+        let board = await getBoardById(boardId)
         board.groups.push(group)
         board.activities.unshift(activity)
         const updatedBoard = saveBoard(board)
@@ -297,7 +270,7 @@ async function addGroup(boardId, group, activity) {
 
 async function removeGroup(boardId, groupId, activity) {
     try {
-        let board = getById(boardId)
+        let board = await getBoardById(boardId)
         board = board.groups.filter(group => {
             return (group._id !== groupId)
         });
@@ -309,9 +282,9 @@ async function removeGroup(boardId, groupId, activity) {
     }
 }
 
-function addLabel(label, boardId, groupId, taskId, activity) {
+async function addLabel(label, boardId, groupId, taskId, activity) {
     try {
-        let board = getById(boardId)
+        let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         const taskIdx = getTaskIdxById(board, groupId, taskId)
         board.groups[groupIdx].tasks[taskIdx].labels.push(label)
@@ -325,7 +298,7 @@ function addLabel(label, boardId, groupId, taskId, activity) {
 
 async function removeLabel(labelId, boardId, groupId, taskId, activity) {
     try {
-        let board = getById(boardId)
+        let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         const taskIdx = getTaskIdxById(board, groupId, taskId)
         board = board.groups[groupIdx].tasks[taskIdx].labels.filter(label => {
@@ -341,11 +314,11 @@ async function removeLabel(labelId, boardId, groupId, taskId, activity) {
 
 async function updateLabel(updatedLabel, boardId, groupId, taskId, activity) {
     try {
-        let board = getById(boardId)
+        let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         const taskIdx = getTaskIdxById(board, groupId, taskId)
         board = board.groups[groupIdx].tasks[taskIdx].labels.map(label => {
-            return (label._id === updatedLabel._id) ? updatedLabel : label 
+            return (label._id === updatedLabel._id) ? updatedLabel : label
         })
         board.activities.unshift(activity)
         const updatedBoard = saveBoard(board)
@@ -373,12 +346,15 @@ function getTaskIdxById(board, groupId, taskId) {
 function query() {
     return storageService.query(STORAGE_KEY)
 }
-function getById(boardId) {
+
+function getBoardById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
 }
-function remove(boardId) {
+
+function removeBoard(boardId) {
     return storageService.remove(STORAGE_KEY, boardId)
 }
+
 function saveBoard(board) {
     console.log("board: ", board);
     if (board._id) {

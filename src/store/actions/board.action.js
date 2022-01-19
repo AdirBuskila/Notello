@@ -1,12 +1,11 @@
 import { boardService } from '../../services/board.service'
-import { taskService } from '../../services/task.service';
 
 export function loadBoard(boardId) {
-    return async (dispatch) => {
+    return async(dispatch) => {
         try {
-            const board = await boardService.getById(boardId)
-            const action = {type: 'SET_BOARD', board}
-            dispatch(action) 
+            const board = await boardService.getBoardById(boardId)
+            const action = { type: 'SET_BOARD', board }
+            dispatch(action)
         } catch (err) {
             console.log('cant load board');
             throw new Error(err);
@@ -20,7 +19,7 @@ export function loadBoard(boardId) {
 //             boardService.addTask(boardId, groupId, newTask)
 //             const addAction = {idx, task}
 //             const action = {type: 'ADD_TASK', addAction}
-//             dispatch(action) 
+//             dispatch(action)
 //         } catch (err) {
 //             console.log('cant load board');
 //             throw new Error(err);

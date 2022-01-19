@@ -20,9 +20,11 @@ class _GroupPreview extends React.Component {
   }
 
   loadTasks = () => {
+    console.log('tasks before load', this.state.tasks);
     this.props.onLoadBoard();
     const { tasks } = this.props.group;
     this.setState({ tasks });
+    console.log('tasks after', this.state.tasks);
   };
 
   onHandleNewCardState = () => {
@@ -41,13 +43,13 @@ class _GroupPreview extends React.Component {
 
   onAddCard = async () => {
     let { newTask } = this.state;
-    const groupId = this.props.group._id;
-    const boardId = this.props.board._id;
+    const { group, board } = this.props;
     try {
       // await this.props.addTask(boardId, groupId, newTask);
-      await boardService.addTask(boardId, groupId, newTask);
-      this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
+      await boardService.addTask(board._id, group._id, newTask);
       this.loadTasks();
+      this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
+      console.log(this.state);
     } catch (err) {
       console.log('Cant add new task');
       throw new Error(err);
