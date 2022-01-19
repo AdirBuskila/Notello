@@ -13,13 +13,14 @@ class _BoardDetails extends React.Component {
   }
 
   componentDidMount() {
-    this.loadBoard()
+    this.onLoadBoard()
   }
 
-  loadBoard = async () => {
+  onLoadBoard = async () => {
+    console.log('Im loading the board')
     try {
       const { id } = this.props.match.params;
-      this.props.loadBoard(id)
+      await this.props.loadBoard(id)
     } catch (err) {
       console.log('Cant load current board');
       throw new Error(err);
@@ -32,7 +33,7 @@ class _BoardDetails extends React.Component {
     return (
       <Card className='board-details-container flex column '>
         Welcome To The Board Details Page
-        <GroupList groups={board.groups} />
+        <GroupList onLoadBoard={this.onLoadBoard} groups={board.groups} />
       </Card>
     )
   }
@@ -41,7 +42,7 @@ class _BoardDetails extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
-  };
+  }
 }
 
 const mapDispatchToProps = {

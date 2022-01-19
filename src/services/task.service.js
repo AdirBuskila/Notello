@@ -77,7 +77,6 @@ async function query(filter = { group: '' }) {
         return task.group === filter.group
     })
     return tasks;
-
 }
 
 function getById(taskId) {
