@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card } from './UI/Card';
 
+import { utilService } from '../services/util.service';
+
 import { taskService } from '../services/task.service';
 
 export class GroupPreview extends React.Component {
@@ -53,12 +55,12 @@ export class GroupPreview extends React.Component {
         <div className='task-list-container flex column'>
           {tasks.map((task) => {
             return (
-              <Card className='task flex column'>
+              <Card key={task._id} className='task flex column'>
                 {/* <p>ID: {task._id}</p> */}
                 <p>{task.title}</p>
                 {task.labels && <ul className='flex' >
                   {task.labels.map((label, idx) => {
-                    return (<li key={idx} style={{ backgroundColor: `${label.bgc}` }} >{label.name}</li>);
+                    return (<li key={idx} style={{ backgroundColor: `${label.bgc}` }}>{label.name}</li>);
                   })}
                 </ul>}
               </Card>

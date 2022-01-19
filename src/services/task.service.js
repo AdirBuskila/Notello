@@ -55,7 +55,6 @@ function _createTasks() {
             {
                 _id: utilService.makeId(),
                 title: 'Adir you are a SAVAGE!',
-                labels: ['Special', 'Work'],
                 labels: [
                     {
                         name: 'Special',
