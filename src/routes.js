@@ -2,6 +2,7 @@ import { HomePage } from './pages/home-page';
 import { BoardWorkspaces } from './pages/board-workspaces';
 import { BoardDetails } from './pages/board-details';
 import { Login } from './pages/login-page';
+import { SignUp } from './pages/sign-up-page';
 
 export const routes = [
   {
@@ -11,6 +12,10 @@ export const routes = [
   {
     path: '/login',
     component: Login,
+  },
+  {
+    path: '/signup',
+    component: SignUp,
   },
   {
     path: '/board',
