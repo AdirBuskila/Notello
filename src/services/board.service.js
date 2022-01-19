@@ -204,6 +204,7 @@ async function _createBoards() {
 }
 
 async function addTask(boardId, groupId, task, activity = '') {
+    console.log("task: ", task);
     task._id = utilService.makeId();
     try {
         let board = await getBoardById(boardId)
@@ -213,7 +214,7 @@ async function addTask(boardId, groupId, task, activity = '') {
         const updatedBoard = await saveBoard(board)
         return updatedBoard
     } catch (err) {
-        console.log(`Cant add task ${task._Id} from board`);
+        console.log(`Cant add task ${task._Id} to board`);
     }
 }
 
@@ -329,6 +330,8 @@ async function updateLabel(updatedLabel, boardId, groupId, taskId, activity) {
 }
 
 function getGroupIdxById(board, groupId) {
+    console.log("board: ", board);
+    console.log("groupId: ", groupId);
     const idx = board.groups.findIndex(group => {
         return (group._id === groupId)
     })

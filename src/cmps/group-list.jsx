@@ -5,8 +5,8 @@ export const GroupList = ({ groups, onLoadBoard }) => {
   if (!groups) return <q>No groups</q>;
   return (
     <Card className='groups-container flex'>
-      {groups.map((group, idx) => (
-        <GroupPreview onLoadBoard={onLoadBoard} key={group._id} group={group} groupIdx={idx} />
+      {groups.map((group) => (
+        <GroupPreview onLoadBoard={onLoadBoard} group={group} key={group._id} />
       ))}
     </Card>
   );
