@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Card } from './UI/Card';
-
+import { TaskPreview } from './task-preview';
 import { addTask } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 import { taskService } from '../services/task.service';
@@ -68,25 +68,7 @@ class _GroupPreview extends React.Component {
       <div className='flex column'>
         <div className='task-list-container flex column'>
           {tasks.map((task) => {
-            return (
-              <Card key={task._id} className='task flex column'>
-                {/* <p>ID: {task._id}</p> */}
-                <p>{task.title}</p>
-                {task.labels && (
-                  <ul className='flex'>
-                    {task.labels.map((label, idx) => {
-                      return (
-                        <li
-                          key={idx}
-                          style={{ backgroundColor: `${label.bgc}` }}>
-                          {label.name}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </Card>
-            );
+            return <TaskPreview key={task._id} task={task}></TaskPreview>;
           })}
         </div>
         {!isAdding && (
