@@ -47,15 +47,14 @@ class _GroupPreview extends React.Component {
   onAddCard = async () => {
     let { newTask } = this.state;
     try {
-      await taskService.save(newTask)
-      this.onHandleNewCardState()
+      await taskService.save(newTask);
+      this.onHandleNewCardState();
       this.loadTasks();
     } catch (err) {
       console.log('Cant add new task');
       throw new Error(err);
     }
-  }
-
+  };
 
   render() {
     const { tasks, isAdding } = this.state;
@@ -68,23 +67,41 @@ class _GroupPreview extends React.Component {
               <Card key={task._id} className='task flex column'>
                 {/* <p>ID: {task._id}</p> */}
                 <p>{task.title}</p>
-                {task.labels && <ul className='flex' >
-                  {task.labels.map((label, idx) => {
-                    return (<li key={idx} style={{ backgroundColor: `${label.bgc}` }}>{label.name}</li>);
-                  })}
-                </ul>}
+                {task.labels && (
+                  <ul className='flex'>
+                    {task.labels.map((label, idx) => {
+                      return (
+                        <li
+                          key={idx}
+                          style={{ backgroundColor: `${label.bgc}` }}>
+                          {label.name}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </Card>
             );
           })}
         </div>
-        {!isAdding && <button onClick={this.onHandleNewCardState}>+ Add a card</button>}
-        {isAdding && <div className='new-card flex column'>
-          <textarea onChange={this.onHandleChange} name="add-card" rows="5" placeholder='Enter a title for this card...'></textarea>
-          <div className='new-card-actions'>
-            <button onClick={this.onAddCard}>Add card</button>
-            <a href="#" onClick={this.onHandleNewCardState}>✕</a>
+        {!isAdding && (
+          <button onClick={this.onHandleNewCardState}>+ Add a card</button>
+        )}
+        {isAdding && (
+          <div className='new-card flex column'>
+            <textarea
+              onChange={this.onHandleChange}
+              name='add-card'
+              rows='5'
+              placeholder='Enter a title for this card...'></textarea>
+            <div className='new-card-actions'>
+              <button onClick={this.onAddCard}>Add card</button>
+              <a href='#' onClick={this.onHandleNewCardState}>
+                ✕
+              </a>
+            </div>
           </div>
-        </div>}
+        )}
       </div>
     );
   }

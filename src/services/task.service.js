@@ -1,7 +1,6 @@
-
-import {storageService} from './async-storage.service.js'
+import { storageService } from './async-storage.service.js'
 import { pathToStorage } from './storage.service.js'
-import {utilService} from './util.service.js'
+import { utilService } from './util.service.js'
 
 
 export const taskService = {
@@ -19,12 +18,10 @@ _createTasks()
 function _createTasks() {
     gTasks = pathToStorage.loadFromStorage(STORAGE_KEY) || []
     if (!gTasks || !gTasks.length) {
-        gTasks = [
-            {
+        gTasks = [{
                 _id: utilService.makeId(),
                 title: 'Notello is the GOAT',
-                labels: [
-                    {
+                labels: [{
                         name: 'Important',
                         bgc: '#FF5677'
                     },
@@ -39,8 +36,7 @@ function _createTasks() {
             {
                 _id: utilService.makeId(),
                 title: 'Gurevich loves scrolling (specially Y axis)',
-                labels: [
-                    {
+                labels: [{
                         name: 'Work',
                         bgc: '#8E806A'
                     },
@@ -55,8 +51,7 @@ function _createTasks() {
             {
                 _id: utilService.makeId(),
                 title: 'Adir you are a SAVAGE!',
-                labels: [
-                    {
+                labels: [{
                         name: 'Special',
                         bgc: '#F999B7'
                     },
@@ -74,22 +69,25 @@ function _createTasks() {
     return gTasks;
 }
 
-async function query(filter = {group: ''}) {
+async function query(filter = { group: '' }) {
     if (!filter.group) return storageService.query(STORAGE_KEY)
-    
+
     let tasks = await storageService.query(STORAGE_KEY);
     tasks = tasks.filter(task => {
         return task.group === filter.group
     })
     return tasks;
-    
+
 }
+
 function getById(taskId) {
     return storageService.get(STORAGE_KEY, taskId)
 }
+
 function remove(taskId) {
     return storageService.remove(STORAGE_KEY, taskId)
 }
+
 function save(task) {
     if (task._id) {
         return storageService.put(STORAGE_KEY, task)
@@ -97,5 +95,3 @@ function save(task) {
         return storageService.post(STORAGE_KEY, task)
     }
 }
-
-

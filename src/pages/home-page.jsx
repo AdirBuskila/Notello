@@ -1,13 +1,12 @@
-import { AppHeader } from '../cmps/app-header';
+import { HomeHeader } from '../cmps/home-header';
 import { Link } from 'react-router-dom';
 import hero from '../assets/img/hero.png';
 import hero2 from '../assets/img/board.png';
 
-
 export const HomePage = () => {
   return (
     <div className='home-container flex column align-center'>
-      <AppHeader />
+      <HomeHeader />
       <h3> Welcome To The Home Page</h3>
       <div className='hero-container flex '>
         <img className='hero-img' src={hero} />
@@ -18,12 +17,14 @@ export const HomePage = () => {
             high rises to the home office, the way your team works is
             unique—accomplish it all with Notello.
           </p>
-          <Link className='home-link' to='/board-details'>Get Started!</Link>
-          </div>
-      </div>
-        <div className='hero2-container'>
-          <img className='hero2-img' src={hero2} />
+          <Link className='home-link' to='/board-details'>
+            Get Started!
+          </Link>
         </div>
+      </div>
+      <div className='hero2-container'>
+        <img className='hero2-img' src={hero2} />
+      </div>
     </div>
   );
 };
