@@ -25,7 +25,7 @@ export const BoardWorkspaces = () => {
           <Link key={board._id} to={`/b/${board._id}`}>
             {board.title}
           </Link>
-        );
+        )
       })}
     </div>
   );

@@ -1,59 +1,48 @@
-import React from 'react';
+import React ,{useState, useEffect} from 'react';
 import { render } from '@testing-library/react';
 import { Card } from '../cmps/UI/Card';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
 import { loadBoard } from '../store/actions/board.action';
 
 import { GroupList } from '../cmps/group-list.jsx';
 
-class _BoardDetails extends React.Component {
-  state = {
-    board: {},
-  };
+// export const BoardDetails = () => {
+//   const counter = useSelector((state) => state.counter)
+//   return <div>{counter}</div>
+// }
 
-  componentDidMount() {
-    this.loadBoard();
-  }
+export const BoardDetails = () => {
 
-  loadBoard = async () => {
-    const { board } = this.props;
-    let { id } = this.props.match.params;
-    console.log('Id',id);
-    console.log(this.props.match.params);
-    try {
-      await this.props.loadBoard(id);
-      console.log('board',board);
-      this.setState({ board });
-    } catch (err) {
-      console.log('Cant load board from store');
-      throw new Error(err);
-    }
-  };
+  const board = useSelector(state => state.board)
+  
+  useEffect(() => {
+    
+    console.log("board: ", board);
+  }, [board])
+  
+  // const [board, setBoard] = useState([]);
 
-  render() {
-    const { board } = this.state;
-    if (!board || !board.length) return <q>Loading...</q>;
+    // if (!board || !board.length) return ( <q>Loading...</q> )
     return (
       <Card className='board-details-container flex column '>
         Welcome To The Board Details Page
-        <GroupList groups={board.groups} />
+        {/* <GroupList groups={board.groups} /> */}
       </Card>
     );
   }
-}
 
-function mapStateToProps({ boardModule }) {
-  return {
-    board: boardModule.board,
-  };
-}
+// function mapStateToProps({ boardModule }) {
+//   return {
+//     board: boardModule.board,
+//   };
+// }
 
-const mapDispatchToProps = {
-  loadBoard,
-};
+// const mapDispatchToProps = {
+//   loadBoard,
+// };
 
-export const BoardDetails = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_BoardDetails);
+// export const BoardDetails = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(_BoardDetails);
