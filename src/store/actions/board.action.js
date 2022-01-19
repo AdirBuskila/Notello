@@ -12,17 +12,3 @@ export function loadBoard(boardId) {
         }
     };
 }
-
-// export function addTask(boardId, groupId, newTask) {
-//     return async (dispatch) => {
-//         try {
-//             boardService.addTask(boardId, groupId, newTask)
-//             const addAction = {idx, task}
-//             const action = {type: 'ADD_TASK', addAction}
-//             dispatch(action)
-//         } catch (err) {
-//             console.log('cant load board');
-//             throw new Error(err);
-//         }
-//     };
-// }
