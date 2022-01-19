@@ -2,11 +2,14 @@
     align-items: flex-start;
     .task,
     q {
-        background-color: #d6e5fa;
+        background-color: $clr1;
         gap: 1rem;
         border: 1px solid black;
         padding: 1rem;
-        width: 200px;
+        width: rem(200px);
+    }
+    .task:hover {
+        background-color: $clr2;
     }
     li {
         font-size: 12px;

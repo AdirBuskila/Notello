@@ -1,0 +1,14 @@
+.login-container {
+    .left,.right {
+        max-width: 30%;
+        width: rem(400px);
+        position: absolute;
+        bottom: 0;
+    }
+    .right {
+        right: 0;
+    }
+    .left {
+        left: 0;
+    }
+}
