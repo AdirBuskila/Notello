@@ -3,29 +3,29 @@ import { render } from '@testing-library/react';
 import { Card } from '../cmps/UI/Card';
 import { connect } from 'react-redux';
 
-import {loadBoard} from '../store/actions/board.action'
+import { loadBoard } from '../store/actions/board.action';
 
 import { GroupList } from '../cmps/group-list.jsx';
 
 class _BoardDetails extends React.Component {
   state = {
-    board: {}
+    board: {},
   };
 
   componentDidMount() {
     this.loadBoard();
   }
-  
 
   loadBoard = async () => {
-    const {board} = this.props;
-    const {boardId} = this.props.match.params
+    const { board } = this.props;
+    const { boardId } = this.props.match.params;
     try {
       await this.props.loadBoard(boardId);
-      this.setState({board})
+      console.log(board);
+      this.setState({ board });
     } catch (err) {
       console.log('Cant load board from store');
-      throw new Error(err)
+      throw new Error(err);
     }
   };
 
@@ -41,15 +41,17 @@ class _BoardDetails extends React.Component {
   }
 }
 
-
-function mapStateToProps({boardModule}) {
+function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
-  }
+  };
 }
 
 const mapDispatchToProps = {
   loadBoard,
 };
 
-export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails)
+export const BoardDetails = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_BoardDetails);
