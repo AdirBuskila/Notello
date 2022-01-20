@@ -1,18 +1,24 @@
 .group-container {
+    border-radius: 3px;
     background-color: #ebecf0;
     height: fit-content;
-    gap: 1rem;
     overflow-x: auto;
+    gap: 0;
+    align-items: flex-start;
+    .group-header {
+        h3 {
+            min-height: rem(20px);
+            padding: 10px rem(16px);
+        }
+    }
     .task-list-container {
-        padding: rem(8px);
-        align-items: flex-start;
+        padding: 0 8px;
         overflow-y: auto;
         .task,
         q {
-            background-color: $clr1;
-            gap: 1rem;
-            border: 1px solid black;
-            padding: 1rem;
+            background-color: #fff;
+            text-align: start;
+            padding: 6px 8px 2px;
             width: rem(200px);
         }
         .task:hover {
@@ -24,8 +30,17 @@
             border-radius: 5px;
         }
     }
+    .new-card {
+        padding: 0 rem(8px);
+        textarea {
+            resize: vertical;
+            border-radius: 3px;
+            border: 1px solid black;
+        }
+    }
     button {
         background-color: inherit;
+        padding: rem(8px) rem(16px);
         color: #5e6c84;
         border: none;
         cursor: pointer;

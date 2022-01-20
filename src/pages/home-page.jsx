@@ -1,15 +1,56 @@
 import React from 'react';
-import { HomeHeader1 } from '../cmps/home-header1';
-import { Link } from 'react-router-dom';
+
+import { Link, NavLink } from 'react-router-dom';
 import hero from '../assets/img/hero.png';
 import hero2 from '../assets/img/board.png';
 import hero3 from '../assets/img/view.svg';
+import logo from '../assets/img/notello-clear.png';
+import Button from '@mui/material/Button';
 
 export class HomePage extends React.Component {
+
+  state = {
+    scrollY : false
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', (ev) => {
+      const scroll = ev.path[1].scrollY;
+      if (scroll > 0) {
+        this.setState({scrollY:true})
+      } else if (scroll === 0) {
+        this.setState({scrollY:false})
+      }
+    });
+  }
+
+  componentDidUnMount() {
+    window.removeEventListener('scroll')
+  }
+
+
   render() {
+    const scrollClass = (!this.state.scrollY) ? 'home-header' : 'home-header white'
     return (
       <div className='home-container flex column align-center'>
-        <HomeHeader1 />
+        <section className={scrollClass}>
+          <header className='flex space-between align-center'>
+            <NavLink to='/' className='flex'>
+              <img className='logo-img1' src={logo} alt='logo.png' />
+            </NavLink>
+            <nav className='nav-links clean-list flex align-center'>
+              <NavLink to='/login'>
+                <Button variant='text'>Log in</Button>
+              </NavLink>
+              <NavLink to='/signup'>
+                <Button variant='contained'>Sign Up</Button>
+              </NavLink>
+              <NavLink to='/modal'>
+                <Button variant='contained'>Modal</Button>
+              </NavLink>
+            </nav>
+          </header>
+        </section>
         <div className='hero-container flex '>
           <img className='hero-img' src={hero} />
           <div className='home-txt'>
