@@ -28,7 +28,8 @@ class _GroupPreview extends React.Component {
     this.setState({ tasks });
   };
 
-  onHandleNewCardState = () => {
+  onHandleNewCardState = (ev) => {
+    ev.stopPropagation()
     const { isAdding } = this.state;
     isAdding
       ? this.setState({ isAdding: false })
@@ -50,12 +51,12 @@ class _GroupPreview extends React.Component {
       await boardService.addTask(boardId, groupId, newTask);
       this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
       await this.props.onLoadBoard()
+      this.setState({isAdding: false})
       this.loadTasks();
     } catch (err) {
       console.log('Cant add new task');
       throw new Error(err);
     }
-    this.onHandleNewCardState();
   };
 
   render() {
@@ -79,14 +80,14 @@ class _GroupPreview extends React.Component {
           <button onClick={this.onHandleNewCardState}>+ Add a card</button>
         )}
         {isAdding && (
-          <div className='new-card flex column'>
+          <div onBlurCapture={this.onAddCard} className='new-card flex column'>
             <textarea
               onChange={this.onHandleChange}
               name='add-card'
               rows='5'
               placeholder='Enter a title for this card...'></textarea>
             <div className='new-card-actions'>
-              <button onClick={this.onAddCard}>Add card</button>
+              <button>Add card</button>
               <a href='#' onClick={this.onHandleNewCardState}>
                 ✕
               </a>
