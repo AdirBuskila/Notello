@@ -21,19 +21,24 @@ export const GroupList = (props) => {
   
   if (!groups) return <q>No groups</q>;
   return (
-    <Card className='group-list-container flex'>
-      {groups && groups.map((group) => (
+    // <Card 
+    <div
+    className='group-list-container flex'>
+      {groups && groups.map((group, index) => (
         <GroupPreview
+        groupIdx={index}
+        draggable="true"
           onLoadBoard={props.onLoadBoard}
           group={group}
           key={group._id}
         />
         ))}
         <PreFeatureAdd onLoadBoard={props.onLoadBoard} board={props.board} type='group' />
-    </Card>
+    </div>
   );
 };
 
+{/* </Card> */}
 // const onDragEnd = ({destination, source}) => {
 // Todo - set tasks drop
 // }

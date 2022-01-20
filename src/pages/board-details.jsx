@@ -9,6 +9,7 @@ import { GroupList } from '../cmps/group-list.jsx';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
+  
   useEffect(() => {
     onLoadBoard();
   }, []);
