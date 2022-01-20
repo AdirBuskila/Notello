@@ -5,15 +5,20 @@
     overflow-x: auto;
     gap: 0;
     align-items: flex-start;
+    .group-header {
+        h3 {
+            min-height: rem(20px);
+            padding: 10px rem(16px);
+        }
+    }
     .task-list-container {
-        padding: rem(8px);
+        padding: 0 8px;
         overflow-y: auto;
         .task,
         q {
             background-color: #fff;
-            gap: 1rem;
-            border: 1px solid black;
-            padding: 1rem;
+            text-align: start;
+            padding: 6px 8px 2px;
             width: rem(200px);
         }
         .task:hover {

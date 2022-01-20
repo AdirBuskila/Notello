@@ -8,6 +8,7 @@ import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 
 const _GroupPreview = (props) => {
+  const { group, board } = props;
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [isAdding, onIsAdding] = useState();
@@ -35,7 +36,6 @@ const _GroupPreview = (props) => {
   };
 
   const onAddCard = async () => {
-    const { group, board } = props;
     try {
       await boardService.addTask(board._id, group._id, newTask);
       onNewTask({ title: '' });
@@ -55,6 +55,9 @@ const _GroupPreview = (props) => {
     );
   return (
     <div className='group-container flex column'>
+      <div className='group-header flex'>
+        <h3>{group.title}</h3>
+      </div>
       <TaskList tasks={tasks} />
       {!isAdding && (
         <button onClick={onHandleNewCardState}>+ Add a card</button>

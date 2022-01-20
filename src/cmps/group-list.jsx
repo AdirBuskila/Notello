@@ -1,5 +1,5 @@
-import { GroupPreview } from './group-preview'
-import { DragDropContext } from 'react-beautiful-dnd'
+import { GroupPreview } from './group-preview';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { Card } from './UI/Card';
 
 export const GroupList = ({ groups, onLoadBoard }) => {
