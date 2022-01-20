@@ -19,12 +19,12 @@ export const BoardWorkspaces = () => {
   if (!boards || !boards.length) return <q>Loading...</q>;
   return (
     <div className='board-container flex column align-center'>
-      <AppHeader />
-      <h1>Welcome To The Board Page</h1>
+      <h1>Welcome To The Boards Page</h1>
+      {/* <AppHeader /> */}
       {boards.map((board) => {
         return (
           <Link key={board._id} to={`/b/${board._id}`}>
-            {board.title}
+            <div className='board flex column align-center'>{board.title}</div>
           </Link>
         );
       })}
