@@ -25,10 +25,10 @@ const _BoardDetails = (props) => {
   const { board } = props;
   if (!board || board.length === 0) return <q>Loading...</q>;
   return (
-    <Card className='board-details-container flex column '>
+    <div className='board-details-container flex column '>
       Welcome To The Board Details Page
       <GroupList onLoadBoard={onLoadBoard} groups={board.groups} />
-    </Card>
+    </div>
   );
 };
 

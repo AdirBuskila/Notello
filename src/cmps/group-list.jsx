@@ -15,8 +15,8 @@ export const GroupList = (props) => {
 
   useEffect(() => {
     // props.onLoadBoard();
-    setGroups(groupsFromService)
-  }, [groupsFromService])
+    setGroups(groupsFromService);
+  }, [groupsFromService]);
 
   
   if (!groups) return <q>No groups</q>;
@@ -24,23 +24,22 @@ export const GroupList = (props) => {
     <Card className='group-list-container flex'>
       {groups && groups.map((group) => (
         <GroupPreview
-        onLoadBoard={props.onLoadBoard}
-        group={group}
-        key={group._id}
+          onLoadBoard={props.onLoadBoard}
+          group={group}
+          key={group._id}
         />
         ))}
         <PreFeatureAdd onLoadBoard={props.onLoadBoard} board={props.board} type='group' />
     </Card>
   );
-}
-
+};
 
 // const onDragEnd = ({destination, source}) => {
-  // Todo - set tasks drop 
+// Todo - set tasks drop
 // }
 
 //   return (
-  //     <DragDropContext onDragEnd={onDragEnd}>
+//     <DragDropContext onDragEnd={onDragEnd}>
 //       {Object.entries(groups).map(([id, group]) => {
 //         return (
 //           <Droppable droppableId={id}>
@@ -75,4 +74,4 @@ export const GroupList = (props) => {
 //       })}
 //     </DragDropContext>
 //   )
-// } 
+// }
