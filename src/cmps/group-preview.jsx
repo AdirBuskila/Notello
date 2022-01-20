@@ -11,8 +11,6 @@ const _GroupPreview = (props) => {
   const { group, board } = props;
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
   const storeTasks = props.board.groups[groupIdx].tasks;
-  const [isAdding, onIsAdding] = useState();
-  const [newTask, onNewTask] = useState({});
   const [tasks, onUpdateTasks] = useState([storeTasks]);
 
   useEffect(() => {
@@ -22,57 +20,18 @@ const _GroupPreview = (props) => {
     onUpdateTasks(tasks);
   }, [storeTasks]);
 
-  const loadTasks = async () => {
-    await props.onLoadBoard();
-  };
-
-  const onHandleNewCardState = () => {
-    onIsAdding(!isAdding);
-  };
-
-  const onHandleChange = ({ target }) => {
-    const value = target.value;
-    onNewTask({ title: value });
-  };
-
-  const onAddCard = async () => {
-    try {
-      await boardService.addTask(board._id, group._id, newTask);
-      onNewTask({ title: '' });
-      loadTasks();
-    } catch (err) {
-      console.log('Cant add new task');
-      throw new Error(err);
-    }
-    onHandleNewCardState();
-  };
-
-
   return (
     <div className='group-container flex column'>
       <div className='group-header flex'>
         <h4>{group.title}</h4>
       </div>
       {tasks && <TaskList groupId={props.group._id} tasks={tasks} />}
-      <PreFeatureAdd onLoadBoard={props.onLoadBoard} board={board} group={group} type='task' />
-      {/* {!isAdding && (
-        <button onClick={onHandleNewCardState}>+ Add a card</button>
-      )}
-      {isAdding && (
-        <div className='new-card flex column'>
-          <textarea
-            onChange={onHandleChange}
-            name='add-card'
-            rows='5'
-            placeholder='Enter a title for this card...'></textarea>
-          <div className='new-card-actions flex'>
-            <button onClick={onAddCard}>Add card</button>
-            <a href='#' onClick={onHandleNewCardState}>
-              ✕
-            </a>
-          </div>
-        </div>
-      )} */}
+      <PreFeatureAdd
+        onLoadBoard={props.onLoadBoard}
+        board={board}
+        group={group}
+        type='task'
+      />
     </div>
   );
 };
