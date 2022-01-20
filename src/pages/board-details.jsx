@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-
-import { Card } from '../cmps/UI/Card';
 import { connect } from 'react-redux';
 
-import { loadBoard, saveBoard } from '../store/actions/board.action';
+import { Card } from '../cmps/UI/Card';
+import { AppHeader } from '../cmps/app-header';
 import { BoardHeader } from '../cmps/board-header.jsx';
+
 import { GroupList } from '../cmps/group-list.jsx';
+import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
   useEffect(() => {
@@ -25,14 +26,17 @@ const _BoardDetails = (props) => {
   const { board } = props;
   if (!board || board.length === 0) return <q>Loading...</q>;
   return (
-    <Card className='board-details-container flex column '>
+    <React.Fragment>
       <BoardHeader />
-      <GroupList
-        onLoadBoard={onLoadBoard}
-        board={board}
-        groups={board.groups}
-      />
-    </Card>
+      <div className='board-details-container flex column '>
+        {/* <AppHeader /> */}
+        <GroupList
+          onLoadBoard={onLoadBoard}
+          board={board}
+          groups={board.groups}
+        />
+      </div>
+    </React.Fragment>
   );
 };
 

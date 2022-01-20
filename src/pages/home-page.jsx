@@ -8,29 +8,29 @@ import logo from '../assets/img/notello-clear.png';
 import Button from '@mui/material/Button';
 
 export class HomePage extends React.Component {
-
   state = {
-    scrollY : false
-  }
+    scrollY: false,
+  };
 
   componentDidMount() {
-    window.addEventListener('scroll', (ev) => {
-      const scroll = ev.path[1].scrollY;
-      if (scroll > 0) {
-        this.setState({scrollY:true})
-      } else if (scroll === 0) {
-        this.setState({scrollY:false})
-      }
-    });
+    window.addEventListener('scroll', this.onScroll);
   }
-
-  componentDidUnMount() {
-    window.removeEventListener('scroll')
+  onScroll = (ev) => {
+    const scroll = ev.path[1].scrollY;
+    if (scroll > 0) {
+      this.setState({ scrollY: true });
+    } else if (scroll === 0) {
+      this.setState({ scrollY: false });
+    }
+  };
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
   }
-
 
   render() {
-    const scrollClass = (!this.state.scrollY) ? 'home-header' : 'home-header white'
+    const scrollClass = !this.state.scrollY
+      ? 'home-header'
+      : 'home-header white';
     return (
       <div className='home-container flex column align-center'>
         <section className={scrollClass}>
