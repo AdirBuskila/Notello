@@ -27,9 +27,9 @@ const _BoardDetails = (props) => {
   if (!board || board.length === 0) return <q>Loading...</q>;
   return (
     <React.Fragment>
+      <AppHeader />
       <BoardHeader />
       <div className='board-details-container flex column '>
-        {/* <AppHeader /> */}
         <GroupList
           onLoadBoard={onLoadBoard}
           board={board}

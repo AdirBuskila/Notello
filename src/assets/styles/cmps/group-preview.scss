@@ -3,17 +3,20 @@
     background-color: #ebecf0;
     height: fit-content;
     overflow-x: auto;
-    gap: 0;
     align-items: flex-start;
     .group-header {
-        h3 {
-            min-height: rem(20px);
-            padding: 10px rem(16px);
-        }
+        padding: rem(8px) rem(16px);
     }
     .task-list-container {
+        gap: 8px;
         padding: 0 8px;
         overflow-y: auto;
+        .labels {
+            min-width: 20px li {
+                min-height: rem(30px);
+                min-width: rem(30px);
+            }
+        }
         .task,
         q {
             background-color: #fff;
@@ -38,15 +41,20 @@
             border: 1px solid black;
         }
     }
-    button {
-        background-color: inherit;
-        padding: rem(8px) rem(16px);
-        color: #5e6c84;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #091e4214;
-        color: #172b4d;
+    .add-card-container {
+        width: 100%;
+        padding: rem(8px);
+        button {
+            text-align: start;
+            width: 100%;
+            background-color: inherit;
+            color: #5e6c84;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #091e4214;
+            color: #172b4d;
+        }
     }
 }

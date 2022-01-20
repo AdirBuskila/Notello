@@ -205,8 +205,7 @@ async function _createBoards() {
 }
 
 async function addTask(boardId, groupId, task, activity = '') {
-    console.log("task: ", task);
-    task._id = utilService.makeId();
+    task._id = utilService.makeId()
     try {
         let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
@@ -215,7 +214,7 @@ async function addTask(boardId, groupId, task, activity = '') {
         const updatedBoard = await saveBoard(board)
         return updatedBoard
     } catch (err) {
-        console.log(`Cant add task ${task._Id} to board`);
+        console.log(`Cant add task to board`);
     }
 }
 
@@ -259,6 +258,8 @@ async function getTaskById(boardId, groupId, taskId) {
 }
 
 async function addGroup(boardId, group, activity) {
+    group._id = utilService.makeId()
+    group.tasks = [];
     try {
         let board = await getBoardById(boardId)
         board.groups.push(group)
@@ -266,7 +267,7 @@ async function addGroup(boardId, group, activity) {
         const updatedBoard = saveBoard(board)
         return updatedBoard
     } catch (err) {
-        console.log(`Cant add group ${group._id} to board`);
+        console.log(`Cant add group to board`);
     }
 }
 
