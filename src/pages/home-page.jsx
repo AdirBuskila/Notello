@@ -45,6 +45,9 @@ export class HomePage extends React.Component {
               <NavLink to='/signup'>
                 <Button variant='contained'>Sign Up</Button>
               </NavLink>
+              <NavLink to='/modal'>
+                <Button variant='contained'>Modal</Button>
+              </NavLink>
             </nav>
           </header>
         </section>

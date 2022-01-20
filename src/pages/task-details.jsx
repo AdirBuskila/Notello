@@ -23,10 +23,6 @@ import { deepOrange, deepPurple } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 
-// make template: import AutoAwesomeMosaicOutlinedIcon from '@mui/icons-material/AutoAwesomeMosaicOutlined';
-// Watch: import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-// Share: import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-
 export function ScrollDialog() {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('body');
@@ -67,7 +63,7 @@ export function ScrollDialog() {
   }, [open]);
 
   return (
-    <div>
+    <div className='task-details'>
       <Button onClick={handleClickOpen()}>Open</Button>
       <Dialog
         fullWidth={fullWidth}
@@ -80,7 +76,7 @@ export function ScrollDialog() {
       >
         <div className='window-header flex space-between'>
           <DialogTitle id='scroll-dialog-title'>
-            <div className='card-title flex justify-center'>
+            <div className='task-title flex justify-center'>
               <WebAssetIcon sx={{ marginTop: 0.5 }} />
               <p>Task Details</p>
             </div>
@@ -102,12 +98,12 @@ export function ScrollDialog() {
               tabIndex={-1}
             ></DialogContentText>
             <div className='buttons-container'>
-              <p className='card-actions'>Suggested</p>
-              <div className='button-container flex  '>
+              <p className='task-actions'>Suggested</p>
+              <div className='button-container flex'>
                 <PersonOutlineOutlinedIcon color='action' />
                 <Typography>Join</Typography>
               </div>
-              <p className='card-actions'>Add to card</p>
+              <p className='task-actions'>Add to card</p>
               <div className='button-container flex'>
                 <PersonOutlineOutlinedIcon color='action' />
                 <Typography>Members</Typography>
@@ -128,7 +124,7 @@ export function ScrollDialog() {
                 <AttachFileIcon color='action' />
                 <Typography>Attachment</Typography>
               </div>
-              <p>Actions</p>
+              <p className='task-actions'>Actions</p>
               <div className='button-container flex'>
                 <ArrowForwardOutlinedIcon color='action' />
                 <Typography>Move</Typography>
@@ -159,11 +155,13 @@ export function ScrollDialog() {
                   <p>Activity</p>
                 </div>
                 <div className='comment-container flex'>
+                  <div className="avatar-container">
                   <Avatar
-                    sx={{ bgcolor: deepPurple[500], height: 30, width: 30 }}
-                  >
-                    NC
+                    sx={{ bgcolor: deepPurple[500],marginInlineEnd:2.5}}
+                    >
+                    <p className='avatar-name'>NC</p>
                   </Avatar>
+                    </div>
                   <textarea
                     sx={{ bgcolor: 'fff' }}
                     placeholder='Write a comment...'
