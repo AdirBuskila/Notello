@@ -9,18 +9,17 @@ import { boardService } from '../services/board.service';
 
 const _GroupPreview = (props) => {
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
-  const tasks = props.board.groups[groupIdx].tasks;
+  const storeTasks = props.board.groups[groupIdx].tasks;
   const [isAdding, onIsAdding] = useState();
   const [newTask, onNewTask] = useState([]);
+  const [tasks, onUpdateTasks] = useState([storeTasks]);
 
-  // const [tasks, onUpdateTasks] = useState([])
-
-  // useEffect(() => {
-  //     // await props.onLoadBoard()
-  //     const groupIdx = boardService.getGroupIdxById(props.board, props.group._id)
-  //     const tasks = props.board.groups[groupIdx].tasks
-  //     onUpdateTasks(tasks)
-  // }, [])
+  useEffect(() => {
+    // await props.onLoadBoard()
+    const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
+    const tasks = props.board.groups[groupIdx].tasks;
+    onUpdateTasks(tasks);
+  }, [storeTasks]);
 
   const loadTasks = async () => {
     await props.onLoadBoard();

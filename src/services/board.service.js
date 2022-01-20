@@ -331,8 +331,8 @@ async function updateLabel(updatedLabel, boardId, groupId, taskId, activity) {
 }
 
 function getGroupIdxById(board, groupId) {
-    console.log("board: ", board);
-    console.log("groupId: ", groupId);
+    // console.log("board: ", board);
+    // console.log("groupId: ", groupId);
     const idx = board.groups.findIndex(group => {
         return (group._id === groupId)
     })
