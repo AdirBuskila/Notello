@@ -16,7 +16,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
 import { Card } from '../cmps/UI/Card';
 
-export class Task extends React.Component {
+export class TaskPreview extends React.Component {
   state = {
 
   }

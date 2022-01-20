@@ -1,7 +1,6 @@
-.groups-container {
-    height: 100vh;
+.group-list-container {
     margin: 1rem;
     padding: 1rem;
     border: 1px solid black;
-    overflow-x: auto;
+    min-height: 100vh;
 }
