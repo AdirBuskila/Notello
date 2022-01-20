@@ -47,24 +47,16 @@ const _GroupPreview = (props) => {
     onHandleNewCardState();
   };
 
-
   return (
     <div className='group-container flex column'>
       <div className='group-header flex'>
         <h4>{group.title}</h4>
       </div>
-<<<<<<< HEAD
-      {tasks && <TaskList groupId={props.group._id} tasks={tasks} />}
-      <PreFeatureAdd onLoadBoard={props.onLoadBoard} board={board} group={group} type='task' />
-      {/* {!isAdding && (
-        <button onClick={onHandleNewCardState}>+ Add a card</button>
-=======
       <TaskList groupId={props.group._id} tasks={tasks} />
       {!isAdding && (
         <div className='add-card-container'>
           <button onClick={onHandleNewCardState}>+ Add a card</button>
         </div>
->>>>>>> e62df5c8d590d4d1840876326a413303a1492f33
       )}
       {isAdding && (
         <div className='new-card flex column'>
@@ -80,7 +72,7 @@ const _GroupPreview = (props) => {
             </a>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
