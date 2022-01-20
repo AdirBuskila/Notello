@@ -1,15 +1,15 @@
 .group-container {
     background-color: #ebecf0;
     height: fit-content;
-    gap: 1rem;
     overflow-x: auto;
+    gap: 0;
+    align-items: flex-start;
     .task-list-container {
         padding: rem(8px);
-        align-items: flex-start;
         overflow-y: auto;
         .task,
         q {
-            background-color: $clr1;
+            background-color: #fff;
             gap: 1rem;
             border: 1px solid black;
             padding: 1rem;
@@ -24,8 +24,17 @@
             border-radius: 5px;
         }
     }
+    .new-card {
+        padding: 0 rem(8px);
+        textarea {
+            resize: vertical;
+            border-radius: 3px;
+            border: 1px solid black;
+        }
+    }
     button {
         background-color: inherit;
+        padding: rem(8px) rem(16px);
         color: #5e6c84;
         border: none;
         cursor: pointer;

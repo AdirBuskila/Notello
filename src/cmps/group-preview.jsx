@@ -1,21 +1,20 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 
 import { Card } from './UI/Card';
-import { Task } from './task-preview'
+import { Task } from './task-preview';
 import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 
 const _GroupPreview = (props) => {
-  const groupIdx = boardService.getGroupIdxById(props.board, props.group._id)
-  const tasks = props.board.groups[groupIdx].tasks
+  const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
+  const tasks = props.board.groups[groupIdx].tasks;
   const [isAdding, onIsAdding] = useState();
   const [newTask, onNewTask] = useState([]);
 
   // const [tasks, onUpdateTasks] = useState([])
-  
+
   // useEffect(() => {
   //     // await props.onLoadBoard()
   //     const groupIdx = boardService.getGroupIdxById(props.board, props.group._id)
@@ -56,7 +55,7 @@ const _GroupPreview = (props) => {
       </Card>
     );
   return (
-    <div className='flex column'>
+    <div className='group-container flex column'>
       <div className='task-list-container flex column'>
         {tasks.map((task) => {
           return <Task key={task._id} task={task}></Task>;
@@ -72,7 +71,7 @@ const _GroupPreview = (props) => {
             name='add-card'
             rows='5'
             placeholder='Enter a title for this card...'></textarea>
-          <div className='new-card-actions'>
+          <div className='new-card-actions flex'>
             <button onClick={onAddCard}>Add card</button>
             <a href='#' onClick={onHandleNewCardState}>
               ✕
@@ -99,8 +98,8 @@ export const GroupPreview = connect(
   mapDispatchToProps
 )(_GroupPreview);
 
-
-{/* <Droppable droppableId={this.props.group._id}>
+{
+  /* <Droppable droppableId={this.props.group._id}>
   {(provided) => (
     <div className='task-list-container flex column'
       innerRef={provided.innerRef}
@@ -111,4 +110,5 @@ export const GroupPreview = connect(
       {provided.placeholder}
     </div>
   )}
-</Droppable> */}
+</Droppable> */
+}
