@@ -1,32 +1,37 @@
-.task-list-container {
-    align-items: flex-start;
-    overflow-y: auto;
-    .task,
-    q {
-        background-color: $clr1;
-        gap: 1rem;
-        border: 1px solid black;
-        padding: 1rem;
-        width: rem(200px);
+.group-container {
+    background-color: #ebecf0;
+    height: fit-content;
+    gap: 1rem;
+    overflow-x: auto;
+    .task-list-container {
+        padding: rem(8px);
+        align-items: flex-start;
+        overflow-y: auto;
+        .task,
+        q {
+            background-color: $clr1;
+            gap: 1rem;
+            border: 1px solid black;
+            padding: 1rem;
+            width: rem(200px);
+        }
+        .task:hover {
+            background-color: $clr2;
+        }
+        li {
+            font-size: 12px;
+            padding: 5px;
+            border-radius: 5px;
+        }
     }
-    .task:hover {
-        background-color: $clr2;
+    button {
+        background-color: inherit;
+        color: #5e6c84;
+        border: none;
+        cursor: pointer;
     }
-    li {
-        font-size: 12px;
-        padding: 5px;
-        border-radius: 5px;
+    button:hover {
+        background-color: #091e4214;
+        color: #172b4d;
     }
-}
-
-button {
-    background-color: inherit;
-    color: #5e6c84;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #091e4214;
-    color: #172b4d;
 }
