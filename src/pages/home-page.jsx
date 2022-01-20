@@ -43,7 +43,7 @@ export class HomePage extends React.Component {
               set up and customize workflows for just about anything.
             </p>
           </div>
-          <div className='hero3-container flex space-between'>
+          <div className='hero3-container flex'>
             <img className='hero3-img' src={hero3} />
             <div className='info'>
               <h4>CHOOSE A VIEW</h4>

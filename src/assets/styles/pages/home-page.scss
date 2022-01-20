@@ -1,13 +1,14 @@
 .home-container {
     background: linear-gradient(0deg, #fff, #eae6ff 100%);
-    font-family: rebrand;
+    font-family: charlie;
     line-height: 2;
     font-size: rem(16px);
     .home-link {
         padding: rem(13px);
         font-weight: bold;
         border-radius: 6px;
-        font-family: outfit, sans-serif;
+        font-family: charlie, sans-serif;
+        font-weight: bold;
         font-size: 1.4rem;
         line-height: 5;
         color: white;
@@ -31,6 +32,9 @@
             text-align: center;
             margin-bottom: rem(40px);
         }
+    }
+    .hero3-container {
+        gap: 100px;
     }
 
 }
