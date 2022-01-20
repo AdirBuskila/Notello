@@ -1,36 +1,79 @@
-.buttons-container {
-    width: 20%;
-    .button-container {
-        transition: 0.2s background-color;
-        margin-bottom: rem(8px);
-        background-color: #091e420a;
+.task-title {
+  svg {
+    margin-inline-end: rem(10px);
+  }
+}
+
+.window-header{
+    .close-button{
+        margin-top: rem(7px);
+        margin-right: rem(7px);
+        width: rem(40px);
+        height: rem(40px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 50%;
     }
-    .button-container:hover {
+    .close-button:hover{
         background-color: #091e4214;
-    }    
+    }
+}
+
+.task-actions {
+  padding-bottom: rem(15px);
+}
+
+.buttons-container {
+  width: 20%;
+  .button-container {
+    cursor: pointer;
+    align-items: center;
+    transition: 0.2s background-color;
+    margin-bottom: rem(8px);
+    background-color: #091e420a;
+    border-radius: rem(3px);
+    svg {
+      width: rem(16px);
+      margin-left: rem(5px);
+      margin-right: rem(5px);
+    }
+    p {
+      font-size: rem(14px);
+    }
+  }
+  .button-container:hover {
+    background-color: #091e4214;
+  }
 }
 .main-content {
-    width: 80%;
-    p {
-        font-weight: 500;
-    }
-    textarea {
-        border-radius: rem(3px);
-    }
-    .description{
-        margin-bottom: rem(10px);
-    }
-    .description-container{
-        margin-bottom: rem(15px);
-    }
-
+  width: 80%;
+  p {
+    font-weight: 500;
+  }
+  textarea {
+    border-radius: rem(3px);
+  }
+  svg {
+    margin-inline-end: rem(10px);
+  }
+  .description {
+    margin-bottom: rem(10px);
+  }
+  .description-container {
+    margin-bottom: rem(15px);
+  }
 }
-.activity-container{
-    margin-bottom: 15px;
-    .activity {
-    margin-bottom: 15px;
+.activity-container {
+  margin-bottom: rem(15px);
+  .activity {
+    margin-bottom: rem(15px);
+  }
+  .comment-container {
+    align-items: center;
+    p {
+      font-size: rem(15px);
     }
-    .comment-container {
-        align-items: center;
-    }
+  }
 }
