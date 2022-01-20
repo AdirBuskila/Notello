@@ -1,5 +1,6 @@
 const initialState = {
-    board: {}
+    board: {},
+    isLabelsClicked: false
 }
 
 export function boardReducer(state = initialState, action) {
@@ -15,6 +16,10 @@ export function boardReducer(state = initialState, action) {
             groups[action.addAction.idx].tasks.push(action.addAction.task)
             newState = {...state, board: {...state.board, groups}}
             break;
+        case 'HANDLE_LABELS': 
+        const isLabelsClicked = state.isLabelsClicked;
+        newState = {...state, isLabelsClicked: !isLabelsClicked}
+        break;
     }
     return newState;
 }
