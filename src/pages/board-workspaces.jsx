@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HomeHeader } from '../cmps/home-header';
+import { AppHeader } from '../cmps/app-header';
 import { boardService } from '../services/board.service';
 
 export const BoardWorkspaces = () => {
@@ -19,7 +19,7 @@ export const BoardWorkspaces = () => {
   if (!boards || !boards.length) return <q>Loading...</q>;
   return (
     <div className='board-container flex column align-center'>
-      <HomeHeader />
+      <AppHeader />
       <h1>Welcome To The Board Page</h1>
       {boards.map((board) => {
         return (

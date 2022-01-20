@@ -1,20 +1,18 @@
 .home-header {
-    background-color: rgba(0, 131, 245, 0.568);
+    background-color: rgba(240, 248, 255, 0);
+    transition: 1s background-color;
+    position: fixed;
     width: 100%;
     padding: rem(5px);
     padding-inline-end: rem(20px);
     padding-inline-start: rem(16px);
-    .logo-img {
+    &.white {
+    background-color: rgb(255, 255, 255);
+
+    }
+    .logo-img1 {
         padding: rem(8px);
         border-radius: 3px;
-        width: rem(100px);
-        content: url('../../img/notello-logo-static.gif');
-    }
-    .logo-img:hover {
-        content: url('../../img/notello-logo.gif');
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-    nav {
-        color: white;
+        width: rem(140px);
     }
 }
