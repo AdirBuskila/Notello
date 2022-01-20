@@ -7,15 +7,15 @@ import { Card } from './UI/Card';
 // groups, onLoadBoard
 
 export const GroupList = (props) => {
-  // const groupsFromService = props.board.groups;
+  const groupsFromService = props.board.groups;
   // console.log("groupsFromService: ", groupsFromService);
-  const [groups, setGroups] = useState(props.board.groups);
-  console.log("groups: ", groups);
+  const [groups, setGroups] = useState(groupsFromService);
+  console.log("props: ", props);
 
   useEffect(() => {
     // props.onLoadBoard();
-    setGroups(props.board.groups)
-  }, [])
+    setGroups(groupsFromService)
+  }, [groupsFromService])
 
   if (!groups) return <q>No groups</q>;
 
