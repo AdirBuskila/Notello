@@ -4,7 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
 import { Card } from '../cmps/UI/Card';
 
-export const TaskPreview = ({key, index, task}) => {
+export const TaskPreview = ({task}) => {
 
     return (
         <Link key={task._id} to={`/c/${task._id}`}>
