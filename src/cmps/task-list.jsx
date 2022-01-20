@@ -1,11 +1,10 @@
+import {TaskPreview} from './task-preview'
 
-import React from "react";
-
-export class TaskList extends React.Component {
-
-    render() {
-        return (<div {...this.props} ref={this.props.innerRef}>
-        </div>
-        )
-    }
+export const TaskList = ({tasks}) => {
+    
+    <div className='task-list-container flex column'>
+        {tasks.map((task) => {
+          return <TaskPreview key={task._id} task={task} />;
+        })}
+      </div>
 }
