@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 
 import { Card } from './UI/Card';
-import { Task } from './task-preview'
+import { TaskList } from './task-list'
 import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 
@@ -56,12 +56,8 @@ const _GroupPreview = (props) => {
       </Card>
     );
   return (
-    <div className='flex column'>
-      <div className='task-list-container flex column'>
-        {tasks.map((task) => {
-          return <Task key={task._id} task={task}></Task>;
-        })}
-      </div>
+    <div className='group-container flex column'>
+      <TaskList tasks={tasks} />
       {!isAdding && (
         <button onClick={onHandleNewCardState}>+ Add a card</button>
       )}

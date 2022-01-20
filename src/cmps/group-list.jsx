@@ -5,15 +5,19 @@ import { Card } from './UI/Card';
 export const GroupList = ({ groups, onLoadBoard }) => {
   if (!groups) return <q>No groups</q>;
 
-  const onDragEnd = result => {
+  const onDragEnd = (result) => {
     // TODO = update the state
-  }
+  };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Card className='groups-container flex'>
+      <Card className='group-list-container flex'>
         {groups.map((group) => (
-          <GroupPreview onLoadBoard={onLoadBoard} group={group} key={group._id} />
+          <GroupPreview
+            onLoadBoard={onLoadBoard}
+            group={group}
+            key={group._id}
+          />
         ))}
       </Card>
     </DragDropContext>
