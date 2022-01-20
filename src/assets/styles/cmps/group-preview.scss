@@ -12,7 +12,10 @@
         padding: 0 8px;
         overflow-y: auto;
         .labels {
-            gap: 8px;
+            min-width: 20px li {
+                min-height: rem(30px);
+                min-width: rem(30px);
+            }
         }
         .task,
         q {
