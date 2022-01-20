@@ -26,7 +26,7 @@ const _BoardDetails = (props) => {
   return (
     <Card className='board-details-container flex column '>
       Welcome To The Board Details Page
-      <GroupList onLoadBoard={onLoadBoard} groups={board.groups} />
+      <GroupList onLoadBoard={onLoadBoard} board={board} groups={board.groups} />
     </Card>
   );
 };

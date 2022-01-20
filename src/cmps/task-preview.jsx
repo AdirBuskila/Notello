@@ -16,15 +16,9 @@ import { Draggable } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
 import { Card } from '../cmps/UI/Card';
 
-export class TaskPreview extends React.Component {
-  state = {
+export const TaskPreview = ({key, index, task}) => {
 
-  }
-
-  render() {
-    const { task } = this.props
     return (
-      <div>
         <Link key={task._id} to={`/c/${task._id}`}>
           {/* <Draggable draggableId='task._id' index={this.props.index}>
             {(provided) => ( */}
@@ -48,7 +42,5 @@ export class TaskPreview extends React.Component {
               </Card>
           {/* )} </Draggable> */}
         </Link>
-      </div>
-    );
+    )
   }
-};
