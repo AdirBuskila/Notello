@@ -64,7 +64,7 @@ export const PreFeatureAdd = (props) => {
           <textarea
             onChange={onHandleChange}
             rows='5'
-            placeholder={`Enter a title for this ${type}...`}></textarea>
+            placeholder={`Enter ${type} title...`}></textarea>
           <div className='new-item-actions flex'>
             {type === 'group' ? (
               <button onClick={onAdd}>Add list</button>

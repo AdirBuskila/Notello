@@ -12,7 +12,6 @@ export const TaskPreview = ({ task }) => {
   const dispatch = useDispatch();
 
   const onHandleLablesClick = (ev) => {
-    console.log(isLabelsExpended);
     ev.preventDefault();
     dispatch({ type: 'HANDLE_LABELS' });
   };
