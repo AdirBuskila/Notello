@@ -33,28 +33,28 @@
             border-radius: 5px;
         }
     }
-    .new-card {
-        padding: 0 rem(8px);
-        textarea {
-            resize: vertical;
-            border-radius: 3px;
-            border: 1px solid black;
-        }
-    }
-    .add-card-container {
-        width: 100%;
+    // .new-card {
+    button {
+        // padding: 0.5rem;
+        // gap: 0.5rem;
+        // width: 100%;
         padding: rem(8px);
-        button {
-            text-align: start;
-            width: 100%;
-            background-color: inherit;
-            color: #5e6c84;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #091e4214;
-            color: #172b4d;
-        }
+        text-align: start;
+        // width: 100%;
+        background-color: inherit;
+        color: #5e6c84;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #091e4214;
+        color: #172b4d;
+    }
+    textarea {
+        resize: vertical;
+        border-radius: 3px;
+        border: 1px solid black;
     }
 }
+
+// }
