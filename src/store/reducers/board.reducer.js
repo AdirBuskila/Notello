@@ -17,8 +17,8 @@ export function boardReducer(state = initialState, action) {
             newState = {...state, board: {...state.board, groups } }
             break;
         case 'HANDLE_LABELS':
-            const isLabelsClicked = state.isLabelsClicked;
-            newState = {...state, isLabelsClicked: !isLabelsClicked }
+            const isLabelsExpended = state.isLabelsExpended;
+            newState = {...state, isLabelsExpended: !isLabelsExpended }
             break;
     }
     return newState;
