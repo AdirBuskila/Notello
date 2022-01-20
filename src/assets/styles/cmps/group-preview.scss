@@ -1,5 +1,5 @@
 .group-container {
-    width: rem(200px);
+    width: rem(216px);
     border-radius: 3px;
     background-color: #ebecf0;
     height: fit-content;
@@ -13,9 +13,12 @@
         padding: 0 8px;
         overflow-y: auto;
         .labels {
-            min-width: 20px li {
-                min-height: rem(30px);
-                min-width: rem(30px);
+            flex-wrap: wrap;
+            gap: rem(4px);
+            min-width: 20px;
+            li {
+                min-height: rem(8px);
+                min-width: rem(40px);
             }
         }
         .task,
