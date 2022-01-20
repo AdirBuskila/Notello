@@ -11,6 +11,7 @@ body {
     color: $clr3;
     font-weight: 400;
     line-height: 20px;
+    text-align: start;
 }
 
 body,
@@ -47,6 +48,10 @@ select,
     cursor: pointer;
 }
 
+button {
+    border: none;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -61,7 +66,7 @@ ul {
 /* width */
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 
@@ -75,12 +80,9 @@ ul {
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-
-/* Handle on hover */
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    padding: 99px;
+    margin: 8px;
+    padding: 8px;
+    background: #bfc4ce;
+    border-radius: 50rem;
 }

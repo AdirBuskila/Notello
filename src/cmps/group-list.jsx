@@ -3,22 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { GroupPreview } from './group-preview';
 import { PreFeatureAdd } from './preFeatureAdd';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Card } from './UI/Card';
-import { TaskPreview } from './task-preview';
-
-// groups, onLoadBoard
 
 export const GroupList = (props) => {
   const groupsFromService = props.board.groups;
   const [groups, setGroups] = useState(groupsFromService);
-  const [isAdding, onIsAdding] = useState(false);
 
   useEffect(() => {
-    // props.onLoadBoard();
     setGroups(groupsFromService);
   }, [groupsFromService]);
 
-  
   if (!groups) return <q>No groups</q>;
   return (
     // <Card 

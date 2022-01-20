@@ -47,17 +47,19 @@ export const PreFeatureAdd = (props) => {
   return (
     <React.Fragment>
       {!isAdding && (
-        <>
+        <div className='add-item'>
           {type === 'group' ? (
-            <button className='add-list' onClick={onHandleModal}>
-              <span>+</span> Add another list
+            <button
+              className='add-list flex align-center'
+              onClick={onHandleModal}>
+              <span></span> <p> Add another list</p>
             </button>
           ) : (
             <button className='add-card' onClick={onHandleModal}>
               <span>+</span> Add a card
             </button>
           )}
-        </>
+        </div>
       )}
       {isAdding && (
         <div className='new-item flex column'>
