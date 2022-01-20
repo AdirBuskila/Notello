@@ -19,7 +19,7 @@ export const TaskPreview = ({ task }) => {
 
   return (
     <Link key={task._id} to={`/c/${task._id}`}>
-      <Card key={task._id} className='task flex column'>
+      <Card className='task flex column'>
         {task.labels && (
           <ul className='labels flex'>
             {task.labels.map((label, idx) => {

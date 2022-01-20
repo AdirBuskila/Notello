@@ -25,7 +25,13 @@ const _GroupPreview = (props) => {
       <div className='group-header flex'>
         <h4>{group.title}</h4>
       </div>
-      {tasks && <TaskList groupId={props.group._id} tasks={tasks} />}
+      {tasks && (
+        <TaskList
+          key={props.group._id}
+          groupId={props.group._id}
+          tasks={tasks}
+        />
+      )}
       <PreFeatureAdd
         onLoadBoard={props.onLoadBoard}
         board={board}
