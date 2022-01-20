@@ -1,5 +1,5 @@
 .group-container {
-    width: rem(216px);
+    width: rem(272px);
     border-radius: 3px;
     background-color: #ebecf0;
     height: fit-content;
@@ -9,6 +9,7 @@
         padding: rem(8px) rem(16px);
     }
     .task-list-container {
+        width: 100%;
         gap: 8px;
         padding: 0 8px;
         overflow-y: auto;
@@ -26,7 +27,7 @@
             background-color: #fff;
             text-align: start;
             padding: 6px 8px 2px;
-            width: rem(200px);
+            width: 100%;
         }
         .task:hover {
             background-color: $clr2;
