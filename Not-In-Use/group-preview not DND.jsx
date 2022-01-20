@@ -21,15 +21,15 @@ class _GroupPreview extends React.Component {
 
   loadTasks = () => {
     const groupId = this.props.group._id;
-    const group = this.props.board.groups.filter(group => {
-      return (group._id === groupId)
-    })
-    const {tasks} = group[0];
+    const group = this.props.board.groups.filter((group) => {
+      return group._id === groupId;
+    });
+    const { tasks } = group[0];
     this.setState({ tasks });
   };
 
   onHandleNewCardState = (ev) => {
-    ev.stopPropagation()
+    ev.stopPropagation();
     const { isAdding } = this.state;
     isAdding
       ? this.setState({ isAdding: false })
@@ -50,8 +50,8 @@ class _GroupPreview extends React.Component {
     try {
       await boardService.addTask(boardId, groupId, newTask);
       this.setState((prevState) => ({ ...prevState, newTask: { title: '' } }));
-      await this.props.onLoadBoard()
-      this.setState({isAdding: false})
+      await this.props.onLoadBoard();
+      this.setState({ isAdding: false });
       this.loadTasks();
     } catch (err) {
       console.log('Cant add new task');
@@ -60,7 +60,7 @@ class _GroupPreview extends React.Component {
   };
 
   render() {
-    const {board, group} = this.props;
+    const { board, group } = this.props;
     const { tasks, isAdding } = this.state;
     if (!tasks || tasks.length === 0)
       return (
@@ -69,7 +69,7 @@ class _GroupPreview extends React.Component {
         </Card>
       );
     return (
-      <Card className='group-container flex column'>
+      <section className='group-container flex column'>
         <h3>{group.title}</h3>
         <div className='task-list-container flex column'>
           {tasks.map((task) => {
@@ -94,7 +94,7 @@ class _GroupPreview extends React.Component {
             </div>
           </div>
         )}
-      </Card>
+      </section>
     );
   }
 }

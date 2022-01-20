@@ -56,11 +56,13 @@ const _GroupPreview = (props) => {
   return (
     <div className='group-container flex column'>
       <div className='group-header flex'>
-        <h3>{group.title}</h3>
+        <h4>{group.title}</h4>
       </div>
       <TaskList groupId={props.group._id} tasks={tasks} />
       {!isAdding && (
-        <button onClick={onHandleNewCardState}>+ Add a card</button>
+        <div className='add-card-container'>
+          <button onClick={onHandleNewCardState}>+ Add a card</button>
+        </div>
       )}
       {isAdding && (
         <div className='new-card flex column'>
