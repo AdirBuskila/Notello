@@ -52,27 +52,13 @@ const _GroupPreview = (props) => {
       <div className='group-header flex'>
         <h4>{group.title}</h4>
       </div>
-      <TaskList groupId={props.group._id} tasks={tasks} />
-      {!isAdding && (
-        <div className='add-card-container'>
-          <button onClick={onHandleNewCardState}>+ Add a card</button>
-        </div>
-      )}
-      {isAdding && (
-        <div className='new-card flex column'>
-          <textarea
-            onChange={onHandleChange}
-            name='add-card'
-            rows='5'
-            placeholder='Enter a title for this card...'></textarea>
-          <div className='new-card-actions flex'>
-            <button onClick={onAddCard}>Add card</button>
-            <a href='#' onClick={onHandleNewCardState}>
-              ✕
-            </a>
-          </div>
-        </div>
-      )}
+      {tasks && <TaskList groupId={props.group._id} tasks={tasks} />}
+      <PreFeatureAdd
+        onLoadBoard={props.onLoadBoard}
+        board={board}
+        group={group}
+        type='task'
+      />
     </div>
   );
 };
