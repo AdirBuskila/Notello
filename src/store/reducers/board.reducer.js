@@ -1,6 +1,6 @@
 const initialState = {
     board: {},
-    isLabelsClicked: false
+    isLabelsExpended: false
 }
 
 export function boardReducer(state = initialState, action) {
@@ -9,17 +9,17 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARD':
-            newState = { ...state, board: action.board }
+            newState = {...state, board: action.board }
             break;
         case 'ADD_TASK':
-            let {groups} = state.board;
+            let { groups } = state.board;
             groups[action.addAction.idx].tasks.push(action.addAction.task)
-            newState = {...state, board: {...state.board, groups}}
+            newState = {...state, board: {...state.board, groups } }
             break;
-        case 'HANDLE_LABELS': 
-        const isLabelsClicked = state.isLabelsClicked;
-        newState = {...state, isLabelsClicked: !isLabelsClicked}
-        break;
+        case 'HANDLE_LABELS':
+            const isLabelsClicked = state.isLabelsClicked;
+            newState = {...state, isLabelsClicked: !isLabelsClicked }
+            break;
     }
     return newState;
 }

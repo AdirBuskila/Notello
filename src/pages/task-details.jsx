@@ -41,6 +41,10 @@ export function ScrollDialog() {
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    setOpen(true);
+  }, []);
+
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
@@ -81,9 +85,7 @@ export function ScrollDialog() {
               <p>Task Details</p>
             </div>
           </DialogTitle>
-          <CloseIcon
-          onClick={handleClose}
-          sx={{ m: 2 }} />
+          <CloseIcon onClick={handleClose} sx={{ m: 2 }} />
         </div>
 
         <div className='window-main-content'>
@@ -100,43 +102,43 @@ export function ScrollDialog() {
               tabIndex={-1}
             ></DialogContentText>
             <div className='buttons-container'>
-              <p className='card-actions' >Suggested</p>
+              <p className='card-actions'>Suggested</p>
               <div className='button-container flex  '>
-                <PersonOutlineOutlinedIcon color="action" />
+                <PersonOutlineOutlinedIcon color='action' />
                 <Typography>Join</Typography>
               </div>
-              <p className='card-actions' >Add to card</p>
+              <p className='card-actions'>Add to card</p>
               <div className='button-container flex'>
-                <PersonOutlineOutlinedIcon color="action" />
+                <PersonOutlineOutlinedIcon color='action' />
                 <Typography>Members</Typography>
               </div>
               <div className='button-container flex'>
-                <LocalOfferOutlinedIcon color="action" />
+                <LocalOfferOutlinedIcon color='action' />
                 <Typography>Labels</Typography>
               </div>
               <div className='button-container flex'>
-                <CheckBoxOutlinedIcon color="action" />
+                <CheckBoxOutlinedIcon color='action' />
                 <Typography>Checklist</Typography>
               </div>
               <div className='button-container flex'>
-                <QueryBuilderIcon color="action" />
+                <QueryBuilderIcon color='action' />
                 <Typography>Dates</Typography>
               </div>
               <div className='button-container flex'>
-                <AttachFileIcon color="action" />
+                <AttachFileIcon color='action' />
                 <Typography>Attachment</Typography>
               </div>
               <p>Actions</p>
               <div className='button-container flex'>
-                <ArrowForwardOutlinedIcon color="action" />
+                <ArrowForwardOutlinedIcon color='action' />
                 <Typography>Move</Typography>
               </div>
               <div className='button-container flex'>
-                <ContentCopyOutlinedIcon color="action" />
+                <ContentCopyOutlinedIcon color='action' />
                 <Typography>Copy</Typography>
               </div>
               <div className='button-container flex'>
-                <Inventory2OutlinedIcon color="action" />
+                <Inventory2OutlinedIcon color='action' />
                 <Typography>Archive</Typography>
               </div>
             </div>
@@ -146,24 +148,27 @@ export function ScrollDialog() {
                   <NotesIcon />
                   <p>Description</p>
                 </div>
-                <textarea sx={{ bgcolor: '#091e420a' }} placeholder='Add a more detailed description...'></textarea>
+                <textarea
+                  sx={{ bgcolor: '#091e420a' }}
+                  placeholder='Add a more detailed description...'
+                ></textarea>
               </div>
               <div className='activity-container'>
                 <div className='activity flex'>
                   <FormatListBulletedIcon />
                   <p>Activity</p>
                 </div>
-                <div className="comment-container flex">
-                <Avatar
-                  sx={{ bgcolor: deepPurple[500], height: 30, width: 30 }}
+                <div className='comment-container flex'>
+                  <Avatar
+                    sx={{ bgcolor: deepPurple[500], height: 30, width: 30 }}
                   >
-                  NC
-                </Avatar>
-                <textarea
-                  sx={{ bgcolor: 'fff' }}
-                  placeholder='Write a comment...'
+                    NC
+                  </Avatar>
+                  <textarea
+                    sx={{ bgcolor: 'fff' }}
+                    placeholder='Write a comment...'
                   ></textarea>
-                  </div>
+                </div>
               </div>
             </div>
           </DialogContent>
