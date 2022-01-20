@@ -4,6 +4,7 @@ import { Card } from '../cmps/UI/Card';
 import { connect } from 'react-redux';
 
 import { loadBoard } from '../store/actions/board.action';
+
 import { GroupList } from '../cmps/group-list.jsx';
 
 const _BoardDetails = (props) => {

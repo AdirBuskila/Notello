@@ -16,7 +16,8 @@ export const boardService = {
     removeGroup,
     addLabel,
     removeLabel,
-    updateLabel
+    updateLabel,
+    getGroupIdxById
 }
 
 const STORAGE_KEY = 'board_DB'
