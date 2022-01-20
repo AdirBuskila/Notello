@@ -17,38 +17,38 @@ import { Link } from 'react-router-dom';
 import { Card } from '../cmps/UI/Card';
 
 export class TaskPreview extends React.Component {
-  state = {
-
-  }
+  state = {};
 
   render() {
-    const { task } = this.props
+    const { task } = this.props;
     return (
       <div>
         <Link key={task._id} to={`/c/${task._id}`}>
           {/* <Draggable draggableId='task._id' index={this.props.index}>
             {(provided) => ( */}
-              <Card key={task._id} className='task flex column'
-              // {...provided.draggableProps}
-              // {...provided.dragHandleProps}
-              // innerRef={provided.innerRef}>
-              >
-                <p>{task.title}</p>
-                {task.labels && (
-                  <ul className='flex'>
-                    {task.labels.map((label, idx) => {
-                      return (
-                        <li key={idx} style={{ backgroundColor: `${label.bgc}` }}>
-                          {label.name}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </Card>
+          <Card
+            key={task._id}
+            className='task flex column'
+            // {...provided.draggableProps}
+            // {...provided.dragHandleProps}
+            // innerRef={provided.innerRef}>
+          >
+            <p>{task.title}</p>
+            {task.labels && (
+              <ul className='flex'>
+                {task.labels.map((label, idx) => {
+                  return (
+                    <li key={idx} style={{ backgroundColor: `${label.bgc}` }}>
+                      {label.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </Card>
           {/* )} </Draggable> */}
         </Link>
       </div>
     );
   }
-};
+}
