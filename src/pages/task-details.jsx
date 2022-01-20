@@ -81,7 +81,9 @@ export function ScrollDialog() {
               <p>Task Details</p>
             </div>
           </DialogTitle>
-          <CloseIcon onClick={handleClose} sx={{ m: 2 }} />
+          <div className="close-button">
+          <CloseIcon onClick={handleClose} />
+          </div>
         </div>
 
         <div className='window-main-content'>
@@ -156,7 +158,7 @@ export function ScrollDialog() {
                 </div>
                 <div className='comment-container flex'>
                   <Avatar
-                  sx={{ bgcolor: deepPurple[500], width:25 , height:25 ,marginInlineEnd:2.5}}>
+                  sx={{ bgcolor: deepPurple[500], width:25 , height:25 ,marginInlineEnd:1}}>
                     <p>NC</p>
                   </Avatar>
                   <textarea

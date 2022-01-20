@@ -1,10 +1,25 @@
-.task-title{
-    svg{
-      margin-inline-end: rem(10px);
-        
-    }
+.task-title {
+  svg {
+    margin-inline-end: rem(10px);
+  }
 }
 
+.window-header{
+    .close-button{
+        margin-top: rem(7px);
+        margin-right: rem(7px);
+        width: rem(40px);
+        height: rem(40px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+    .close-button:hover{
+        background-color: #091e4214;
+    }
+}
 
 .task-actions {
   padding-bottom: rem(15px);
@@ -13,6 +28,7 @@
 .buttons-container {
   width: 20%;
   .button-container {
+    cursor: pointer;
     align-items: center;
     transition: 0.2s background-color;
     margin-bottom: rem(8px);
@@ -20,8 +36,8 @@
     border-radius: rem(3px);
     svg {
       width: rem(16px);
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-left: rem(5px);
+      margin-right: rem(5px);
     }
     p {
       font-size: rem(14px);
@@ -40,7 +56,7 @@
     border-radius: rem(3px);
   }
   svg {
-      margin-inline-end: rem(10px);
+    margin-inline-end: rem(10px);
   }
   .description {
     margin-bottom: rem(10px);
@@ -56,8 +72,8 @@
   }
   .comment-container {
     align-items: center;
-    p{
-        font-size: rem(15px);
+    p {
+      font-size: rem(15px);
     }
   }
 }
