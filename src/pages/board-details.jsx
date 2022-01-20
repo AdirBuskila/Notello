@@ -3,7 +3,8 @@ import React, { useEffect } from 'react';
 import { Card } from '../cmps/UI/Card';
 import { connect } from 'react-redux';
 
-import { loadBoard } from '../store/actions/board.action';
+import { loadBoard, saveBoard } from '../store/actions/board.action';
+import { BoardHeader } from '../cmps/board-header.jsx';
 import { GroupList } from '../cmps/group-list.jsx';
 
 const _BoardDetails = (props) => {
@@ -25,8 +26,12 @@ const _BoardDetails = (props) => {
   if (!board || board.length === 0) return <q>Loading...</q>;
   return (
     <Card className='board-details-container flex column '>
-      Welcome To The Board Details Page
-      <GroupList onLoadBoard={onLoadBoard} board={board} groups={board.groups} />
+      <BoardHeader />
+      <GroupList
+        onLoadBoard={onLoadBoard}
+        board={board}
+        groups={board.groups}
+      />
     </Card>
   );
 };
@@ -39,6 +44,7 @@ function mapStateToProps({ boardModule }) {
 
 const mapDispatchToProps = {
   loadBoard,
+  saveBoard,
 };
 
 export const BoardDetails = connect(
