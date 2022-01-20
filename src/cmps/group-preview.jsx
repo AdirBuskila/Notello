@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import { Card } from './UI/Card';
+import { PreFeatureAdd } from './preFeatureAdd';
 import { TaskList } from './task-list';
 import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
@@ -11,7 +12,7 @@ const _GroupPreview = (props) => {
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [isAdding, onIsAdding] = useState();
-  const [newTask, onNewTask] = useState([]);
+  const [newTask, onNewTask] = useState({});
   const [tasks, onUpdateTasks] = useState([storeTasks]);
 
   useEffect(() => {
@@ -46,20 +47,15 @@ const _GroupPreview = (props) => {
     onHandleNewCardState();
   };
 
-  if (!tasks || tasks.length === 0)
-    return (
-      <Card className='task flex column'>
-        {/* <button>+ Add a list</button> */}
-        <button>+ Add a list</button>
-      </Card>
-    );
+
   return (
     <div className='group-container flex column'>
       <div className='group-header flex'>
         <h3>{group.title}</h3>
       </div>
-      <TaskList groupId={props.group._id} tasks={tasks} />
-      {!isAdding && (
+      {tasks && <TaskList groupId={props.group._id} tasks={tasks} />}
+      <PreFeatureAdd onLoadBoard={props.onLoadBoard} board={board} group={group} type='task' />
+      {/* {!isAdding && (
         <button onClick={onHandleNewCardState}>+ Add a card</button>
       )}
       {isAdding && (
@@ -76,7 +72,7 @@ const _GroupPreview = (props) => {
             </a>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

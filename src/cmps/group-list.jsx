@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { GroupPreview } from './group-preview';
+import { PreFeatureAdd } from './preFeatureAdd';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Card } from './UI/Card';
 import { TaskPreview } from './task-preview';
@@ -9,28 +10,26 @@ import { TaskPreview } from './task-preview';
 
 export const GroupList = (props) => {
   const groupsFromService = props.board.groups;
-  // console.log("groupsFromService: ", groupsFromService);
   const [groups, setGroups] = useState(groupsFromService);
-  console.log("props: ", props);
+  const [isAdding, onIsAdding] = useState(false);
 
   useEffect(() => {
     // props.onLoadBoard();
     setGroups(groupsFromService)
   }, [groupsFromService])
 
-  if (!groups) return <q>No groups</q>;
-
-
   
+  if (!groups) return <q>No groups</q>;
   return (
     <Card className='group-list-container flex'>
-      {groups.map((group) => (
+      {groups && groups.map((group) => (
         <GroupPreview
         onLoadBoard={props.onLoadBoard}
         group={group}
         key={group._id}
         />
         ))}
+        <PreFeatureAdd onLoadBoard={props.onLoadBoard} board={props.board} type='group' />
     </Card>
   );
 }
