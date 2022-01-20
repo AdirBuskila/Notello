@@ -5,10 +5,11 @@ import { routes } from './routes';
 import { AppHeader } from './cmps/app-header';
 
 export const RootCmp = (props) => {
-  console.log(props);
-  return (
+  const URL = window.location.pathname;
+
+  return (    
     <div className='page-contianer flex column'>
-      <AppHeader />
+      {/* {URL.includes('home') ? '' : <AppHeader />} */}
       <main>
         <Switch>
           <Route path='/' exact>

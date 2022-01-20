@@ -18,16 +18,18 @@ export const BoardWorkspaces = () => {
   // console.log(boards);
   if (!boards || !boards.length) return <q>Loading...</q>;
   return (
-    <div className='board-container flex column align-center'>
-      <h1>Welcome To The Boards Page</h1>
-      {/* <AppHeader /> */}
-      {boards.map((board) => {
-        return (
-          <Link key={board._id} to={`/b/${board._id}`}>
-            <div className='board flex column align-center'>{board.title}</div>
-          </Link>
-        );
-      })}
-    </div>
+    <React.Fragment>
+      <AppHeader />
+      <div className='board-container flex column align-center'>
+        <h1>Welcome To The Boards Page</h1>
+        {boards.map((board) => {
+          return (
+            <Link key={board._id} to={`/b/${board._id}`}>
+              <div className='board flex column align-center'>{board.title}</div>
+            </Link>
+          );
+        })}
+      </div>
+    </React.Fragment>
   );
 };
