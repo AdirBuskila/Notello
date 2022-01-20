@@ -155,13 +155,10 @@ export function ScrollDialog() {
                   <p>Activity</p>
                 </div>
                 <div className='comment-container flex'>
-                  <div className="avatar-container">
                   <Avatar
-                    sx={{ bgcolor: deepPurple[500],marginInlineEnd:2.5}}
-                    >
-                    <p className='avatar-name'>NC</p>
+                  sx={{ bgcolor: deepPurple[500], width:25 , height:25 ,marginInlineEnd:2.5}}>
+                    <p>NC</p>
                   </Avatar>
-                    </div>
                   <textarea
                     sx={{ bgcolor: 'fff' }}
                     placeholder='Write a comment...'
