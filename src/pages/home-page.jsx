@@ -7,6 +7,7 @@ import hero3 from '../assets/img/view.svg';
 import logo from '../assets/img/notello-clear.png';
 import Button from '@mui/material/Button';
 
+
 export class HomePage extends React.Component {
   state = {
     scrollY: false,
@@ -45,9 +46,7 @@ export class HomePage extends React.Component {
               <NavLink to='/signup'>
                 <Button variant='contained'>Sign Up</Button>
               </NavLink>
-              <NavLink to='/modal'>
-                <Button variant='contained'>Modal</Button>
-              </NavLink>
+
             </nav>
           </header>
         </section>
