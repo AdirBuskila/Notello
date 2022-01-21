@@ -6,7 +6,8 @@ import { Login } from './pages/login-page';
 import { SignUp } from './pages/sign-up-page';
 
 
-export const routes = [{
+export const routes = [
+    {
         path: '/home',
         component: HomePage,
     },

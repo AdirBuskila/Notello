@@ -22,155 +22,173 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
+import AddIcon from '@mui/icons-material/Add';
 
-export function ScrollDialog() {
-  const [open, setOpen] = React.useState(false);
+export function ScrollDialog(props) {
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('sm');
 
-  const handleClickOpen = () => () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  React.useEffect(() => {
-    setOpen(true);
-  }, []);
-
+  const { openPopup, setOpenPopup, title, children, members } = props;
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
       event.target.value
     );
   };
-
+  const membersNames = props.members.map((member)=>{
+    return (
+      <Avatar
+      key={member._id}
+      sx={{
+        bgcolor: deepPurple[500],
+        width: 25,
+        height: 25,
+        marginInlineEnd: 1,
+      }}
+    >
+      <p>{member.fullname.slice(0,1)}</p>
+    </Avatar>
+    )
+  })
+  console.log(membersNames);
   const handleFullWidthChange = (event) => {
     setFullWidth(event.target.checked);
   };
 
-  const descriptionElementRef = React.useRef(null);
-  React.useEffect(() => {
-    if (open) {
-      const { current: descriptionElement } = descriptionElementRef;
-      if (descriptionElement !== null) {
-        descriptionElement.focus();
-      }
-    }
-  }, [open]);
+  // const descriptionElementRef = React.useRef(null);
+  // React.useEffect(() => {
+  //   if (open) {
+  //     const { current: descriptionElement } = descriptionElementRef;
+  //     if (descriptionElement !== null) {
+  //       descriptionElement.focus();
+  //     }
+  //   }
+  // }, [open]);
 
   return (
-    <div className='task-details'>
-      <Button onClick={handleClickOpen()}>Open</Button>
-      <Dialog
-        fullWidth={fullWidth}
-        maxWidth={maxWidth}
-        open={open}
-        onClose={handleClose}
-        scroll={scroll}
-        aria-labelledby='scroll-dialog-title'
-        aria-describedby='scroll-dialog-description'
-      >
-        <div className='window-header flex space-between'>
-          <DialogTitle id='scroll-dialog-title'>
-            <div className='task-title flex justify-center'>
-              <WebAssetIcon sx={{ marginTop: 0.5 }} />
-              <p>Task Details</p>
-            </div>
-          </DialogTitle>
-          <div className="close-button">
-          <CloseIcon onClick={handleClose} />
+    <Dialog
+      fullWidth={fullWidth}
+      maxWidth={maxWidth}
+      open={openPopup}
+      scroll={scroll}
+      aria-labelledby='scroll-dialog-title'
+      aria-describedby='scroll-dialog-description'
+    >
+      <div className='window-header flex space-between'>
+        <DialogTitle id='scroll-dialog-title'>
+          <div className='task-title flex justify-center'>
+            <WebAssetIcon sx={{ marginTop: 0.5 }} />
+            <p>{title}</p>
           </div>
-        </div>
-
-        <div className='window-main-content'>
-          <DialogContent
-            sx={{
-              display: 'flex',
-              flexDirection: 'row-reverse',
+        </DialogTitle>
+        <div className='close-button'>
+          <CloseIcon
+            onClick={() => {
+              setOpenPopup(false);
             }}
-            dividers={scroll === 'paper'}
-          >
-            <DialogContentText
-              id='scroll-dialog-description'
-              ref={descriptionElementRef}
-              tabIndex={-1}
-            ></DialogContentText>
-            <div className='buttons-container'>
-              <p className='task-actions'>Suggested</p>
-              <div className='button-container flex'>
-                <PersonOutlineOutlinedIcon color='action' />
-                <Typography>Join</Typography>
-              </div>
-              <p className='task-actions'>Add to card</p>
-              <div className='button-container flex'>
-                <PersonOutlineOutlinedIcon color='action' />
-                <Typography>Members</Typography>
-              </div>
-              <div className='button-container flex'>
-                <LocalOfferOutlinedIcon color='action' />
-                <Typography>Labels</Typography>
-              </div>
-              <div className='button-container flex'>
-                <CheckBoxOutlinedIcon color='action' />
-                <Typography>Checklist</Typography>
-              </div>
-              <div className='button-container flex'>
-                <QueryBuilderIcon color='action' />
-                <Typography>Dates</Typography>
-              </div>
-              <div className='button-container flex'>
-                <AttachFileIcon color='action' />
-                <Typography>Attachment</Typography>
-              </div>
-              <p className='task-actions'>Actions</p>
-              <div className='button-container flex'>
-                <ArrowForwardOutlinedIcon color='action' />
-                <Typography>Move</Typography>
-              </div>
-              <div className='button-container flex'>
-                <ContentCopyOutlinedIcon color='action' />
-                <Typography>Copy</Typography>
-              </div>
-              <div className='button-container flex'>
-                <Inventory2OutlinedIcon color='action' />
-                <Typography>Archive</Typography>
-              </div>
+          />
+        </div>
+      </div>
+
+      <div className='window-main-content'>
+        <DialogContent
+          sx={{
+            display: 'flex',
+            flexDirection: 'row-reverse',
+          }}
+          dividers={scroll === 'paper'}
+        >
+          <DialogContentText
+            id='scroll-dialog-description'
+            // ref={descriptionElementRef}
+            tabIndex={-1}
+          ></DialogContentText>
+          <div className='buttons-container'>
+            <p className='task-actions'>Suggested</p>
+            <div className='button-container flex'>
+              <PersonOutlineOutlinedIcon color='action' />
+              <Typography>Join</Typography>
             </div>
-            <div className='main-content'>
-              <div className='description-container'>
-                <div className='description flex'>
-                  <NotesIcon />
-                  <p>Description</p>
-                </div>
+            <p className='task-actions'>Add to card</p>
+            <div className='button-container flex'>
+              <PersonOutlineOutlinedIcon color='action' />
+              <Typography>Members</Typography>
+
+            </div>
+            <div className='button-container flex'>
+              <LocalOfferOutlinedIcon color='action' />
+              <Typography>Labels</Typography>
+            </div>
+            <div className='button-container flex'>
+              <CheckBoxOutlinedIcon color='action' />
+              <Typography>Checklist</Typography>
+            </div>
+            <div className='button-container flex'>
+              <QueryBuilderIcon color='action' />
+              <Typography>Dates</Typography>
+            </div>
+            <div className='button-container flex'>
+              <AttachFileIcon color='action' />
+              <Typography>Attachment</Typography>
+            </div>
+            <p className='task-actions'>Actions</p>
+            <div className='button-container flex'>
+              <ArrowForwardOutlinedIcon color='action' />
+              <Typography>Move</Typography>
+            </div>
+            <div className='button-container flex'>
+              <ContentCopyOutlinedIcon color='action' />
+              <Typography>Copy</Typography>
+            </div>
+            <div className='button-container flex'>
+              <Inventory2OutlinedIcon color='action' />
+              <Typography>Archive</Typography>
+            </div>
+          </div>
+          <div className='main-content'>
+            <div className="members-avatar-container flex">
+            {membersNames}
+            </div>
+            <div className='description-container'>
+              <div className='description flex'>
+                <NotesIcon />
+                <p>Description</p>
+              </div>
+              <textarea
+                sx={{ bgcolor: '#091e420a' }}
+                placeholder='Add a more detailed description...'
+              ></textarea>
+            </div>
+            <div className='activity-container'>
+              <div className='activity flex'>
+                <FormatListBulletedIcon />
+                <p>Activity</p>
+              </div>
+              <div className='comment-container flex'>
+                <Avatar
+                  sx={{
+                    bgcolor: deepPurple[500],
+                    width: 25,
+                    height: 25,
+                    marginInlineEnd: 1,
+                  }}
+                >
+                  <p>NC</p>
+                </Avatar>
                 <textarea
-                  sx={{ bgcolor: '#091e420a' }}
-                  placeholder='Add a more detailed description...'
+                  sx={{ bgcolor: 'fff' }}
+                  placeholder='Write a comment...'
                 ></textarea>
               </div>
-              <div className='activity-container'>
-                <div className='activity flex'>
-                  <FormatListBulletedIcon />
-                  <p>Activity</p>
-                </div>
-                <div className='comment-container flex'>
-                  <Avatar
-                  sx={{ bgcolor: deepPurple[500], width:25 , height:25 ,marginInlineEnd:1}}>
-                    <p>NC</p>
-                  </Avatar>
-                  <textarea
-                    sx={{ bgcolor: 'fff' }}
-                    placeholder='Write a comment...'
-                  ></textarea>
-                </div>
-              </div>
             </div>
-          </DialogContent>
-        </div>
-      </Dialog>
-    </div>
+          </div>
+        </DialogContent>
+      </div>
+    </Dialog>
   );
 }
+
+// React.useEffect(() => {
+//   setOpen(true);
+// }, []);
