@@ -29,6 +29,7 @@
         }
         .task,
         q {
+            border-radius: 3px;
             background-color: #fff;
             text-align: start;
             padding: 6px 8px 2px;
@@ -62,10 +63,19 @@
             background-color: #091e4214;
             color: #172b4d;
         }
-        textarea {
-            resize: vertical;
-            border-radius: 3px;
-            border: 1px solid black;
-        }
+    }
+    &>.new-item {
+        padding: 10px 8px;
+        width: 100%;
+        gap: 10px;
+    }
+    &>.new-item>textarea {
+        width: 100%;
+        resize: none;
+        border-radius: 3px;
+        box-shadow: 0 1px 0 rgb(22 24 27 / 25%);
+        min-height: 60px;
+        border: none;
+        outline: none;
     }
 }

@@ -19,7 +19,7 @@ export const PreFeatureAdd = (props) => {
   };
 
   const onAdd = async () => {
-    if (!newState.title) return; // add modal
+    if (!newState.title) return; // need to Focus on text area using refs
     if (type === 'group') {
       try {
         const group = { title: newState.title };
@@ -66,7 +66,7 @@ export const PreFeatureAdd = (props) => {
           <textarea
             onChange={onHandleChange}
             rows='5'
-            placeholder={`Enter ${type} title...`}></textarea>
+            placeholder={`Enter a title for this ${type}`}></textarea>
           <div className='new-item-actions flex'>
             {type === 'group' ? (
               <button onClick={onAdd}>Add list</button>
