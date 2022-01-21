@@ -26,7 +26,6 @@ const _GroupPreview = (props) => {
 
   return (
     <div
-      draggable="true"
       className='group-container flex column'>
       <div className='group-header flex'>
         <h4>{group.title}</h4>
@@ -38,15 +37,15 @@ const _GroupPreview = (props) => {
               groupIdx={props.groupIdx}
               groupId={props.group._id}
               tasks={tasks} />
-            <PreFeatureAdd
-              onLoadBoard={props.onLoadBoard}
-              board={board}
-              group={group}
-              type='task'
-            />
             {provided.placeholder}
           </div>)}
       </Droppable>
+      <PreFeatureAdd
+        onLoadBoard={props.onLoadBoard}
+        board={board}
+        group={group}
+        type='task'
+      />
     </div>
   );
 };

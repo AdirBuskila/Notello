@@ -23,10 +23,9 @@ export const GroupList = (props) => {
     dispatch(action);
   }
 
+
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    console.log("source: ", source);
-    console.log("destination: ", destination);
 
     if (!destination) return;
 
@@ -52,7 +51,9 @@ export const GroupList = (props) => {
   if (!groups) return <q>No groups</q>;
   return (
     <section className='group-list-container flex'>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext 
+      onDragEnd={onDragEnd}
+      >
               {groups && groups.map((group, idx) => (
                   <GroupPreview
                     onLoadBoard={props.onLoadBoard}
