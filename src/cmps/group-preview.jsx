@@ -5,7 +5,7 @@ import { PreFeatureAdd } from './preFeatureAdd';
 import { TaskList } from './task-list';
 import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
-import { Droppable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 // import { Card } from './UI/Card';
 // import { cardActionAreaClasses } from '@mui/material';
@@ -25,28 +25,37 @@ const _GroupPreview = (props) => {
   }, [storeTasks]);
 
   return (
-    <div
-      className='group-container flex column'>
-      <div className='group-header flex'>
-        <h4>{group.title}</h4>
-      </div>
-      <Droppable droppableId={group._id}>
-        {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
-            <TaskList
-              groupIdx={props.groupIdx}
-              groupId={props.group._id}
-              tasks={tasks} />
-            {provided.placeholder}
-          </div>)}
-      </Droppable>
-      <PreFeatureAdd
-        onLoadBoard={props.onLoadBoard}
-        board={board}
-        group={group}
-        type='task'
-      />
-    </div>
+    <Draggable draggableId={group._id} index={props.index}>
+      {(provided) => (
+        <div {...provided.draggableProps}
+          ref={provided.innerRef}>
+          <div
+            {...provided.dragHandleProps}
+            className='group-container flex column'>
+            <div className='group-header flex'>
+              <h4>{group.title}</h4>
+            </div>
+            <Droppable droppableId={group._id}>
+              {(provided) => (
+                <div ref={provided.innerRef} {...provided.droppableProps}>
+                  <TaskList
+                    groupIdx={props.groupIdx}
+                    groupId={props.group._id}
+                    tasks={tasks} />
+                  <div style={{ height: '1px' }}></div>
+                  {provided.placeholder}
+                </div>)}
+            </Droppable>
+            <PreFeatureAdd
+              onLoadBoard={props.onLoadBoard}
+              board={board}
+              group={group}
+              type='task'
+            />
+          </div>
+        </div>
+      )}
+    </Draggable>
   );
 };
 
