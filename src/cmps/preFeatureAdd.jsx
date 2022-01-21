@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { boardService } from '../services/board.service';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
@@ -68,11 +68,13 @@ export const PreFeatureAdd = (props) => {
         <div className='new-item flex column'>
           {props.type !== 'group' ? (
             <textarea
+            autoFocus
               onChange={onHandleChange}
               rows='5'
               placeholder={`Enter a title for this card... `}></textarea>
           ) : (
             <input
+            autoFocus
               onChange={onHandleChange}
               placeholder='Enter list title...'
             />
