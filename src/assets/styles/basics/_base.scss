@@ -35,8 +35,8 @@ img {
     width: 100%;
 }
 
-main {
-    min-height: 90vh;
+.page-contianer {
+    min-height: 100vh;
 }
 
 button,
@@ -60,27 +60,4 @@ ul {
 
 .card {
     border-radius: 3px;
-}
-
-
-/* width */
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-
-/* Track */
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-
-/* Handle */
-
-::-webkit-scrollbar-thumb {
-    width: 4px;
-    background: #bfc4ce;
-    border-radius: 50rem;
 }
