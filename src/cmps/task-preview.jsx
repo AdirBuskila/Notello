@@ -11,13 +11,15 @@ export const TaskPreview = (props) => {
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
   );
-
+  
   const onHandleLablesClick = (ev) => {
     ev.preventDefault();
     const className = ev.target.className;
     dispatch({ type: 'HANDLE_LABELS', className });
   };
-
+  
+  const className = isLabelsExpended ? 'expended flex align-center' : 'flex align-center';
+  
   return (
     <Draggable draggableId={task._id} index={props.index}>
       {(provided) => (
@@ -31,6 +33,7 @@ export const TaskPreview = (props) => {
                 {task.labels.map((label, idx) => {
                   return (
                     <li
+                      className={className}
                       onClick={(ev) => onHandleLablesClick(ev)}
                       key={idx}
                       style={{ backgroundColor: `${label.bgc}` }}>
