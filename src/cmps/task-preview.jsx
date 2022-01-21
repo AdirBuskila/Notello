@@ -23,7 +23,7 @@ export const TaskPreview = (props) => {
   return (
     <React.Fragment>
       <Link key={task._id} to={`/c/${task._id}`}>
-        <Draggable draggableId={task._id} index={props.index}>
+        <Draggable key={props.index} draggableId={task._id} index={props.index}>
           {(provided) => (
             <div
               ref={provided.innerRef}

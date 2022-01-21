@@ -19,7 +19,7 @@ export const BoardHeader = (props) => {
   return (
     <section className='flex'>
       <div>
-        Board <span><img src={DOWNICON} alt="down-icon" /></span>
+        {/* Board <span><img src={DOWNICON} alt="down-icon" /></span> */}
       </div>
       <input defaultValue={currBoard.title} onChange={onHandleChange} />
       <Rating name="half-rating" defaultValue={0} precision={1} max={1} />

@@ -17,7 +17,8 @@ export const boardService = {
     addLabel,
     removeLabel,
     updateLabel,
-    getGroupIdxById
+    getGroupIdxById,
+    getGroupsIds
 }
 
 const STORAGE_KEY = 'board_DB'
@@ -283,6 +284,15 @@ async function removeGroup(boardId, groupId, activity) {
     } catch (err) {
         console.log(`Cant remove group ${groupId} from board`);
     }
+}
+
+function getGroupsIds(board) {
+    var groupsIds = [] 
+    groupsIds = board.groups.map((group) => { 
+        return group._id
+    })
+    console.log("groupsIds: ", groupsIds);
+    return groupsIds
 }
 
 async function addLabel(label, boardId, groupId, taskId, activity) {
