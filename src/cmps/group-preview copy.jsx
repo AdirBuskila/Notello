@@ -5,7 +5,6 @@ import { PreFeatureAdd } from './preFeatureAdd';
 import { TaskList } from './task-list';
 import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
-import { Droppable } from 'react-beautiful-dnd';
 
 // import { Card } from './UI/Card';
 // import { cardActionAreaClasses } from '@mui/material';
@@ -25,28 +24,22 @@ const _GroupPreview = (props) => {
   }, [storeTasks]);
 
   return (
-    <div
-      draggable="true"
-      className='group-container flex column'>
+    <div 
+    draggable="true"
+    className='group-container flex column'>
       <div className='group-header flex'>
         <h4>{group.title}</h4>
       </div>
-      <Droppable droppableId={group._id}>
-        {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
-            <TaskList
-              groupIdx={props.groupIdx}
-              groupId={props.group._id}
-              tasks={tasks} />
-            <PreFeatureAdd
-              onLoadBoard={props.onLoadBoard}
-              board={board}
-              group={group}
-              type='task'
-            />
-            {provided.placeholder}
-          </div>)}
-      </Droppable>
+      {tasks && <TaskList
+      groupIdx={props.groupIdx}
+        groupId={props.group._id}
+        tasks={tasks} />}
+      <PreFeatureAdd
+        onLoadBoard={props.onLoadBoard}
+        board={board}
+        group={group}
+        type='task'
+      />
     </div>
   );
 };
@@ -65,3 +58,4 @@ export const GroupPreview = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_GroupPreview);
+

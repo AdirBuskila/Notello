@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { Card } from '../cmps/UI/Card';
 import { AppHeader } from '../cmps/app-header';
 import { BoardHeader } from '../cmps/board-header.jsx';
 
@@ -35,7 +34,7 @@ const _BoardDetails = (props) => {
           onLoadBoard={onLoadBoard}
           board={board}
           groups={board.groups}
-        />
+          />
       </div>
     </React.Fragment>
   );

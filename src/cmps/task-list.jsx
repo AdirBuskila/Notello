@@ -7,7 +7,7 @@ export const TaskList = (props) => {
     <div 
     className='task-list-container flex column'>
       {props.tasks.map((task, index) => {
-        return <TaskPreview groupIdx={groupIdx} taskIdx={index} key={task._id} task={task} />;
+        return <TaskPreview groupIdx={groupIdx} taskIdx={index} key={task._id} task={task} index={index}/>;
       })}
     </div>
   );

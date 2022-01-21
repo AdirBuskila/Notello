@@ -10,35 +10,39 @@ export const TaskPreview = (props) => {
   const dispatch = useDispatch();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
-    );
-  
+  );
+
   const onHandleLablesClick = (ev) => {
     ev.preventDefault();
     dispatch({ type: 'HANDLE_LABELS' });
   };
 
   return (
-    <Link key={task._id} to={`/c/${task._id}`}>
-      <div
-      className='task flex column'
-      key={task._id} 
-      >
-        {task.labels && (
-          <ul className='labels flex'>
-            {task.labels.map((label, idx) => {
-              return (
-                <li
-                  onClick={(ev) => onHandleLablesClick(ev)}
-                  key={idx}
-                  style={{ backgroundColor: `${label.bgc}` }}>
-                  {isLabelsExpended && `${label.name}`}
-                </li>
-              );
-            })}
-          </ul>
-        )}
-        <p>{task.title}</p>
-      </div>
-    </Link>
+    <Draggable draggableId={task._id} index={props.index}>
+      {(provided) => (
+        <div ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}
+          className='task flex column'
+          key={task._id}
+        >
+          <Link key={task._id} to={`/c/${task._id}`}>
+            {task.labels && (
+              <ul className='labels flex'>
+                {task.labels.map((label, idx) => {
+                  return (
+                    <li
+                      onClick={(ev) => onHandleLablesClick(ev)}
+                      key={idx}
+                      style={{ backgroundColor: `${label.bgc}` }}>
+                      {isLabelsExpended && `${label.name}`}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            <p>{task.title}</p>
+          </Link>
+        </div>
+      )}
+    </Draggable>
   );
 };
