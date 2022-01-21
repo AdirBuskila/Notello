@@ -1,4 +1,5 @@
 .app-header {
+    gap: rem(5px);
     background-color: rgba(0, 131, 245, 0.568);
     width: 100%;
     padding: rem(5px);
@@ -6,7 +7,7 @@
     padding-inline-start: rem(16px);
     .logo-img {
         padding: rem(8px);
-        border-radius: 3px;
+        border-radius: rem(3px);
         width: rem(100px);
         content: url('../../img/notello-logo-static.gif');
     }
