@@ -1,12 +1,22 @@
 .group-container {
-    width: rem(272px);
+    min-width: rem(272px);
     min-height: rem(72px);
     max-height: 90vh;
     border-radius: 3px;
     background-color: #ebecf0;
     height: fit-content;
-    overflow-x: auto;
     align-items: flex-start;
+     ::-webkit-scrollbar {
+        width: 8px;
+    }
+     ::-webkit-scrollbar-track {
+        background: #dadbe2;
+        border-radius: 50rem;
+    }
+     ::-webkit-scrollbar-thumb {
+        border-radius: 50rem;
+        background: #bfc4ce;
+    }
     .group-header {
         padding: rem(8px) rem(16px);
          :first-child {
