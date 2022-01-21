@@ -1,0 +1,11 @@
+.board-container {
+    padding-top: rem(40px);
+    gap: rem(40px);
+    .board {
+        justify-content: center;
+        border-radius: 8px;
+        width: rem(100px);
+        height: rem(100px);
+        background-color: rgb(209, 155, 155);
+    }
+}
