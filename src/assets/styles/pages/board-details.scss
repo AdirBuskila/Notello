@@ -1,6 +1,5 @@
 .board-details-container {
-    background: linear-gradient( 180deg, #ffffff3d 0, #ffffff3d 48px, #fff0 80px, #fff0);
-    max-width: 99vw;
+    max-width: 100%;
     flex: 1;
     &> ::-webkit-scrollbar {
         height: 0.5rem;
