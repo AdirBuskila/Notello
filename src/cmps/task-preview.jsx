@@ -10,25 +10,26 @@ export const TaskPreview = (props) => {
   const dispatch = useDispatch();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
-    );
-  
+  );
+
   const onHandleLablesClick = (ev) => {
     ev.preventDefault();
-    dispatch({ type: 'HANDLE_LABELS' });
+    const className = ev.target.className;
+    dispatch({ type: 'HANDLE_LABELS', className });
   };
 
   return (
     <Link key={task._id} to={`/c/${task._id}`}>
-      <div
-      className='task flex column'
-      key={task._id} 
-      >
+      <div className='task flex column' key={task._id}>
         {task.labels && (
           <ul className='labels flex'>
             {task.labels.map((label, idx) => {
               return (
                 <li
-                  onClick={(ev) => onHandleLablesClick(ev)}
+                  className='flex align-center'
+                  onClick={(ev) => {
+                    onHandleLablesClick(ev);
+                  }}
                   key={idx}
                   style={{ backgroundColor: `${label.bgc}` }}>
                   {isLabelsExpended && `${label.name}`}

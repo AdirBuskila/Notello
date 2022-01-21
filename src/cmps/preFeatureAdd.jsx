@@ -81,14 +81,12 @@ export const PreFeatureAdd = (props) => {
             {type === 'group' ? (
               <button onClick={onAdd}>Add list</button>
             ) : (
-              <React.Fragment>
-                <button onClick={onAdd}>Add card</button>
-                <MoreHorizIcon style={{ fill: '#6b778c' }} />
-              </React.Fragment>
+              <button onClick={onAdd}>Add card</button>
             )}
             <a href='#' onClick={onHandleModal}>
               ✕
             </a>
+            {type !== 'group' && <MoreHorizIcon style={{ fill: '#6b778c' }} />}
           </div>
         </div>
       )}
