@@ -21,10 +21,12 @@ export const TaskPreview = (props) => {
   return (
     <Draggable draggableId={task._id} index={props.index}>
       {(provided) => (
-        <div ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}
-          className='task flex column'
-          key={task._id}
-        >
+        <div
+          ref={provided.innerRef}
+          {...provided.dragHandleProps}
+          {...provided.draggableProps}
+          className='task-preview flex column'
+          key={task._id}>
           <Link key={task._id} to={`/c/${task._id}`}>
             {task.labels && (
               <ul className='labels flex'>

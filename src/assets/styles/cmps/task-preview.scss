@@ -1,0 +1,29 @@
+.task-preview {
+    gap: 0.25rem;
+    border-radius: 3px;
+    background-color: #fff;
+    text-align: start;
+    padding: 6px 8px 2px;
+    width: 100%;
+    .task-preview:hover {
+        background-color: $clr2;
+    }
+    .labels {
+        flex-wrap: wrap;
+        gap: rem(4px);
+        min-width: 20px;
+        li {
+            min-height: 0.5rem;
+            padding: 0 rem(6px) 0;
+            color: #fff;
+            min-width: rem(40px);
+            font-size: 12px;
+            line-height: 16px;
+            border-radius: 5px;
+            font-weight: 700;
+            &.expended {
+                min-width: rem(56px);
+            }
+        }
+    }
+}
