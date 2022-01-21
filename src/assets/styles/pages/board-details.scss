@@ -3,7 +3,7 @@
     max-width: 99vw;
     flex: 1;
     &> ::-webkit-scrollbar {
-        height: 1em;
+        height: 0.5rem;
         border-radius: 50rem;
     }
     &> ::-webkit-scrollbar-track {
