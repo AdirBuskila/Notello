@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { boardService } from '../services/board.service';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export const PreFeatureAdd = (props) => {
   const boardId = props.board._id;
@@ -65,16 +66,25 @@ export const PreFeatureAdd = (props) => {
       )}
       {isAdding && (
         <div className='new-item flex column'>
-          {props.type !== 'group' ? <textarea
-            onChange={onHandleChange}
-            rows='5'
-            placeholder={`Enter card name... `}>
-            </textarea> : <input onChange={onHandleChange} placeholder='Enter list name...' />}
-          <div className='new-item-actions flex'>
+          {props.type !== 'group' ? (
+            <textarea
+              onChange={onHandleChange}
+              rows='5'
+              placeholder={`Enter a title for this card... `}></textarea>
+          ) : (
+            <input
+              onChange={onHandleChange}
+              placeholder='Enter list title...'
+            />
+          )}
+          <div className='new-item-actions flex align-center'>
             {type === 'group' ? (
               <button onClick={onAdd}>Add list</button>
             ) : (
-              <button onClick={onAdd}>Add card</button>
+              <React.Fragment>
+                <button onClick={onAdd}>Add card</button>
+                <MoreHorizIcon style={{ fill: '#6b778c' }} />
+              </React.Fragment>
             )}
             <a href='#' onClick={onHandleModal}>
               ✕

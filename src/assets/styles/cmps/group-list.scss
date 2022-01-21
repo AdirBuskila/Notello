@@ -1,7 +1,8 @@
 .group-list-container {
     gap: rem(8px);
     padding: 1rem;
-    min-height: 100vh;
+    overflow-x: auto;
+    flex: 1;
     &>.add-item {
         row-gap: 0.5rem;
         width: rem(272px);
@@ -13,7 +14,7 @@
             border-radius: 3px;
             height: 100%;
             padding: 6px 8px;
-            width: 100%;
+            min-width: rem(272px);
             text-align: start;
             gap: 4px;
             span::before {
@@ -29,14 +30,8 @@
         }
         .add-list {
             button {
-                // padding: 0.5rem;
-                // gap: 0.5rem;
-                // width: 100%;
                 padding: rem(8px);
                 text-align: start;
-                // width: 100%;
-                // background-color: inherit;
-                // color: #5e6c84;
                 border: none;
                 cursor: pointer;
             }
@@ -44,11 +39,38 @@
                 background-color: #091e4214;
                 color: #172b4d;
             }
-            textarea {
-                resize: vertical;
-                border-radius: 3px;
-                border: 1px solid black;
-            }
         }
+    }
+    &>.new-item {
+        width: rem(272px);
+        padding: 4px 4px;
+        gap: 4px;
+        height: fit-content;
+        background-color: #ebecf0;
+        border-radius: 3px;
+    }
+    &>.new-item>input {
+        width: 100%;
+        border-radius: 4px;
+        border: none;
+        min-height: rem(38px);
+        text-align: left;
+        padding: 0.5rem;
+    }
+    &>.new-item>input:focus {
+        outline-color: #2684ff;
+    }
+    &>.new-item>.new-item-actions>button {
+        background-color: #0079bf;
+        border-radius: 3px;
+        color: #fff;
+        padding: rem(8px) rem(12px);
+        margin-inline-end: 12px;
+    }
+    &>.new-item>.new-item-actions>a {
+        color: #42526e;
+        font-weight: 700;
+        font-size: 20px;
+        flex: 1;
     }
 }
