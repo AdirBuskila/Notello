@@ -55,8 +55,10 @@ export const PreFeatureAdd = (props) => {
               <span></span> <p> Add another list</p>
             </button>
           ) : (
-            <button className='add-card' onClick={onHandleModal}>
-              <span>+</span> Add a card
+            <button
+              className='add-card flex align-center'
+              onClick={onHandleModal}>
+              <span></span> Add a card
             </button>
           )}
         </div>

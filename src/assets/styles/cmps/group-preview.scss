@@ -45,19 +45,24 @@
         }
     }
     &>.add-item {
-        gap: 0.5rem;
+        row-gap: 0.5rem;
+        min-height: rem(40px);
         width: 100%;
         border-radius: 3px;
         padding: rem(8px);
         button {
+            gap: 4px;
             border-radius: 3px;
-            padding: rem(8px);
             text-align: start;
             width: 100%;
             background-color: inherit;
             color: #5e6c84;
             border: none;
             cursor: pointer;
+            span::before {
+                font-size: 20px;
+                content: '+';
+            }
         }
         button:hover {
             background-color: #091e4214;
