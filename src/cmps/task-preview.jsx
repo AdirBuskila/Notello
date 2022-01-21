@@ -14,7 +14,8 @@ export const TaskPreview = (props) => {
 
   const onHandleLablesClick = (ev) => {
     ev.preventDefault();
-    dispatch({ type: 'HANDLE_LABELS' });
+    const className = ev.target.className;
+    dispatch({ type: 'HANDLE_LABELS', className });
   };
 
   return (
