@@ -14,20 +14,21 @@ export const GroupList = (props) => {
 
   if (!groups) return <q>No groups</q>;
   return (
-    // <Card 
-    <div
-    className='group-list-container flex'>
-      {groups && groups.map((group, index) => (
-        <GroupPreview
-        groupIdx={index}
-        draggable="true"
-          onLoadBoard={props.onLoadBoard}
-          group={group}
-          key={group._id}
-        />
+    <section className='group-list-container flex'>
+      {groups &&
+        groups.map((group, idx) => (
+          <GroupPreview
+            onLoadBoard={props.onLoadBoard}
+            group={group}
+            key={idx}
+          />
         ))}
-        <PreFeatureAdd onLoadBoard={props.onLoadBoard} board={props.board} type='group' />
-    </div>
+      <PreFeatureAdd
+        onLoadBoard={props.onLoadBoard}
+        board={props.board}
+        type='group'
+      />
+    </section>
   );
 };
 
