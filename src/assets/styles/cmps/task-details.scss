@@ -4,21 +4,21 @@
   }
 }
 
-.window-header{
-    .close-button{
-        margin-top: rem(7px);
-        margin-right: rem(7px);
-        width: rem(40px);
-        height: rem(40px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        border-radius: 50%;
-    }
-    .close-button:hover{
-        background-color: #091e4214;
-    }
+.window-header {
+  .close-button {
+    margin-top: rem(7px);
+    margin-right: rem(7px);
+    width: rem(40px);
+    height: rem(40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .close-button:hover {
+    background-color: #091e4214;
+  }
 }
 
 .task-actions {
@@ -48,18 +48,21 @@
   }
 }
 .main-content {
+  display: flex;
+  flex-direction: column;
   width: 80%;
+  gap: 20px;
   p {
     font-weight: 500;
   }
   textarea {
     border-radius: rem(3px);
   }
-  svg {
-    margin-inline-end: rem(10px);
-  }
   .description {
     margin-bottom: rem(10px);
+    svg {
+      margin-inline-end: rem(10px);
+    }
   }
   .description-container {
     margin-bottom: rem(15px);
@@ -69,6 +72,9 @@
   margin-bottom: rem(15px);
   .activity {
     margin-bottom: rem(15px);
+    svg {
+      margin-inline-end: rem(10px);
+    }
   }
   .comment-container {
     align-items: center;
@@ -76,4 +82,70 @@
       font-size: rem(15px);
     }
   }
+}
+
+.add-icon {
+  background-color: #091e420a;
+  width: rem(32px);
+  height: rem(32px);
+  border-radius: 50%;
+}
+
+.add-icon:hover {
+  background-color: #091e4214;
+}
+
+
+.task-info {
+  gap: rem(10px);
+}
+
+.labels-container > * {
+  cursor: pointer;
+}
+.labels-container {
+  gap: rem(5px);
+}
+
+.label-container {
+  color: #fff;  
+  border-radius: rem(3px);
+  font-weight: 600;
+  height: 32px;
+  line-height: 32px;
+  min-width: 40px;
+  padding: 0 12px;
+  width: auto;
+}
+
+.labels-info-container,
+.members-info-container {
+  .span-container {
+    margin-bottom: rem(4px);
+  }
+  span {
+    color: #5e6c84;
+    font-size: rem(12px);
+    font-weight: 600;
+    line-height: rem(16px);
+    line-height: rem(20px);
+  }
+}
+
+.members-avatar-container > * {
+  cursor: pointer;
+}
+
+.add-square-icon {
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: #091e420a;
+  font-size: 16px;
+  height: 16px;
+  line-height: 16px;
+  padding: 16px;
+  width: 16px;
+}
+.add-square-icon:hover {
+  background-color: #091e4214;
 }

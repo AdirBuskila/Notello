@@ -23,35 +23,66 @@ import { deepOrange, deepPurple } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import AddIcon from '@mui/icons-material/Add';
+import { utilService } from '../services/util.service';
 
 export function ScrollDialog(props) {
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('sm');
 
-  const { openPopup, setOpenPopup, title, children, members } = props;
+  const { openPopup, setOpenPopup, title, children, members, labels } = props;
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
       event.target.value
     );
   };
-  const membersNames = props.members.map((member)=>{
+  const membersNames = props.members.map((member) => {
     return (
       <Avatar
-      key={member._id}
-      sx={{
-        bgcolor: deepPurple[500],
-        width: 25,
-        height: 25,
-        marginInlineEnd: 1,
-      }}
+        key={member._id}
+        sx={{
+          bgcolor: deepPurple[500],
+          width: 30,
+          height: 30,
+          marginInlineEnd: 1,
+        }}
+      >
+        <p>{member.fullname.slice(0, 1)}</p>
+      </Avatar>
+    );
+  });
+  membersNames.push(
+    <div
+      key={utilService.makeId()}
+      className='add-icon flex align-center justify-center'
     >
-      <p>{member.fullname.slice(0,1)}</p>
-    </Avatar>
-    )
-  })
-  console.log(membersNames);
+      <AddIcon key={utilService.makeId()} />
+    </div>
+  );
+
+  const taskLabels = props.labels.map((label) => {
+    return (
+      <div
+        key={utilService.makeId()}
+        style={{ backgroundColor: `${label.bgc}` }}
+        className='label-container flex justify-center align-center'
+      >
+        <p>{label.name}</p>
+      </div>
+    );
+  });
+  taskLabels.push(
+    <div
+    key={utilService.makeId()}
+    className='add-square-icon flex align-center justify-center'
+  >
+    <AddIcon key={utilService.makeId()} />
+  </div>
+  )
+
+  console.log(taskLabels);
+
   const handleFullWidthChange = (event) => {
     setFullWidth(event.target.checked);
   };
@@ -82,7 +113,7 @@ export function ScrollDialog(props) {
             <p>{title}</p>
           </div>
         </DialogTitle>
-        <div className='close-button'>
+        <div className='close-button flex align-center'>
           <CloseIcon
             onClick={() => {
               setOpenPopup(false);
@@ -114,7 +145,6 @@ export function ScrollDialog(props) {
             <div className='button-container flex'>
               <PersonOutlineOutlinedIcon color='action' />
               <Typography>Members</Typography>
-
             </div>
             <div className='button-container flex'>
               <LocalOfferOutlinedIcon color='action' />
@@ -147,8 +177,21 @@ export function ScrollDialog(props) {
             </div>
           </div>
           <div className='main-content'>
-            <div className="members-avatar-container flex">
-            {membersNames}
+            <div className='task-info flex align-center'>
+              <div className='labels-info-container'>
+              <div className="span-container">
+                <span>Labels</span>
+                </div>
+                <div className='labels-container align-center flex'>{taskLabels}</div>
+              </div>
+              <div className='members-info-container'>
+                <div className="span-container">
+                <span>Members</span>
+                </div>
+                <div className='members-avatar-container flex'>
+                  {membersNames}
+                </div>
+              </div>
             </div>
             <div className='description-container'>
               <div className='description flex'>

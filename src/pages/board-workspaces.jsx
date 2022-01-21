@@ -18,6 +18,15 @@ export const BoardWorkspaces = () => {
     fullname: "Adir Buskila",
     imgUrl: "https://www.google.com"
 }]
+const labels = [{
+  name: 'Work',
+  bgc: '#8E806A'
+},
+{
+  name: 'Relavent',
+  bgc: '#F0BB62'
+}
+]
 
 
   useEffect(() => {
@@ -56,6 +65,7 @@ export const BoardWorkspaces = () => {
           setOpenPopup={setOpenPopup}
           members= {teamMembers}
           title='Drag & Drop'
+          labels = {labels}
         ></ScrollDialog>
       </div>
     </React.Fragment>
