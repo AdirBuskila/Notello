@@ -45,8 +45,50 @@ export const GroupList = (props) => {
       // return 
     // }
     
-    
 
+  //   ******
+    
+  //   const sourceGroup = board.groups.filter((group) => {
+  //     group._id === source.dropabbleId
+  //   });
+  //   const destinationGroup = destination ? board.groups.filter((group) => {
+  //     group._id === destination.dropabbleId
+  //   }) : {...sourceGroup};
+
+  //   const [movingTask] = sourceGroup.tasks.filter((t) => {
+  //     t._id === draggableId
+  //   })
+
+  //   const newSourceGroupTasks = sourceGroup.tasks.splice(source.index, 1);
+  //   const newDestinationGroupTasks = destinationGroup.tasks.splice(
+  //     destination.index,
+  //     0,
+  //     movingTask
+  //   );
+
+  //   const newTaskList = board.groups.map(group => {
+  //     if (group._id === source.dropabbleId) {
+  //       return {
+  //         'group._id': group.groupId, // **** HERE
+  //         tasks: newSourceGroupTasks
+  //       };
+  //     }
+  //     if (column.groupName === destination.groupName) {
+  //       return {
+  //         groupName: column.groupName,
+  //         tasks: newDestinationGroupTasks
+  //       };
+  //     }
+  //     return column;
+  //   });
+  //   setTasks(newTaskList);
+  // }
+
+  // *******
+
+
+
+    
     const sourceGroupIdx = boardService.getGroupIdxById(board, source.droppableId);
     const destinationGroupIdx = boardService.getGroupIdxById(board, destination.droppableId);
     const sourceGroup = board.groups[sourceGroupIdx];

@@ -25,7 +25,7 @@ export const TaskPreview = (props) => {
   return (
     <React.Fragment>
             {/* <Link key={task._id} to={`/c/${task._id}`}> */}
-      <Draggable draggableId={task._id} index={props.taskIdx} key={props.index} draggable="true">
+      <Draggable draggableId={task._id} index={props.index} key={props.index} type="task">
         {(provided) => (
           <div
           onClick={()=> {setOpenPopup(true)}}

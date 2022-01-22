@@ -25,8 +25,10 @@ const _GroupPreview = (props) => {
     onUpdateTasks(tasks);
   }, [storeTasks]);
 
+  // index={props.index} key={props.index}
+
   return (
-    <Draggable draggableId={group._id} index={props.index} key={props.index}>
+    <Draggable draggableId={group._id} index={props.index} key={props.index}  type="list">
       {(provided) => (
         <div {...provided.draggableProps}
           ref={provided.innerRef}>
