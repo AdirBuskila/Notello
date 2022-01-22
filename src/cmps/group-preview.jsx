@@ -16,8 +16,7 @@ const _GroupPreview = (props) => {
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [tasks, onUpdateTasks] = useState([storeTasks]);
   const [clickedGroupId, setClickedGroupId] = useState('');
-  const [newGroupTitle, setNewGroupTitle] = useState('')
-
+  const [newGroupTitle, setNewGroupTitle] = useState('');
 
   useEffect(() => {
     // await props.onLoadBoard()
@@ -26,45 +25,60 @@ const _GroupPreview = (props) => {
     onUpdateTasks(tasks);
   }, [storeTasks]);
 
-  
-
   const handleNewTitle = async () => {
-    if (!newGroupTitle) return setClickedGroupId('')
-    const groupIdx = boardService.getGroupIdxById(board, clickedGroupId)
+    if (!newGroupTitle) return setClickedGroupId('');
+    const groupIdx = boardService.getGroupIdxById(board, clickedGroupId);
     const newBoard = board;
     newBoard.groups[groupIdx].title = newGroupTitle;
-    setClickedGroupId('')
-    setNewGroupTitle('')
+    setClickedGroupId('');
+    setNewGroupTitle('');
     boardService.saveBoard(newBoard);
-  }
+  };
+
+  const className = clickedGroupId
+    ? 'group-header flex input'
+    : 'group-header flex ';
 
   return (
-    <Draggable draggableId={group._id} index={props.index} type="list" key={group._id}>
+    <Draggable
+      draggableId={group._id}
+      index={props.index}
+      type='list'
+      key={group._id}>
       {(provided) => (
-        <div {...provided.draggableProps}
-          ref={provided.innerRef}>
-          <div onBlur={handleNewTitle} 
+        <div {...provided.draggableProps} ref={provided.innerRef}>
+          <div
+            onBlur={handleNewTitle}
             {...provided.dragHandleProps}
             className='group-container flex column'>
-            <div onClick={() => setClickedGroupId(group._id)} className='group-header flex'>
-             {!clickedGroupId && <h4>{group.title}</h4>}
-              {group._id === clickedGroupId ? <input 
-              autoFocus 
-              onChange={(ev) => {
-                setNewGroupTitle(ev.target.value)}
-              } 
-               defaultValue={group.title}></input> : null}
+            <div
+              onClick={() => setClickedGroupId(group._id)}
+              className={className}>
+              {!clickedGroupId && <h4>{group.title}</h4>}
+              {group._id === clickedGroupId ? (
+                <input
+                  autoFocus
+                  onChange={(ev) => {
+                    setNewGroupTitle(ev.target.value);
+                  }}
+                  defaultValue={group.title}></input>
+              ) : null}
             </div>
-            <Droppable droppableId={group._id} index={props.index} key={props.index}>
+            <Droppable
+              droppableId={group._id}
+              index={props.index}
+              key={props.index}>
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   <TaskList
                     groupIdx={groupIdx}
                     groupId={group._id}
-                    tasks={tasks} />
+                    tasks={tasks}
+                  />
                   <div style={{ height: '5px' }}></div>
                   {provided.placeholder}
-                </div>)}
+                </div>
+              )}
             </Droppable>
             <PreFeatureAdd
               onLoadBoard={props.onLoadBoard}
