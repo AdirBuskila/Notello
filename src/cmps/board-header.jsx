@@ -28,10 +28,6 @@ export const BoardHeader = (props) => {
     boardService.saveBoard(board)
   }
 
-  <Avatar>H</Avatar>
-
-
-
   if (!board) return (<h1> No board </h1>)
   return (
     <section className='upper-header flex'>
