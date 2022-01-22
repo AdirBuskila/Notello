@@ -28,7 +28,7 @@ const _GroupPreview = (props) => {
   // index={props.index} key={props.index}
 
   return (
-    <Draggable draggableId={group._id} index={props.index} key={props.index}  type="list">
+    <Draggable draggableId={group._id} index={props.index} type="list" key={group._id}>
       {(provided) => (
         <div {...provided.draggableProps}
           ref={provided.innerRef}>

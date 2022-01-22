@@ -26,69 +26,23 @@ export const GroupList = (props) => {
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type} = result;
+    console.log("draggableId: ", draggableId);
+    console.log("source: ", source);
+    console.log("destination: ", destination);
     
     if (!destination) return;
 
-    // if (type === 'list') {
-      // const draggingGroup = board.groups.filter((group) => {
-      //   return group._id === draggableId
-      // })
-      // board.groups.splice(source.index, 1)
-      // board.groups.splice(destination.index, 0, draggingGroup[0])
-      
-      // const newGroupIds = board.groups;
-      // const draggingGroup = newGroupIds.splice(source.index, 1);
-      // newGroupIds.splice(destination.index, 0, draggingGroup[0])
-      // board.groups = newGroupIds
-      // boardService.saveBoard(board);
-      // onSetBoard(board);
-      // return 
-    // }
-    
+    if (type === 'list') {
+      const draggingGroup = board.groups.filter((group) => {
+        return group._id === draggableId
+      })[0]
+      board.groups.splice(source.index, 1)
+      board.groups.splice(destination.index, 0, draggingGroup)
+      boardService.saveBoard(board);
+      onSetBoard(board);
+      return 
+    }
 
-  //   ******
-    
-  //   const sourceGroup = board.groups.filter((group) => {
-  //     group._id === source.dropabbleId
-  //   });
-  //   const destinationGroup = destination ? board.groups.filter((group) => {
-  //     group._id === destination.dropabbleId
-  //   }) : {...sourceGroup};
-
-  //   const [movingTask] = sourceGroup.tasks.filter((t) => {
-  //     t._id === draggableId
-  //   })
-
-  //   const newSourceGroupTasks = sourceGroup.tasks.splice(source.index, 1);
-  //   const newDestinationGroupTasks = destinationGroup.tasks.splice(
-  //     destination.index,
-  //     0,
-  //     movingTask
-  //   );
-
-  //   const newTaskList = board.groups.map(group => {
-  //     if (group._id === source.dropabbleId) {
-  //       return {
-  //         'group._id': group.groupId, // **** HERE
-  //         tasks: newSourceGroupTasks
-  //       };
-  //     }
-  //     if (column.groupName === destination.groupName) {
-  //       return {
-  //         groupName: column.groupName,
-  //         tasks: newDestinationGroupTasks
-  //       };
-  //     }
-  //     return column;
-  //   });
-  //   setTasks(newTaskList);
-  // }
-
-  // *******
-
-
-
-    
     const sourceGroupIdx = boardService.getGroupIdxById(board, source.droppableId);
     const destinationGroupIdx = boardService.getGroupIdxById(board, destination.droppableId);
     const sourceGroup = board.groups[sourceGroupIdx];
@@ -99,7 +53,7 @@ export const GroupList = (props) => {
 
     console.log('Board at drag end', board);
 
-    if (source.dropabbleId === destination.dropabbleId) {
+    if (source.dropabbleId === destination.droppableId) {
       sourceGroup.tasks.splice(source.index, 1);
       destinationGroup.tasks.splice(destination.index, 0, draggingTask);
       boardService.saveBoard(board);
@@ -131,15 +85,15 @@ export const GroupList = (props) => {
                 />
               ))}
               {provided.placeholder}
+              <PreFeatureAdd
+                onLoadBoard={props.onLoadBoard}
+                board={board}
+                type='group'
+              />
             </div>
           )}
         </Droppable>
       </DragDropContext>
-      <PreFeatureAdd
-        onLoadBoard={props.onLoadBoard}
-        board={board}
-        type='group'
-      />
     </section>
   );
 };

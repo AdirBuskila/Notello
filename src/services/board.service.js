@@ -76,7 +76,7 @@ async function _createBoards() {
                             bgColor: '#f2f3'
                         },
                         tasks: [{
-                                _id: 't101',
+                                _id: 't200',
                                 title: 'Gurevich loves scrolling (specially Y axis)',
                                 labels: [{
                                         name: 'Work',
@@ -100,7 +100,7 @@ async function _createBoards() {
                                 }],
                             },
                             {
-                                _id: 't102',
+                                _id: 't300',
                                 title: 'Adir you are a SAVAGE!',
                                 labels: [{
                                         name: 'Special',

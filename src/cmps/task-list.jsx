@@ -1,7 +1,6 @@
 import { TaskPreview } from './task-preview';
 
 export const TaskList = (props) => {
-  console.log("props: ", props);
   const groupIdx = props.groupIdx
 
   return (
