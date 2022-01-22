@@ -60,13 +60,13 @@ const labels = [{
             </Link>
           );
         })}
-        <ScrollDialog
+        {/* <ScrollDialog
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
           members= {teamMembers}
           title='Drag & Drop'
           labels = {labels}
-        ></ScrollDialog>
+        ></ScrollDialog> */}
       </div>
     </React.Fragment>
   );

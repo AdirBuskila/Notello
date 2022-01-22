@@ -31,71 +31,20 @@ export function ScrollDialog(props) {
   const [maxWidth, setMaxWidth] = React.useState('sm');
 
   const { openPopup, setOpenPopup, title, children, members, labels } = props;
+
+  console.log('members', members);
+  console.log('title', title);
+  console.log('labels', labels);
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
       event.target.value
     );
   };
-  const membersNames = props.members.map((member) => {
-    return (
-      <Avatar
-        key={member._id}
-        sx={{
-          bgcolor: deepPurple[500],
-          width: 30,
-          height: 30,
-          marginInlineEnd: 1,
-        }}
-      >
-        <p>{member.fullname.slice(0, 1)}</p>
-      </Avatar>
-    );
-  });
-  membersNames.push(
-    <div
-      key={utilService.makeId()}
-      className='add-icon flex align-center justify-center'
-    >
-      <AddIcon key={utilService.makeId()} />
-    </div>
-  );
-
-  const taskLabels = props.labels.map((label) => {
-    return (
-      <div
-        key={utilService.makeId()}
-        style={{ backgroundColor: `${label.bgc}` }}
-        className='label-container flex justify-center align-center'
-      >
-        <p>{label.name}</p>
-      </div>
-    );
-  });
-  taskLabels.push(
-    <div
-    key={utilService.makeId()}
-    className='add-square-icon flex align-center justify-center'
-  >
-    <AddIcon key={utilService.makeId()} />
-  </div>
-  )
-
-  console.log(taskLabels);
 
   const handleFullWidthChange = (event) => {
     setFullWidth(event.target.checked);
   };
-
-  // const descriptionElementRef = React.useRef(null);
-  // React.useEffect(() => {
-  //   if (open) {
-  //     const { current: descriptionElement } = descriptionElementRef;
-  //     if (descriptionElement !== null) {
-  //       descriptionElement.focus();
-  //     }
-  //   }
-  // }, [open]);
 
   return (
     <Dialog
@@ -179,17 +128,60 @@ export function ScrollDialog(props) {
           <div className='main-content'>
             <div className='task-info flex align-center'>
               <div className='labels-info-container'>
-              <div className="span-container">
-                <span>Labels</span>
+                <div className='span-container'>
+                  <span>Labels</span>
                 </div>
-                <div className='labels-container align-center flex'>{taskLabels}</div>
+                <div className='labels-container align-center flex'>
+                  {props.labels && (
+                    <section className='flex'>
+                      {props.labels.map((label) => {
+                        return (
+                          <div
+                            key={utilService.makeId()}
+                            style={{ backgroundColor: `${label.bgc}` }}
+                            className='label-container flex justify-center align-center'
+                          >
+                            <p>{label.name}</p>
+                          </div>
+                        );
+                      })}
+                      <div
+                        key={utilService.makeId()}
+                        className='add-square-icon flex align-center justify-center'
+                      >
+                        <AddIcon key={utilService.makeId()} />
+                      </div>
+                    </section>
+                  )}
+                </div>
               </div>
               <div className='members-info-container'>
-                <div className="span-container">
-                <span>Members</span>
+                <div className='span-container'>
+                  <span>Members</span>
                 </div>
                 <div className='members-avatar-container flex'>
-                  {membersNames}
+                  {props.members && (
+                    <section className='flex' >
+                      {props.members.map((member) => {
+                        return (
+                          <Avatar
+                            key={member._id}
+                            sx={{
+                              bgcolor: deepPurple[500],
+                              width: 30,
+                              height: 30,
+                              marginInlineEnd: 1,
+                            }}
+                          >
+                            <p>{member.fullname.slice(0, 1)}</p>
+                          </Avatar>
+                        );
+                      })}{' '}
+                      <div className='add-icon flex align-center justify-center'>
+                        <AddIcon key={utilService.makeId()} />
+                      </div>
+                    </section>
+                  )}
                 </div>
               </div>
             </div>
