@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { GroupPreview } from './group-preview';
@@ -8,9 +8,7 @@ import { boardService } from '../services/board.service';
 
 export const GroupList = (props) => {
   const dispatch = useDispatch();
-  const board = useSelector(
-    (state) => state.boardModule.board
-  );
+  const board = useSelector((state) => state.boardModule.board);
   const groupsFromService = board.groups;
   const [groups, setGroups] = useState(groupsFromService);
 
@@ -21,8 +19,7 @@ export const GroupList = (props) => {
   const onSetBoard = (board) => {
     const action = { type: 'SET_BOARD', board };
     dispatch(action);
-  }
-
+  };
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type} = result;
@@ -47,8 +44,8 @@ export const GroupList = (props) => {
     const destinationGroupIdx = boardService.getGroupIdxById(board, destination.droppableId);
     const sourceGroup = board.groups[sourceGroupIdx];
     const destinationGroup = board.groups[destinationGroupIdx];
-    const draggingTask = sourceGroup.tasks.filter((task) =>{ 
-      return (task._id === draggableId)
+    const draggingTask = sourceGroup.tasks.filter((task) => {
+      return task._id === draggableId;
     })[0];
 
     console.log('Board at drag end', board);
@@ -64,26 +61,27 @@ export const GroupList = (props) => {
       boardService.saveBoard(board);
       onSetBoard(board);
     }
-  }
+  };
 
   if (!groups) return <q>No groups</q>;
   return (
-    <section className='group-list-container flex'>
+    <React.Fragment>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={board._id} type='list' direction='horizontal'>
           {(provided) => (
-            <div 
-            className='group-list-container flex' 
-            ref={provided.innerRef} 
-            {...provided.droppableProps}>
-              {groups && groups.map((group, idx) => (
-                <GroupPreview
-                  onLoadBoard={props.onLoadBoard}
-                  group={group}
-                  key={idx}
-                  index={idx}
-                />
-              ))}
+            <div
+              className='group-list-container flex'
+              ref={provided.innerRef}
+              {...provided.droppableProps}>
+              {groups &&
+                groups.map((group, idx) => (
+                  <GroupPreview
+                    onLoadBoard={props.onLoadBoard}
+                    group={group}
+                    key={idx}
+                    index={idx}
+                  />
+                ))}
               {provided.placeholder}
               <PreFeatureAdd
                 onLoadBoard={props.onLoadBoard}
@@ -94,6 +92,6 @@ export const GroupList = (props) => {
           )}
         </Droppable>
       </DragDropContext>
-    </section>
+    </React.Fragment>
   );
 };
