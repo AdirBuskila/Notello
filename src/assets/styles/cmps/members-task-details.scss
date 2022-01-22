@@ -1,0 +1,14 @@
+.add-icon {
+  background-color: #091e420a;
+  width: rem(32px);
+  height: rem(32px);
+  border-radius: 50%;
+}
+
+.add-icon:hover {
+  background-color: #091e4214;
+}
+
+.members-avatar-container > * {
+  cursor: pointer;
+}

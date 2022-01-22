@@ -1,8 +1,3 @@
-// import Grid from '@mui/material/Grid';
-// import DialogActions from '@mui/material/DialogActions';
-// import Button from '@mui/material/Button';
-// import AddIcon from '@mui/icons-material/Add';
-// import CallToActionOutlinedIcon from '@mui/icons-material/CallToActionOutlined';
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -23,14 +18,16 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
+import {PreFeatureAdd} from '../cmps/preFeatureAdd'
 
 import { LabelsCmp } from '../cmps/labels-cmp';
 import { MembersCmp } from '../cmps/members-cmp';
+import { Textarea } from '../cmps/textarea-task-details';
 
 export function ScrollDialog(props) {
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState('sm');
+  const [maxWidth, setMaxWidth] = React.useState('md');
 
   const { openPopup, setOpenPopup, title, children, members, labels } = props;
   const handleMaxWidthChange = (event) => {
@@ -46,8 +43,8 @@ export function ScrollDialog(props) {
 
   return (
     <Dialog
+    maxWidth={maxWidth}
       fullWidth={fullWidth}
-      maxWidth={maxWidth}
       open={openPopup}
       scroll={scroll}
       aria-labelledby='task-details'
@@ -133,10 +130,9 @@ export function ScrollDialog(props) {
                 <NotesIcon />
                 <p>Description</p>
               </div>
-              <textarea
-                sx={{ bgcolor: '#091e420a' }}
-                placeholder='Add a more detailed description...'
-              ></textarea>
+              <div className="add-description-container">
+              <Textarea/>
+              </div>
             </div>
             <div className='activity-container'>
               <div className='activity flex'>
