@@ -23,9 +23,6 @@ export const GroupList = (props) => {
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type} = result;
-    console.log("draggableId: ", draggableId);
-    console.log("source: ", source);
-    console.log("destination: ", destination);
     
     if (!destination) return;
 
