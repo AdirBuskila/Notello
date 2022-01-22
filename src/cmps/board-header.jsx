@@ -43,7 +43,7 @@ export const BoardHeader = (props) => {
         <span className='board-header-btn-divider'></span>
         <button className='board-header-btn'>Workspace</button>
         <span className='board-header-btn-divider'></span>
-        <button className='board-header-btn'>Workspace visible</button>
+        <button className='board-header-btn visible'>Workspace visible</button>
         <span className='board-header-btn-divider'></span>
         <div className='members-avatars'>
           <AvatarGroup max={3}>
