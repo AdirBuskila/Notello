@@ -43,6 +43,11 @@ export function ScrollDialog(props) {
 
   return (
     <Dialog
+    PaperProps={{
+      style: {
+        backgroundColor:'#f4f5f7',
+      },
+    }}
     maxWidth={maxWidth}
       fullWidth={fullWidth}
       open={openPopup}
@@ -143,8 +148,8 @@ export function ScrollDialog(props) {
                 <Avatar
                   sx={{
                     bgcolor: deepPurple[500],
-                    width: 25,
-                    height: 25,
+                    width: 32,
+                    height: 32,
                     marginInlineEnd: 1,
                   }}
                 >

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import Button from '@mui/material/Button';
+
 
 export const Textarea = (props) => {
   const [newState, onNewState] = useState({});
@@ -22,22 +24,25 @@ export const Textarea = (props) => {
     <React.Fragment>
       {!isAdding && (
         <button
-          className='add-description flex align-center'
+          className='add-description flex'
           onClick={onHandleModal}
         >
-          <p> Add more Description...</p>
+          <p>Add a more detailed description</p>
         </button>
       )}
       {isAdding && (
-        <div className='new-item flex column'>
+        <div className='new-description flex column'>
           <textarea
             autoFocus
             onChange={onHandleChange}
-            rows='5'
-            placeholder={`Enter a title for this card... `}
+            rows='4'
+            placeholder={`Add a more detailed description `}
           ></textarea>
-          <div className='new-item-actions flex align-center'>
-            <button onClick={onAdd}>Add Description</button>
+          <div className='new-description-actions flex align-center'>
+            <Button 
+            onClick={onAdd}
+            variant='contained'
+            >Save</Button>
             <a href='#' onClick={onHandleModal}>
               ✕
             </a>
