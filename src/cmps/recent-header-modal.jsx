@@ -59,31 +59,31 @@ export const RecentHeaderModal = () => {
                                 </div>
                                 <hr />
                                 <section className='recent-boards flex column' style={{height: 'fit-content'}}>
-                                    <article className='flex align-center'>
-                                        <Avatar sx={{ bgcolor: red[500], borderRadius: '3px' }} variant="square">
+                                    <article className='recent flex align-center'>
+                                    <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
                                             <img className='avatar-img' src={AVATAR2} alt="avatar2" />
                                         </Avatar>
                                         <div className='avatar-details flex column'>
                                             <p>My Workspace</p>
-                                            <p>First Workspace</p>
+                                            <h5>First Workspace</h5>
                                         </div>
                                     </article>
-                                    <article className='flex align-center'>
-                                        <Avatar sx={{ bgcolor: red[500], borderRadius: '3px' }} variant="square">
+                                    <article className='recent flex align-center'>
+                                    <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
                                         <img className='avatar-img' src={AVATAR3} alt="avatar3" />
                                         </Avatar>
-                                        <div className='avatar-details  flex column'>
+                                        <div className='recent avatar-details  flex column'>
                                             <p>My Workspace</p>
-                                            <p>Second Workspace</p>
+                                            <h5>Second Workspace</h5>
                                         </div>
                                     </article>
-                                    <article className='flex align-center'>
-                                        <Avatar sx={{ bgcolor: red[500], borderRadius: '3px' }} variant="square">
+                                    <article className='recent flex align-center'>
+                                        <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
                                         <img className='avatar-img' src={AVATAR4} alt="avatar4" />
                                         </Avatar>
                                         <div className='avatar-details  flex column'>
                                             <p>My Workspace</p>
-                                            <p>Third Workspace</p>
+                                            <h5>Third Workspace</h5>
                                         </div>
                                     </article>
                                 </section>

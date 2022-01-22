@@ -56,7 +56,7 @@ export const StarredHeaderModal = () => {
                                 <hr />
                                 <section className='starred-boards flex column' style={{height: 'fit-content'}}>
                                    <img src={STARRED} alt='starred' />
-                                   <p>Star important boards to access them quickly and easily.</p>
+                                   <h6>Star important boards to access them quickly and easily.</h6>
                                 </section>
                             </Typography>
                         </Paper>
