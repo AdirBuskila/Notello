@@ -23,6 +23,7 @@ import { LabelsCmp } from '../cmps/labels-cmp';
 import { MembersCmp } from '../cmps/members-cmp';
 import { Textarea } from '../cmps/textarea-task-description';
 import { Textarea1 } from '../cmps/textarea-task-comment';
+import { CheckListModal } from '../cmps/check-list-modal'; 
 
 export function ScrollDialog(props) {
   const [scroll, setScroll] = React.useState('body');
@@ -103,10 +104,10 @@ export function ScrollDialog(props) {
               <LocalOfferOutlinedIcon color='action' />
               <Typography>Labels</Typography>
             </div>
-            <div className='button-container flex'>
-              <CheckBoxOutlinedIcon color='action' />
-              <Typography>Checklist</Typography>
-            </div>
+
+              <CheckListModal/>
+              {/* <Typography>Checklist</Typography> */}
+
             <div className='button-container flex'>
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>

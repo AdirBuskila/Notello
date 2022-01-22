@@ -23,16 +23,18 @@ export const BoardWorkspaces = () => {
     <React.Fragment>
       <AppHeader />
       <div className='board-container flex column align-center'>
-        <h1>Welcome To The Boards Page</h1>
+        <h1>Your Workspaces</h1>
+        <div className="boards-container flex">
         {boards.map((board) => {
           return (
             <Link key={board._id} to={`/b/${board._id}`}>
-              <div className='board flex column align-center'>
+              <div style={{backgroundImage: `url(${board.style.imgUrl})`}} className='board flex column align-center'>
                 {board.title}
               </div>
             </Link>
           );
         })}
+        </div>
       </div>
     </React.Fragment>
   );

@@ -209,7 +209,187 @@ async function _createBoards() {
                         title: 'Notello'
                     }
                 }]
-            }, ]
+            },{
+                _id: 'b102',
+                title: 'Board2',
+                createdAt: Date.now(),
+                createdBy: {
+                    _id: 'u101',
+                    fullname: "Netanel C",
+                    imgUrl: ""
+                },
+                style: {
+                    bgColor: '#fff',
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642885694/Notello/template5_pqik5g.jpg'
+                },
+                labels: [{
+                        _id: utilService.makeId(),
+                        name: 'Work',
+                        bgc: '#8E806A'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Relavent',
+                        bgc: '#F0BB62'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Special',
+                        bgc: '#F999B7'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Important',
+                        bgc: '#FF5677'
+                    }
+                ],
+                members: [{
+                    _id: 'm101',
+                    fullname: 'Adir adir',
+                    imgUrl: ''
+                }],
+                groups: [{
+                        _id: 'g102',
+                        title: 'Group 1',
+                        dueDate: 1826212211,
+                        style: {
+                            bgColor: '#f2f3'
+                        },
+                        tasks: [{
+                                _id: 't201',
+                                title: 'Important stuff',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#F0BB62'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: "u101",
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: "u102",
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: 'm102',
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: 't300',
+                                title: 'Efraim Likes Lasagna',
+                                labels: [{
+                                        name: 'Special',
+                                        bgc: '#F999B7'
+                                    },
+                                    {
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: 'todo101',
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }
+                        ],
+                    },
+                    {
+                        _id: 'g102',
+                        title: 'Group 2',
+                        dueDate: 1846712211,
+                        style: {
+                            bgColor: '#ee3'
+                        },
+                        tasks: [{
+                                _id: 't108',
+                                title: 'Master Juggling',
+                                labels: [{
+                                        name: 'General',
+                                        bgc: '#8E6A'
+                                    },
+                                    {
+                                        name: 'Education',
+                                        bgc: '#F03362'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: 'm102',
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: 't103',
+                                title: 'Stack Overflow',
+                                labels: [{
+                                        name: 'new',
+                                        bgc: '#F9B7'
+                                    },
+                                    {
+                                        name: 'Special',
+                                        bgc: '#806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist2',
+                                    todos: [{
+                                        id: 'todo102',
+                                        title: 'To Do 2',
+                                        isDone: true
+                                    }]
+                                }],
+                            }
+                        ],
+                    }
+                ],
+                activities: [{
+                    id: 'a101',
+                    txt: 'Changed Color',
+                    createdAt: 1545212324,
+                    byMember: {
+                        _id: 'u101',
+                        fullname: "Adir B",
+                        imgUrl: ""
+                    },
+                    task: {
+                        id: 'c102',
+                        title: 'Notello'
+                    }
+                }]
+            } ]
             pathToStorage.saveToStorage(STORAGE_KEY, gBoards);
             return gBoards;
         } catch (err) {
