@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { AppHeader } from '../cmps/app-header';
 import { boardService } from '../services/board.service';
 
-
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
 
@@ -24,16 +23,19 @@ export const BoardWorkspaces = () => {
       <AppHeader />
       <div className='board-container flex column align-center'>
         <h1>Your Workspaces</h1>
-        <div className="boards-container flex">
-        {boards.map((board) => {
-          return (
-            <Link key={board._id} to={`/b/${board._id}`}>
-              <div style={{backgroundImage: `url(${board.style.imgUrl})`}} className='board flex column align-center'>
-                {board.title}
-              </div>
-            </Link>
-          );
-        })}
+        <div className='boards-container flex'>
+          {boards.map((board) => {
+            return (
+              <Link key={board._id} to={`/b/${board._id}`}>
+                <div
+                  style={{ backgroundImage: `url(${board.style.imgUrl})` }}
+                  className='board flex column align-center'
+                  >
+                  <p>{board.title}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </React.Fragment>

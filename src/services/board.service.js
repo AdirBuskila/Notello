@@ -40,7 +40,8 @@ async function _createBoards() {
                     imgUrl: ""
                 },
                 style: {
-                    bgColor: '#222'
+                    bgColor: '#222',
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg'
                 },
                 labels: [{
                         _id: utilService.makeId(),
@@ -220,7 +221,7 @@ async function _createBoards() {
                 },
                 style: {
                     bgColor: '#fff',
-                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642885694/Notello/template5_pqik5g.jpg'
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642888319/Notello/a0992afa9c1f2b47db51d11f69c897f3_f3gwtp.jpg'
                 },
                 labels: [{
                         _id: utilService.makeId(),
