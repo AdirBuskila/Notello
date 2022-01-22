@@ -1,4 +1,4 @@
-import * as React from 'react';
+// import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
@@ -16,7 +16,6 @@ import AVATAR3 from '../assets/img/avatar3.png'
 import AVATAR4 from '../assets/img/avatar4.png'
 
 import { boardService } from '../services/board.service';
-import { width } from '@mui/system';
 
 
 export const BoardHeader = (props) => {
