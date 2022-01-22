@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch, Provider } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { GroupPreview } from './group-preview';
 import { PreFeatureAdd } from './preFeatureAdd';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { boardService } from '../services/board.service';
 
 export const GroupList = (props) => {
@@ -51,7 +51,11 @@ export const GroupList = (props) => {
     const destinationGroupIdx = boardService.getGroupIdxById(board, destination.droppableId);
     const sourceGroup = board.groups[sourceGroupIdx];
     const destinationGroup = board.groups[destinationGroupIdx];
-    const draggingTask = sourceGroup.tasks.filter((task) => task._id === draggableId)[0];
+    const draggingTask = sourceGroup.tasks.filter((task) =>{ 
+      return (task._id === draggableId)
+    })[0];
+
+    console.log('Board at drag end', board);
 
     if (source.dropabbleId === destination.dropabbleId) {
       sourceGroup.tasks.splice(source.index, 1);

@@ -25,7 +25,7 @@ export const TaskPreview = (props) => {
   return (
     <React.Fragment>
             {/* <Link key={task._id} to={`/c/${task._id}`}> */}
-      <Draggable draggableId={task._id} index={props.index}>
+      <Draggable draggableId={task._id} index={props.taskIdx} key={props.index} draggable="true">
         {(provided) => (
           <div
           onClick={()=> {setOpenPopup(true)}}
@@ -53,14 +53,14 @@ export const TaskPreview = (props) => {
           </div>
         )}
       </Draggable>
-            {/* </Link> */}
             <ScrollDialog
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
           members= {task.members}
           title={task.title}
           labels = {task.labels}
-        ></ScrollDialog>
+          ></ScrollDialog>
+          {/* </Link> */}
     </React.Fragment>
   );
 };

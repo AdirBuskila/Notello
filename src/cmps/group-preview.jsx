@@ -13,6 +13,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 const _GroupPreview = (props) => {
   const { group, board } = props;
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
+  console.log("groupIdx: ", groupIdx);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [tasks, onUpdateTasks] = useState([storeTasks]);
 
@@ -25,7 +26,7 @@ const _GroupPreview = (props) => {
   }, [storeTasks]);
 
   return (
-    <Draggable draggableId={group._id} index={props.index}>
+    <Draggable draggableId={group._id} index={props.index} key={props.index}>
       {(provided) => (
         <div {...provided.draggableProps}
           ref={provided.innerRef}>
@@ -35,14 +36,14 @@ const _GroupPreview = (props) => {
             <div className='group-header flex'>
               <h4>{group.title}</h4>
             </div>
-            <Droppable droppableId={group._id}>
+            <Droppable droppableId={group._id} index={props.index} key={props.index}>
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   <TaskList
-                    groupIdx={props.groupIdx}
+                    groupIdx={groupIdx}
                     groupId={props.group._id}
                     tasks={tasks} />
-                  <div style={{ height: '1px' }}></div>
+                  <div style={{ height: '5px' }}></div>
                   {provided.placeholder}
                 </div>)}
             </Droppable>
