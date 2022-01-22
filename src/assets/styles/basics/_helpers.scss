@@ -18,15 +18,22 @@
     justify-content: space-around;
 }
 
+.flex.space-evenly {
+    justify-content: space-evenly;
+}
+
 .flex.column {
     flex-direction: column;
 }
+
 .flex.row-reverse {
-    flex-direction:row-reverse
+    flex-direction: row-reverse;
 }
+
 .flex.column-reverse {
-    flex-direction:column-reverse
+    flex-direction: column-reverse;
 }
+
 .flex.end {
     justify-content: end;
 }
