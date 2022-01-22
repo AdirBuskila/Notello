@@ -15,7 +15,7 @@ export const TaskPreview = (props) => {
   const [openPopup, setOpenPopup] = useState(false);
 
   const onHandleLablesClick = (ev) => {
-    ev.preventDefault();
+    ev.stopPropagation();
     const className = ev.target.className;
     dispatch({ type: 'HANDLE_LABELS', className });
   };

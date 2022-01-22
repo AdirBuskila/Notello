@@ -1,13 +1,18 @@
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import AddIcon from '@mui/icons-material/Add';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
+import { utilService } from '../services/util.service';
 
 
 export const MembersCmp = ({members}) => {
     return (
         <section className='flex' >
-        {members.map((member) => {
+        {members.map((member, idx) => {
           return (
             <Avatar
-              key={member._id}
+              key={idx}
               sx={{
                 bgcolor: deepPurple[500],
                 width: 30,

@@ -25,6 +25,9 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import { utilService } from '../services/util.service';
 
+import { LabelsCmp } from '../cmps/labels-cmp';
+import { MembersCmp } from '../cmps/members-cmp';
+
 export function ScrollDialog(props) {
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
@@ -128,27 +131,7 @@ export function ScrollDialog(props) {
                   <span>Labels</span>
                 </div>
                 <div className='labels-container align-center flex'>
-                  {props.labels && (
-                    <section className='flex'>
-                      {props.labels.map((label) => {
-                        return (
-                          <div
-                            key={utilService.makeId()}
-                            style={{ backgroundColor: `${label.bgc}` }}
-                            className='label-container flex justify-center align-center'
-                          >
-                            <p>{label.name}</p>
-                          </div>
-                        );
-                      })}
-                      <div
-                        key={utilService.makeId()}
-                        className='add-square-icon flex align-center justify-center'
-                      >
-                        <AddIcon key={utilService.makeId()} />
-                      </div>
-                    </section>
-                  )}
+                  {props.labels && <LabelsCmp labels={props.labels} />}
                 </div>
               </div>
               <div className='members-info-container'>
