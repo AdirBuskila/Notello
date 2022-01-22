@@ -15,14 +15,14 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import NotesIcon from '@mui/icons-material/Notes';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
-import {PreFeatureAdd} from '../cmps/preFeatureAdd'
 
 import { LabelsCmp } from '../cmps/labels-cmp';
 import { MembersCmp } from '../cmps/members-cmp';
-import { Textarea } from '../cmps/textarea-task-details';
+import { Textarea } from '../cmps/textarea-task-description';
+import { Textarea1 } from '../cmps/textarea-task-comment';
 
 export function ScrollDialog(props) {
   const [scroll, setScroll] = React.useState('body');
@@ -30,6 +30,7 @@ export function ScrollDialog(props) {
   const [maxWidth, setMaxWidth] = React.useState('md');
 
   const { openPopup, setOpenPopup, title, children, members, labels } = props;
+
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
@@ -37,12 +38,15 @@ export function ScrollDialog(props) {
     );
   };
 
+
+
   const handleFullWidthChange = (event) => {
     setFullWidth(event.target.checked);
   };
 
   return (
     <Dialog
+    className='task-details-dialog'
     PaperProps={{
       style: {
         backgroundColor:'#f4f5f7',
@@ -147,7 +151,7 @@ export function ScrollDialog(props) {
               <div className='comment-container flex'>
                 <Avatar
                   sx={{
-                    bgcolor: deepPurple[500],
+                    bgcolor: deepOrange[500],
                     width: 32,
                     height: 32,
                     marginInlineEnd: 1,
@@ -155,10 +159,7 @@ export function ScrollDialog(props) {
                 >
                   <p>NC</p>
                 </Avatar>
-                <textarea
-                  sx={{ bgcolor: 'fff' }}
-                  placeholder='Write a comment...'
-                ></textarea>
+                  <Textarea1 />
               </div>
             </div>
           </div>
@@ -167,7 +168,3 @@ export function ScrollDialog(props) {
     </Dialog>
   );
 }
-
-// React.useEffect(() => {
-//   setOpen(true);
-// }, []);
