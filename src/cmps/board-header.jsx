@@ -81,40 +81,40 @@ export const BoardHeader = (props) => {
           </AvatarGroup>
         </div>
         <Button
-          className='new-member'
+          className='new-member flex'
           style={{ backgroundColor: '#0179bf' }}
           variant='contained'>
           <img
             src={ADD_MEMBER}
             alt='invite'
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '12px', height: '12px' }}
           />
           <a>Invite</a>
         </Button>
       </div>
-      <div className='upper-options flex'>
-        <div className='board-header-btn flex align-center'>
+      <div className='upper-options flex align-center'>
+        <div className='board-header-btn automation flex align-center space-evenly'>
           <img
             src='https://a.trellocdn.com/prgb/dist/images/butler/automation-dark.8548e886880fadc385da.svg'
             alt='automation'
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '16px', height: '16px' }}
           />
           <span>Automation</span>
         </div>
         <span className='board-header-btn-divider'></span>
-        <div className='board-header-btn flex align-center'>
+        <div className='board-header-btn filter flex align-center space-evenly'>
           <img
             src={FILTER}
             alt='filter'
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '16px', height: '16px' }}
           />
           <span>Filter</span>
         </div>
-        <div className='board-header-btn menu-container flex align-center'>
+        <div className='board-header-btn menu-container flex align-center space-evenly'>
           <img
             src={MENU}
             alt='menu'
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '16px', height: '16px' }}
           />
           <span className='span-width'>Show menu</span>
         </div>

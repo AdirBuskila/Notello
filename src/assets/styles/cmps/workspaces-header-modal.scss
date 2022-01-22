@@ -81,16 +81,22 @@
                 
                 span {
                     color: white;
-                    font-size: 18px;
+                    font-size: rem(18px);
                     font-weight: bold;
                 }
 
                 p {
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
                     color: #172b4d;
-                    font-size: 14px;
+                    font-size: rem(14px);
                     font-weight: 600;
-                    margin-left: 8px;
+                    margin-left: rem(8px);
+                }
+                p:last-child {
+                    font-size: rem(12px);
+                    font-weight: 400;
+                    line-height: rem(16px);
+                    color: #172b4d;
                 }
             }
         
