@@ -1,4 +1,8 @@
 
+.task-details-dialog {
+  z-index: -1;
+}
+
 .task-title {
   svg {
     margin-inline-end: rem(10px);
@@ -85,7 +89,6 @@
     }
   }
   .comment-container {
-    align-items: center;
     p {
       font-size: rem(15px);
     }
