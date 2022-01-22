@@ -81,13 +81,13 @@ export const BoardHeader = (props) => {
           </AvatarGroup>
         </div>
         <Button
-          className='new-member'
+          className='new-member flex'
           style={{ backgroundColor: '#0179bf' }}
           variant='contained'>
           <img
             src={ADD_MEMBER}
             alt='invite'
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '16px', height: '16px' }}
           />
           <a>Invite</a>
         </Button>
