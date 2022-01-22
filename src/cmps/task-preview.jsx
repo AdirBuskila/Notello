@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { ScrollDialog } from '../pages/task-details';
 
-
 import { Link } from 'react-router-dom';
 import { Card } from '../cmps/UI/Card';
 
@@ -13,27 +12,7 @@ export const TaskPreview = (props) => {
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
   );
-
   const [openPopup, setOpenPopup] = useState(false);
-
-  const teamMembers = [{
-    _id: "u101",
-    fullname: "Nati Gurevich",
-    imgUrl: "https://www.google.com"
-  },{
-    _id: "u102",
-    fullname: "Adir Buskila",
-    imgUrl: "https://www.google.com"
-}]
-const labels = [{
-  name: 'Work',
-  bgc: '#8E806A'
-},
-{
-  name: 'Relavent',
-  bgc: '#F0BB62'
-}
-]
 
   const onHandleLablesClick = (ev) => {
     ev.preventDefault();
@@ -45,23 +24,16 @@ const labels = [{
 
   return (
     <React.Fragment>
-      {/* <Link key={task._id} to={`/c/${task._id}`}> */}
-      <ScrollDialog
-          openPopup={openPopup}
-          setOpenPopup={setOpenPopup}
-          members= {task.members} 
-          title={task.title}
-          labels ={task.labels}
-        ></ScrollDialog>
-        <Draggable key={props.index} draggableId={task._id} index={props.index}>
-          {(provided) => (
-            <div
-              onClick={()=> {setOpenPopup(true)}}
-              ref={provided.innerRef}
-              {...provided.dragHandleProps}
-              {...provided.draggableProps}
-              className='task-preview flex column'
-              key={task._id}>
+            {/* <Link key={task._id} to={`/c/${task._id}`}> */}
+      <Draggable draggableId={task._id} index={props.index}>
+        {(provided) => (
+          <div
+          onClick={()=> {setOpenPopup(true)}}
+            ref={provided.innerRef}
+            {...provided.dragHandleProps}
+            {...provided.draggableProps}
+            className='task-preview flex column'
+            key={task._id}>
               {task.labels && (
                 <ul className='labels flex'>
                   {task.labels.map((label, idx) => {
@@ -78,10 +50,17 @@ const labels = [{
                 </ul>
               )}
               <p>{task.title}</p>
-            </div>
-          )}
-        </Draggable>
-      {/* </Link> */}
+          </div>
+        )}
+      </Draggable>
+            {/* </Link> */}
+            <ScrollDialog
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+          members= {task.members}
+          title={task.title}
+          labels = {task.labels}
+        ></ScrollDialog>
     </React.Fragment>
   );
 };
