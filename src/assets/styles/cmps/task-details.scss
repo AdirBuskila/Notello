@@ -1,3 +1,7 @@
+task-details {
+  
+}
+
 .task-title {
   svg {
     margin-inline-end: rem(10px);
@@ -5,6 +9,7 @@
 }
 
 .window-header {
+  color:  #172b4d;
   .close-button {
     margin-top: rem(7px);
     margin-right: rem(7px);
@@ -27,6 +32,7 @@
 
 .buttons-container {
   width: 20%;
+  color:  #172b4d;
   .button-container {
     cursor: pointer;
     align-items: center;
@@ -48,6 +54,7 @@
   }
 }
 .main-content {
+  color:  #172b4d;
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -99,6 +106,10 @@
 
 .task-info {
   gap: rem(19px);
+}
+
+.labels-main-container {
+  gap: 10px;
 }
 
 .labels-container > * {
