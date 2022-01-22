@@ -87,6 +87,20 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                members: [
+                                    {
+                                        _id: "u101",
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: "u102",
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),

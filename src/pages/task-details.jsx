@@ -1,8 +1,3 @@
-// import Grid from '@mui/material/Grid';
-// import DialogActions from '@mui/material/DialogActions';
-// import Button from '@mui/material/Button';
-// import AddIcon from '@mui/icons-material/Add';
-// import CallToActionOutlinedIcon from '@mui/icons-material/CallToActionOutlined';
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -23,14 +18,16 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
+import {PreFeatureAdd} from '../cmps/preFeatureAdd'
 
 import { LabelsCmp } from '../cmps/labels-cmp';
 import { MembersCmp } from '../cmps/members-cmp';
+import { Textarea } from '../cmps/textarea-task-details';
 
 export function ScrollDialog(props) {
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState('sm');
+  const [maxWidth, setMaxWidth] = React.useState('md');
 
   const { openPopup, setOpenPopup, title, children, members, labels } = props;
   const handleMaxWidthChange = (event) => {
@@ -46,12 +43,12 @@ export function ScrollDialog(props) {
 
   return (
     <Dialog
+    maxWidth={maxWidth}
       fullWidth={fullWidth}
-      maxWidth={maxWidth}
       open={openPopup}
       scroll={scroll}
-      aria-labelledby='scroll-dialog-title'
-      aria-describedby='scroll-dialog-description'
+      aria-labelledby='task-details'
+      aria-describedby='task-details-description'
     >
       <div className='window-header flex space-between'>
         <DialogTitle id='scroll-dialog-title'>
@@ -125,32 +122,17 @@ export function ScrollDialog(props) {
           </div>
           <div className='main-content'>
             <div className='task-info flex align-center'>
-              <div className='labels-info-container'>
-                <div className='span-container'>
-                  <span>Labels</span>
-                </div>
-                <div className='labels-container align-center flex'>
                   {props.labels && <LabelsCmp labels={props.labels} />}
-                </div>
-              </div>
-              <div className='members-info-container'>
-                <div className='span-container'>
-                  <span>Members</span>
-                </div>
-                <div className='members-avatar-container flex'>
                   {props.members && <MembersCmp members={props.members} />}
-                </div>
-              </div>
             </div>
             <div className='description-container'>
               <div className='description flex'>
                 <NotesIcon />
                 <p>Description</p>
               </div>
-              <textarea
-                sx={{ bgcolor: '#091e420a' }}
-                placeholder='Add a more detailed description...'
-              ></textarea>
+              <div className="add-description-container">
+              <Textarea/>
+              </div>
             </div>
             <div className='activity-container'>
               <div className='activity flex'>

@@ -1,3 +1,4 @@
+
 .task-title {
   svg {
     margin-inline-end: rem(10px);
@@ -5,6 +6,7 @@
 }
 
 .window-header {
+  color:  #172b4d;
   .close-button {
     margin-top: rem(7px);
     margin-right: rem(7px);
@@ -27,6 +29,7 @@
 
 .buttons-container {
   width: 20%;
+  color:  #172b4d;
   .button-container {
     cursor: pointer;
     align-items: center;
@@ -48,6 +51,7 @@
   }
 }
 .main-content {
+  color:  #172b4d;
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -65,11 +69,15 @@
     }
   }
   .description-container {
+    font-size: rem(16px);
     margin-bottom: rem(15px);
+    font-weight: 600;
   }
 }
 .activity-container {
   margin-bottom: rem(15px);
+  font-size: rem(16px);
+  font-weight: 600;
   .activity {
     margin-bottom: rem(15px);
     svg {
@@ -84,69 +92,6 @@
   }
 }
 
-.add-icon {
-  background-color: #091e420a;
-  width: rem(32px);
-  height: rem(32px);
-  border-radius: 50%;
-}
-
-.add-icon:hover {
-  background-color: #091e4214;
-}
-
-
-
 .task-info {
-  gap: rem(19px);
-}
-
-.labels-container > * {
-  cursor: pointer;
-}
-.labels-container {
-  gap: rem(5px);
-}
-
-.label-container {
-  color: #fff;  
-  border-radius: rem(3px);
-  font-weight: 600;
-  height: 32px;
-  line-height: 32px;
-  min-width: 40px;
-  padding: 0 12px;
-  width: auto;
-}
-
-.labels-info-container,
-.members-info-container {
-  .span-container {
-    margin-bottom: rem(4px);
-  }
-  span {
-    color: #5e6c84;
-    font-size: rem(12px);
-    font-weight: 600;
-    line-height: rem(16px);
-    line-height: rem(20px);
-  }
-}
-
-.members-avatar-container > * {
-  cursor: pointer;
-}
-
-.add-square-icon {
-  cursor: pointer;
-  border-radius: 3px;
-  background-color: #091e420a;
-  font-size: 16px;
-  height: 16px;
-  line-height: 16px;
-  padding: 16px;
-  width: 16px;
-}
-.add-square-icon:hover {
-  background-color: #091e4214;
+  gap: rem(20px);
 }
