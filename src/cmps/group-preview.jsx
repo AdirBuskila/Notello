@@ -13,9 +13,10 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 const _GroupPreview = (props) => {
   const { group, board } = props;
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
-  console.log("groupIdx: ", groupIdx);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [tasks, onUpdateTasks] = useState([storeTasks]);
+  const [clickedGroupId, setClickedGroupId] = useState('');
+  const [newGroupTitle, setNewGroupTitle] = useState('')
 
 
   useEffect(() => {
@@ -25,25 +26,41 @@ const _GroupPreview = (props) => {
     onUpdateTasks(tasks);
   }, [storeTasks]);
 
-  // index={props.index} key={props.index}
+  
+
+  const handleNewTitle = async () => {
+    if (!newGroupTitle) return setClickedGroupId('')
+    const groupIdx = boardService.getGroupIdxById(board, clickedGroupId)
+    const newBoard = board;
+    newBoard.groups[groupIdx].title = newGroupTitle;
+    setClickedGroupId('')
+    setNewGroupTitle('')
+    boardService.saveBoard(newBoard);
+  }
 
   return (
     <Draggable draggableId={group._id} index={props.index} type="list" key={group._id}>
       {(provided) => (
         <div {...provided.draggableProps}
           ref={provided.innerRef}>
-          <div
+          <div onBlur={handleNewTitle} 
             {...provided.dragHandleProps}
             className='group-container flex column'>
-            <div className='group-header flex'>
-              <h4>{group.title}</h4>
+            <div onClick={() => setClickedGroupId(group._id)} className='group-header flex'>
+             {!clickedGroupId && <h4>{group.title}</h4>}
+              {group._id === clickedGroupId ? <input 
+              autoFocus 
+              onChange={(ev) => {
+                setNewGroupTitle(ev.target.value)}
+              } 
+               defaultValue={group.title}></input> : null}
             </div>
             <Droppable droppableId={group._id} index={props.index} key={props.index}>
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   <TaskList
                     groupIdx={groupIdx}
-                    groupId={props.group._id}
+                    groupId={group._id}
                     tasks={tasks} />
                   <div style={{ height: '5px' }}></div>
                   {provided.placeholder}
