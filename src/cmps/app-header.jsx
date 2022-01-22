@@ -6,6 +6,7 @@ import {WorkspacesHeaderModal} from '../cmps/workspaces-header-modal'
 import {RecentHeaderModal} from '../cmps/recent-header-modal'
 import { StarredHeaderModal } from './starred-header-modal';
 import { TemplatesHeaderModal } from './templates-header-modal';
+import { CreateHeaderModal } from './create-header-modal';
 
 export const AppHeader = () => {
   return (
@@ -15,6 +16,7 @@ export const AppHeader = () => {
         <RecentHeaderModal />
         <StarredHeaderModal />
         <TemplatesHeaderModal />
+        <CreateHeaderModal />
         <nav className='nav-links clean-list flex align-center'>
         </nav>
       </header>

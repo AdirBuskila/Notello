@@ -8,12 +8,16 @@ import { Avatar } from '@mui/material';
 import WhiteArrow from '../assets/img/white-bold-arrow-down.png'
 
 import Template1 from '../assets/img/templates/template1.jpg'
-import Template2 from '../assets/img/templates/template2.jpg'
+import Template2 from '../assets/img/templates/template2.png'
 import Template3 from '../assets/img/templates/template3.jpg'
+import Template4 from '../assets/img/templates/template4.jpg'
+import Template5 from '../assets/img/templates/template5.jpg'
+import Template6 from '../assets/img/templates/template6.jpg'
+import Template7 from '../assets/img/templates/template7.jpg'
 
-import AVATAR2 from '../assets/img/avatar2.png';
-import AVATAR3 from '../assets/img/avatar3.png';
-import AVATAR4 from '../assets/img/avatar4.png';
+// import AVATAR2 from '../assets/img/avatar2.png';
+// import AVATAR3 from '../assets/img/avatar3.png';
+// import AVATAR4 from '../assets/img/avatar4.png';
 
 import { boardService } from '../services/board.service';
 
@@ -67,7 +71,7 @@ export const TemplatesHeaderModal = () => {
                                             <img className='avatar-img' src={Template1} alt="template1" />
                                         </Avatar>
                                         <div className='avatar-details flex column'>
-                                            <p>My Workspace</p>
+                                            <p>Template 1</p>
                                         </div>
                                     </article>
                                     <article className='recent flex align-center'>
@@ -75,7 +79,7 @@ export const TemplatesHeaderModal = () => {
                                         <img className='avatar-img' src={Template2} alt="template2" />
                                         </Avatar>
                                         <div className='recent avatar-details  flex column'>
-                                            <p>My Workspace</p>
+                                            <p>Template 2</p>
                                         </div>
                                     </article>
                                     <article className='recent flex align-center'>
@@ -83,118 +87,41 @@ export const TemplatesHeaderModal = () => {
                                         <img className='avatar-img' src={Template3} alt="template3" />
                                         </Avatar>
                                         <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                        </div>
-                                    </article>
-                                    {/* 
-                                    <article className='recent flex align-center'>
-                                        <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
-                                        </Avatar>
-                                        <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
+                                            <p>Template 3</p>
                                         </div>
                                     </article>
                                     <article className='recent flex align-center'>
-                                        <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
+                                    <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
+                                        <img className='avatar-img' src={Template4} alt="template3" />
                                         </Avatar>
                                         <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
+                                            <p>Template 4</p>
                                         </div>
                                     </article>
                                     <article className='recent flex align-center'>
-                                      <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
+                                    <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
+                                        <img className='avatar-img' src={Template5} alt="template3" />
                                         </Avatar>
                                         <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
+                                            <p>Template 5</p>
                                         </div>
                                     </article>
                                     <article className='recent flex align-center'>
-                                        <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
+                                    <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
+                                        <img className='avatar-img' src={Template6} alt="template3" />
                                         </Avatar>
                                         <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
+                                            <p>Template 6</p>
                                         </div>
                                     </article>
                                     <article className='recent flex align-center'>
-                                       <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
+                                    <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
+                                        <img className='avatar-img' src={Template7} alt="template3" />
                                         </Avatar>
                                         <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
+                                            <p>Template 7</p>
                                         </div>
                                     </article>
-                                    <article className='recent flex align-center'>
-                                       <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
-                                        </Avatar>
-                                        <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
-                                        </div>
-                                    </article>
-                                    <article className='recent flex align-center'>
-                                      <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
-                                        </Avatar>
-                                        <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
-                                        </div>
-                                    </article>
-                                    <article className='recent flex align-center'>
-                                        <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
-                                        </Avatar>
-                                        <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
-                                        </div>
-                                    </article>
-                                    <article className='recent flex align-center'>
-                                        <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
-                                        </Avatar>
-                                        <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
-                                        </div>
-                                    </article>
-                                    <article className='recent flex align-center'>
-                                        <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
-                                        </Avatar>
-                                        <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
-                                        </div>
-                                    </article>
-                                    <article className='recent flex align-center'>
-                                       <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
-                                        </Avatar>
-                                        <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
-                                        </div>
-                                    </article>
-                                    <article className='recent flex align-center'>
-                                       <Avatar style={{height: '32px'}} sx={{  borderRadius: '3px' }} variant="square">
-                                        <img className='avatar-img' src={AVATAR4} alt="avatar4" />
-                                        </Avatar>
-                                        <div className='avatar-details  flex column'>
-                                            <p>My Workspace</p>
-                                            <h5>Third Workspace</h5>
-                                        </div>
-                                    </article> */}
                                 </section>
                             </Typography>
                         </Paper>
