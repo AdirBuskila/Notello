@@ -8,7 +8,6 @@ import { GroupList } from '../cmps/group-list.jsx';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
-  
   useEffect(() => {
     onLoadBoard();
   }, []);
@@ -28,13 +27,13 @@ const _BoardDetails = (props) => {
   return (
     <React.Fragment>
       <AppHeader />
-      {/* <BoardHeader board={board} /> */}
+      <BoardHeader board={board} />
       <div className='board-details-container flex column '>
         <GroupList
           onLoadBoard={onLoadBoard}
           board={board}
           groups={board.groups}
-          />
+        />
       </div>
     </React.Fragment>
   );
