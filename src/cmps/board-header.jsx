@@ -7,13 +7,12 @@ import Button from '@mui/material/Button';
 import STATS from '../assets/img/stats.svg'
 import DOWNICON from '../assets/img/down-arrow.png'
 import ADD_MEMBER from '../assets/img/add-user.png'
-import INVITE from '../assets/img/invite.svg'
 import FILTER from '../assets/img/filter.svg'
 import MENU from '../assets/img/menu.png'
 import AVATAR1 from '../assets/img/avatar1.png'
 import AVATAR2 from '../assets/img/avatar2.png'
 import AVATAR3 from '../assets/img/avatar3.png'
-import AVATAR4 from '../assets/img/avatar4.png'
+// import AVATAR4 from '../assets/img/avatar4.png'
 
 import { boardService } from '../services/board.service';
 
