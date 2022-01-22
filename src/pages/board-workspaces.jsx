@@ -39,7 +39,6 @@ const labels = [{
       }
     })();
   }, []);
-  // console.log(boards);
   if (!boards || !boards.length) return <q>Loading...</q>;
   return (
     <React.Fragment>

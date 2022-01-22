@@ -26,8 +26,6 @@ export const GroupList = (props) => {
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type} = result;
-    console.log("source: ", source);
-    console.log("destination: ", destination);
     
     if (!destination) return;
 
@@ -35,10 +33,8 @@ export const GroupList = (props) => {
       // const draggingGroup = board.groups.filter((group) => {
       //   return group._id === draggableId
       // })
-      // console.log('draggingGroup', draggingGroup);
       // board.groups.splice(source.index, 1)
       // board.groups.splice(destination.index, 0, draggingGroup[0])
-      // console.log('Board when ends', board);
       
       // const newGroupIds = board.groups;
       // const draggingGroup = newGroupIds.splice(source.index, 1);

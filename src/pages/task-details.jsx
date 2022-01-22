@@ -31,10 +31,6 @@ export function ScrollDialog(props) {
   const [maxWidth, setMaxWidth] = React.useState('sm');
 
   const { openPopup, setOpenPopup, title, children, members, labels } = props;
-
-  console.log('members', members);
-  console.log('title', title);
-  console.log('labels', labels);
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
