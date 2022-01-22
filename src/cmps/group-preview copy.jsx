@@ -14,6 +14,7 @@ const _GroupPreview = (props) => {
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [tasks, onUpdateTasks] = useState([storeTasks]);
+  const [isTitleClicked, setTitleClick] = useState(false);
 
 
   useEffect(() => {
@@ -28,7 +29,8 @@ const _GroupPreview = (props) => {
     draggable="true"
     className='group-container flex column'>
       <div className='group-header flex'>
-        <h4>{group.title}</h4>
+        {!isTitleClicked && <h4 onClick={() => setTitleClick(!isTitleClicked)}>{props.group.title}</h4>}
+         {isTitleClicked && <input defaultChecked={group.title}></input>}
       </div>
       {tasks && <TaskList
       groupIdx={props.groupIdx}
