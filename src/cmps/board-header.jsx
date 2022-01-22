@@ -13,6 +13,7 @@ import AVATAR1 from '../assets/img/avatar1.png';
 import AVATAR2 from '../assets/img/avatar2.png';
 import AVATAR3 from '../assets/img/avatar3.png';
 import AVATAR4 from '../assets/img/avatar4.png';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
 import { boardService } from '../services/board.service';
 
@@ -26,10 +27,12 @@ export const BoardHeader = (props) => {
   };
 
   if (!board) return <h1> No board </h1>;
+
+  // const bLength = board.title.length || 50;
   return (
     <section className='upper-header flex'>
-      <div className='info-details'>
-        <div className='board-stats board-header-btn'>
+      <div className='info-details flex align-center'>
+        <div className='board-stats board-header-btn flex align-center'>
           <img src={STATS} alt='stats' />
           <span>Board</span>
           <img
@@ -38,33 +41,49 @@ export const BoardHeader = (props) => {
             style={{ width: '10px', height: '10px' }}
           />
         </div>
-        <input defaultValue={board.title} onChange={onHandleChange} />
-        <Rating name='half-rating' defaultValue={0} precision={1} max={1} />
+
+        <input
+          // style={{ width: `${bLength}+px ` }}
+          className='title-input'
+          defaultValue={board.title}
+          onChange={onHandleChange}
+        />
+        <div className='rating-container flex align-center justify-center'>
+          <Rating name='half-rating' defaultValue={0} precision={1} max={1} />
+        </div>
         <span className='board-header-btn-divider'></span>
-        <button className='board-header-btn'>Workspace</button>
+        <button className='board-header-btn flex align-center'>
+          Workspace
+        </button>
         <span className='board-header-btn-divider'></span>
-        <button className='board-header-btn visible'>Workspace visible</button>
-        <span className='board-header-btn-divider'></span>
+        <div className='workspace-type flex'>
+          <PeopleAltOutlinedIcon />
+          <button className='flex align-center'>Workspace visible</button>
+        </div>
+        <span className='board-header-btn-divider'> </span>
         <div className='members-avatars'>
           <AvatarGroup max={3}>
             <Avatar
               alt='NC'
               src={AVATAR1}
-              style={{ width: '35px', height: '35px' }}
+              style={{ width: '28px', height: '28px' }}
             />
             <Avatar
               alt='NG'
               src={AVATAR2}
-              style={{ width: '35px', height: '35px' }}
+              style={{ width: '28px', height: '28px' }}
             />
             <Avatar
               alt='NA'
               src={AVATAR3}
-              style={{ width: '35px', height: '35px' }}
+              style={{ width: '28px', height: '28px' }}
             />
           </AvatarGroup>
         </div>
-        <Button style={{ backgroundColor: '#0179bf' }} variant='contained'>
+        <Button
+          className='new-member'
+          style={{ backgroundColor: '#0179bf' }}
+          variant='contained'>
           <img
             src={ADD_MEMBER}
             alt='invite'
@@ -74,7 +93,7 @@ export const BoardHeader = (props) => {
         </Button>
       </div>
       <div className='upper-options flex'>
-        <div className='board-header-btn flex'>
+        <div className='board-header-btn flex align-center'>
           <img
             src='https://a.trellocdn.com/prgb/dist/images/butler/automation-dark.8548e886880fadc385da.svg'
             alt='automation'
@@ -83,7 +102,7 @@ export const BoardHeader = (props) => {
           <span>Automation</span>
         </div>
         <span className='board-header-btn-divider'></span>
-        <div className='board-header-btn'>
+        <div className='board-header-btn flex align-center'>
           <img
             src={FILTER}
             alt='filter'
@@ -91,7 +110,7 @@ export const BoardHeader = (props) => {
           />
           <span>Filter</span>
         </div>
-        <div className='board-header-btn'>
+        <div className='board-header-btn menu-container flex align-center'>
           <img
             src={MENU}
             alt='menu'
