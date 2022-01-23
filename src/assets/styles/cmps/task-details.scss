@@ -60,6 +60,7 @@
         font-weight: 500;
     }
     textarea {
+        padding-inline-start: 1rem;
         border-radius: rem(3px);
     }
     .description-container {
@@ -70,6 +71,7 @@
             }
         }
         textarea {
+            padding-inline-start: 1rem;
             cursor: pointer;
             outline-color: #2684ff;
         }
