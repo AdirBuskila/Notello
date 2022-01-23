@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
@@ -19,13 +19,13 @@ import { boardService } from '../services/board.service';
 
 export const BoardHeader = (props) => {
   const board = props.board;
-  const [boardTitle, setBoardTitle] = useState(board.title)
+  const [boardTitle, setBoardTitle] = useState(board.title);
 
   const onHandleChange = () => {
     const newBoard = board;
     newBoard.title = boardTitle;
     boardService.saveBoard(board);
-    props.onLoadBoard()
+    props.onLoadBoard();
   };
 
   if (!board) return <h1> No board </h1>;
@@ -34,7 +34,7 @@ export const BoardHeader = (props) => {
   return (
     <section className='upper-header flex'>
       <div className='info-details flex align-center'>
-        <div className='board-stats board-header-btn flex align-center'>
+        <div className='board-stats board-header-btn flex align-center space-between'>
           <img src={STATS} alt='stats' />
           <span>Board</span>
           <img
@@ -45,10 +45,11 @@ export const BoardHeader = (props) => {
         </div>
 
         <input
+          // style={{ width: `${board.title.length*14}` + '10px' }}
           className='title-input'
           defaultValue={board.title}
           onBlur={onHandleChange}
-          onChange={(ev)=> setBoardTitle(ev.target.value)}
+          onChange={(ev) => setBoardTitle(ev.target.value)}
         />
         <div className='rating-container flex align-center justify-center'>
           <Rating name='half-rating' defaultValue={0} precision={1} max={1} />

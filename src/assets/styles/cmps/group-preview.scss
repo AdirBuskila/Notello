@@ -14,9 +14,10 @@
     &>.group-header {
         min-height: rem(40px);
         width: 100%;
-        padding: rem(6px) rem(16px);
+        padding: rem(6px) rem(6px) rem(6px) rem(16px);
         padding-block-start: 10px;
          :first-child {
+            flex: 1;
             font-weight: 500;
         }
         input {
@@ -30,6 +31,10 @@
         }
         input:focus {
             outline-color: #2684ff;
+        }
+        svg {
+            height: 20px;
+            width: 20px;
         }
     }
     &>.input {

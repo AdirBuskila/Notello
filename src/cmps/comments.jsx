@@ -21,8 +21,8 @@ function stringToColor(string) {
     return color;
   }
 
-export const Comments = (comments) => {
-    debugger
+export const Comments = ({comments}) => {
+    console.log(comments);
   comments.map((comment) => {
     return (
       <div className='comment'>
