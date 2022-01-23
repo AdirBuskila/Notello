@@ -56,6 +56,7 @@ export const TaskPreview = (props) => {
             <ScrollDialog
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
+          task={task}
           members= {task.members}
           title={task.title}
           labels = {task.labels}
