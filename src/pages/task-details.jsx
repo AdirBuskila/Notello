@@ -159,10 +159,8 @@ export function ScrollDialog(props) {
                   <p>NC</p>
                 </Avatar>
                   <Textarea1 />
-                  <div style={{backgroundColor:'blue'}} className="comments-blue">
-                    aaa
                   {/* {props.comments && <Comments comments={props.comments} />} */}
-                  </div>
+              
               </div>
             </div>
           </div>
