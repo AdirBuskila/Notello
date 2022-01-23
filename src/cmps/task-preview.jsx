@@ -78,6 +78,7 @@ export const TaskPreview = (props) => {
                 </div>
             </div>
           </div>
+
         )}
       </Draggable>
       <ScrollDialog
@@ -91,6 +92,7 @@ export const TaskPreview = (props) => {
         labels={task.labels}
         attachments={task.attachments}
       ></ScrollDialog>
+                {/* </Link> */}
     </React.Fragment>
   );
 };

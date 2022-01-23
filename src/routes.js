@@ -27,8 +27,8 @@ export const routes = [
         path: '/b/:id',
         component: BoardDetails,
     },
-    // {
-    //     path: '/c/:id',
-    //     component: ScrollDialog,
-    // },
+    {
+        path: '/c/:id',
+        component: ScrollDialog,
+    },
 ];

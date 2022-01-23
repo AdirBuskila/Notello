@@ -14,8 +14,8 @@ export const CommentsSection = ({ comments }) => {
                 alt={comment.byMember.fullname}
                 sx={{
                   bgcolor: 'green',
-                  width: 34,
-                  height: 34,
+                  width: 32,
+                  height: 32,
                   marginInlineEnd: 1,
                 }}></Avatar>
             </div>
