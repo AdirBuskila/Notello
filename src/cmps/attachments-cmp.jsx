@@ -5,7 +5,7 @@ import { utilService } from '../services/util.service';
 
 
 export const AttachmentsCmp = ({attachments}) => {
-    if (!attachments) return <p></p>;
+    if (attachments.length === 0) return <p></p>;
     return (
         <section className='attachments-main-container'>
             <div className="attachments-header flex">

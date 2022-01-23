@@ -13,8 +13,6 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 const _GroupPreview = (props) => {
   const { group, board } = props;
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id)
-  console.log('groupppppppp:' , groupIdx)
-  console.log("props.board.groups[groupIdx]: ", props.board.groups[groupIdx]);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [tasks, onUpdateTasks] = useState(storeTasks);
   const [clickedGroupId, setClickedGroupId] = useState('');
