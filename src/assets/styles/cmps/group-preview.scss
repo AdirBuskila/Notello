@@ -12,19 +12,28 @@
         width: 100%;
     }
     &>.group-header {
+        min-height: rem(40px);
         width: 100%;
-        padding: rem(8px) rem(16px);
+        padding: rem(6px) rem(16px);
+        padding-block-start: 10px;
          :first-child {
             font-weight: 500;
         }
         input {
-            width: 220px;
-            height: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+            padding-inline-start: rem(6px);
+            border-radius: 3px;
+            width: 100%;
+            height: rem(28px);
         }
-        
         input:focus {
-            outline: -webkit-focus-ring-color auto 1px; 
+            outline-color: #2684ff;
         }
+    }
+    &>.input {
+        padding: rem(6px) rem(8px);
     }
     .task-list-container {
         width: 100%;

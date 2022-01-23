@@ -4,7 +4,6 @@ import { Draggable } from 'react-beautiful-dnd';
 import { ScrollDialog } from '../pages/task-details';
 
 import { Link } from 'react-router-dom';
-import { Card } from '../cmps/UI/Card';
 
 export const TaskPreview = (props) => {
   const task = props.task;
@@ -16,40 +15,47 @@ export const TaskPreview = (props) => {
 
   const onHandleLablesClick = (ev) => {
     ev.stopPropagation();
-    const className = ev.target.className;
-    dispatch({ type: 'HANDLE_LABELS', className });
+    dispatch({ type: 'HANDLE_LABELS' });
   };
 
-  const className = isLabelsExpended ? 'expended flex align-center' : 'flex align-center';
+  const className = isLabelsExpended
+    ? 'flex align-center expended'
+    : 'flex align-center';
 
   return (
     <React.Fragment>
-            {/* <Link key={task._id} to={`/c/${task._id}`}> */}
-      <Draggable draggableId={task._id} index={props.index} key={task._id} type="task">
+      {/* <Link key={task._id} to={`/c/${task._id}`}> */}
+      <Draggable
+        draggableId={task._id}
+        index={props.index}
+        key={task._id}
+        type='task'>
         {(provided) => (
           <div
-          onClick={()=> {setOpenPopup(true)}}
+            onClick={() => {
+              setOpenPopup(true);
+            }}
             ref={provided.innerRef}
             {...provided.dragHandleProps}
             {...provided.draggableProps}
             className='task-preview flex column'
             key={task._id}>
-              {task.labels && (
-                <ul className='labels flex'>
-                  {task.labels.map((label, idx) => {
-                    return (
-                      <li
-                        className={className}
-                        onClick={(ev) => onHandleLablesClick(ev)}
-                        key={idx}
-                        style={{ backgroundColor: `${label.bgc}` }}>
-                        {isLabelsExpended && `${label.name}`}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-              <p>{task.title}</p>
+            {task.labels && (
+              <ul className='labels flex'>
+                {task.labels.map((label, idx) => {
+                  return (
+                    <li
+                      className={className}
+                      onClick={(ev) => onHandleLablesClick(ev)}
+                      key={idx}
+                      style={{ backgroundColor: `${label.bgc}` }}>
+                      {isLabelsExpended && `${label.name}`}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            <p>{task.title}</p>
           </div>
         )}
       </Draggable>
@@ -61,7 +67,6 @@ export const TaskPreview = (props) => {
           title={task.title}
           labels = {task.labels}
           ></ScrollDialog>
-          {/* </Link> */}
     </React.Fragment>
   );
 };
