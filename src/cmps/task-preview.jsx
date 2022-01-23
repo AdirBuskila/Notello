@@ -27,7 +27,7 @@ export const TaskPreview = (props) => {
     ? 'flex align-center expended'
     : 'flex align-center';
 
-    // console.log('task.checklists', task.checklists);
+
 
   return (
     <React.Fragment>
