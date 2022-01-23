@@ -24,16 +24,17 @@ import { MembersCmp } from '../cmps/members-cmp';
 import { Textarea } from '../cmps/textarea-task-description';
 import { Textarea1 } from '../cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal'; 
-import { Comments } from '../cmps/comments';
+import { CommentsSection } from '../cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
+import {ActivitySection} from '../cmps/details-activity'
 
 export const ScrollDialog = (props) => {
-  console.log("props: ", props);
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
+  const comments = (props.task.comments) ? props.task.comments : []
 
-  const { openPopup, setOpenPopup, labels, members, title, comments} = props;
+  const { openPopup, setOpenPopup, labels, members, title} = props;
 
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
@@ -72,6 +73,7 @@ export const ScrollDialog = (props) => {
         <div className='close-button flex align-center'>
           <CloseIcon
             onClick={() => {
+              console.log('Im called');
               setOpenPopup(false);
             }}
           />
@@ -102,7 +104,7 @@ export const ScrollDialog = (props) => {
               <PersonOutlineOutlinedIcon color='action' />
               <Typography>Members</Typography>
             </div>
-              <LabelsModal task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard}/>
+              <LabelsModal setOpenPopup={props.setOpenPopup} task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard}/>
               <CheckListModal/>
             <div className='button-container flex'>
               <QueryBuilderIcon color='action' />
@@ -156,8 +158,10 @@ export const ScrollDialog = (props) => {
                 >
                   <p>NC</p>
                 </Avatar>
+                <div className='comments-area flex column'>
                   <Textarea1 />
-                  {props.comments && <Comments comments={props.comments} />}      
+                  <CommentsSection comments={comments} />                  
+                </div>
               </div>
             </div>
           </div>

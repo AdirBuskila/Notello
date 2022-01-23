@@ -223,7 +223,7 @@ async function _createBoards() {
 
 async function addTask(boardId, groupId, task, activity = '') {
     task._id = utilService.makeId()
-    task.labels = [];
+    task.labels = (task.labels) ? task.labels : [];
     try {
         let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
