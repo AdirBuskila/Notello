@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { ScrollDialog } from '../pages/task-details';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
+import NotesIcon from '@mui/icons-material/Notes';
+
 
 import { Link } from 'react-router-dom';
 
@@ -19,10 +22,11 @@ export const TaskPreview = (props) => {
     ev.stopPropagation();
     dispatch({ type: 'HANDLE_LABELS' });
   };
-
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
+
+  console.log(task.comments.length);
 
   return (
     <React.Fragment>
@@ -61,8 +65,10 @@ export const TaskPreview = (props) => {
               </ul>
             )}
             <p>{task.title}</p>
-            <div className="task-badges">
-              {/* {task.comments.length > 0 && <AttachFileIcon/> } */}
+            <div className="task-badges flex">
+              {task.comments.length > 0 && <ChatBubbleOutlineRoundedIcon fontSize='extra-small' color='action' />}
+              {task.attachments.length > 0 && <AttachFileIcon fontSize='extra-small' color='action' />}
+              {task.description !== '' && <NotesIcon fontSize='extra-small' color='action' />}
             </div>
           </div>
         )}
