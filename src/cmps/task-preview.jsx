@@ -60,6 +60,8 @@ export const TaskPreview = (props) => {
         )}
       </Draggable>
             <ScrollDialog
+            onLoadBoard={props.onLoadBoard}
+            groupIdx={props.groupIdx}
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
           task={task}

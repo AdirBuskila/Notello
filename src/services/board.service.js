@@ -311,6 +311,7 @@ function getGroupsIds(board) {
 }
 
 async function addLabel(label, boardId, groupId, taskId, activity) {
+    label._id = utilService.makeId()
     try {
         let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)

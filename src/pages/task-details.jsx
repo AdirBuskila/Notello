@@ -25,8 +25,10 @@ import { Textarea } from '../cmps/textarea-task-description';
 import { Textarea1 } from '../cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal'; 
 import { Comments } from '../cmps/comments';
+import { LabelsModal } from '../cmps/details-labels';
 
-export function ScrollDialog(props) {
+export const ScrollDialog = (props) => {
+  console.log("props: ", props);
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
@@ -100,10 +102,7 @@ export function ScrollDialog(props) {
               <PersonOutlineOutlinedIcon color='action' />
               <Typography>Members</Typography>
             </div>
-            <div className='button-container flex'>
-              <LocalOfferOutlinedIcon color='action' />
-              <Typography>Labels</Typography>
-            </div>
+              <LabelsModal task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard}/>
               <CheckListModal/>
             <div className='button-container flex'>
               <QueryBuilderIcon color='action' />
