@@ -59,13 +59,14 @@ export const TaskPreview = (props) => {
           </div>
         )}
       </Draggable>
-      <ScrollDialog
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        members={task.members}
-        title={task.title}
-        labels={task.labels}></ScrollDialog>
-      {/* </Link> */}
+            <ScrollDialog
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+          task={task}
+          members= {task.members}
+          title={task.title}
+          labels = {task.labels}
+          ></ScrollDialog>
     </React.Fragment>
   );
 };

@@ -24,13 +24,15 @@ import { MembersCmp } from '../cmps/members-cmp';
 import { Textarea } from '../cmps/textarea-task-description';
 import { Textarea1 } from '../cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal'; 
+import { Comments } from '../cmps/comments';
 
 export function ScrollDialog(props) {
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
 
-  const { openPopup, setOpenPopup, title, children, members, labels } = props;
+  const { openPopup, setOpenPopup, task } = props;
+  const { labels,members,title, comments } = task
 
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
@@ -38,7 +40,6 @@ export function ScrollDialog(props) {
       event.target.value
     );
   };
-
 
 
   const handleFullWidthChange = (event) => {
@@ -104,10 +105,7 @@ export function ScrollDialog(props) {
               <LocalOfferOutlinedIcon color='action' />
               <Typography>Labels</Typography>
             </div>
-
               <CheckListModal/>
-              {/* <Typography>Checklist</Typography> */}
-
             <div className='button-container flex'>
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>
@@ -161,6 +159,10 @@ export function ScrollDialog(props) {
                   <p>NC</p>
                 </Avatar>
                   <Textarea1 />
+                  <div style={{backgroundColor:'blue'}} className="comments-blue">
+                    aaa
+                  {/* {props.comments && <Comments comments={props.comments} />} */}
+                  </div>
               </div>
             </div>
           </div>
