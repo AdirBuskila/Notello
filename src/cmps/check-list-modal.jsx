@@ -1,66 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import Popper from '@mui/material/Popper';
+import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Fade from '@mui/material/Fade';
-import Paper from '@mui/material/Paper';
-import { boardService } from '../services/board.service';
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
+import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 
 export const CheckListModal = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState();
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+  const [checklistName, setChecklistName] = useState('')
 
-  const handleClick = (newPlacement) => (event) => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    setOpen((prev) => placement !== newPlacement || !prev);
-    setPlacement(newPlacement);
   };
 
-  const onHandleModal = (ev) => {
-    ev.preventDefault();
-    setOpen(false);
+  const handleClose = (event) => {
+    setAnchorEl(null);
+    console.log(anchorEl);
   };
+
+  const onHandleName = ({target}) => {
+    const value = target.value;
+    setChecklistName(value);
+  }
+
+  const onAddClick = () => {
+    console.log(checklistName);
+    setChecklistName('')
+  }
 
   return (
-    <div className='button-container flex' onClick={handleClick('top-start')}>
-      <CheckBoxOutlinedIcon color='action' />
-      <Typography>Checklist</Typography>
-        <Popper
-          className='checklist-popper'
-          open={open}
-          anchorEl={anchorEl}
-          placement={placement}
-          transition
-        >
-          {({ TransitionProps }) => (
-            <Fade {...TransitionProps} timeout={350}>
-              <Paper>
-                <Typography
-                  className='header-board-typography'
-                  sx={{ p: 1, mt: 1, width: '304px', height: '260px' }}
-                >
-                  <div className='workspace-modal-title flex'>
-                    Add a Checklist
-                    <a href='#' onClick={(ev) => onHandleModal(ev)}>
-                      ✕
-                    </a>
-                  </div>
-                  <hr />S
-                  <section
-                    className='starred-boards flex column'
-                    style={{ height: 'fit-content' }}
-                  >
-                    <h6>
-                      Star important boards to access them quickly and easily.
-                    </h6>
-                  </section>
-                </Typography>
-              </Paper>
-            </Fade>
-          )}
-        </Popper>
+    <div className='button-container flex'>
+      {/* <div className='flex align-center' onClick={handleClick}> */}
+      <CheckBoxOutlined onClick={handleClick} color='action' />
+      <Typography onClick={handleClick} >Checklist</Typography>
+      {/* </div> */}
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      >
+        <Typography sx={{ p: 0.5, width: '304px', height: '227px' }}>
+          <div className='check-list-modal'>
+            Add checklist
+            <a href='#' onClick={handleClose}>
+              ✕
+            </a>
+          </div>
+          <div className='check-list-inner'>
+          <div className='check-list-title flex column '>
+          <span>Title</span>
+          <input onChange={onHandleName} placeholder='Checklist'></input>
+          <span>Copy items from</span>
+          <select>
+            <option value="-1">none</option>
+            <option value="0">checklist-1</option>
+            <option value="1">checklist-2</option>
+            <option value="2">checklist-3</option>
+          </select>
+          </div>
+          <button onClick={onAddClick}>Add</button>
+          </div>
+        </Typography>
+      </Popover>
     </div>
   );
-};
+}
+
