@@ -58,7 +58,7 @@ export const CreateHeaderModal = () => {
               <Typography
                 className='header-board-typography'
                 sx={{ mt: 1, width: '304px', height: '284px' }}>
-                <div className='workspace-modal-title flex'>
+                <div className='workspace-modal-create-title flex space-between'>
                   Create
                   <a href='#' onClick={(ev) => onHandleModal(ev)}>
                     ✕
