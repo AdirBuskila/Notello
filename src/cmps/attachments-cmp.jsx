@@ -5,7 +5,6 @@ import { utilService } from '../services/util.service';
 
 
 export const AttachmentsCmp = ({attachments}) => {
-    console.log('attachments', attachments);
     if (!attachments) return <p></p>;
     return (
         <section className='attachments-main-container'>
