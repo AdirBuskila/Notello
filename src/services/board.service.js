@@ -307,7 +307,6 @@ function getGroupsIds(board) {
     groupsIds = board.groups.map((group) => { 
         return group._id
     })
-    console.log("groupsIds: ", groupsIds);
     return groupsIds
 }
 
