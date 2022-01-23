@@ -18,7 +18,8 @@ export const boardService = {
     removeLabel,
     updateLabel,
     getGroupIdxById,
-    getGroupsIds
+    getGroupsIds,
+    addAttachment
 }
 
 const STORAGE_KEY = 'board_DB'
@@ -156,6 +157,12 @@ async function _createBoards() {
                             },{
                                 _id: utilService.makeId(),
                                 title: 'Gurevich loves scrolling (specially Y axis)',
+                                attachments: [{
+                                        id: utilService.makeId(),
+                                        txt: 'Wuba La Dub Dub',
+                                        url: 'https://cdn.europosters.eu/image/750/posters/rick-and-morty-watch-i50046.jpg',
+                                        createdAt: 1642344602,
+                                    }],
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#8E806A'
@@ -365,7 +372,7 @@ async function _createBoards() {
                                 }],
                             },{
                                 _id: utilService.makeId(),
-                                title: 'Most Powerful Programming ',
+                                title: 'Most Powerful Programming Language',
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#f2a28a'
@@ -1879,3 +1886,40 @@ function saveBoard(board) {
         return storageService.post(STORAGE_KEY, board)
     }
 }
+
+async function addAttachment(attachment, boardId, groupId, taskId, activity) {
+    attachment._id = utilService.makeId()
+    if (!attachment.name) attachment.name = 'New Attachment' 
+    try {
+        let board = await getBoardById(boardId)
+        const groupIdx = getGroupIdxById(board, groupId)
+        const taskIdx = getTaskIdxById(board, groupId, taskId)
+        /////
+        board.groups[groupIdx].tasks[taskIdx].push(attachment)
+        board.activities.unshift(activity)
+        const updatedBoard = saveBoard(board)
+        return updatedBoard
+
+
+
+    } catch (err) {
+        console.log('cannot add attachment', err);
+    }
+
+}
+
+
+// async function addLabel(label, boardId, groupId, taskId, activity) {
+//     label._id = utilService.makeId()
+//     try {
+//         let board = await getBoardById(boardId)
+//         const groupIdx = getGroupIdxById(board, groupId)
+//         const taskIdx = getTaskIdxById(board, groupId, taskId)
+//         board.groups[groupIdx].tasks[taskIdx].labels.push(label)
+//         board.activities.unshift(activity)
+//         const updatedBoard = saveBoard(board)
+//         return updatedBoard
+//     } catch (err) {
+//         console.log(`Cant add label to ${taskId}`);
+//     }
+// }

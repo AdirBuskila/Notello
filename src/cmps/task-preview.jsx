@@ -29,7 +29,8 @@ export const TaskPreview = (props) => {
         draggableId={task._id}
         index={props.index}
         key={task._id}
-        type='task'>
+        type='task'
+      >
         {(provided) => (
           <div
             onClick={() => {
@@ -39,7 +40,8 @@ export const TaskPreview = (props) => {
             {...provided.dragHandleProps}
             {...provided.draggableProps}
             className='task-preview flex column'
-            key={task._id}>
+            key={task._id}
+          >
             {task.labels && (
               <ul className='labels flex'>
                 {task.labels.map((label, idx) => {
@@ -48,7 +50,8 @@ export const TaskPreview = (props) => {
                       className={className}
                       onClick={(ev) => onHandleLablesClick(ev)}
                       key={idx}
-                      style={{ backgroundColor: `${label.bgc}` }}>
+                      style={{ backgroundColor: `${label.bgc}` }}
+                    >
                       {isLabelsExpended && `${label.name}`}
                     </li>
                   );
@@ -59,16 +62,17 @@ export const TaskPreview = (props) => {
           </div>
         )}
       </Draggable>
-            <ScrollDialog
-            onLoadBoard={props.onLoadBoard}
-            groupIdx={props.groupIdx}
-          openPopup={openPopup}
-          setOpenPopup={setOpenPopup}
-          task={task}
-          members= {task.members}
-          title={task.title}
-          labels = {task.labels}
-          ></ScrollDialog>
+      <ScrollDialog
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+        onLoadBoard={props.onLoadBoard}
+        groupIdx={props.groupIdx}
+        task={task}
+        members={task.members}
+        title={task.title}
+        labels={task.labels}
+        attachments={task.attachments}
+      ></ScrollDialog>
     </React.Fragment>
   );
 };
