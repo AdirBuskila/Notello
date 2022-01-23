@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
 // import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
@@ -10,6 +11,7 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import AutoAwesomeMosaicOutlinedIcon from '@mui/icons-material/AutoAwesomeMosaicOutlined';
 
 import CreateBoard from '../assets/img/create-board.svg';
+
 // import STARRED from '../assets/img/starred.svg';
 
 export const CreateHeaderModal = () => {
@@ -33,17 +35,12 @@ export const CreateHeaderModal = () => {
       onBlur={() => {
         setOpen(false);
       }}>
-      {/* <Button variant="contained" endIcon={<AddIcon className='svg_icons' />}> */}
-      {/* <Button sx={{width: '10px'}} className='header-board add-header' onClick={handleClick('bottom-start')} > */}
-      {/* <img src={Add} alt="add" /> */}
-      <div className='add-header'>
-        <AddIcon
-          className='svg_icons'
-          onClick={handleClick('bottom-start')}
-          style={{ color: 'white' }}
-        />
-      </div>
-      {/* </Button> */}
+      <Button
+        sx={{ width: '10px' }}
+        className='header-board add-header'
+        onClick={handleClick('bottom-start')}>
+        Create
+      </Button>
       <Popper
         className='popper'
         open={open}
