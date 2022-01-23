@@ -94,7 +94,6 @@ export const ScrollDialog = (props) => {
           className='task-title flex justify-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
             {/* <p>{title}</p> */}
-
             <div
               onClick={() => setClickedTaskId(props.task._id)}
               // className={className}
@@ -109,7 +108,6 @@ export const ScrollDialog = (props) => {
                   defaultValue={title}></input>
               ) : null}
               </div>
-
           </div>
         </DialogTitle>
         <div className='close-button flex align-center'>
