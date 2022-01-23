@@ -42,6 +42,7 @@
         }
     }
     &>.new-item {
+        min-width: rem(272px);
         width: rem(272px);
         padding: 4px 4px;
         gap: 4px;
