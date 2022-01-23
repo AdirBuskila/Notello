@@ -84,7 +84,7 @@
 }
 
 .activity-container {
-    margin-bottom: rem(15px);
+    gap: 8px;
     font-size: rem(16px);
     font-weight: 600;
     .activity {
@@ -94,8 +94,14 @@
         }
     }
     .comment-container {
+        .comments-area {
+            gap: 8px;
+        }
         p {
             font-size: rem(15px);
+        }
+        .comment {
+            gap: 8px;
         }
     }
 }
