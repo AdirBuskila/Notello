@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #189fed;
+    background-color: #3d4158e8;
     border-radius: 3px;
     .svg_icons {
         transform: scale(1.2);
@@ -60,5 +60,5 @@
 
 .add-header:hover {
     cursor: pointer;
-    background-color: #8dcef4c6;
+    filter: contrast(0.8);
 }

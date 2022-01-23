@@ -31,8 +31,7 @@ export function ScrollDialog(props) {
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
 
-  const { openPopup, setOpenPopup, task } = props;
-  const { labels,members,title, comments } = task
+  const { openPopup, setOpenPopup, labels, members, title, comments} = props;
 
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
@@ -159,8 +158,7 @@ export function ScrollDialog(props) {
                   <p>NC</p>
                 </Avatar>
                   <Textarea1 />
-                  {/* {props.comments && <Comments comments={props.comments} />} */}
-              
+                  {props.comments && <Comments comments={props.comments} />}      
               </div>
             </div>
           </div>

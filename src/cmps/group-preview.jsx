@@ -13,7 +13,6 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 const _GroupPreview = (props) => {
   const { group, board } = props;
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
-  console.log('groupIdx', groupIdx);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [tasks, onUpdateTasks] = useState([storeTasks]);
   const [clickedGroupId, setClickedGroupId] = useState('');

@@ -25,7 +25,6 @@ export const BoardWorkspaces = () => {
         <h1>Your Workspaces</h1>
         <div className='boards-container flex'>
           {boards.map((board) => {
-            console.log('board im map', board);
             if (!board) return <h1>Loading...</h1>
             return (
               <Link key={board._id} to={`/b/${board._id}`}>

@@ -45,7 +45,7 @@ export const BoardHeader = (props) => {
         </div>
 
         <input
-          style={{ width: `${board.title.length*14}` + '10px' }}
+          // style={{ width: `${board.title.length*14}` + '10px' }}
           className='title-input'
           defaultValue={board.title}
           onBlur={onHandleChange}
