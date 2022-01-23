@@ -32,11 +32,11 @@ async function _createBoards() {
         try {
             gBoards = [
                 {
-                _id: 'b101',
+                _id: utilService.makeId(),
                 title: 'Board1',
                 createdAt: Date.now(),
                 createdBy: {
-                    _id: 'u101',
+                    _id: utilService.makeId(),
                     fullname: "Netanel C",
                     imgUrl: ""
                 },
@@ -66,13 +66,13 @@ async function _createBoards() {
                     }
                 ],
                 members: [{
-                    _id: 'm101',
+                    _id: utilService.makeId(),
                     fullname: 'Adir adir',
                     imgUrl: ''
                 }],
                 groups: [
                     {
-                        _id: 'g101',
+                        _id: utilService.makeId(),
                         title: 'Group 1',
                         dueDate: 1826212211,
                         style: {
