@@ -39,7 +39,7 @@ export const CreateHeaderModal = () => {
         sx={{ width: '10px' }}
         className='header-board add-header'
         onClick={handleClick('bottom-start')}>
-        Create
+        <span>Create</span>
       </Button>
       <Popper
         className='popper'

@@ -11,7 +11,9 @@ import { CreateHeaderModal } from './create-header-modal';
 export const AppHeader = () => {
   return (
     <header className='app-header flex align-center'>
-      <NavLink to='/' className='flex logo-img'></NavLink>
+      <div className='logo-container flex align-center '>
+        <NavLink to='/' className='logo-img brdr-rds'></NavLink>
+      </div>
       <WorkspacesHeaderModal />
       <RecentHeaderModal />
       <StarredHeaderModal />
