@@ -72,6 +72,7 @@ const _GroupPreview = (props) => {
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   <TaskList
+                  onLoadBoard={props.onLoadBoard}
                     groupIdx={groupIdx}
                     groupId={group._id}
                     tasks={tasks}
