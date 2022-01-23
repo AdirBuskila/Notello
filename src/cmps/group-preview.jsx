@@ -12,7 +12,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const _GroupPreview = (props) => {
   const { group, board } = props;
-  const groupIdx = boardService.getGroupIdxById(props.board, props.group._id)
+  const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [tasks, onUpdateTasks] = useState(storeTasks);
   const [clickedGroupId, setClickedGroupId] = useState('');
@@ -56,6 +56,9 @@ const _GroupPreview = (props) => {
               {!clickedGroupId && <h4>{group.title}</h4>}
               {group._id === clickedGroupId ? (
                 <input
+                  onFocus={(ev) => {
+                    ev.target.select();
+                  }}
                   autoFocus
                   onChange={(ev) => {
                     setNewGroupTitle(ev.target.value);
@@ -72,7 +75,7 @@ const _GroupPreview = (props) => {
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   <TaskList
-                  onLoadBoard={props.onLoadBoard}
+                    onLoadBoard={props.onLoadBoard}
                     groupIdx={groupIdx}
                     groupId={group._id}
                     tasks={tasks}
