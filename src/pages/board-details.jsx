@@ -13,8 +13,9 @@ const _BoardDetails = (props) => {
   }, []);
 
   const onLoadBoard = async () => {
+    const { id } = props.match.params;
     try {
-      const { id } = props.match.params;
+      console.log('props.match.params',props.match.params);
       await props.loadBoard(id);
     } catch (err) {
       console.log('Cant load current board');
@@ -23,6 +24,7 @@ const _BoardDetails = (props) => {
   };
 
   const { board } = props;
+  console.log('board in load board',board);
   if (!board || board.length === 0) return <q>Loading...</q>;
   return (
     <React.Fragment>

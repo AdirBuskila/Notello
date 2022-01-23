@@ -2,7 +2,9 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    fixTimestamp
+    fixTimestamp,
+    stringToColor,
+    getRandomColor
 }
 
 function makeId(length = 6) {
@@ -42,3 +44,33 @@ function fixTimestamp(timestamp) {
     const time = new Date(timestamp).toTimeString().substring(0, 5);
     return date + ' at ' + time;
 }
+
+function stringToColor(string) {
+    let hash = 0;
+    let i;
+  
+    /* eslint-disable no-bitwise */
+    for (i = 0; i < string.length; i += 1) {
+      hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    }
+  
+    let color = '#';
+  
+    for (i = 0; i < 3; i += 1) {
+      const value = (hash >> (i * 8)) & 0xff;
+      color += `00${value.toString(16)}`.substr(-2);
+    }
+    /* eslint-enable no-bitwise */
+  
+    return color;
+  }
+
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  
