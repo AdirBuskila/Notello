@@ -23,18 +23,18 @@ import { LabelsCmp } from '../cmps/labels-cmp';
 import { MembersCmp } from '../cmps/members-cmp';
 import { Textarea } from '../cmps/textarea-task-description';
 import { Textarea1 } from '../cmps/textarea-task-comment';
-import { CheckListModal } from '../cmps/check-list-modal'; 
+import { CheckListModal } from '../cmps/check-list-modal';
 import { CommentsSection } from '../cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
-import {ActivitySection} from '../cmps/details-activity'
+import { ActivitySection } from '../cmps/details-activity';
 
 export const ScrollDialog = (props) => {
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
-  const comments = (props.task.comments) ? props.task.comments : []
+  const comments = props.task.comments ? props.task.comments : [];
 
-  const { openPopup, setOpenPopup, labels, members, title} = props;
+  const { openPopup, setOpenPopup, labels, members, title } = props;
 
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
@@ -43,26 +43,24 @@ export const ScrollDialog = (props) => {
     );
   };
 
-
   const handleFullWidthChange = (event) => {
     setFullWidth(event.target.checked);
   };
 
   return (
     <Dialog
-    className='task-details-dialog'
-    PaperProps={{
-      style: {
-        backgroundColor:'#f4f5f7',
-      },
-    }}
-    maxWidth={maxWidth}
+      className='task-details-dialog'
+      PaperProps={{
+        style: {
+          backgroundColor: '#f4f5f7',
+        },
+      }}
+      maxWidth={maxWidth}
       fullWidth={fullWidth}
       open={openPopup}
       scroll={scroll}
       aria-labelledby='task-details'
-      aria-describedby='task-details-description'
-    >
+      aria-describedby='task-details-description'>
       <div className='window-header flex space-between'>
         <DialogTitle id='scroll-dialog-title'>
           <div className='task-title flex justify-center'>
@@ -86,13 +84,11 @@ export const ScrollDialog = (props) => {
             display: 'flex',
             flexDirection: 'row-reverse',
           }}
-          dividers={scroll === 'paper'}
-        >
+          dividers={scroll === 'paper'}>
           <DialogContentText
             id='scroll-dialog-description'
             // ref={descriptionElementRef}
-            tabIndex={-1}
-          ></DialogContentText>
+            tabIndex={-1}></DialogContentText>
           <div className='buttons-container'>
             <p className='task-actions'>Suggested</p>
             <div className='button-container flex'>
@@ -104,8 +100,13 @@ export const ScrollDialog = (props) => {
               <PersonOutlineOutlinedIcon color='action' />
               <Typography>Members</Typography>
             </div>
-              <LabelsModal setOpenPopup={props.setOpenPopup} task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard}/>
-              <CheckListModal/>
+            <LabelsModal
+              setOpenPopup={props.setOpenPopup}
+              task={props.task}
+              groupIdx={props.groupIdx}
+              onLoadBoard={props.onLoadBoard}
+            />
+            <CheckListModal />
             <div className='button-container flex'>
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>
@@ -130,16 +131,16 @@ export const ScrollDialog = (props) => {
           </div>
           <div className='main-content'>
             <div className='task-info flex align-center'>
-                  {props.labels && <LabelsCmp labels={props.labels} />}
-                  {props.members && <MembersCmp members={props.members} />}
+              {props.labels && <LabelsCmp labels={props.labels} />}
+              {props.members && <MembersCmp members={props.members} />}
             </div>
             <div className='description-container'>
               <div className='description flex'>
                 <NotesIcon />
                 <p>Description</p>
               </div>
-              <div className="add-description-container">
-              <Textarea/>
+              <div className='add-description-container'>
+                <Textarea />
               </div>
             </div>
             <div className='activity-container'>
@@ -154,14 +155,13 @@ export const ScrollDialog = (props) => {
                     width: 32,
                     height: 32,
                     marginInlineEnd: 1,
-                  }}
-                >
+                  }}>
                   <p>NC</p>
                 </Avatar>
-                <div className='comments-area flex column'>
-                  <Textarea1 />
-                  <CommentsSection comments={comments} />                  
-                </div>
+              </div>
+              <div className='comments-area flex column'>
+                <Textarea1 />
+                <CommentsSection comments={comments} />
               </div>
             </div>
           </div>
@@ -169,4 +169,4 @@ export const ScrollDialog = (props) => {
       </div>
     </Dialog>
   );
-}
+};

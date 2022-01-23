@@ -94,8 +94,14 @@
         }
     }
     .comment-container {
+        .comments-area {
+            gap: 8px;
+        }
         p {
             font-size: rem(15px);
+        }
+        .comment {
+            gap: 8px;
         }
     }
 }
