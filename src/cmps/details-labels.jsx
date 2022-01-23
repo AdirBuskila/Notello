@@ -44,7 +44,7 @@ export const LabelsModal = (props) => {
             return idx === groupIdx 
         })
         await boardService.addLabel(label, board._id, group._id, task._id, `Label ${name} has been added`);
-        props.onLoadBoard()
+        await props.onLoadBoard()
     }
 
 

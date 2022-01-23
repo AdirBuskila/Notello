@@ -6,6 +6,7 @@ export function loadBoard(boardId) {
             const board = await boardService.getBoardById(boardId)
             const action = { type: 'SET_BOARD', board }
             dispatch(action)
+            return board;
         } catch (err) {
             console.log('cant load board');
             throw new Error(err);

@@ -11,8 +11,8 @@ const _GroupPreview = (props) => {
   const [newTask, onNewTask] = useState([]);
   const [tasks, onSetTasks] = useState([props.group.tasks]);
 
-  const loadTasks = () => {
-    this.props.onLoadBoard();
+  const loadTasks = async () => {
+    await this.props.onLoadBoard();
     const { tasks } = props.group;
     this.setState({ tasks });
   };

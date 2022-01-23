@@ -42,7 +42,7 @@ export const PreFeatureAdd = (props) => {
     }
     onNewState({ title: '' });
     onHandleModal();
-    props.onLoadBoard();
+    await props.onLoadBoard();
   };
 
   return (

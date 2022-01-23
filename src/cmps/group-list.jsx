@@ -9,12 +9,6 @@ import { boardService } from '../services/board.service';
 export const GroupList = (props) => {
   const dispatch = useDispatch();
   const board = useSelector((state) => state.boardModule.board);
-  const groupsFromService = board.groups;
-  const [groups, setGroups] = useState(groupsFromService);
-
-  useEffect(() => {
-    setGroups(groupsFromService);
-  }, [groupsFromService]);
 
   const onSetBoard = (board) => {
     const action = { type: 'SET_BOARD', board };
@@ -45,8 +39,6 @@ export const GroupList = (props) => {
       return task._id === draggableId;
     })[0];
 
-    console.log('Board at drag end', board);
-
     if (source.dropabbleId === destination.droppableId) {
       sourceGroup.tasks.splice(source.index, 1);
       destinationGroup.tasks.splice(destination.index, 0, draggingTask);
@@ -60,7 +52,7 @@ export const GroupList = (props) => {
     }
   };
 
-  if (!groups) return <q>No groups</q>;
+  if (!board.groups) return <q>No groups</q>;
   return (
     <React.Fragment>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -70,8 +62,8 @@ export const GroupList = (props) => {
               className='group-list-container flex'
               ref={provided.innerRef}
               {...provided.droppableProps}>
-              {groups &&
-                groups.map((group, idx) => (
+              {board.groups &&
+                board.groups.map((group, idx) => (
                   <GroupPreview
                     onLoadBoard={props.onLoadBoard}
                     group={group}

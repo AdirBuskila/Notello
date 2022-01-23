@@ -8,13 +8,7 @@ import { GroupList } from '../cmps/group-list.jsx';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
-  useEffect(() => {
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundImage =
-      'url(https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg)';
-    onLoadBoard();
-  }, []);
-
+  
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
@@ -24,19 +18,32 @@ const _BoardDetails = (props) => {
       throw new Error(err);
     }
   };
+  
+  useEffect( async () => {
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundImage =
+      'url(https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg)';
+      try {
+        await onLoadBoard();
+      } catch (err) {
+        console.log('Cannot load board', err);
+      }
+  }, []);
 
-  const { board } = props;
 
-  if (!board || board.length === 0) return <q>Loading...</q>;
+  if (!props.board || props.board.length === 0) {
+    console.log('board wast find');
+    return <q>Loading...</q>;
+  }
   return (
     <React.Fragment>
       <AppHeader />
-      <BoardHeader onLoadBoard={onLoadBoard} board={board} />
+      <BoardHeader onLoadBoard={onLoadBoard} board={props.board} />
       <div className='board-details-container flex column '>
         <GroupList
           onLoadBoard={onLoadBoard}
-          board={board}
-          groups={board.groups}
+          board={props.board}
+          groups={props.board.groups}
         />
       </div>
     </React.Fragment>
