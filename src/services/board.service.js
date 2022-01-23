@@ -81,7 +81,7 @@ async function _createBoards() {
                         tasks: [
                             {
                                 _id: 't240',
-                                title: 'Checking if the moon landing was real',
+                                title: 'Learn to Cook',
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#51e879'
@@ -313,6 +313,15 @@ async function _createBoards() {
                                     byMember: {
                                         _id: 'm102',
                                         fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                },{
+                                    id: utilService.makeId(),
+                                    txt: 'Are you Sure?',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: 'm102',
+                                        fullname: 'Adir B',
                                         imgUrl: ''
                                     }
                                 }],
