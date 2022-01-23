@@ -92,6 +92,7 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: 'important',
@@ -132,6 +133,7 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -178,6 +180,10 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                dueDate: [{
+                                    date: '',
+                                    isDone: false
+                                }],
                                 checklists: [],
                                 description: '',
                                 members: [
@@ -218,6 +224,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 comments: [],
                                 attachments: [],
@@ -255,6 +262,7 @@ async function _createBoards() {
                                         bgc: '#F03362'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 members: [],
                                 attachments: [],
@@ -283,6 +291,7 @@ async function _createBoards() {
                                         bgc: '#806A'
                                     }
                                 ],
+                                dueDate: [],
                                 comments: [],
                                 attachments: [],
                                 description: '',
@@ -334,6 +343,7 @@ async function _createBoards() {
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -369,6 +379,7 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -409,6 +420,7 @@ async function _createBoards() {
                                         bgc: '#de9fe0'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -450,6 +462,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 comments: [],
                                 attachments: [],
@@ -486,6 +499,7 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -526,6 +540,7 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -566,6 +581,7 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -607,6 +623,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -700,6 +717,7 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -740,6 +758,7 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -780,6 +799,7 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -821,6 +841,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -857,6 +878,7 @@ async function _createBoards() {
                                         bgc: '#F03362'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 members: [],
                                 attachments: [],
@@ -885,6 +907,7 @@ async function _createBoards() {
                                         bgc: '#806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 comments: [],
                                 attachments: [],
@@ -922,6 +945,7 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -971,6 +995,7 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1011,6 +1036,7 @@ async function _createBoards() {
                                         bgc: '#de9fe0'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1052,6 +1078,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -1088,6 +1115,7 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1128,6 +1156,7 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1168,6 +1197,7 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1209,6 +1239,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -1302,6 +1333,7 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1342,6 +1374,7 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 members: [
                                     {
@@ -1382,6 +1415,7 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 members: [
                                     {
@@ -1423,6 +1457,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -1459,6 +1494,7 @@ async function _createBoards() {
                                         bgc: '#F03362'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 members: [],
                                 attachments: [],
@@ -1487,6 +1523,7 @@ async function _createBoards() {
                                         bgc: '#806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -1524,6 +1561,7 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1573,6 +1611,7 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1613,6 +1652,7 @@ async function _createBoards() {
                                         bgc: '#de9fe0'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1654,6 +1694,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -1690,6 +1731,7 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1730,6 +1772,7 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1770,6 +1813,7 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                dueDate: [],
                                 checklists: [],
                                 attachments: [],
                                 description: '',
@@ -1811,6 +1855,7 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                dueDate: [],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -1862,6 +1907,7 @@ async function addTask(boardId, groupId, task, activity = '') {
     task.description = (task.description) ? task.description: '';
     task.checklists = (task.checklists) ? task.checklists: [];
     task.members = (task.members) ? task.members: [];
+    task.dueDate = (task.dueDate) ? task.dueDate: [];
     try {
         let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
