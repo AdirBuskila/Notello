@@ -160,7 +160,8 @@ async function _createBoards() {
                                 attachments: [{
                                         id: utilService.makeId(),
                                         txt: 'Wuba La Dub Dub',
-                                        url: 'https://cdn.europosters.eu/image/750/posters/rick-and-morty-watch-i50046.jpg'
+                                        url: 'https://cdn.europosters.eu/image/750/posters/rick-and-morty-watch-i50046.jpg',
+                                        createdAt: 1642344602,
                                     }],
                                 labels: [{
                                         name: 'Work',
