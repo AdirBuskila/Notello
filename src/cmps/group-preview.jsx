@@ -6,7 +6,7 @@ import { TaskList } from './task-list';
 import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
-
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 // import { Card } from './UI/Card';
 // import { cardActionAreaClasses } from '@mui/material';
 
@@ -63,7 +63,9 @@ const _GroupPreview = (props) => {
                   }}
                   defaultValue={group.title}></input>
               ) : null}
+              <MoreHorizIcon style={{ fill: '#6b778c' }} />
             </div>
+
             <Droppable
               droppableId={group._id}
               index={props.index}
