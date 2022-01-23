@@ -28,6 +28,7 @@ import { Comments } from '../cmps/comments';
 import { LabelsModal } from '../cmps/details-labels';
 
 export const ScrollDialog = (props) => {
+  console.log("props: ", props);
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
@@ -101,7 +102,7 @@ export const ScrollDialog = (props) => {
               <PersonOutlineOutlinedIcon color='action' />
               <Typography>Members</Typography>
             </div>
-              <LabelsModal task={task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard}/>
+              <LabelsModal task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard}/>
               <CheckListModal/>
             <div className='button-container flex'>
               <QueryBuilderIcon color='action' />
