@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { ScrollDialog } from '../pages/task-details';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 import NotesIcon from '@mui/icons-material/Notes';
 import { ChecklistBadge } from './checklist-badge';
 
 
 import { Link } from 'react-router-dom';
+import { CommentsBadge } from './comments-badge';
+import { MembersBadge } from './members-badge';
 
 
 export const TaskPreview = (props) => {
@@ -26,7 +27,6 @@ export const TaskPreview = (props) => {
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
-
 
 
   return (
@@ -66,11 +66,16 @@ export const TaskPreview = (props) => {
               </ul>
             )}
             <p>{task.title}</p>
-            <div className="task-badges flex">
-              {task.comments.length > 0 && <ChatBubbleOutlineRoundedIcon fontSize='extra-small' color='action' />}
+            <div className="task-info-icons flex space-between">
+            <div className="task-badges flex align-center">
+              {task.comments.length > 0 && <CommentsBadge comments={task.comments} />}
               {task.attachments.length > 0 && <AttachFileIcon fontSize='extra-small' color='action' />}
-              {task.description !== '' && <NotesIcon fontSize='extra-small' color='action' />}
+              {task.description && <NotesIcon fontSize='extra-small' color='action' />}
               {task.checklists.length > 0 && <ChecklistBadge checklists={task.checklists} />}
+            </div>
+                <div className="members-badge">
+                  {task.members.length > 0 && <MembersBadge members={task.members} />}
+                </div>
             </div>
           </div>
         )}
