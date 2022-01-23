@@ -2,7 +2,7 @@ import Avatar from '@mui/material/Avatar';
 import { utilService } from '../services/util.service';
 
 export const CommentsSection = ({ comments }) => {
-  if (!comments.length) return <h3>No comments to this task yet..</h3>;
+  if (!comments.length) return <p></p>;
   return (
     <div className='comments-container'>
       {comments.map((comment) => {
