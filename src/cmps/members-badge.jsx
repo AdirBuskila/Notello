@@ -1,9 +1,8 @@
 import Avatar from '@mui/material/Avatar';
 
 export const MembersBadge = ({ members }) => {
-    console.log(members);
   return (
-    <div className='members-badge-container flex align-center'>
+    <div className='members-badge-container flex'>
 {members.map((member, idx) => {
     return (
       <Avatar
@@ -12,9 +11,8 @@ export const MembersBadge = ({ members }) => {
         alt={member.fullname}
         sx={{
           bgcolor: stringToColor(member.fullname),
-          width: 34,
-          height: 34,
-          marginInlineEnd: 1,
+          width: 28,
+          height: 28,
         }}
       ></Avatar>
     );

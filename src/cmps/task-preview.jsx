@@ -73,7 +73,7 @@ export const TaskPreview = (props) => {
               {task.description && <NotesIcon fontSize='extra-small' color='action' />}
               {task.checklists.length > 0 && <ChecklistBadge checklists={task.checklists} />}
             </div>
-                <div className="members-badge">
+                <div className="members-badge flex align-center">
                   {task.members.length > 0 && <MembersBadge members={task.members} />}
                 </div>
             </div>
