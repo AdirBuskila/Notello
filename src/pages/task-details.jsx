@@ -143,7 +143,7 @@ export const ScrollDialog = (props) => {
                 <Textarea />
               </div>
             </div>
-            <div className='activity-container'>
+            <div className='activity-container flex column'>
               <div className='activity flex'>
                 <FormatListBulletedIcon />
                 <p>Activity</p>
@@ -158,9 +158,9 @@ export const ScrollDialog = (props) => {
                   }}>
                   <p>NC</p>
                 </Avatar>
+                <Textarea1 />
               </div>
               <div className='comments-area flex column'>
-                <Textarea1 />
                 <CommentsSection comments={comments} />
               </div>
             </div>

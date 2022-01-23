@@ -7,7 +7,7 @@ export const CommentsSection = ({ comments }) => {
     <div className='comments-container'>
       {comments.map((comment) => {
         return (
-          <div className='comment flex'>
+          <div key={utilService.makeId()} className='comment flex'>
             <div className='comment-creator'>
               <Avatar
                 src={comment.byMember.imgUrl}
