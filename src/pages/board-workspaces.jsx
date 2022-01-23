@@ -6,6 +6,7 @@ import { boardService } from '../services/board.service';
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
+  console.log("boards: ", boards);
   useEffect(() => {
     document.body.style.backgroundImage = '';
   }, []);
@@ -19,7 +20,7 @@ export const BoardWorkspaces = () => {
       }
     })();
   }, []);
-  if (!boards || !boards.length) return <q>Loading...</q>;
+  if (!boards || boards.length === 0) return <q>Loading...</q>;
   return (
     <React.Fragment>
       <AppHeader />

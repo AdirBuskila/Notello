@@ -32,7 +32,7 @@ import { ActivitySection } from '../cmps/details-activity';
 import { boardService } from '../services/board.service';
 
 export const ScrollDialog = (props) => {
-  console.log('props', props);
+  // console.log('props', props);
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
@@ -68,7 +68,7 @@ export const ScrollDialog = (props) => {
     setClickedTaskId('');
     setNewTaskTitle('');
     await boardService.saveBoard(newBoard);
-    onLoadBoard()
+    await onLoadBoard()
   };
 
   return (

@@ -214,7 +214,7 @@ async function _createBoards() {
                                     }]
                                 }],
                             }
-                        ],
+                        ]
                     },
                     {
                         _id: utilService.makeId(),
@@ -271,7 +271,8 @@ async function _createBoards() {
                                 }],
                             }
                         ],
-                    },{
+                    },
+                    {
                         _id: utilService.makeId(),
                         title: 'Casual',
                         dueDate: 1826212211,
@@ -423,7 +424,7 @@ async function _createBoards() {
                                     }]
                                 }],
                             }
-                        ],
+                        ]
                     },{
                         _id: utilService.makeId(),
                         title: 'Important Stuff',
@@ -584,7 +585,1118 @@ async function _createBoards() {
                         title: 'Notello'
                     }
                 }]
-            }]
+            },
+            {
+                _id: utilService.makeId(),
+                title: 'Board2',
+                createdAt: Date.now(),
+                createdBy: {
+                    _id: utilService.makeId(),
+                    fullname: "Adir B",
+                    imgUrl: ""
+                },
+                style: {
+                    bgColor: '#222',
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg'
+                },
+                labels: [{
+                        _id: utilService.makeId(),
+                        name: 'Work',
+                        bgc: '#8E806A'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Relavent',
+                        bgc: '#F0BB62'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Special',
+                        bgc: '#F999B7'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Important',
+                        bgc: '#FF5677'
+                    }
+                ],
+                members: [{
+                    _id: utilService.makeId(),
+                    fullname: 'Adir adir',
+                    imgUrl: ''
+                }],
+                groups: [
+                    {
+                        _id: utilService.makeId(),
+                        title: 'Group 1',
+                        dueDate: 1826212211,
+                        style: {
+                            bgColor: '#f2f3'
+                        },
+                        tasks: [
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Learn to Cook',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#51e879'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#51e8d9'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: 'm102',
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Learn about the pyramids',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#e9f062'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#b0285a'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Gurevich loves scrolling (specially Y axis)',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#F0BB62'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Adir you are a SAVAGE!',
+                                labels: [{
+                                        name: 'Special',
+                                        bgc: '#F999B7'
+                                    },
+                                    {
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }
+                        ]
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: 'Group II',
+                        dueDate: 1846712211,
+                        style: {
+                            bgColor: '#ee3'
+                        },
+                        tasks: [{
+                                _id: utilService.makeId(),
+                                title: 'Waiting for ilai!',
+                                labels: [{
+                                        name: 'General',
+                                        bgc: '#8E6A'
+                                    },
+                                    {
+                                        name: 'Education',
+                                        bgc: '#F03362'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: utilService.makeId(),
+                                title: 'EFRAIM rulesss!',
+                                labels: [{
+                                        name: 'new',
+                                        bgc: '#F9B7'
+                                    },
+                                    {
+                                        name: 'Special',
+                                        bgc: '#806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist2',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 2',
+                                        isDone: true
+                                    }]
+                                }],
+                            }
+                        ],
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: 'Casual',
+                        dueDate: 1826212211,
+                        style: {
+                            bgColor: '#f2f3'
+                        },
+                        tasks: [
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Learning to ride Bicycle',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#51e879'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#51e8d9'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                },{
+                                    id: utilService.makeId(),
+                                    txt: 'Are you Sure?',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Adir B',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Learn about the pyramids',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#e9f062'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#b0285a'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Most Powerful Programming ',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#f2a28a'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#de9fe0'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Milky Way',
+                                labels: [{
+                                        name: 'Special',
+                                        bgc: '#F999B7'
+                                    },
+                                    {
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }
+                        ]
+                    },{
+                        _id: utilService.makeId(),
+                        title: 'Important Stuff',
+                        dueDate: 1826212211,
+                        style: {
+                            bgColor: '#f2f3'
+                        },
+                        tasks: [
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Checking if the moon landing was real',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#51e879'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#51e8d9'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Hakuna Matata',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#e8749f'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#b48aeb'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'List all the problems',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#F0BB62'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Coldplay concert at Feb',
+                                labels: [{
+                                        name: 'Special',
+                                        bgc: '#F999B7'
+                                    },
+                                    {
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }
+                        ],
+                    },
+                ],
+                activities: [{
+                    id: utilService.makeId(),
+                    txt: 'Changed Color',
+                    createdAt: 1545212324,
+                    byMember: {
+                        _id: utilService.makeId(),
+                        fullname: "Adir B",
+                        imgUrl: ""
+                    },
+                    task: {
+                        id: utilService.makeId(),
+                        title: 'Notello'
+                    }
+                }]
+            },
+            {
+                _id: utilService.makeId(),
+                title: 'Board3',
+                createdAt: Date.now(),
+                createdBy: {
+                    _id: utilService.makeId(),
+                    fullname: "Nati G",
+                    imgUrl: ""
+                },
+                style: {
+                    bgColor: '#222',
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg'
+                },
+                labels: [{
+                        _id: utilService.makeId(),
+                        name: 'Work',
+                        bgc: '#8E806A'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Relavent',
+                        bgc: '#F0BB62'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Special',
+                        bgc: '#F999B7'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Important',
+                        bgc: '#FF5677'
+                    }
+                ],
+                members: [{
+                    _id: utilService.makeId(),
+                    fullname: 'Adir adir',
+                    imgUrl: ''
+                }],
+                groups: [
+                    {
+                        _id: utilService.makeId(),
+                        title: 'Group 1',
+                        dueDate: 1826212211,
+                        style: {
+                            bgColor: '#f2f3'
+                        },
+                        tasks: [
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Learn to Cook',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#51e879'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#51e8d9'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: 'm102',
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Learn about the pyramids',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#e9f062'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#b0285a'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Gurevich loves scrolling (specially Y axis)',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#F0BB62'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Adir you are a SAVAGE!',
+                                labels: [{
+                                        name: 'Special',
+                                        bgc: '#F999B7'
+                                    },
+                                    {
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }
+                        ]
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: 'Group II',
+                        dueDate: 1846712211,
+                        style: {
+                            bgColor: '#ee3'
+                        },
+                        tasks: [{
+                                _id: utilService.makeId(),
+                                title: 'Waiting for ilai!',
+                                labels: [{
+                                        name: 'General',
+                                        bgc: '#8E6A'
+                                    },
+                                    {
+                                        name: 'Education',
+                                        bgc: '#F03362'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: utilService.makeId(),
+                                title: 'EFRAIM rulesss!',
+                                labels: [{
+                                        name: 'new',
+                                        bgc: '#F9B7'
+                                    },
+                                    {
+                                        name: 'Special',
+                                        bgc: '#806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist2',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 2',
+                                        isDone: true
+                                    }]
+                                }],
+                            }
+                        ],
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: 'Casual',
+                        dueDate: 1826212211,
+                        style: {
+                            bgColor: '#f2f3'
+                        },
+                        tasks: [
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Learning to ride Bicycle',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#51e879'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#51e8d9'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                },{
+                                    id: utilService.makeId(),
+                                    txt: 'Are you Sure?',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Adir B',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Learn about the pyramids',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#e9f062'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#b0285a'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Most Powerful Programming ',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#f2a28a'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#de9fe0'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Milky Way',
+                                labels: [{
+                                        name: 'Special',
+                                        bgc: '#F999B7'
+                                    },
+                                    {
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }
+                        ]
+                    },{
+                        _id: utilService.makeId(),
+                        title: 'Important Stuff',
+                        dueDate: 1826212211,
+                        style: {
+                            bgColor: '#f2f3'
+                        },
+                        tasks: [
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Checking if the moon landing was real',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#51e879'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#51e8d9'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Hakuna Matata',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#e8749f'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#b48aeb'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'List all the problems',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#F0BB62'
+                                    }
+                                ],
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    id: utilService.makeId(),
+                                    txt: 'We are changing the json',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            },
+                            {
+                                _id: utilService.makeId(),
+                                title: 'Coldplay concert at Feb',
+                                labels: [{
+                                        name: 'Special',
+                                        bgc: '#F999B7'
+                                    },
+                                    {
+                                        name: 'Work',
+                                        bgc: '#8E806A'
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }
+                        ],
+                    },
+                ],
+                activities: [{
+                    id: utilService.makeId(),
+                    txt: 'Changed Color',
+                    createdAt: 1545212324,
+                    byMember: {
+                        _id: utilService.makeId(),
+                        fullname: "Adir B",
+                        imgUrl: ""
+                    },
+                    task: {
+                        id: utilService.makeId(),
+                        title: 'Notello'
+                    }
+                }]
+            }
+        ]
             pathToStorage.saveToStorage(STORAGE_KEY, gBoards);
             return gBoards;
         } catch (err) {
@@ -767,185 +1879,3 @@ function saveBoard(board) {
         return storageService.post(STORAGE_KEY, board)
     }
 }
-
-// {
-//     _id: utilService.makeId(),
-//     title: 'Board2',
-//     createdAt: Date.now(),
-//     createdBy: {
-//         _id: utilService.makeId(),
-//         fullname: "Netanel C",
-//         imgUrl: ""
-//     },
-//     style: {
-//         bgColor: '#fff',
-//         imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642888319/Notello/a0992afa9c1f2b47db51d11f69c897f3_f3gwtp.jpg'
-//     },
-//     labels: [{
-//             _id: utilService.makeId(),
-//             name: 'Work',
-//             bgc: '#8E806A'
-//         },
-//         {
-//             _id: utilService.makeId(),
-//             name: 'Relavent',
-//             bgc: '#F0BB62'
-//         },
-//         {
-//             _id: utilService.makeId(),
-//             name: 'Special',
-//             bgc: '#F999B7'
-//         },
-//         {
-//             _id: utilService.makeId(),
-//             name: 'Important',
-//             bgc: '#FF5677'
-//         }
-//     ],
-//     members: [{
-//         _id: utilService.makeId(),
-//         fullname: 'Adir adir',
-//         imgUrl: ''
-//     }],
-//     groups: [{
-//             _id: utilService.makeId(),
-//             title: 'Group 1',
-//             dueDate: 1826212211,
-//             style: {
-//                 bgColor: '#f2f3'
-//             },
-//             tasks: [{
-//                     _id: utilService.makeId(),
-//                     title: 'Important stuff',
-//                     labels: [{
-//                             name: 'Work',
-//                             bgc: '#8E806A'
-//                         },
-//                         {
-//                             name: 'Relavent',
-//                             bgc: '#F0BB62'
-//                         }
-//                     ],
-//                     members: [
-//                         {
-//                             _id: utilService.makeId(),
-//                             username: "Rick",
-//                             fullname: "Rick Sanchez",
-//                             imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
-//                         },
-//                         {
-//                             _id: utilService.makeId(),
-//                             username: "Dumbledore",
-//                             fullname: "Albus Dumbledore",
-//                             imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
-//                         }
-//                     ],
-//                     createdAt: Date.now(),
-//                     comments: [{
-//                         id: utilService.makeId(),
-//                         txt: 'We are changing the json',
-//                         createdAt: Date.now(),
-//                         byMember: {
-//                             _id: utilService.makeId(),
-//                             fullname: 'Netanel G',
-//                             imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642889899/Notello/istockphoto-514558793-612x612_grfxxn.jpg'
-//                         }
-//                     }],
-//                 },
-//                 {
-//                     _id: utilService.makeId(),
-//                     title: 'Efraim Likes Lasagna',
-//                     labels: [{
-//                             name: 'Special',
-//                             bgc: '#F999B7'
-//                         },
-//                         {
-//                             name: 'Work',
-//                             bgc: '#8E806A'
-//                         }
-//                     ],
-//                     createdAt: Date.now(),
-//                     checklists: [{
-//                         id: utilService.makeId(),
-//                         title: 'Checklist',
-//                         todos: [{
-//                             id: utilService.makeId(),
-//                             title: 'To Do 1',
-//                             isDone: false
-//                         }]
-//                     }],
-//                 }
-//             ],
-//         },
-//         {
-//             _id: utilService.makeId(),
-//             title: 'Group 2',
-//             dueDate: 1846712211,
-//             style: {
-//                 bgColor: '#ee3'
-//             },
-//             tasks: [{
-//                     _id: utilService.makeId(),
-//                     title: 'Master Juggling',
-//                     labels: [{
-//                             name: 'General',
-//                             bgc: '#8E6A'
-//                         },
-//                         {
-//                             name: 'Education',
-//                             bgc: '#F03362'
-//                         }
-//                     ],
-//                     createdAt: Date.now(),
-//                     comments: [{
-//                         id: utilService.makeId(),
-//                         txt: 'We are changing the json',
-//                         createdAt: Date.now(),
-//                         byMember: {
-//                             _id: utilService.makeId(),
-//                             fullname: 'Netanel G',
-//                             imgUrl: ''
-//                         }
-//                     }],
-//                 },
-//                 {
-//                     _id: utilService.makeId(),
-//                     title: 'Stack Overflow',
-//                     labels: [{
-//                             name: 'new',
-//                             bgc: '#F9B7'
-//                         },
-//                         {
-//                             name: 'Special',
-//                             bgc: '#806A'
-//                         }
-//                     ],
-//                     createdAt: Date.now(),
-//                     checklists: [{
-//                         id: utilService.makeId(),
-//                         title: 'Checklist2',
-//                         todos: [{
-//                             id: utilService.makeId(),
-//                             title: 'To Do 2',
-//                             isDone: true
-//                         }]
-//                     }],
-//                 }
-//             ],
-//         }
-//     ],
-//     activities: [{
-//         id: utilService.makeId(),
-//         txt: 'Changed Color',
-//         createdAt: 1545212324,
-//         byMember: {
-//             _id: utilService.makeId(),
-//             fullname: "Adir B",
-//             imgUrl: ""
-//         },
-//         task: {
-//             id: utilService.makeId(),
-//             title: 'Notello'
-//         }
-//     }]
-// }

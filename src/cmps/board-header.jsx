@@ -21,11 +21,11 @@ export const BoardHeader = (props) => {
   const board = props.board;
   const [boardTitle, setBoardTitle] = useState(board.title);
 
-  const onHandleChange = () => {
+  const onHandleChange = async () => {
     const newBoard = board;
     newBoard.title = boardTitle;
     boardService.saveBoard(board);
-    props.onLoadBoard();
+    await props.onLoadBoard();
   };
 
   if (!board) return <h1> No board </h1>;
