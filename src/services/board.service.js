@@ -80,7 +80,7 @@ async function _createBoards() {
                         },
                         tasks: [
                             {
-                                _id: 't240',
+                                _id: utilService.makeId(),
                                 title: 'Learn to Cook',
                                 labels: [{
                                         name: 'Work',
@@ -93,13 +93,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u101",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u102",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -117,7 +117,7 @@ async function _createBoards() {
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: utilService.makeId(),
                                 title: 'Learn about the pyramids',
                                 labels: [{
                                         name: 'Work',
@@ -130,13 +130,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u101",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u102",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -148,13 +148,13 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: utilService.makeId(),
                                 title: 'Gurevich loves scrolling (specially Y axis)',
                                 labels: [{
                                         name: 'Work',
@@ -167,13 +167,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u101",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u102",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -185,14 +185,14 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
                                 }],
                             },
                             {
-                                _id: 't300',
+                                _id: utilService.makeId(),
                                 title: 'Adir you are a SAVAGE!',
                                 labels: [{
                                         name: 'Special',
@@ -208,7 +208,7 @@ async function _createBoards() {
                                     id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: 'todo101',
+                                        id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -217,14 +217,14 @@ async function _createBoards() {
                         ],
                     },
                     {
-                        _id: 'g102',
+                        _id: utilService.makeId(),
                         title: 'Group II',
                         dueDate: 1846712211,
                         style: {
                             bgColor: '#ee3'
                         },
                         tasks: [{
-                                _id: 't108',
+                                _id: utilService.makeId(),
                                 title: 'Waiting for ilai!',
                                 labels: [{
                                         name: 'General',
@@ -241,14 +241,14 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
                                 }],
                             },
                             {
-                                _id: 't103',
+                                _id: utilService.makeId(),
                                 title: 'EFRAIM rulesss!',
                                 labels: [{
                                         name: 'new',
@@ -264,7 +264,7 @@ async function _createBoards() {
                                     id: utilService.makeId(),
                                     title: 'Checklist2',
                                     todos: [{
-                                        id: 'todo102',
+                                        id: utilService.makeId(),
                                         title: 'To Do 2',
                                         isDone: true
                                     }]
@@ -272,7 +272,7 @@ async function _createBoards() {
                             }
                         ],
                     },{
-                        _id: 'g101',
+                        _id: utilService.makeId(),
                         title: 'Casual',
                         dueDate: 1826212211,
                         style: {
@@ -280,7 +280,7 @@ async function _createBoards() {
                         },
                         tasks: [
                             {
-                                _id: 't240',
+                                _id: utilService.makeId(),
                                 title: 'Learning to ride Bicycle',
                                 labels: [{
                                         name: 'Work',
@@ -293,13 +293,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u101",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u102",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -311,7 +311,7 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
@@ -320,13 +320,13 @@ async function _createBoards() {
                                     txt: 'Are you Sure?',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Adir B',
                                         imgUrl: ''
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: utilService.makeId(),
                                 title: 'Learn about the pyramids',
                                 labels: [{
                                         name: 'Work',
@@ -339,13 +339,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u101",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u102",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -357,13 +357,13 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: utilService.makeId(),
                                 title: 'Most Powerful Programming ',
                                 labels: [{
                                         name: 'Work',
@@ -376,13 +376,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u101",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u102",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -394,14 +394,14 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
                                 }],
                             },
                             {
-                                _id: 't300',
+                                _id: utilService.makeId(),
                                 title: 'Milky Way',
                                 labels: [{
                                         name: 'Special',
@@ -417,7 +417,7 @@ async function _createBoards() {
                                     id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: 'todo101',
+                                        id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -425,7 +425,7 @@ async function _createBoards() {
                             }
                         ],
                     },{
-                        _id: 'g109',
+                        _id: utilService.makeId(),
                         title: 'Important Stuff',
                         dueDate: 1826212211,
                         style: {
@@ -433,7 +433,7 @@ async function _createBoards() {
                         },
                         tasks: [
                             {
-                                _id: 't249',
+                                _id: utilService.makeId(),
                                 title: 'Checking if the moon landing was real',
                                 labels: [{
                                         name: 'Work',
@@ -446,13 +446,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u101",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u102",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -464,13 +464,13 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: utilService.makeId(),
                                 title: 'Hakuna Matata',
                                 labels: [{
                                         name: 'Work',
@@ -483,13 +483,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u109",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u107",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -501,13 +501,13 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: utilService.makeId(),
                                 title: 'List all the problems',
                                 labels: [{
                                         name: 'Work',
@@ -520,13 +520,13 @@ async function _createBoards() {
                                 ],
                                 members: [
                                     {
-                                        _id: "u101",
+                                        _id: utilService.makeId(),
                                         username: "Rick",
                                         fullname: "Rick Sanchez",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
                                     },
                                     {
-                                        _id: "u102",
+                                        _id: utilService.makeId(),
                                         username: "Dumbledore",
                                         fullname: "Albus Dumbledore",
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
@@ -538,14 +538,14 @@ async function _createBoards() {
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
-                                        _id: 'm102',
+                                        _id: utilService.makeId(),
                                         fullname: 'Netanel G',
                                         imgUrl: ''
                                     }
                                 }],
                             },
                             {
-                                _id: 't300',
+                                _id: utilService.makeId(),
                                 title: 'Coldplay concert at Feb',
                                 labels: [{
                                         name: 'Special',
@@ -561,7 +561,7 @@ async function _createBoards() {
                                     id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: 'todo101',
+                                        id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -571,16 +571,16 @@ async function _createBoards() {
                     },
                 ],
                 activities: [{
-                    id: 'a101',
+                    id: utilService.makeId(),
                     txt: 'Changed Color',
                     createdAt: 1545212324,
                     byMember: {
-                        _id: 'u101',
+                        _id: utilService.makeId(),
                         fullname: "Adir B",
                         imgUrl: ""
                     },
                     task: {
-                        id: 'c102',
+                        id: utilService.makeId(),
                         title: 'Notello'
                     }
                 }]
@@ -769,11 +769,11 @@ function saveBoard(board) {
 }
 
 // {
-//     _id: 'b102',
+//     _id: utilService.makeId(),
 //     title: 'Board2',
 //     createdAt: Date.now(),
 //     createdBy: {
-//         _id: 'u101',
+//         _id: utilService.makeId(),
 //         fullname: "Netanel C",
 //         imgUrl: ""
 //     },
