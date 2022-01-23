@@ -1,0 +1,15 @@
+.checklist-badge {
+    display: flex;
+    align-items: center;
+    gap: rem(5px) ;
+    p {
+        font-size: rem(12px);
+    }
+    &.done {
+    padding: 2px;
+    background-color: #61bd4f;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 400;
+    }
+}

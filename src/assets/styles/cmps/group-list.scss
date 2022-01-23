@@ -1,6 +1,6 @@
 .group-list-container {
     gap: rem(8px);
-    padding: 1rem;
+    padding: 0.25rem 1rem;
     overflow-x: auto;
     flex: 1;
     &>.add-item {
@@ -42,8 +42,9 @@
         }
     }
     &>.new-item {
+        min-width: rem(272px);
         width: rem(272px);
-        padding: 4px 4px;
+        padding: 4px;
         gap: 4px;
         height: fit-content;
         background-color: #ebecf0;

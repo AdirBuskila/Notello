@@ -3,8 +3,9 @@
     border-radius: 3px;
     background-color: #fff;
     text-align: start;
-    padding: 6px 8px 2px;
+    padding: 6px 8px;
     width: 100%;
+    box-shadow: 0 1px 0 #091e4240;
     .task-preview:hover {
         background-color: $clr2;
     }
@@ -26,5 +27,8 @@
                 min-width: rem(56px);
             }
         }
+    }
+    .task-badges {
+        gap: rem(12px);
     }
 }

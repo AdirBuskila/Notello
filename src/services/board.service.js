@@ -92,6 +92,9 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: 'important',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -129,6 +132,9 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -161,7 +167,7 @@ async function _createBoards() {
                                         id: utilService.makeId(),
                                         txt: 'Wuba La Dub Dub',
                                         url: 'https://cdn.europosters.eu/image/750/posters/rick-and-morty-watch-i50046.jpg',
-                                        createdAt: 1642344602,
+                                        createdAt: 1642950358371,
                                     }],
                                 labels: [{
                                         name: 'Work',
@@ -172,6 +178,8 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                checklists: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -210,6 +218,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                comments: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -230,7 +242,8 @@ async function _createBoards() {
                         style: {
                             bgColor: '#ee3'
                         },
-                        tasks: [{
+                        tasks: [
+                            {
                                 _id: utilService.makeId(),
                                 title: 'Waiting for ilai!',
                                 labels: [{
@@ -242,6 +255,10 @@ async function _createBoards() {
                                         bgc: '#F03362'
                                     }
                                 ],
+                                checklists: [],
+                                members: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
@@ -266,6 +283,10 @@ async function _createBoards() {
                                         bgc: '#806A'
                                     }
                                 ],
+                                comments: [],
+                                attachments: [],
+                                description: '',
+                                members: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -313,6 +334,9 @@ async function _createBoards() {
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
@@ -345,6 +369,9 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -382,6 +409,9 @@ async function _createBoards() {
                                         bgc: '#de9fe0'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -420,6 +450,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                comments: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -452,6 +486,9 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -489,6 +526,9 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -526,6 +566,9 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -564,6 +607,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -653,6 +700,9 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -690,6 +740,9 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -727,6 +780,9 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -765,6 +821,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -797,6 +857,10 @@ async function _createBoards() {
                                         bgc: '#F03362'
                                     }
                                 ],
+                                checklists: [],
+                                members: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
@@ -821,6 +885,10 @@ async function _createBoards() {
                                         bgc: '#806A'
                                     }
                                 ],
+                                members: [],
+                                comments: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -854,6 +922,9 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -900,6 +971,9 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -937,6 +1011,9 @@ async function _createBoards() {
                                         bgc: '#de9fe0'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -975,6 +1052,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -1007,6 +1088,9 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1044,6 +1128,9 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1081,6 +1168,9 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1119,6 +1209,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -1208,6 +1302,9 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1245,6 +1342,7 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                checklists: [],
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1259,6 +1357,8 @@ async function _createBoards() {
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
                                     }
                                 ],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
@@ -1282,6 +1382,7 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                checklists: [],
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1296,6 +1397,8 @@ async function _createBoards() {
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
                                     }
                                 ],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
@@ -1320,6 +1423,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -1352,6 +1459,10 @@ async function _createBoards() {
                                         bgc: '#F03362'
                                     }
                                 ],
+                                checklists: [],
+                                members: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
@@ -1376,6 +1487,10 @@ async function _createBoards() {
                                         bgc: '#806A'
                                     }
                                 ],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -1409,6 +1524,9 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1455,6 +1573,9 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1492,6 +1613,9 @@ async function _createBoards() {
                                         bgc: '#de9fe0'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1530,6 +1654,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -1562,6 +1690,9 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1599,6 +1730,9 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1636,6 +1770,9 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
+                                checklists: [],
+                                attachments: [],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1674,6 +1811,10 @@ async function _createBoards() {
                                         bgc: '#8E806A'
                                     }
                                 ],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     id: utilService.makeId(),
@@ -1715,7 +1856,12 @@ async function _createBoards() {
 
 async function addTask(boardId, groupId, task, activity = '') {
     task._id = utilService.makeId()
-    task.labels = (task.labels) ? task.labels : [];
+    task.labels = (task.labels) ? task.labels: [];
+    task.attachments = (task.attachments) ? task.attachments: [];
+    task.comments = (task.comments) ? task.comments: [];
+    task.description = (task.description) ? task.description: '';
+    task.checklists = (task.checklists) ? task.checklists: [];
+    task.members = (task.members) ? task.members: [];
     try {
         let board = await getBoardById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
