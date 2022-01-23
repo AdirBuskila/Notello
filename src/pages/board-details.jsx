@@ -29,7 +29,7 @@ const _BoardDetails = (props) => {
   return (
     <React.Fragment>
       <AppHeader />
-      <BoardHeader board={board} />
+      <BoardHeader onLoadBoard={onLoadBoard} board={board} />
       <div className='board-details-container flex column '>
         <GroupList
           onLoadBoard={onLoadBoard}
