@@ -117,7 +117,7 @@ async function _createBoards() {
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: 't234',
                                 title: 'Learn about the pyramids',
                                 labels: [{
                                         name: 'Work',
@@ -154,7 +154,7 @@ async function _createBoards() {
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: 't212',
                                 title: 'Gurevich loves scrolling (specially Y axis)',
                                 labels: [{
                                         name: 'Work',
@@ -326,7 +326,7 @@ async function _createBoards() {
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: 't250',
                                 title: 'Learn about the pyramids',
                                 labels: [{
                                         name: 'Work',
@@ -363,7 +363,7 @@ async function _createBoards() {
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: 't267',
                                 title: 'Most Powerful Programming ',
                                 labels: [{
                                         name: 'Work',
@@ -470,7 +470,7 @@ async function _createBoards() {
                                     }
                                 }],
                             },{
-                                _id: 't200',
+                                _id: 't269',
                                 title: 'Hakuna Matata',
                                 labels: [{
                                         name: 'Work',
