@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { ScrollDialog } from '../pages/task-details';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 import { Link } from 'react-router-dom';
+
 
 export const TaskPreview = (props) => {
   const task = props.task;
@@ -59,6 +61,9 @@ export const TaskPreview = (props) => {
               </ul>
             )}
             <p>{task.title}</p>
+            <div className="task-badges">
+              {/* {task.comments.length > 0 && <AttachFileIcon/> } */}
+            </div>
           </div>
         )}
       </Draggable>
