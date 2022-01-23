@@ -9,13 +9,15 @@ import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
   useEffect(() => {
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundImage =
+      'url(https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg)';
     onLoadBoard();
   }, []);
 
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
-      console.log('props.match.params',props.match.params);
       await props.loadBoard(id);
     } catch (err) {
       console.log('Cant load current board');
@@ -24,7 +26,7 @@ const _BoardDetails = (props) => {
   };
 
   const { board } = props;
-  console.log('board in load board',board);
+
   if (!board || board.length === 0) return <q>Loading...</q>;
   return (
     <React.Fragment>

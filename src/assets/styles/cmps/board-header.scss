@@ -8,8 +8,7 @@
         flex: 1;
         justify-content: flex-start;
         .board-stats {
-            width: rem(82px);
-            gap: rem(4px);
+            width: rem(92px);
             img {
                 width: 12px;
                 height: 12px;
@@ -25,7 +24,6 @@
             border: none;
             color: #172b4d;
             background-color: #fdfdfd7a;
-
             border-radius: rem(3px);
         }
         input:focus {
@@ -40,7 +38,7 @@
         .workspace-type {
             min-width: rem(150px);
             button {
-            color: #172b4d;
+                color: #172b4d;
                 background-color: transparent;
             }
         }

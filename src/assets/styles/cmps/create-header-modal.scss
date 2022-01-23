@@ -7,7 +7,6 @@
     justify-content: center;
     background-color: #3d4158e8;
     border-radius: 3px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
     .svg_icons {
         transform: scale(1.2);
     }
@@ -16,7 +15,7 @@
 .workspace-modal-create-title {
     font-size: 0.875rem;
     color: #5e6c84;
-    padding: 1rem;
+    padding: 0.5rem;
     padding-inline-start: 44%;
     padding-inline-end: 1rem;
     a {
@@ -26,6 +25,7 @@
 
 .create {
     padding-block-start: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
     article {
         padding: 0.5rem;
         bottom: 10px;
@@ -51,7 +51,7 @@
             }
         }
         p {
-            padding: 0 8px;
+            padding: 0 4px;
             bottom: 10px;
             width: 100%;
             color: #5e6c84;
@@ -66,6 +66,10 @@
         // box-shadow: none;
         background: rgba(9, 30, 66, 0.04);
         cursor: pointer;
+    }
+    svg {
+        height: 16px;
+        width: 16px;
     }
 }
 

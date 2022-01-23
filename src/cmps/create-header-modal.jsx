@@ -4,15 +4,17 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
-import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
+// import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
 import AddIcon from '@mui/icons-material/Add';
-import SendIcon from '@mui/icons-material/Send';
+// import SendIcon from '@mui/icons-material/Send';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import AutoAwesomeMosaicOutlinedIcon from '@mui/icons-material/AutoAwesomeMosaicOutlined';
 
 import CreateBoard from '../assets/img/create-board.svg';
 
 import { boardService } from '../services/board.service';
 
-import STARRED from '../assets/img/starred.svg';
+// import STARRED from '../assets/img/starred.svg';
 
 export const CreateHeaderModal = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -80,14 +82,14 @@ export const CreateHeaderModal = () => {
                   </article>
                   <article>
                     <div className='upper-actions'>
-                      <img src={CreateBoard} alt='template' />
+                      <AutoAwesomeMosaicOutlinedIcon />
                       <h4>Start with a template</h4>
                     </div>
                     <p>Get started faster with a board template.</p>
                   </article>
                   <article>
                     <div className='upper-actions'>
-                      <img src={CreateBoard} alt='create-board' />
+                      <PeopleAltOutlinedIcon />
                       <h4>Create Workspace</h4>
                     </div>
                     <p>
