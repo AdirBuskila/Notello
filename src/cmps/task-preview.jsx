@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { ScrollDialog } from '../pages/task-details';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
 import NotesIcon from '@mui/icons-material/Notes';
 import { ChecklistBadge } from './checklist-badge';
 
@@ -10,6 +9,7 @@ import { ChecklistBadge } from './checklist-badge';
 import { Link } from 'react-router-dom';
 import { CommentsBadge } from './comments-badge';
 import { MembersBadge } from './members-badge';
+import { AttachmentsBadge } from './attachments-badge';
 
 
 export const TaskPreview = (props) => {
@@ -69,7 +69,7 @@ export const TaskPreview = (props) => {
             <div className="task-info-icons flex space-between">
             <div className="task-badges flex align-center">
               {task.comments.length > 0 && <CommentsBadge comments={task.comments} />}
-              {task.attachments.length > 0 && <AttachFileIcon fontSize='extra-small' color='action' />}
+              {task.attachments.length > 0 && <AttachmentsBadge attachments={task.attachments} />}
               {task.description && <NotesIcon fontSize='extra-small' color='action' />}
               {task.checklists.length > 0 && <ChecklistBadge checklists={task.checklists} />}
             </div>
