@@ -27,6 +27,7 @@ import { CheckListModal } from '../cmps/check-list-modal';
 import { CommentsSection } from '../cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
 import { ActivitySection } from '../cmps/details-activity';
+import { AttachmentsCmp } from '../cmps/attachments-cmp';
 
 export const ScrollDialog = (props) => {
   const [scroll, setScroll] = React.useState('body');
@@ -34,7 +35,8 @@ export const ScrollDialog = (props) => {
   const [maxWidth, setMaxWidth] = React.useState('md');
   const comments = props.task.comments ? props.task.comments : [];
 
-  const { openPopup, setOpenPopup, labels, members, title } = props;
+
+  const { openPopup, setOpenPopup, labels, members, title, attachments } = props;
 
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
@@ -53,6 +55,7 @@ export const ScrollDialog = (props) => {
       PaperProps={{
         style: {
           backgroundColor: '#f4f5f7',
+          minWidth: '760px'
         },
       }}
       maxWidth={maxWidth}
@@ -142,6 +145,9 @@ export const ScrollDialog = (props) => {
               <div className='add-description-container'>
                 <Textarea />
               </div>
+            </div>
+            <div className="attachments-container">
+              <AttachmentsCmp attachments={props.attachments} />
             </div>
             <div className='activity-container flex column'>
               <div className='activity flex'>
