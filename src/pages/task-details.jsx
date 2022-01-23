@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Dialog from '@mui/material/Dialog';
@@ -29,12 +30,20 @@ import { LabelsModal } from '../cmps/details-labels';
 import { ActivitySection } from '../cmps/details-activity';
 import { AttachmentsCmp } from '../cmps/attachments-cmp';
 
+import { boardService } from '../services/board.service';
+
 export const ScrollDialog = (props) => {
+  console.log('props', props);
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
+  const [clickedTaskId, setClickedTaskId] = React.useState('');
+  const [newTaskTitle, setNewTaskTitle] = React.useState('');
   const comments = props.task.comments ? props.task.comments : [];
 
+  const board = useSelector(
+    (state) => state.boardModule.board
+);
 
   const { openPopup, setOpenPopup, labels, members, title, attachments } = props;
 
@@ -47,6 +56,20 @@ export const ScrollDialog = (props) => {
 
   const handleFullWidthChange = (event) => {
     setFullWidth(event.target.checked);
+  };
+
+  const handleNewTitle = async () => {
+    const newBoard = board;
+    const {task, groupIdx, onLoadBoard} = props;
+    if (!newTaskTitle) return setClickedTaskId('');
+    const taskIdx = newBoard.groups[groupIdx].tasks.findIndex((t) => {
+      return (t._id === task._id)
+    })
+    newBoard.groups[groupIdx].tasks[taskIdx].title = newTaskTitle;
+    setClickedTaskId('');
+    setNewTaskTitle('');
+    await boardService.saveBoard(newBoard);
+    onLoadBoard()
   };
 
   return (
@@ -65,10 +88,28 @@ export const ScrollDialog = (props) => {
       aria-labelledby='task-details'
       aria-describedby='task-details-description'>
       <div className='window-header flex space-between'>
-        <DialogTitle id='scroll-dialog-title'>
-          <div className='task-title flex justify-center'>
+        <DialogTitle onBlur={handleNewTitle}
+        id='scroll-dialog-title'>
+          <div
+          className='task-title flex justify-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
-            <p>{title}</p>
+            {/* <p>{title}</p> */}
+
+            <div
+              onClick={() => setClickedTaskId(props.task._id)}
+              // className={className}
+              >
+              {!clickedTaskId && <p>{title}</p>}
+              {props.task._id === clickedTaskId ? (
+                <input
+                  autoFocus
+                  onChange={(ev) => {
+                    setNewTaskTitle(ev.target.value);
+                  }}
+                  defaultValue={title}></input>
+              ) : null}
+              </div>
+
           </div>
         </DialogTitle>
         <div className='close-button flex align-center'>
