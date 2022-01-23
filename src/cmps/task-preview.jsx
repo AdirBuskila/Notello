@@ -5,6 +5,7 @@ import { ScrollDialog } from '../pages/task-details';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 import NotesIcon from '@mui/icons-material/Notes';
+import { ChecklistBadge } from './checklist-badge';
 
 
 import { Link } from 'react-router-dom';
@@ -26,7 +27,7 @@ export const TaskPreview = (props) => {
     ? 'flex align-center expended'
     : 'flex align-center';
 
-  console.log(task.comments.length);
+    // console.log('task.checklists', task.checklists);
 
   return (
     <React.Fragment>
@@ -69,6 +70,7 @@ export const TaskPreview = (props) => {
               {task.comments.length > 0 && <ChatBubbleOutlineRoundedIcon fontSize='extra-small' color='action' />}
               {task.attachments.length > 0 && <AttachFileIcon fontSize='extra-small' color='action' />}
               {task.description !== '' && <NotesIcon fontSize='extra-small' color='action' />}
+              {task.checklists.length > 0 && <ChecklistBadge checklists={task.checklists} />}
             </div>
           </div>
         )}
