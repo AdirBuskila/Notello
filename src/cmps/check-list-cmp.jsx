@@ -21,7 +21,7 @@ export const CheckListCmp = (props) => {
         <section>
             {board.groups[props.groupIdx].tasks[taskIdx].checklists.map((checklist) => {
                 return <section>
-                    <CheckList onLoadBoard={props.onLoadBoard} board={board} task={task} taskIdx={taskIdx} groupIdx={props.groupIdx} checklist={checklist} />
+                    <CheckList board={board} task={task} taskIdx={taskIdx} groupIdx={props.groupIdx} checklist={checklist} />
                 </section>
             })}
         </section>
