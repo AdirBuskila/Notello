@@ -65,30 +65,25 @@ export const BoardHeader = (props) => {
         </div>
         <span className='board-header-btn-divider'> </span>
         <div className='members-avatars'>
-          <AvatarGroup
-          sx={{gap: 0.5}}
-          max={3}>
+          <AvatarGroup sx={{ gap: 0.5 }} max={3}>
             <Avatar
               alt='NC'
               src={AVATAR1}
-              style={{ width: '28px', height: '28px',border: '0' }}
+              style={{ width: '28px', height: '28px', border: '0' }}
             />
             <Avatar
               alt='NG'
               src={AVATAR2}
-              style={{ width: '28px', height: '28px',border: '0' }}
+              style={{ width: '28px', height: '28px', border: '0' }}
             />
             <Avatar
               alt='NA'
               src={AVATAR3}
-              style={{ width: '28px', height: '28px',border: '0' }}
+              style={{ width: '28px', height: '28px', border: '0' }}
             />
           </AvatarGroup>
         </div>
-        <Button
-          className='new-member flex'
-          style={{ backgroundColor: '#0179bf' }}
-          variant='contained'>
+        <Button className='new-member flex' variant='contained'>
           <img
             src={ADD_MEMBER}
             alt='invite'
