@@ -3,6 +3,7 @@ import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurned
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import { LinearWithValueLabel } from '../cmps/progress-bar'
+import {CheckListSection} from '../cmps/check-list-section'
 
 import { boardService } from '../services/board.service';
 
@@ -10,6 +11,7 @@ export const CheckList = (props) => {
     const { board, task, taskIdx, groupIdx } = props;
     const [checkList, setCheckList] = useState(props.checklist)
     const [isEdditing, setIsEdditing] = useState(false);
+    const [isCanging, setIsChanging] = useState(false);
 
 
     const handleCheckBoxClick = (checkListId, todoId) => {
@@ -23,6 +25,7 @@ export const CheckList = (props) => {
         task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;
         board.groups[groupIdx].tasks[taskIdx] = task;
         boardService.saveBoard(board);
+        setIsChanging(false);
         setIsEdditing(!isEdditing)
     }
 
@@ -54,8 +57,10 @@ export const CheckList = (props) => {
                         }}>
                             {!td.isDone ? <CheckBoxOutlineBlankOutlinedIcon className='checkbox' /> : <CheckBoxOutlinedIcon className='checkbox' />}
                         </div>
-                        {td.isDone ? <p className='line-through'>{td.title}</p> : <p>{td.title}</p>}
-                        {/* <input value={td.title}></input> */}
+                        {!isCanging ? <div onClick={() => setIsChanging(true)}>
+                            {(td.isDone) ? <p className='line-through'>{td.title}</p> : <p>{td.title}</p>}
+                        </div>
+                        : <CheckListSection />}
                     </div>)
                 })
             }
