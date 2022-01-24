@@ -5,15 +5,13 @@
     padding: rem(4px);
     padding-inline-end: rem(20px);
     max-height: rem(44px);
-    div {
-        a {
-            padding: rem(8px);
-            content: url('../../img/notello-logo-static.gif');
-            width: rem(100px);
-            height: rem(36px);
-        }
+    .logo-img {
+        padding: rem(8px);
+        content: url('../../img/notello-logo-static.gif');
+        width: rem(100px);
+        height: rem(36px);
     }
-    a:hover {
+    .logo-img:hover {
         content: url('../../img/notello-logo.gif');
         background-color: rgba(255, 255, 255, 0.3);
     }

@@ -64,6 +64,10 @@ textarea {
     background: #fff;
 }
 
+input:focus {
+    outline-color: #2684ff;
+}
+
 .card {
     border-radius: 3px;
 }

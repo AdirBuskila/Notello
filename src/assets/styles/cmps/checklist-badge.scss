@@ -1,15 +1,17 @@
 .checklist-badge {
     display: flex;
     align-items: center;
-    gap: rem(5px) ;
+    gap: rem(5px);
     p {
-        font-size: rem(12px);
+        color: #5e6c84;
+        font-size: 0.8rem;
+        font-weight: 400;
     }
     &.done {
-    padding: 2px;
-    background-color: #61bd4f;
-    border-radius: 3px;
-    color: #fff;
-    font-weight: 400;
+        padding: 2px;
+        background-color: #61bd4f;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: 400;
     }
 }
