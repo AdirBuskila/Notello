@@ -4,6 +4,7 @@ import { BoardDetails } from './pages/board-details';
 import { ScrollDialog } from './pages/task-details';
 import { Login } from './pages/login-page';
 import { SignUp } from './pages/sign-up-page';
+import { TaskDetails } from './pages/task-details2';
 
 
 export const routes = [
@@ -27,8 +28,12 @@ export const routes = [
         path: '/b/:id',
         component: BoardDetails,
     },
+    // {
+    //     path: '/c/:id',
+    //     component: ScrollDialog,
+    // },
     {
         path: '/c/:id',
-        component: ScrollDialog,
+        component: TaskDetails,
     },
 ];

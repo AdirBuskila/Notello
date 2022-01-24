@@ -13,9 +13,9 @@ export const AttachmentsCmp = ({attachments}) => {
               <p>Attachments</p>
             </div>
             <div className="attachments-thumbnail-container flex">
-            {attachments.map((attachment) => {
+            {attachments.map((attachment, index) => {
                 return (
-                    <div className="attachment-thumbnail flex">
+                    <div key={index} className="attachment-thumbnail flex">
                         <a>
                         <div  className="attachment-image" style={{backgroundImage: `url(${attachment.url})`}} ></div>
                         </a>

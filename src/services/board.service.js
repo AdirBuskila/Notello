@@ -19,7 +19,8 @@ export const boardService = {
     updateLabel,
     getGroupIdxById,
     getGroupsIds,
-    addAttachment
+    addAttachment,
+    getTask,
 }
 
 const STORAGE_KEY = 'board_DB'
@@ -34,7 +35,7 @@ async function _createBoards() {
             gBoards = [
                 {
                 _id: utilService.makeId(),
-                title: 'Board1',
+                title: 'First Board',
                 createdAt: Date.now(),
                 createdBy: {
                     _id: utilService.makeId(),
@@ -140,21 +141,21 @@ async function _createBoards() {
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
-                                    txt: 'We are changing the json',
+                                    txt: 'Maybe well find some Mummies 👀',
                                     createdAt: Date.now(),
                                     byMember: {
                                         _id: utilService.makeId(),
@@ -332,15 +333,15 @@ async function _createBoards() {
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 dueDate: [],
@@ -400,7 +401,7 @@ async function _createBoards() {
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
-                                    txt: 'We are changing the json',
+                                    txt: 'Maybe well find some Mummies 👀',
                                     createdAt: Date.now(),
                                     byMember: {
                                         _id: utilService.makeId(),
@@ -427,15 +428,15 @@ async function _createBoards() {
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 createdAt: Date.now(),
@@ -500,7 +501,15 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [{
+                                    id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: true
+                                    }]
+                                }],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -547,15 +556,15 @@ async function _createBoards() {
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 createdAt: Date.now(),
@@ -659,7 +668,7 @@ async function _createBoards() {
             },
             {
                 _id: utilService.makeId(),
-                title: 'Board2',
+                title: 'Casual',
                 createdAt: Date.now(),
                 createdBy: {
                     _id: utilService.makeId(),
@@ -668,7 +677,7 @@ async function _createBoards() {
                 },
                 style: {
                     bgColor: '#222',
-                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg'
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642888319/Notello/a0992afa9c1f2b47db51d11f69c897f3_f3gwtp.jpg'
                 },
                 labels: [{
                         _id: utilService.makeId(),
@@ -779,7 +788,7 @@ async function _createBoards() {
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
-                                    txt: 'We are changing the json',
+                                    txt: 'Maybe well find some Mummies 👀',
                                     createdAt: Date.now(),
                                     byMember: {
                                         _id: utilService.makeId(),
@@ -1016,7 +1025,7 @@ async function _createBoards() {
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
-                                    txt: 'We are changing the json',
+                                    txt: 'Maybe well find some Mummies 👀',
                                     createdAt: Date.now(),
                                     byMember: {
                                         _id: utilService.makeId(),
@@ -1275,7 +1284,7 @@ async function _createBoards() {
             },
             {
                 _id: utilService.makeId(),
-                title: 'Board3',
+                title: 'Trip to Japan',
                 createdAt: Date.now(),
                 createdBy: {
                     _id: utilService.makeId(),
@@ -1284,7 +1293,7 @@ async function _createBoards() {
                 },
                 style: {
                     bgColor: '#222',
-                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg'
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643021447/Notello/136667-japanese-desktop-wallpaper-top-free-japanese-desktop_exakwe.jpg'
                 },
                 labels: [{
                         _id: utilService.makeId(),
@@ -1395,7 +1404,7 @@ async function _createBoards() {
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
-                                    txt: 'We are changing the json',
+                                    txt: 'Maybe well find some Mummies 👀',
                                     createdAt: Date.now(),
                                     byMember: {
                                         _id: utilService.makeId(),
@@ -1632,7 +1641,7 @@ async function _createBoards() {
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
-                                    txt: 'We are changing the json',
+                                    txt: 'Maybe well find some Mummies 👀',
                                     createdAt: Date.now(),
                                     byMember: {
                                         _id: utilService.makeId(),
@@ -2100,6 +2109,16 @@ async function addAttachment(attachment, boardId, groupId, taskId, activity) {
 
 }
 
+async function getTask(board, taskId) {
+    const group = board.groups.filter((group) => {
+        return group.tasks.find((currTask) => {
+            return currTask._id === taskId
+        })
+    })
+    return group[0].tasks.find((task)=>{
+        return (task._id === taskId)
+    })
+}
 
 // async function addLabel(label, boardId, groupId, taskId, activity) {
 //     label._id = utilService.makeId()

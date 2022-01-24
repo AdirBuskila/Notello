@@ -8,9 +8,10 @@ export const ChecklistBadge = ({ checklists }) => {
   });
   const isDone =
     done === todos.length ? 'checklist-badge done' : 'checklist-badge';
+  const color = done === todos.length ? 'white' : 'action'
   return (
     <div className={'flex align-center ' + isDone}>
-      <CheckBoxOutlinedIcon fontSize='small' color='action' />
+      <CheckBoxOutlinedIcon fontSize='small' color={color} />
       <p>
         {done}/{todos.length}
       </p>
