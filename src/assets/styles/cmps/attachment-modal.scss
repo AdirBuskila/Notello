@@ -1,0 +1,32 @@
+.attachment-modal-container {
+    width: 304px ;
+    height: 227px; 
+}
+
+.attachment-modal-header {
+    width: 90%;
+    border-bottom: 1px solid #091e4221;
+    font-size: rem(14px);
+    margin: auto;
+    color: #5e6c84;
+    line-height: 40px;
+    text-align: center;
+    .close-button {
+        margin-left: 1px;
+    }
+
+}
+
+.attachment-inner {
+    padding: 0 rem(12px) rem(12px);
+    .attachment-title {
+        margin-top: rem(14px);
+    }
+    button {
+        background-color: #091e420a;
+        border-radius: 3px;
+        color: #172b4d;
+        padding: 0.5rem 0.75rem;
+        width: rem(74px);
+    }
+}
