@@ -6,7 +6,6 @@ import { boardService } from '../services/board.service';
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
-  console.log("boards: ", boards);
   useEffect(() => {
     document.body.style.backgroundImage = '';
   }, []);
@@ -33,10 +32,7 @@ export const BoardWorkspaces = () => {
               <Link key={board._id} to={`/b/${board._id}`}>
                 <div
                   // style={{ backgroundImage: `url(${board.style.imgUrl})` }}
-                  style={{
-                    backgroundImage:
-                      'url(https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg)',
-                  }}
+                  style={{backgroundImage:`url(${board.style.imgUrl})`}}
                   className='board flex column align-center'>
                   <p>{board.title}</p>
                 </div>

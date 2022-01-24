@@ -1,0 +1,129 @@
+.task-title {
+    svg {
+        margin-inline-end: rem(10px);
+    }
+    p {
+        font-size: 20px;
+    font-weight: 600;
+    }
+}
+
+.task-details {
+    width: rem(768px);
+    background-color: hsla(0,0%,95.7%,0.9);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.window-header {
+    margin: 12px 40px 8px 56px;
+    min-height: 32px;
+    color: #172b4d;
+    .close-button {
+        margin-top: rem(7px);
+        margin-right: rem(7px);
+        width: rem(40px);
+        height: rem(40px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+    .close-button:hover {
+        background-color: #091e4214;
+    }
+}
+
+.task-actions {
+    padding-bottom: rem(15px);
+}
+
+.buttons-container {
+    float: right;
+    overflow: hidden;
+    padding: 0 16px 8px 8px;
+    width: rem(162px);
+    .button-container {
+        cursor: pointer;
+        align-items: center;
+        transition: 0.2s background-color;
+        margin-bottom: rem(8px);
+        background-color: #091e420a;
+        border-radius: rem(3px);
+        svg {
+            width: rem(16px);
+            margin-left: rem(5px);
+            margin-right: rem(5px);
+        }
+        p {
+            font-size: rem(14px);
+        }
+    }
+    .button-container:hover {
+        background-color: #091e4214;
+    }
+}
+
+.main-content {
+    color: #172b4d;
+    display: flex;
+    flex-direction: column;
+    width: rem(576px);
+    gap: 20px;
+    p {
+        font-weight: 500;
+    }
+    textarea {
+        padding-inline-start: 1rem;
+        border-radius: rem(3px);
+    }
+    .description-container {
+        .description {
+            margin-bottom: rem(10px);
+            svg {
+                margin-inline-end: rem(10px);
+            }
+        }
+        textarea {
+            padding-inline-start: 1rem;
+            cursor: pointer;
+            outline-color: #2684ff;
+        }
+    }
+    .description-container {
+        font-size: rem(16px);
+        margin-bottom: rem(15px);
+        font-weight: 600;
+    }
+}
+
+.activity-container {
+    gap: 8px;
+    font-size: rem(16px);
+    font-weight: 600;
+    .activity {
+        margin-bottom: rem(15px);
+        svg {
+            margin-inline-end: rem(10px);
+        }
+    }
+    .comment {
+        font-size: 14px;
+        gap: 8px;
+    }
+    .comment-container {
+        .comments-area {
+            gap: 8px;
+        }
+        p {
+            font-size: rem(15px);
+        }
+    }
+}
+
+.task-info {
+    margin-left: 33px;
+    gap: rem(20px);
+}
