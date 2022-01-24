@@ -3,7 +3,7 @@ import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineR
 export const CommentsBadge = ({ comments }) => {
   return (
     <div className='comments-badge flex align-center'>
-      <ChatBubbleOutlineRoundedIcon fontSize='small' color='action' />
+      <ChatBubbleOutlineRoundedIcon fontSize='extra-small' color='action' />
       <p>{comments.length}</p>
     </div>
   );
