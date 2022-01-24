@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import left from '../assets/img/left.svg';
 import right from '../assets/img/right.svg';
@@ -7,10 +7,6 @@ import logo from '../assets/img/notello-clear.png';
 import { Link } from 'react-router-dom';
 
 export const SignUp = () => {
-  useEffect(() => {
-    document.body.style.backgroundImage = '';
-  }, []);
-
   return (
     <div className='sign-up-container flex column align-center'>
       <Link className='clean-link' to='/'>

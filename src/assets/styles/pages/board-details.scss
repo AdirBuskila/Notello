@@ -1,18 +1,21 @@
-.board-details-container {
-    max-width: 100%;
-    flex: 1;
-    overflow: hidden;
-    &> ::-webkit-scrollbar {
-        height: 0.75rem;
-        border-radius: 50rem;
-    }
-    &> ::-webkit-scrollbar-track {
-        background: #00000026;
-        border-radius: 3px;
-    }
-    &> ::-webkit-scrollbar-thumb {
-        border-radius: 3px;
-        background: #e2e3e480;
+.board-page-container {
+    height: 100vh;
+    .board-details-container {
+        max-width: 100%;
+        flex: 1;
+        overflow: hidden;
+        &> ::-webkit-scrollbar {
+            height: 0.75rem;
+            border-radius: 50rem;
+        }
+        &> ::-webkit-scrollbar-track {
+            background: #00000026;
+            border-radius: 3px;
+        }
+        &> ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background: #e2e3e480;
+        }
     }
 }
 
