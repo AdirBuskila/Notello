@@ -3,7 +3,7 @@
     padding: 0.25rem 1rem;
     overflow-x: auto;
     flex: 0.99;
-    &>div {
+    &>div:not(:nth-last-child(2n)) {
         border-radius: 3px;
         height: fit-content;
         background-color: #ebecf0;
