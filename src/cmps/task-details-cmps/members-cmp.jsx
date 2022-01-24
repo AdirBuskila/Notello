@@ -3,7 +3,8 @@ import Avatar from '@mui/material/Avatar';
 import AddIcon from '@mui/icons-material/Add';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 
-import { utilService } from '../services/util.service';
+import { utilService } from '../../services/util.service';
+
 
 function stringToColor(string) {
   let hash = 0;
