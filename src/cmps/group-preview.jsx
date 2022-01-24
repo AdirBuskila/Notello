@@ -67,30 +67,32 @@ const _GroupPreview = (props) => {
               ) : null}
               <MoreHorizIcon style={{ fill: '#6b778c' }} />
             </div>
-
-            <Droppable
-              droppableId={group._id}
-              index={props.index}
-              key={props.index}>
-              {(provided) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
-                  <TaskList
-                    onLoadBoard={props.onLoadBoard}
-                    groupIdx={groupIdx}
-                    groupId={group._id}
-                    tasks={tasks}
-                  />
-                  <div style={{ height: '5px' }}></div>
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-            <PreFeatureAdd
-              onLoadBoard={props.onLoadBoard}
-              board={board}
-              group={group}
-              type='task'
-            />
+            <div className='group-data-container'>
+              <Droppable
+                droppableId={group._id}
+                index={props.index}
+                key={props.index}>
+                {(provided) => (
+                  <div ref={provided.innerRef} {...provided.droppableProps}>
+                    <TaskList
+                      board={board}
+                      onLoadBoard={props.onLoadBoard}
+                      groupIdx={groupIdx}
+                      groupId={group._id}
+                      tasks={tasks}
+                    />
+                    <div style={{ height: '5px' }}></div>
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+              <PreFeatureAdd
+                onLoadBoard={props.onLoadBoard}
+                board={board}
+                group={group}
+                type='task'
+              />
+            </div>
           </div>
         </div>
       )}

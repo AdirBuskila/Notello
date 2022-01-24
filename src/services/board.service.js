@@ -21,6 +21,7 @@ export const boardService = {
     getGroupsIds,
     addAttachment,
     getTask,
+    getGroup,
 }
 
 const STORAGE_KEY = 'board_DB'
@@ -2294,15 +2295,23 @@ async function addAttachment(attachment, boardId, groupId, taskId, activity) {
 
 }
 
-async function getTask(board, taskId) {
+function getGroup(board,taskId) {
     const group = board.groups.filter((group) => {
         return group.tasks.find((currTask) => {
             return currTask._id === taskId
         })
     })
-    return group[0].tasks.find((task)=>{
-        return (task._id === taskId)
+    return group[0]
+}
+
+function getTask(board, taskId) {
+    const group = getGroup(board,taskId)
+    console.log(group,'group');
+    const task = group.tasks.find((currTask)=>{
+        return (currTask._id === taskId)
     })
+    console.log(task,'task');
+    return task
 }
 
 // async function addLabel(label, boardId, groupId, taskId, activity) {

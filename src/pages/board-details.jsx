@@ -14,6 +14,7 @@ const _BoardDetails = (props) => {
     const { id } = props.match.params;
     try {
       await props.loadBoard(id);
+      console.log(props.board.style.imgUrl);
     } catch (err) {
       console.log('Cant load current board');
       throw new Error(err);
@@ -21,11 +22,9 @@ const _BoardDetails = (props) => {
   };
 
   useEffect(async () => {
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundImage =
-      'url(https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg)';
     try {
       await onLoadBoard();
+      console.log(props.board.style.imgUrl);
     } catch (err) {
       console.log('Cannot load board', err);
     }
@@ -35,8 +34,14 @@ const _BoardDetails = (props) => {
     console.log('board wast find');
     return <q>Loading...</q>;
   }
+
   return (
-    <React.Fragment>
+    <div
+      className='board-page-container flex column'
+      style={{
+        backgroundImage: `url(${props.board.style?.imgUrl})`,
+        backgroundSize: 'cover',
+      }}>
       <AppHeader />
       <BoardHeader onLoadBoard={onLoadBoard} board={props.board} />
       <Card className='board-details-container flex column '>
@@ -45,9 +50,9 @@ const _BoardDetails = (props) => {
           board={props.board}
           groups={props.board.groups}
         />
-        <Route component={TaskDetails} path={`/c/:id`} />
+        <Route component={TaskDetails} exact path={`/b/:boardId/c/:id`} />
       </Card>
-    </React.Fragment>
+    </div>
   );
 };
 

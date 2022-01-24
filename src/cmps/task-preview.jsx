@@ -11,7 +11,7 @@ import { MembersBadge } from './badge-cmps/members-badge';
 import { AttachmentsBadge } from './badge-cmps/attachments-badge';
 
 export const TaskPreview = (props) => {
-  const task = props.task;
+  const { task, board } = props;
   const dispatch = useDispatch();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
@@ -25,11 +25,9 @@ export const TaskPreview = (props) => {
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
-
-
   return (
     <React.Fragment>
-      {/* <Link to={`/c/${task._id}`} > */}
+      <Link to={`/b/${board._id}/c/${task._id}`}>
         <Draggable
           draggableId={task._id}
           index={props.index}
@@ -85,7 +83,7 @@ export const TaskPreview = (props) => {
             </div>
           )}
         </Draggable>
-        <ScrollDialog
+        {/* <ScrollDialog
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
         onLoadBoard={props.onLoadBoard}
@@ -94,8 +92,8 @@ export const TaskPreview = (props) => {
         members={task.members}
         title={task.title}
         labels={task.labels}
-        attachments={task.attachments}></ScrollDialog>
-      {/* </Link> */}
+        attachments={task.attachments}></ScrollDialog> */}
+      </Link>
     </React.Fragment>
   );
 };
