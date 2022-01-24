@@ -25,27 +25,28 @@ import { MembersCmp } from '../cmps/members-cmp';
 import { Textarea } from '../cmps/textarea-task-description';
 import { Textarea1 } from '../cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal';
+import {CheckListCmp} from '../cmps/check-list-cmp'
 import { CommentsSection } from '../cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
 import { ActivitySection } from '../cmps/details-activity';
 import { AttachmentsCmp } from '../cmps/attachments-cmp';
 
 import { boardService } from '../services/board.service';
+import { useState } from 'react/cjs/react.development';
 
 export const ScrollDialog = (props) => {
-  // console.log('props', props);
   const [scroll, setScroll] = React.useState('body');
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
   const [clickedTaskId, setClickedTaskId] = React.useState('');
   const [newTaskTitle, setNewTaskTitle] = React.useState('');
   const comments = props.task.comments ? props.task.comments : [];
+  const [isCheckListAcctivated, setIsCheckListAcctivated] = useState(false);
 
   const board = useSelector((state) => state.boardModule.board);
 
-  const { openPopup, setOpenPopup, labels, members, title, attachments } =
-    props;
-
+  const { openPopup, setOpenPopup, labels, members, title, attachments } = props;
+console.log('DETAILS PROPS:', props);
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
@@ -144,7 +145,7 @@ export const ScrollDialog = (props) => {
               groupIdx={props.groupIdx}
               onLoadBoard={props.onLoadBoard}
             />
-            <CheckListModal />
+            <CheckListModal setIsCheckListAcctivated={setIsCheckListAcctivated}/>
             <div className='button-container flex'>
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>
@@ -172,6 +173,7 @@ export const ScrollDialog = (props) => {
               {props.labels && <LabelsCmp labels={props.labels} />}
               {props.members && <MembersCmp members={props.members} />}
             </div>
+            {/* DESCRIPTION */}
             <div className='description-container'>
               <div className='description flex'>
                 <NotesIcon />
@@ -181,7 +183,9 @@ export const ScrollDialog = (props) => {
                 <Textarea />
               </div>
             </div>
-            <div className='attachments-container'>
+            {/* CHECKLIST AREA */}
+            <CheckListCmp isCheckListAcctivated={isCheckListAcctivated} task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard} />
+            <div className="attachments-container">
               <AttachmentsCmp attachments={props.attachments} />
             </div>
             <div className='activity-container flex column'>

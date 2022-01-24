@@ -76,7 +76,7 @@ export const TaskPreview = (props) => {
                     <AttachmentsBadge attachments={task.attachments} />
                   )}
                   {task.description && (
-                    <SubjectIcon fontSize='small' color='action' />
+                    <SubjectIcon fontSize='extra-small' color='action' />
                   )}
                   {task.checklists.length > 0 && (
                     <ChecklistBadge checklists={task.checklists} />

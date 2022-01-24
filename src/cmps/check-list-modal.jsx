@@ -5,7 +5,8 @@ import Button from '@mui/material/Button';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-export const CheckListModal = () => {
+
+export const CheckListModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -17,7 +18,6 @@ export const CheckListModal = () => {
 
   const handleClose = (event) => {
     setAnchorEl(null);
-    console.log(anchorEl);
   };
 
   const onHandleName = ({ target }) => {
@@ -27,8 +27,10 @@ export const CheckListModal = () => {
 
   const onAddClick = () => {
     console.log(checklistName);
-    setChecklistName('');
-  };
+    setChecklistName('')
+    props.setIsCheckListAcctivated(true);
+    handleClose()
+  }
 
   return (
     <div className='button-container flex'>
