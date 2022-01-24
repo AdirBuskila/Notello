@@ -1,19 +1,21 @@
 import React, {useState, useEffect} from "react";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
+import { CheckListActionModal } from "./check-list-actions-modal";
 
 import { utilService } from "../services/util.service";
 import { boardService } from "../services/board.service"
 
 export const CheckListSection = (props) => {
     const {board, taskIdx, groupIdx, task, checklistIdx} = props;
-
     const [todoTitle, setTodoTitle] = useState('');
+    const [actionsOpen, setActionsOpen] = useState(false);
 
     useEffect(() => {
         (props.type !== 'newTodo') ? setTodoTitle(props.todo.title) : setTodoTitle('');
     }, [])
     
     const onHandleModal = () => {
-        console.log('props.type', props.type, 'props.todo', props.todo);
         (props.type !== 'newTodo') ? props.setIsChanging(false) : props.setIsAdding(false);
     }
 
@@ -41,7 +43,8 @@ export const CheckListSection = (props) => {
     return (
         <section>
             <div className='new-item flex column'>
-                <input
+                <textArea
+                    required
                     autoFocus
                     onChange={onHandleChange}
                     value={todoTitle}
@@ -54,6 +57,8 @@ export const CheckListSection = (props) => {
                     <a href='#' onClick={onHandleModal}>
                         ✕
                     </a>
+                    <MoreHorizIcon onClick={() => setActionsOpen(true)} style={{ fill: '#6b778c' }} />
+                    {actionsOpen && <CheckListActionModal />}
                 </div>
             </div>
         </section>

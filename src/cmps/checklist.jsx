@@ -11,6 +11,7 @@ export const CheckList = (props) => {
     const { board, task, taskIdx, groupIdx, checklistIdx } = props;
     const [checkList, setCheckList] = useState(props.checklist)
     const [isEdditing, setIsEdditing] = useState(false);
+    const [currTodoId, setCurrTodoId] = useState('')
     const [isChanging, setIsChanging] = useState(false);
     const [isAdding, setIsAdding] = useState(false)
 
@@ -50,21 +51,26 @@ export const CheckList = (props) => {
                 </section>
             </div>
             <LinearWithValueLabel value={getProgressValue(checkList)} />
-            {
-                checkList.todos.map((td, index) => {
-                    return (<div className='checkbox-info flex'>
-                        <div onClick={() => {
+            <div className='checkbox-info flex column'>
+            {checkList.todos.map((td, index) => {
+                return (<div className='individual-checklist flex'>
+                        <div className='flex' onClick={() => {
                             handleCheckBoxClick(checkList._id, td._id)
                         }}>
                             {!td.isDone ? <CheckBoxOutlineBlankOutlinedIcon className='checkbox' /> : <CheckBoxOutlinedIcon className='checkbox' />}
                         </div>
-                        {!isChanging ? <div onClick={() => setIsChanging(true)}>
-                            {(td.isDone) ? <p className='line-through'>{td.title}</p> : <p>{td.title}</p>}
-                        </div>
-                        : <CheckListSection type={'oldTodo'} todo={td} checklistIdx={checklistIdx} setIsChanging={setIsChanging} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} todoIdx={index} />}
+                        {isChanging && currTodoId === td._id ? <CheckListSection type={'oldTodo'} todo={td} checklistIdx={checklistIdx} setIsChanging={setIsChanging} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} todoIdx={index} />
+                        :
+                        <div className='todo-title' onClick={() => {
+                            setCurrTodoId(td._id)
+                            setIsChanging(true)
+                        }}>
+                            {(td.isDone) ? <p style={{color: '#5e6c84'}} className='line-through'>{td.title}</p> : <p>{td.title}</p>}
+                        </div>}
                     </div>)
                 })
             }
+            </div>
             {!isAdding ? <button onClick={() => setIsAdding(true)} className='last-btn'>Add an item</button> : <CheckListSection type={'newTodo'} checklistIdx={checklistIdx} setIsAdding={setIsAdding} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} />}
         </div>
 
