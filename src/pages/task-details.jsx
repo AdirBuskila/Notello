@@ -31,6 +31,7 @@ import { LabelsModal } from '../cmps/details-labels';
 import { ActivitySection } from '../cmps/details-activity';
 import { AttachmentsCmp } from '../cmps/attachments-cmp';
 
+import { utilService } from '../services/util.service';
 import { boardService } from '../services/board.service';
 import { useState } from 'react/cjs/react.development';
 
@@ -44,9 +45,8 @@ export const ScrollDialog = (props) => {
   const [isCheckListAcctivated, setIsCheckListAcctivated] = useState(false);
 
   const board = useSelector((state) => state.boardModule.board);
-
   const { openPopup, setOpenPopup, labels, members, title, attachments } = props;
-console.log('DETAILS PROPS:', props);
+
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
@@ -184,7 +184,7 @@ console.log('DETAILS PROPS:', props);
               </div>
             </div>
             {/* CHECKLIST AREA */}
-            <CheckListCmp isCheckListAcctivated={isCheckListAcctivated} task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard} />
+            <CheckListCmp key={utilService.makeId()} isCheckListAcctivated={isCheckListAcctivated} task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard} />
             <div className="attachments-container">
               <AttachmentsCmp attachments={props.attachments} />
             </div>
