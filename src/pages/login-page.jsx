@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import left from '../assets/img/left.svg';
 import right from '../assets/img/right.svg';
 import { MyLogin } from '../cmps/login.jsx';
@@ -6,9 +6,6 @@ import logo from '../assets/img/notello-clear.png';
 import { Link } from 'react-router-dom';
 
 export const Login = () => {
-  useEffect(() => {
-    document.body.style.backgroundImage = '';
-  }, []);
   return (
     <div className='login-container flex column align-center'>
       <Link className='clean-link' to='/'>

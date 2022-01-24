@@ -21,9 +21,6 @@ const _BoardDetails = (props) => {
   };
 
   useEffect(async () => {
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundImage =
-      'url(https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg)';
     try {
       await onLoadBoard();
     } catch (err) {
@@ -36,7 +33,12 @@ const _BoardDetails = (props) => {
     return <q>Loading...</q>;
   }
   return (
-    <React.Fragment>
+    <div
+      className='board-page-container flex column'
+      style={{
+        backgroundImage: `url('https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg')`,
+        backgroundSize: 'cover',
+      }}>
       <AppHeader />
       <BoardHeader onLoadBoard={onLoadBoard} board={props.board} />
       <Card className='board-details-container flex column '>
@@ -47,7 +49,7 @@ const _BoardDetails = (props) => {
         />
         <Route component={TaskDetails} path={`/c/:id`} />
       </Card>
-    </React.Fragment>
+    </div>
   );
 };
 

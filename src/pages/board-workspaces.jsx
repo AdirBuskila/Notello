@@ -7,9 +7,6 @@ import { boardService } from '../services/board.service';
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
   useEffect(() => {
-    document.body.style.backgroundImage = '';
-  }, []);
-  useEffect(() => {
     (async () => {
       try {
         const boards = await boardService.query();
@@ -32,7 +29,7 @@ export const BoardWorkspaces = () => {
               <Link key={board._id} to={`/b/${board._id}`}>
                 <div
                   // style={{ backgroundImage: `url(${board.style.imgUrl})` }}
-                  style={{backgroundImage:`url(${board.style.imgUrl})`}}
+                  style={{ backgroundImage: `url(${board.style.imgUrl})` }}
                   className='board flex column align-center'>
                   <p>{board.title}</p>
                 </div>
