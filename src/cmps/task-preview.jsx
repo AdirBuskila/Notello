@@ -2,15 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { ScrollDialog } from '../pages/task-details';
-import NotesIcon from '@mui/icons-material/Notes';
 import { ChecklistBadge } from './checklist-badge';
-
+import SubjectIcon from '@mui/icons-material/Subject';
 
 import { Link } from 'react-router-dom';
 import { CommentsBadge } from './comments-badge';
 import { MembersBadge } from './members-badge';
 import { AttachmentsBadge } from './attachments-badge';
-
 
 export const TaskPreview = (props) => {
   const task = props.task;
@@ -28,7 +26,6 @@ export const TaskPreview = (props) => {
     ? 'flex align-center expended'
     : 'flex align-center';
 
-
   return (
     <React.Fragment>
       {/* <Link key={task._id} to={`/c/${task._id}`}> */}
@@ -36,19 +33,17 @@ export const TaskPreview = (props) => {
         draggableId={task._id}
         index={props.index}
         key={task._id}
-        type='task'
-      >
+        type='task'>
         {(provided) => (
           <div
+            className='task-preview flex column'
             onClick={() => {
               setOpenPopup(true);
             }}
             ref={provided.innerRef}
             {...provided.dragHandleProps}
             {...provided.draggableProps}
-            className='task-preview flex column'
-            key={task._id}
-          >
+            key={task._id}>
             {task.labels && (
               <ul className='labels flex'>
                 {task.labels.map((label, idx) => {
@@ -57,8 +52,7 @@ export const TaskPreview = (props) => {
                       className={className}
                       onClick={(ev) => onHandleLablesClick(ev)}
                       key={idx}
-                      style={{ backgroundColor: `${label.bgc}` }}
-                    >
+                      style={{ backgroundColor: `${label.bgc}` }}>
                       {isLabelsExpended && `${label.name}`}
                     </li>
                   );
@@ -66,19 +60,28 @@ export const TaskPreview = (props) => {
               </ul>
             )}
             <p>{task.title}</p>
-            <div className="task-info-icons flex space-between">
-            <div className="task-badges flex align-center">
-              {task.comments.length > 0 && <CommentsBadge comments={task.comments} />}
-              {task.attachments.length > 0 && <AttachmentsBadge attachments={task.attachments} />}
-              {task.description && <NotesIcon fontSize='extra-small' color='action' />}
-              {task.checklists.length > 0 && <ChecklistBadge checklists={task.checklists} />}
-            </div>
-                <div className="members-badge flex align-center">
-                  {task.members.length > 0 && <MembersBadge members={task.members} />}
-                </div>
+            <div className='task-info-icons flex space-between'>
+              <div className='task-badges flex align-center'>
+                {task.comments.length > 0 && (
+                  <CommentsBadge comments={task.comments} />
+                )}
+                {task.attachments.length > 0 && (
+                  <AttachmentsBadge attachments={task.attachments} />
+                )}
+                {task.description && (
+                  <SubjectIcon fontSize='small' color='action' />
+                )}
+                {task.checklists.length > 0 && (
+                  <ChecklistBadge checklists={task.checklists} />
+                )}
+              </div>
+              <div className='members-badge flex align-center'>
+                {task.members.length > 0 && (
+                  <MembersBadge members={task.members} />
+                )}
+              </div>
             </div>
           </div>
-
         )}
       </Draggable>
       <ScrollDialog
@@ -90,9 +93,8 @@ export const TaskPreview = (props) => {
         members={task.members}
         title={task.title}
         labels={task.labels}
-        attachments={task.attachments}
-      ></ScrollDialog>
-                {/* </Link> */}
+        attachments={task.attachments}></ScrollDialog>
+      {/* </Link> */}
     </React.Fragment>
   );
 };

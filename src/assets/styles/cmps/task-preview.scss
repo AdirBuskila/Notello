@@ -8,25 +8,32 @@
     box-shadow: 0 1px 0 #091e4240;
     .task-preview:hover {
         background-color: $clr2;
+        cursor: pointer;
     }
     .labels {
+        cursor: pointer;
         flex-wrap: wrap;
         gap: rem(4px);
         min-width: 20px;
         li {
             cursor: pointer;
-            min-height: 0.5rem;
+            height: 0.5rem;
             padding: 0 rem(6px) 0;
             color: #fff;
             min-width: rem(40px);
-            font-size: 12px;
+            font-size: rem(12px);
             line-height: 16px;
             border-radius: 5px;
             font-weight: 700;
+            transition: color 0.2s linear 0.2s, min-width 0.2s, height 0.2s linear 0.2s;
             &.expended {
                 min-width: rem(56px);
+                height: 1rem;
             }
         }
+    }
+    p {
+        cursor: pointer;
     }
     .task-badges {
         gap: rem(12px);

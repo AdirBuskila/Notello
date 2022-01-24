@@ -11,9 +11,6 @@
         margin-right: rem(7px);
         width: rem(40px);
         height: rem(40px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
         cursor: pointer;
         border-radius: 50%;
     }
@@ -52,8 +49,6 @@
 
 .main-content {
     color: #172b4d;
-    display: flex;
-    flex-direction: column;
     width: 80%;
     gap: 20px;
     p {
@@ -94,7 +89,7 @@
         }
     }
     .comment {
-        font-size: 14px;
+        font-size: rem(14px);
         gap: 8px;
     }
     .comment-container {

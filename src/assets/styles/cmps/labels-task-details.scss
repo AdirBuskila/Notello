@@ -1,16 +1,13 @@
-.labels-main-container {
-    // gap: 10px;
-  }
-  
-  .labels-container > * {
+.labels-container>* {
     cursor: pointer;
-  }
-  .labels-container {
+}
+
+.labels-container {
     gap: rem(5px);
-  }
-  
-  .label-container {
-    color: #fff;  
+}
+
+.label-container {
+    color: #fff;
     border-radius: rem(3px);
     font-weight: 600;
     height: 32px;
@@ -18,33 +15,33 @@
     min-width: 40px;
     padding: 0 12px;
     width: auto;
-  }
-  
-  .labels-info-container,
-  .members-info-container {
+}
+
+.labels-info-container,
+.members-info-container {
     .span-container {
-      margin-bottom: rem(4px);
+        margin-bottom: rem(4px);
     }
     span {
-      color: #5e6c84;
-      font-size: rem(12px);
-      font-weight: 600;
-      line-height: rem(16px);
-      line-height: rem(20px);
+        color: #5e6c84;
+        font-size: rem(12px);
+        font-weight: 600;
+        line-height: 1rem;
+        line-height: rem(20px);
     }
-  }
-  
-  .add-square-icon {
+}
+
+.add-square-icon {
     cursor: pointer;
     border-radius: 3px;
     background-color: #091e420a;
-    font-size: 16px;
-    height: 16px;
-    line-height: 16px;
-    padding: 16px;
-    width: 16px;
-  }
-  .add-square-icon:hover {
+    font-size: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+    padding: 1rem;
+    width: 1rem;
+}
+
+.add-square-icon:hover {
     background-color: #091e4214;
-  }
-  
+}
