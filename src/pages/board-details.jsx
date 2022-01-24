@@ -34,12 +34,12 @@ const _BoardDetails = (props) => {
     console.log('board wast find');
     return <q>Loading...</q>;
   }
-  // console.log(props.board.style.imgUrl);
+
   return (
     <div
       className='board-page-container flex column'
       style={{
-        backgroundImage: `url(${props.board.style.imgUrl})`,
+        backgroundImage: `url(${props.board.style?.imgUrl})`,
         backgroundSize: 'cover',
       }}>
       <AppHeader />
@@ -50,7 +50,7 @@ const _BoardDetails = (props) => {
           board={props.board}
           groups={props.board.groups}
         />
-        <Route path='/b/YggUNb/new-user'>
+        <Route exact path='/b/YggUNb/new-user'>
           <p>Welcome, new user!</p>
         </Route>
         {/* <Route component={TaskDetails} path={`/c/:id`} /> */}
