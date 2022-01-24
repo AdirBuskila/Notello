@@ -8,10 +8,11 @@ import {CheckListSection} from '../cmps/check-list-section'
 import { boardService } from '../services/board.service';
 
 export const CheckList = (props) => {
-    const { board, task, taskIdx, groupIdx } = props;
+    const { board, task, taskIdx, groupIdx, checklistIdx } = props;
     const [checkList, setCheckList] = useState(props.checklist)
     const [isEdditing, setIsEdditing] = useState(false);
-    const [isCanging, setIsChanging] = useState(false);
+    const [isChanging, setIsChanging] = useState(false);
+    const [isAdding, setIsAdding] = useState(false)
 
 
     const handleCheckBoxClick = (checkListId, todoId) => {
@@ -50,21 +51,21 @@ export const CheckList = (props) => {
             </div>
             <LinearWithValueLabel value={getProgressValue(checkList)} />
             {
-                checkList.todos.map((td) => {
+                checkList.todos.map((td, index) => {
                     return (<div className='checkbox-info flex'>
                         <div onClick={() => {
                             handleCheckBoxClick(checkList._id, td._id)
                         }}>
                             {!td.isDone ? <CheckBoxOutlineBlankOutlinedIcon className='checkbox' /> : <CheckBoxOutlinedIcon className='checkbox' />}
                         </div>
-                        {!isCanging ? <div onClick={() => setIsChanging(true)}>
+                        {!isChanging ? <div onClick={() => setIsChanging(true)}>
                             {(td.isDone) ? <p className='line-through'>{td.title}</p> : <p>{td.title}</p>}
                         </div>
-                        : <CheckListSection />}
+                        : <CheckListSection type={'oldTodo'} todo={td} checklistIdx={checklistIdx} setIsChanging={setIsChanging} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} todoIdx={index} />}
                     </div>)
                 })
             }
-            <button className='last-btn'>Add an item</button>
+            {!isAdding ? <button onClick={() => setIsAdding(true)} className='last-btn'>Add an item</button> : <CheckListSection type={'newTodo'} checklistIdx={checklistIdx} setIsAdding={setIsAdding} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} />}
         </div>
 
     )

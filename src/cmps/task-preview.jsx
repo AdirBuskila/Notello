@@ -26,9 +26,10 @@ export const TaskPreview = (props) => {
     ? 'flex align-center expended'
     : 'flex align-center';
 
+
   return (
     <React.Fragment>
-      <Link to={`/c/${task._id}`}>
+      {/* <Link to={`/c/${task._id}`} > */}
         <Draggable
           draggableId={task._id}
           index={props.index}
@@ -84,7 +85,7 @@ export const TaskPreview = (props) => {
             </div>
           )}
         </Draggable>
-        {/* <ScrollDialog
+        <ScrollDialog
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
         onLoadBoard={props.onLoadBoard}
@@ -93,9 +94,8 @@ export const TaskPreview = (props) => {
         members={task.members}
         title={task.title}
         labels={task.labels}
-        attachments={task.attachments}></ScrollDialog> */}
-        {/* </Route> */}
-      </Link>
+        attachments={task.attachments}></ScrollDialog>
+      {/* </Link> */}
     </React.Fragment>
   );
 };
