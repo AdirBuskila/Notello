@@ -9,7 +9,6 @@ import { Link, Route } from 'react-router-dom';
 import { CommentsBadge } from './comments-badge';
 import { MembersBadge } from './members-badge';
 import { AttachmentsBadge } from './attachments-badge';
-import { TaskDetails } from '../pages/task-details2';
 
 export const TaskPreview = (props) => {
   const task = props.task;
@@ -27,18 +26,14 @@ export const TaskPreview = (props) => {
     ? 'flex align-center expended'
     : 'flex align-center';
 
-  console.log('task._id', task._id);
-
   return (
     <React.Fragment>
-      <Link to={`/c/${task._id}`} >
-        {/* <Route component={TaskDetails} path={`/c/${task._id}`} > */}
+      <Link to={`/c/${task._id}`}>
         <Draggable
           draggableId={task._id}
           index={props.index}
           key={task._id}
-          type='task'
-        >
+          type='task'>
           {(provided) => (
             <div
               className='task-preview flex column'
@@ -48,8 +43,7 @@ export const TaskPreview = (props) => {
               ref={provided.innerRef}
               {...provided.dragHandleProps}
               {...provided.draggableProps}
-              key={task._id}
-            >
+              key={task._id}>
               {task.labels && (
                 <ul className='labels flex'>
                   {task.labels.map((label, idx) => {
@@ -58,8 +52,7 @@ export const TaskPreview = (props) => {
                         className={className}
                         onClick={(ev) => onHandleLablesClick(ev)}
                         key={idx}
-                        style={{ backgroundColor: `${label.bgc}` }}
-                      >
+                        style={{ backgroundColor: `${label.bgc}` }}>
                         {isLabelsExpended && `${label.name}`}
                       </li>
                     );
