@@ -2,14 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { ScrollDialog } from '../pages/task-details';
-import { ChecklistBadge } from './checklist-badge';
+import { ChecklistBadge } from './badge-cmps/checklist-badge';
 import SubjectIcon from '@mui/icons-material/Subject';
 
 import { Link, Route } from 'react-router-dom';
-import { CommentsBadge } from './comments-badge';
-import { MembersBadge } from './members-badge';
-import { AttachmentsBadge } from './attachments-badge';
-import { TaskDetails } from '../pages/task-details2';
+import { CommentsBadge } from './badge-cmps/comments-badge';
+import { MembersBadge } from './badge-cmps/members-badge';
+import { AttachmentsBadge } from './badge-cmps/attachments-badge';
 
 export const TaskPreview = (props) => {
   const task = props.task;
@@ -31,13 +30,11 @@ export const TaskPreview = (props) => {
   return (
     <React.Fragment>
       {/* <Link to={`/c/${task._id}`} > */}
-        {/* <Route component={TaskDetails} path={`/c/${task._id}`} > */}
         <Draggable
           draggableId={task._id}
           index={props.index}
           key={task._id}
-          type='task'
-        >
+          type='task'>
           {(provided) => (
             <div
               className='task-preview flex column'
@@ -47,8 +44,7 @@ export const TaskPreview = (props) => {
               ref={provided.innerRef}
               {...provided.dragHandleProps}
               {...provided.draggableProps}
-              key={task._id}
-            >
+              key={task._id}>
               {task.labels && (
                 <ul className='labels flex'>
                   {task.labels.map((label, idx) => {
@@ -57,8 +53,7 @@ export const TaskPreview = (props) => {
                         className={className}
                         onClick={(ev) => onHandleLablesClick(ev)}
                         key={idx}
-                        style={{ backgroundColor: `${label.bgc}` }}
-                      >
+                        style={{ backgroundColor: `${label.bgc}` }}>
                         {isLabelsExpended && `${label.name}`}
                       </li>
                     );
@@ -100,7 +95,6 @@ export const TaskPreview = (props) => {
         title={task.title}
         labels={task.labels}
         attachments={task.attachments}></ScrollDialog>
-        {/* </Route> */}
       {/* </Link> */}
     </React.Fragment>
   );
