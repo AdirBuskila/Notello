@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { utilService } from '../services/util.service';
-import { LabelsCmp } from '../cmps/labels-cmp';
-import { MembersCmp } from '../cmps/members-cmp';
-import { Textarea } from '../cmps/textarea-task-description';
-import { Textarea1 } from '../cmps/textarea-task-comment';
+import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
+import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
+import { Textarea } from '../cmps/task-details-cmps/textarea-task-description';
+import { Textarea1 } from '../cmps/task-details-cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal';
-import { CommentsSection } from '../cmps/comments-section';
+import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
 import { ActivitySection } from '../cmps/details-activity';
-import { AttachmentsCmp } from '../cmps/attachments-cmp';
+import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { boardService } from '../services/board.service';
 import { connect } from 'react-redux';
@@ -54,8 +55,8 @@ export const TaskDetails =  (props) => {
     
     if (!selctedTask) return <div className=""></div>
     return (
-    <div className='task-details'>
-      <div className='window-header flex space-between'>
+    <div className='task-details flex column'>
+      <div className='window-header align-center flex space-between'>
         <div className='task-title flex align-center'>
           <WebAssetIcon sx={{ marginTop: 0.5 }} />
           <p>{selctedTask.title}</p>
@@ -66,8 +67,53 @@ export const TaskDetails =  (props) => {
         </div>
       </div>
 
-      <div className='window-main-content'>
-        <div className='buttons-container'>
+        <div className="task-main-container">
+        <div className='main-content'>
+          <div className='task-info flex align-center'>
+            <LabelsCmp labels={selctedTask.labels} />
+            <MembersCmp members={selctedTask.members} />
+          </div>
+          <div className='description-container'>
+            <div className='description flex'>
+              <NotesIcon />
+              <p>Description</p>
+            </div>
+            <div className='add-description-container'>
+              <Textarea />
+            </div>
+          </div>
+          <div className='attachments-container'>
+            <AttachmentsCmp attachments={selctedTask.attachments} />
+          </div>
+          <div className='activity-container flex column'>
+                  <div className='activity flex space-between'>
+                    <div className="activity-header-container flex">
+                          <FormatListBulletedIcon />
+                          <p>Activity</p>
+                    </div>
+
+                          <button>show Details</button>
+
+            </div>
+            <div className='comment-container flex'>
+              <Avatar
+                sx={{
+                  bgcolor: deepOrange[500],
+                  width: 32,
+                  height: 32,
+                  marginInlineEnd: 1,
+                }}
+              >
+                <p>NC</p>
+              </Avatar>
+              <Textarea1 />
+            </div>
+            <div className='comments-area flex column'>
+              <CommentsSection comments={selctedTask.comments} />
+            </div>
+          </div>
+        </div>
+        <div className='window-sidebar'>
           <p className='task-actions'>Suggested</p>
           <div className='button-container flex'>
             <PersonOutlineOutlinedIcon color='action' />
@@ -101,47 +147,8 @@ export const TaskDetails =  (props) => {
             <Typography>Archive</Typography>
           </div>
         </div>
-        <div className='main-content'>
-          <div className='task-info flex align-center'>
-            <LabelsCmp labels={selctedTask.labels} />
-            <MembersCmp members={selctedTask.members} />
-          </div>
-          <div className='description-container'>
-            <div className='description flex'>
-              <NotesIcon />
-              <p>Description</p>
-            </div>
-            <div className='add-description-container'>
-              <Textarea />
-            </div>
-          </div>
-          <div className='attachments-container'>
-            <AttachmentsCmp attachments={selctedTask.attachments} />
-          </div>
-          <div className='activity-container flex column'>
-            <div className='activity flex'>
-              <FormatListBulletedIcon />
-              <p>Activity</p>
-            </div>
-            <div className='comment-container flex'>
-              <Avatar
-                sx={{
-                  bgcolor: deepOrange[500],
-                  width: 32,
-                  height: 32,
-                  marginInlineEnd: 1,
-                }}
-              >
-                <p>NC</p>
-              </Avatar>
-              <Textarea1 />
-            </div>
-            <div className='comments-area flex column'>
-              <CommentsSection comments={selctedTask.comments} />
-            </div>
-          </div>
         </div>
-      </div>
+
     </div>
   );
 };

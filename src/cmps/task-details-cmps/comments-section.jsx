@@ -1,5 +1,6 @@
 import Avatar from '@mui/material/Avatar';
-import { utilService } from '../services/util.service';
+import { utilService } from '../../services/util.service';
+
 
 export const CommentsSection = ({ comments }) => {
   if (!comments.length) return <p></p>;

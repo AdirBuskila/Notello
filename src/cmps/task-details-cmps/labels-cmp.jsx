@@ -1,7 +1,8 @@
 import * as React from 'react';
 import AddIcon from '@mui/icons-material/Add';
 
-import { utilService } from '../services/util.service';
+import { utilService } from '../../services/util.service';
+
 
 export const LabelsCmp = ({ labels }) => {
   return (

@@ -20,16 +20,16 @@ import { deepOrange } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 
-import { LabelsCmp } from '../cmps/labels-cmp';
-import { MembersCmp } from '../cmps/members-cmp';
-import { Textarea } from '../cmps/textarea-task-description';
-import { Textarea1 } from '../cmps/textarea-task-comment';
+import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
+import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
+import { Textarea } from '../cmps/task-details-cmps/textarea-task-description';
+import { Textarea1 } from '../cmps/task-details-cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal';
 import {CheckListCmp} from '../cmps/check-list-cmp'
-import { CommentsSection } from '../cmps/comments-section';
+import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
 import { ActivitySection } from '../cmps/details-activity';
-import { AttachmentsCmp } from '../cmps/attachments-cmp';
+import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 
 import { boardService } from '../services/board.service';
 import { useState } from 'react/cjs/react.development';
