@@ -7,8 +7,7 @@ import { SignUp } from './pages/sign-up-page';
 import { TaskDetails } from './pages/task-details2';
 
 
-export const routes = [
-    {
+export const routes = [{
         path: '/home',
         component: HomePage,
     },
@@ -33,7 +32,7 @@ export const routes = [
     //     component: ScrollDialog,
     // },
     {
-        path: '/c/:id',
+        path: '/b/:id/c/:id',
         component: TaskDetails,
     },
 ];

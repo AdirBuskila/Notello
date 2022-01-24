@@ -8,7 +8,8 @@ export const TaskList = (props) => {
       {props.tasks.map((task, index) => {
         return (
           <TaskPreview
-          onLoadBoard={props.onLoadBoard}
+            board={props.board}
+            onLoadBoard={props.onLoadBoard}
             groupIdx={groupIdx}
             index={index}
             key={index}
