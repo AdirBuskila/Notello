@@ -50,10 +50,7 @@ const _BoardDetails = (props) => {
           board={props.board}
           groups={props.board.groups}
         />
-        <Route exact path='/b/YggUNb/new-user'>
-          <p>Welcome, new user!</p>
-        </Route>
-        {/* <Route component={TaskDetails} path={`/c/:id`} /> */}
+        <Route component={TaskDetails} path={`/b/:boardId/c/:id`} />
       </Card>
     </div>
   );
