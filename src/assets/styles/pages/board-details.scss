@@ -1,6 +1,6 @@
 .board-details-container {
     max-width: 100%;
-    flex: 1;
+    height: calc(100vh - 40px);
     &> ::-webkit-scrollbar {
         height: 0.75rem;
         border-radius: 50rem;
