@@ -41,11 +41,10 @@ export const ScrollDialog = (props) => {
   const [newTaskTitle, setNewTaskTitle] = React.useState('');
   const comments = props.task.comments ? props.task.comments : [];
 
-  const board = useSelector(
-    (state) => state.boardModule.board
-);
+  const board = useSelector((state) => state.boardModule.board);
 
-  const { openPopup, setOpenPopup, labels, members, title, attachments } = props;
+  const { openPopup, setOpenPopup, labels, members, title, attachments } =
+    props;
 
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
@@ -60,16 +59,16 @@ export const ScrollDialog = (props) => {
 
   const handleNewTitle = async () => {
     const newBoard = board;
-    const {task, groupIdx, onLoadBoard} = props;
+    const { task, groupIdx, onLoadBoard } = props;
     if (!newTaskTitle) return setClickedTaskId('');
     const taskIdx = newBoard.groups[groupIdx].tasks.findIndex((t) => {
-      return (t._id === task._id)
-    })
+      return t._id === task._id;
+    });
     newBoard.groups[groupIdx].tasks[taskIdx].title = newTaskTitle;
     setClickedTaskId('');
     setNewTaskTitle('');
     await boardService.saveBoard(newBoard);
-    await onLoadBoard()
+    await onLoadBoard();
   };
 
   return (
@@ -78,7 +77,7 @@ export const ScrollDialog = (props) => {
       PaperProps={{
         style: {
           backgroundColor: '#f4f5f7',
-          minWidth: '760px'
+          minWidth: '760px',
         },
       }}
       maxWidth={maxWidth}
@@ -88,16 +87,14 @@ export const ScrollDialog = (props) => {
       aria-labelledby='task-details'
       aria-describedby='task-details-description'>
       <div className='window-header flex space-between'>
-        <DialogTitle onBlur={handleNewTitle}
-        id='scroll-dialog-title'>
-          <div
-          className='task-title flex justify-center'>
+        <DialogTitle onBlur={handleNewTitle} id='scroll-dialog-title'>
+          <div className='task-title flex justify-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
             {/* <p>{title}</p> */}
             <div
               onClick={() => setClickedTaskId(props.task._id)}
               // className={className}
-              >
+            >
               {!clickedTaskId && <p>{title}</p>}
               {props.task._id === clickedTaskId ? (
                 <input
@@ -107,10 +104,10 @@ export const ScrollDialog = (props) => {
                   }}
                   defaultValue={title}></input>
               ) : null}
-              </div>
+            </div>
           </div>
         </DialogTitle>
-        <div className='close-button flex align-center'>
+        <div className='close-button flex align-center justify-center'>
           <CloseIcon
             onClick={() => {
               setOpenPopup(false);
@@ -170,7 +167,7 @@ export const ScrollDialog = (props) => {
               <Typography>Archive</Typography>
             </div>
           </div>
-          <div className='main-content'>
+          <div className='main-content flex column'>
             <div className='task-info flex align-center'>
               {props.labels && <LabelsCmp labels={props.labels} />}
               {props.members && <MembersCmp members={props.members} />}
@@ -184,7 +181,7 @@ export const ScrollDialog = (props) => {
                 <Textarea />
               </div>
             </div>
-            <div className="attachments-container">
+            <div className='attachments-container'>
               <AttachmentsCmp attachments={props.attachments} />
             </div>
             <div className='activity-container flex column'>

@@ -36,13 +36,13 @@ export const TaskPreview = (props) => {
         type='task'>
         {(provided) => (
           <div
+            className='task-preview flex column'
             onClick={() => {
               setOpenPopup(true);
             }}
             ref={provided.innerRef}
             {...provided.dragHandleProps}
             {...provided.draggableProps}
-            className='task-preview flex column'
             key={task._id}>
             {task.labels && (
               <ul className='labels flex'>

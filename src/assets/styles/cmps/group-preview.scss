@@ -21,7 +21,7 @@
             font-weight: 500;
         }
         input {
-            font-size: 14px;
+            font-size: rem(14px);
             font-weight: 500;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
             padding-inline-start: rem(6px);
@@ -62,7 +62,7 @@
             border: none;
             cursor: pointer;
             span::before {
-                font-size: 20px;
+                font-size: rem(20px);
                 content: '+';
             }
         }

@@ -9,7 +9,7 @@ export const ChecklistBadge = ({ checklists }) => {
   const isDone =
     done === todos.length ? 'checklist-badge done' : 'checklist-badge';
   return (
-    <div className={isDone}>
+    <div className={'flex align-center ' + isDone}>
       <CheckBoxOutlinedIcon fontSize='small' color='action' />
       <p>
         {done}/{todos.length}

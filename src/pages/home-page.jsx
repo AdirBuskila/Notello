@@ -48,7 +48,7 @@ export class HomePage extends React.Component {
             </nav>
           </header>
         </section>
-        <div className='hero-container flex '>
+        <div className='hero-container flex align-center'>
           <img className='hero-img' src={hero} />
           <div className='home-txt'>
             <h1>Notello helps teams move work forward.</h1>
