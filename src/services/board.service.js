@@ -92,8 +92,34 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
-                                dueDate: [],
-                                checklists: [],
+                                checklists: [{
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'Fly to the moon',
+                                        isDone: true
+                                    }]
+                                },
+                                {
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    }]
+                                }],
                                 attachments: [],
                                 description: 'important',
                                 members: [
@@ -112,7 +138,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -134,7 +160,26 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'To Do 1',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'To Do 2',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -153,7 +198,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -166,7 +211,7 @@ async function _createBoards() {
                                 _id: utilService.makeId(),
                                 title: 'Gurevich loves scrolling (specially Y axis)',
                                 attachments: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         txt: 'Wuba La Dub Dub',
                                         url: 'https://cdn.europosters.eu/image/750/posters/rick-and-morty-watch-i50046.jpg',
                                         createdAt: 1642950358371,
@@ -180,11 +225,27 @@ async function _createBoards() {
                                         bgc: '#F0BB62'
                                     }
                                 ],
-                                dueDate: [{
-                                    date: '',
-                                    isDone: false
-                                }],
-                                checklists: [],
+                                dueDate: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Do this',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Do that',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 description: '',
                                 members: [
                                     {
@@ -202,7 +263,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -231,10 +292,10 @@ async function _createBoards() {
                                 description: '',
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -263,13 +324,32 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Click me!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Please!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 members: [],
                                 attachments: [],
                                 description: '',
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -298,10 +378,10 @@ async function _createBoards() {
                                 members: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist2',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 2',
                                         isDone: true
                                     }]
@@ -343,13 +423,22 @@ async function _createBoards() {
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
                                     }
                                 ],
-                                dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -358,7 +447,7 @@ async function _createBoards() {
                                         imgUrl: ''
                                     }
                                 },{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'Are you Sure?',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -380,7 +469,26 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -399,7 +507,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -421,7 +529,17 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -440,7 +558,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -469,10 +587,10 @@ async function _createBoards() {
                                 description: '',
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -500,7 +618,35 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -519,7 +665,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -540,8 +686,26 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
-                                dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'New New New!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Old Old Old!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -560,7 +724,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -582,7 +746,17 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'New New New!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -601,7 +775,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -630,12 +804,21 @@ async function _createBoards() {
                                 comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
+                                    }]
+                                },
+                                {
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'To Do 2',
+                                        isDone: true
                                     }]
                                 }],
                             }
@@ -643,7 +826,7 @@ async function _createBoards() {
                     },
                 ],
                 activities: [{
-                    id: utilService.makeId(),
+                    _id: utilService.makeId(),
                     txt: 'Changed Color',
                     createdAt: 1545212324,
                     byMember: {
@@ -652,7 +835,7 @@ async function _createBoards() {
                         imgUrl: ""
                     },
                     task: {
-                        id: utilService.makeId(),
+                        _id: utilService.makeId(),
                         title: 'Notello'
                     }
                 }]
@@ -718,7 +901,17 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'New New New!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -737,7 +930,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -778,7 +971,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -819,7 +1012,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -848,10 +1041,10 @@ async function _createBoards() {
                                 comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -885,7 +1078,7 @@ async function _createBoards() {
                                 description: '',
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -914,10 +1107,10 @@ async function _createBoards() {
                                 description: '',
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist2',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 2',
                                         isDone: true
                                     }]
@@ -965,7 +1158,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -974,7 +1167,7 @@ async function _createBoards() {
                                         imgUrl: ''
                                     }
                                 },{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'Are you Sure?',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1015,7 +1208,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1056,7 +1249,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1085,10 +1278,10 @@ async function _createBoards() {
                                 comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -1135,7 +1328,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1176,7 +1369,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1217,7 +1410,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1246,10 +1439,10 @@ async function _createBoards() {
                                 comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -1259,7 +1452,7 @@ async function _createBoards() {
                     },
                 ],
                 activities: [{
-                    id: utilService.makeId(),
+                    _id: utilService.makeId(),
                     txt: 'Changed Color',
                     createdAt: 1545212324,
                     byMember: {
@@ -1268,7 +1461,7 @@ async function _createBoards() {
                         imgUrl: ""
                     },
                     task: {
-                        id: utilService.makeId(),
+                        _id: utilService.makeId(),
                         title: 'Notello'
                     }
                 }]
@@ -1353,7 +1546,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1394,7 +1587,7 @@ async function _createBoards() {
                                 description: '',
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1435,7 +1628,7 @@ async function _createBoards() {
                                 description: '',
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1464,10 +1657,10 @@ async function _createBoards() {
                                 comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -1501,7 +1694,7 @@ async function _createBoards() {
                                 description: '',
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1530,10 +1723,10 @@ async function _createBoards() {
                                 comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist2',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 2',
                                         isDone: true
                                     }]
@@ -1581,7 +1774,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1590,7 +1783,7 @@ async function _createBoards() {
                                         imgUrl: ''
                                     }
                                 },{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'Are you Sure?',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1631,7 +1824,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1672,7 +1865,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1701,10 +1894,10 @@ async function _createBoards() {
                                 comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -1751,7 +1944,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1792,7 +1985,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1833,7 +2026,7 @@ async function _createBoards() {
                                 ],
                                 createdAt: Date.now(),
                                 comments: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     txt: 'We are changing the json',
                                     createdAt: Date.now(),
                                     byMember: {
@@ -1862,10 +2055,10 @@ async function _createBoards() {
                                 comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
-                                    id: utilService.makeId(),
+                                    _id: utilService.makeId(),
                                     title: 'Checklist',
                                     todos: [{
-                                        id: utilService.makeId(),
+                                        _id: utilService.makeId(),
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
@@ -1875,7 +2068,7 @@ async function _createBoards() {
                     },
                 ],
                 activities: [{
-                    id: utilService.makeId(),
+                    _id: utilService.makeId(),
                     txt: 'Changed Color',
                     createdAt: 1545212324,
                     byMember: {
@@ -1884,7 +2077,7 @@ async function _createBoards() {
                         imgUrl: ""
                     },
                     task: {
-                        id: utilService.makeId(),
+                        _id: utilService.makeId(),
                         title: 'Notello'
                     }
                 }]
@@ -2044,18 +2237,18 @@ async function updateLabel(updatedLabel, boardId, groupId, taskId, activity) {
 
 function getGroupIdxById(board, groupId) {
 
-    const idx = board.groups.findIndex(group => {
+    const _idx = board.groups.findIndex(group => {
         return (group._id === groupId)
     })
-    return idx;
+    return _idx;
 }
 
 function getTaskIdxById(board, groupId, taskId) {
     const groupIdx = getGroupIdxById(board, groupId)
-    const idx = board.groups[groupIdx].tasks.findIndex(task => {
+    const _idx = board.groups[groupIdx].tasks.findIndex(task => {
         return (task._id === taskId)
     })
-    return idx
+    return _idx
 }
 
 function query() {
