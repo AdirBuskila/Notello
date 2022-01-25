@@ -32,10 +32,6 @@ const _BoardDetails = (props) => {
     return <Loader />;
   }
 
-  // setTimeout(() => {
-
-  // }, 1500)
-
   return (
     <div
       className='board-page-container flex column'

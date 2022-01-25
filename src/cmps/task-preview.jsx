@@ -19,7 +19,7 @@ import { DueDateBadge } from './badge-cmps/due-date-badge';
 // },
 
 export const TaskPreview = (props) => {
-  const { task, board,groupIdx } = props;
+  const { task, board, groupIdx } = props;
   const taskCover = (task.cover) ? (task.cover.background) ? task.cover : '' : '';
   console.log("taskCover: ", taskCover);
   const coverType = (taskCover) ? (utilService.isStringColor(taskCover.background)) ? 'backgroudColor' : 'backgroundImage' : null;
