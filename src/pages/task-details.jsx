@@ -78,7 +78,11 @@ export const TaskDetails = (props) => {
     }
   };
 
-  
+  const onHandleClose = () => {
+    const boardLoacation = '/b/' + boardId + ''; 
+     props.history.push(boardLoacation)
+  }
+
 
 
   if (!selectedTask || !board) return <div className=''></div>;
@@ -92,8 +96,7 @@ export const TaskDetails = (props) => {
 
         {/* <Link to={`b/${board._id}`}> */}
           <div className='close-button flex align-center'>
-            <CloseIcon onClick={() => 
-            console.log('history', props.history)}/>
+            <CloseIcon onClick={onHandleClose} />
           </div>
         {/* </Link> */}
       </div>
