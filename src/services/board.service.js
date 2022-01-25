@@ -320,7 +320,7 @@ async function _createBoards() {
                                 comments: [],
                                 attachments: [{
                                     _id: utilService.makeId(),
-                                    txt: Nutella,
+                                    txt: 'Nutella',
                                     url: 'https://images.jumpseller.com/store/hercules-it-llc/10188702/Nutella.jpg?1623999446',
                                     createdAt: Date.now()
                                 }],
