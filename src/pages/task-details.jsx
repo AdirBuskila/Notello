@@ -1,16 +1,28 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from "react-router-dom";
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { utilService } from '../services/util.service';
+
+
+import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
+import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
+import { Textarea } from '../cmps/task-details-cmps/textarea-task-description';
+import { Textarea1 } from '../cmps/task-details-cmps/textarea-task-comment';
+import { CheckListModal } from '../cmps/check-list-modal';
+import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
+import { LabelsModal } from '../cmps/details-labels';
+import { ActivitySection } from '../cmps/details-activity';
+import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
+import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
+import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
+///// CMPS
+import { boardService } from '../services/board.service';
+import { loadTask, saveTask } from '../store/actions/board.action';
+///// ICONS
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import NotesIcon from '@mui/icons-material/Notes';
@@ -20,202 +32,169 @@ import { deepOrange } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 
-import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
-import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
-import { Textarea } from '../cmps/task-details-cmps/textarea-task-description';
-import { Textarea1 } from '../cmps/task-details-cmps/textarea-task-comment';
-import { CheckListModal } from '../cmps/check-list-modal';
-import {CheckListCmp} from '../cmps/check-list-cmp'
-import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
-import { LabelsModal } from '../cmps/details-labels';
-import { ActivitySection } from '../cmps/details-activity';
-import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
+export const TaskDetails = (props) => {
+  const currBoard = useSelector((state) => state.boardModule.board);
+  const params = useParams()
+  const boardId = params.boardId;
+  const taskId = params.id;
+  const [board, setBoard] = React.useState(currBoard)
+  const [group, setGroup] = React.useState({})
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [selectedTask, updateTask] = React.useState('');
+  const [groupIdx, setGroupIdx] = React.useState('');
+  const [taskIdx, setTaskIdx] = React.useState('');
 
-import { utilService } from '../services/util.service';
-import { boardService } from '../services/board.service';
-import { useEffect, useState } from 'react/cjs/react.development';
+  /* 
+  VALUES IN DETAILS : 
+  
+  board, group, task, groupIdx, taskIdx
+  */
 
-export const ScrollDialog = (props) => {
-  const [scroll, setScroll] = React.useState('body');
-  const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState('md');
-  const [clickedTaskId, setClickedTaskId] = React.useState('');
-  const [newTaskTitle, setNewTaskTitle] = React.useState('');
-  const comments = props.task.comments ? props.task.comments : [];
-  const [isCheckListAcctivated, setIsCheckListAcctivated] = useState(false);
+  React.useEffect(async () => {
+    try {
+      const newBoard = await boardService.getBoardById(boardId);
+      const newGroup = boardService.getGroup(newBoard, taskId);
+      setBoard(newBoard)
+      setGroup(newGroup)
+      await onLoadTask(newBoard, newGroup, taskId)
+    } catch (err) {
+      console.log('Cant load board');
+    }
+  }, [])
 
-  const board = useSelector((state) => state.boardModule.board);
-  const { openPopup, setOpenPopup, labels, members, title, attachments } = props;
-
-  useEffect(() => {
-    setIsCheckListAcctivated(true);
-  }, [board])
-
-  const handleMaxWidthChange = (event) => {
-    setMaxWidth(
-      // @ts-expect-error autofill of arbitrary value is not handled.
-      event.target.value
-    );
+  const onLoadTask = async (board, group, taskId) => {
+    try {
+      const task = await boardService.getTask(board, taskId);
+      const currGroupIdx = await boardService.getGroupIdxById(board, group._id);
+      const currTaskIdx = await boardService.getTaskIdxById(board, group._id, taskId)
+      updateTask(task);
+      setGroupIdx(currGroupIdx)
+      setTaskIdx(currTaskIdx)
+    } catch (err) {
+      console.log('Cant load current task');
+      throw new Error(err);
+    }
   };
 
-  const handleFullWidthChange = (event) => {
-    setFullWidth(event.target.checked);
-  };
 
-  const handleNewTitle = async () => {
-    const newBoard = board;
-    const { task, groupIdx, onLoadBoard } = props;
-    if (!newTaskTitle) return setClickedTaskId('');
-    const taskIdx = newBoard.groups[groupIdx].tasks.findIndex((t) => {
-      return t._id === task._id;
-    });
-    newBoard.groups[groupIdx].tasks[taskIdx].title = newTaskTitle;
-    setClickedTaskId('');
-    setNewTaskTitle('');
-    await boardService.saveBoard(newBoard);
-    await onLoadBoard();
-  };
-
+  if (!selectedTask) return <div className=''></div>;
   return (
-    <Dialog
-      className='task-details-dialog'
-      PaperProps={{
-        style: {
-          backgroundColor: '#f4f5f7',
-          minWidth: '760px',
-        },
-      }}
-      maxWidth={maxWidth}
-      fullWidth={fullWidth}
-      open={openPopup}
-      scroll={scroll}
-      aria-labelledby='task-details'
-      aria-describedby='task-details-description'>
-      <div className='window-header flex space-between'>
-        <DialogTitle onBlur={handleNewTitle} id='scroll-dialog-title'>
-          <div className='task-title flex justify-center'>
-            <WebAssetIcon sx={{ marginTop: 0.5 }} />
-            {/* <p>{title}</p> */}
-            <div
-              onClick={() => setClickedTaskId(props.task._id)}
-              // className={className}
-            >
-              {!clickedTaskId && <p>{title}</p>}
-              {props.task._id === clickedTaskId ? (
-                <input
-                  autoFocus
-                  onChange={(ev) => {
-                    setNewTaskTitle(ev.target.value);
-                  }}
-                  defaultValue={title}></input>
-              ) : null}
-            </div>
-          </div>
-        </DialogTitle>
-        <div className='close-button flex align-center justify-center'>
-          <CloseIcon
-            onClick={() => {
-              setOpenPopup(false);
-            }}
-          />
+    <div className='task-details flex column'>
+      <div className='window-header align-center flex space-between'>
+        <div className='task-title flex align-center'>
+          <WebAssetIcon sx={{ marginTop: 0.5 }} />
+          <p>{selectedTask.title}</p>
+        </div>
+
+        <div className='close-button flex align-center'>
+          <CloseIcon />
         </div>
       </div>
 
-      <div className='window-main-content'>
-        <DialogContent
-          sx={{
-            display: 'flex',
-            flexDirection: 'row-reverse',
-          }}
-          dividers={scroll === 'paper'}>
-          <DialogContentText
-            id='scroll-dialog-description'
-            // ref={descriptionElementRef}
-            tabIndex={-1}></DialogContentText>
-          <div className='buttons-container'>
-            <p className='task-actions'>Suggested</p>
-            <div className='button-container flex'>
-              <PersonOutlineOutlinedIcon color='action' />
-              <Typography>Join</Typography>
+      <div className='task-main-container'>
+        <div className='main-content'>
+          <div className='task-info flex align-center'>
+            <LabelsCmp labels={selectedTask.labels} />
+            <MembersCmp members={selectedTask.members} />
+          </div>
+          <div className='description-container'>
+            <div className='description flex'>
+              <NotesIcon />
+              <p>Description</p>
             </div>
-            <p className='task-actions'>Add to card</p>
-            <div className='button-container flex'>
-              <PersonOutlineOutlinedIcon color='action' />
-              <Typography>Members</Typography>
-            </div>
-            <LabelsModal
-              setOpenPopup={props.setOpenPopup}
-              task={props.task}
-              groupIdx={props.groupIdx}
-              onLoadBoard={props.onLoadBoard}
-            />
-            <CheckListModal setIsCheckListAcctivated={setIsCheckListAcctivated}/>
-            <div className='button-container flex'>
-              <QueryBuilderIcon color='action' />
-              <Typography>Dates</Typography>
-            </div>
-            <div className='button-container flex'>
-              <AttachFileIcon color='action' />
-              <Typography>Attachment</Typography>
-            </div>
-            <p className='task-actions'>Actions</p>
-            <div className='button-container flex'>
-              <ArrowForwardOutlinedIcon color='action' />
-              <Typography>Move</Typography>
-            </div>
-            <div className='button-container flex'>
-              <ContentCopyOutlinedIcon color='action' />
-              <Typography>Copy</Typography>
-            </div>
-            <div className='button-container flex'>
-              <Inventory2OutlinedIcon color='action' />
-              <Typography>Archive</Typography>
+            <div className='add-description-container'>
+              <Textarea />
             </div>
           </div>
-          <div className='main-content flex column'>
-            <div className='task-info flex align-center'>
-              {props.labels && <LabelsCmp labels={props.labels} />}
-              {props.members && <MembersCmp members={props.members} />}
-            </div>
-            {/* DESCRIPTION */}
-            <div className='description-container'>
-              <div className='description flex'>
-                <NotesIcon />
-                <p>Description</p>
-              </div>
-              <div className='add-description-container'>
-                <Textarea />
-              </div>
-            </div>
-            {/* CHECKLIST AREA */}
-            <CheckListCmp key={utilService.makeId()} isCheckListAcctivated={isCheckListAcctivated} task={props.task} groupIdx={props.groupIdx} onLoadBoard={props.onLoadBoard} />
-            <div className="attachments-container">
-              <AttachmentsCmp attachments={props.attachments} />
-            </div>
-            <div className='activity-container flex column'>
-              <div className='activity flex'>
+          <div className='attachments-container'>
+            <AttachmentsCmp attachments={selectedTask.attachments} />
+          </div>
+          <div className='activity-container flex column'>
+            <div className='activity flex align-center space-between'>
+              <div className='activity-header-container flex'>
                 <FormatListBulletedIcon />
                 <p>Activity</p>
               </div>
-              <div className='comment-container flex'>
+              <button>show Details</button>
+            </div>
+            <div className='comment-container flex'>
+              <div className='user-container'>
                 <Avatar
                   sx={{
                     bgcolor: deepOrange[500],
                     width: 32,
                     height: 32,
-                    marginInlineEnd: 1,
-                  }}>
+                  }}
+                >
                   <p>NC</p>
                 </Avatar>
-                <Textarea1 />
               </div>
-              <div className='comments-area flex column'>
-                <CommentsSection comments={comments} />
-              </div>
+              <Textarea1 />
+            </div>
+            <div className='comments-area flex column'>
+              <CommentsSection comments={selectedTask.comments} />
             </div>
           </div>
-        </DialogContent>
+        </div>
+        <div className='window-sidebar'>
+          <p className='task-actions'>Suggested</p>
+          <div className='button-container flex'>
+            <PersonOutlineOutlinedIcon color='action' />
+            <Typography>Join</Typography>
+          </div>
+          <p className='task-actions'>Add to card</p>
+          <div className='button-container flex'>
+            <PersonOutlineOutlinedIcon color='action' />
+            <Typography>Members</Typography>
+          </div>
+
+          <div onClick={() => { setIsOpen(true) }} className='button-container flex'>
+            <QueryBuilderIcon color='action' />
+            <Typography  >Dates</Typography>
+            <DatePickerModal
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              task={selectedTask}
+              board={board}
+              group={group}
+            />
+          </div>
+          <AttachmentModal
+            task={selectedTask}
+            board={board}
+            group={group}
+          />
+          <p className='task-actions'>Actions</p>
+          <div className='button-container flex'>
+            <ArrowForwardOutlinedIcon color='action' />
+            <Typography>Move</Typography>
+          </div>
+          <div className='button-container flex'>
+            <ContentCopyOutlinedIcon color='action' />
+            <Typography>Copy</Typography>
+          </div>
+          <div className='button-container flex'>
+            <Inventory2OutlinedIcon color='action' />
+            <Typography>Archive</Typography>
+          </div>
+        </div>
       </div>
-    </Dialog>
+    </div>
   );
 };
+
+// function mapStateToProps({ boardModule }) {
+//   return {
+//     board: boardModule.board,
+//   };
+// }
+
+// const mapDispatchToProps = {
+//   // loadBoard,
+//   // saveBoard,
+// };
+
+// export const TaskDetails = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(_TaskDetails);

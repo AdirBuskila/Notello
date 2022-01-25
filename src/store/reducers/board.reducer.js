@@ -1,3 +1,5 @@
+import { boardService } from "../../services/board.service";
+
 const initialState = {
     board: {},
     isLabelsExpended: false

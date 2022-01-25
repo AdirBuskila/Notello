@@ -5,7 +5,7 @@ import { AppHeader } from '../cmps/app-header';
 import { BoardHeader } from '../cmps/board-header.jsx';
 
 import { GroupList } from '../cmps/group-list.jsx';
-import { TaskDetails } from '../pages/task-details2';
+import { TaskDetails } from '../pages/task-details';
 import { Card } from '../cmps/UI/Card';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 

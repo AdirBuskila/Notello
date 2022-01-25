@@ -12,6 +12,7 @@ export const boardService = {
     removeTask,
     updateTask,
     getTaskById,
+    getTaskIdxById,
     addGroup,
     removeGroup,
     addLabel,
@@ -2245,12 +2246,17 @@ function getGroupIdxById(board, groupId) {
     return _idx;
 }
 
-function getTaskIdxById(board, groupId, taskId) {
-    const groupIdx = getGroupIdxById(board, groupId)
-    const _idx = board.groups[groupIdx].tasks.findIndex(task => {
-        return (task._id === taskId)
-    })
-    return _idx
+async function getTaskIdxById(board, groupId, taskId) {
+    console.log('IM HEREEEEEEEE');
+    try {
+        const groupIdx = await getGroupIdxById(board, groupId)
+        const _idx = board.groups[groupIdx].tasks.findIndex(task => {
+            return (task._id === taskId)
+        })
+        return _idx
+    } catch (err) {
+        console.log('Cant get Task idx by id');
+    }
 }
 
 function query() {
@@ -2296,6 +2302,8 @@ async function addAttachment(attachment, boardId, groupId, taskId, activity) {
 }
 
 function getGroup(board,taskId) {
+    console.log("taskId !!!!!!: ", taskId);
+    console.log("board !!!!!!: ", board);
     const group = board.groups.filter((group) => {
         return group.tasks.find((currTask) => {
             return currTask._id === taskId
@@ -2305,12 +2313,13 @@ function getGroup(board,taskId) {
 }
 
 function getTask(board, taskId) {
+    console.log("taskId in service: ", taskId); 
+    console.log("board in service: ", board);
     const group = getGroup(board,taskId)
-    console.log(group,'group');
     const task = group.tasks.find((currTask)=>{
         return (currTask._id === taskId)
     })
-    console.log(task,'task');
+    console.log(task,'task in SERVICE!!!');
     return task
 }
 
