@@ -8,14 +8,16 @@ import { Link, Route } from 'react-router-dom';
 import { CommentsBadge } from './badge-cmps/comments-badge';
 import { MembersBadge } from './badge-cmps/members-badge';
 import { AttachmentsBadge } from './badge-cmps/attachments-badge';
+import { DueDateBadge } from './badge-cmps/due-date-badge';
 
 export const TaskPreview = (props) => {
-  const { task, board } = props;
+  const { task, board, groupIdx } = props;
   const dispatch = useDispatch();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
   );
   const [openPopup, setOpenPopup] = useState(false);
+  const [isDueDateChanged, setIsDueDateChanged] = useState(false)
 
   const onHandleLablesClick = (ev) => {
     ev.preventDefault();
@@ -25,6 +27,8 @@ export const TaskPreview = (props) => {
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
+
+
   return (
     <React.Fragment>
       <Link to={`/b/${board._id}/${task._id}`}>
@@ -61,9 +65,10 @@ export const TaskPreview = (props) => {
               <p>{task.title}</p>
               <div className='task-info-icons flex space-between'>
                 <div className='task-badges flex align-center'>
-                  {task.comments.length > 0 && (
-                    <CommentsBadge comments={task.comments} />
-                  )}
+
+                  {task.dueDate.length > 0 && (<DueDateBadge groupIdx={groupIdx} task={task} board={board} isDueDateChanged={isDueDateChanged} setIsDueDateChanged={setIsDueDateChanged} dueDate={task.dueDate} />)}
+
+                  {task.comments.length > 0 && (<CommentsBadge comments={task.comments} />)}
                   {task.attachments.length > 0 && (
                     <AttachmentsBadge attachments={task.attachments} />
                   )}

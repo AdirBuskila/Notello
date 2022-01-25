@@ -4,6 +4,7 @@ import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { Button, makeStyles } from '@material-ui/core';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { boardService } from '../../services/board.service';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles({
   container: {
@@ -14,40 +15,43 @@ const useStyles = makeStyles({
 
 export function DatePickerModal(props) {
   const classes = useStyles();
-  const { isOpen, setIsOpen, task, group, board } = props;
-  const [selectedDate, handleDateChange] = useState('2022-01-25T00:00:00.000Z');
+  const { task, group, board, newDueDateAdded, setNewDueDateAdded } = props;
+  const [selectedDate, setSelectedDate] = useState(null);
+  const dispatch = useDispatch();
 
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
   });
 
-  const HandleClose = () => {
-    AddDate();
-    setIsOpen(false);
-  };
-
-  const AddDate = () => {
-    board.groups[groupIdx].tasks[taskIdx].dueDate.push(selectedDate);
-    boardService.saveBoard(board);
+  const handleDateChange = (selectedDate) => {
+    setSelectedDate(selectedDate);
+    const newDueDate = { date: selectedDate, isDone: false };
+    const newArray = [];
+    newArray.push(newDueDate);
+    board.groups[groupIdx].tasks[taskIdx].dueDate = newArray;
+    const action = { type: 'SET_BOARD', board };
+    dispatch(action);
+    setNewDueDateAdded(!newDueDateAdded);
   };
 
   return (
-    <div className={classes.container}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DatePicker
-          variant='inline'
-          style={{ zIndex: '-1' }}
-          open={isOpen}
-          onOpen={() => setIsOpen(true)}
-          onClose={() => setIsOpen(false)}
-          label='Open me from button'
-          format='d MMM yyyy'
-          value={selectedDate}
-          onAccept={() => setIsOpen(false)}
-          onChange={handleDateChange}
-        />
-      </MuiPickersUtilsProvider>
-    </div>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <DatePicker
+        style={{
+          opacity: '0',
+          width: '100%',
+          position: 'relative',
+          right: '50px',
+        }}
+        id='date-picker'
+        margin='normal'
+        variant='modal'
+        label=''
+        format='dd MMM yyyy'
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
+    </MuiPickersUtilsProvider>
   );
 }

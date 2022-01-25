@@ -46,7 +46,7 @@ export const AttachmentModal = (props) => {
       createdAt: Date.now()
   }
     board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment)
-    const action = {type: 'SAVE_BOARD', board}
+    const action = {type: 'SET_BOARD', board}
     dispatch(action)
     setIsAttachmentActivated(true)
     handleClose()

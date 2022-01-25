@@ -15,7 +15,7 @@ import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmp } from '../cmps/check-list-cmp';
-import { Backdrop } from '../cmps/UI/backdrop';
+import { Backdrop } from '../cmps/UI/Backdrop';
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action';
@@ -32,6 +32,7 @@ import { deepOrange } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import SubjectIcon from '@mui/icons-material/Subject';
+import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
 
 export const TaskDetails = (props) => {
   const currBoard = useSelector((state) => state.boardModule.board);
@@ -49,6 +50,8 @@ export const TaskDetails = (props) => {
   const [isAttachmentActivated, setIsAttachmentActivated] =
     React.useState(false);
   const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
+  const [newDueDateAdded, setNewDueDateAdded] = React.useState(false);
+  const dispatch = useDispatch();
 
   /* VALUES IN DETAILS : 
 
@@ -84,9 +87,22 @@ export const TaskDetails = (props) => {
     }
   };
 
+  const [taskTitle, setTaskTitle] = React.useState(selectedTask.title);
+
   const onHandleClose = () => {
-    const boardLoacation = '/b/' + boardId + '';
-    props.history.push(boardLoacation);
+    const boardLocation = '/b/' + boardId + '';
+    props.history.push(boardLocation);
+  };
+
+  const onHandleChange = async () => {
+    console.log('taskTitle', taskTitle);
+    const newTask = selectedTask;
+    newTask.title = taskTitle;
+    selectedTask.title = taskTitle;
+    console.log('selectedTask', selectedTask);
+    board.groups[groupIdx].tasks[taskIdx] = selectedTask;
+    const action = { type: 'SET_BOARD', board };
+    dispatch(action);
   };
 
   if (!selectedTask || !board) return <div className=''></div>;
@@ -101,7 +117,18 @@ export const TaskDetails = (props) => {
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
-            <p>{selectedTask.title}</p>
+            <input
+              className='task-title-input'
+              defaultValue={selectedTask.title}
+              onBlur={onHandleChange}
+              onFocus={(ev) => {
+                ev.currentTarget.select();
+              }}
+              onClick={(ev) => {
+                ev.currentTarget.select();
+              }}
+              onChange={(ev) => setTaskTitle(ev.target.value)}
+            />
           </div>
           <div className='close-button flex align-center justify-center'>
             <CloseIcon onClick={onHandleClose} />
@@ -112,7 +139,9 @@ export const TaskDetails = (props) => {
           <div className='main-content'>
             <div className='task-info flex align-center'>
               <MembersCmp members={selectedTask.members} />
-              <LabelsCmp labels={selectedTask.labels} />
+              {selectedTask.dueDate.length > 0 && (
+                <DueDateCmp dueDate={selectedTask.dueDate} />
+              )}
             </div>
             <div className='description-container'>
               <div className='description flex'>
@@ -195,11 +224,11 @@ export const TaskDetails = (props) => {
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>
               <DatePickerModal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
                 task={selectedTask}
                 board={board}
                 group={group}
+                setNewDueDateAdded={setNewDueDateAdded}
+                newDueDateAdded={newDueDateAdded}
               />
             </div>
             <AttachmentModal
