@@ -149,7 +149,7 @@ export const ScrollDialog = (props) => {
               groupIdx={props.groupIdx}
               onLoadBoard={props.onLoadBoard}
             />
-            <CheckListModal setIsCheckListAcctivated={setIsCheckListAcctivated}/>
+            {/* <CheckListModal setIsCheckListAcctivated={setIsCheckListAcctivated}/> */} // MOVED
             <div className='button-container flex'>
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>
