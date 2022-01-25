@@ -15,6 +15,7 @@ import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmp } from '../cmps/check-list-cmp';
+import { CoverModal } from '../cmps/cover-modal';
 import { Backdrop } from '../cmps/UI/Backdrop';
 ///// CMPS
 import { boardService } from '../services/board.service';
@@ -50,6 +51,7 @@ export const TaskDetails = (props) => {
   const [isAttachmentActivated, setIsAttachmentActivated] =
     React.useState(false);
   const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
+  const [isColorPicked, setIsColorPicked] = React.useState(false);
   const [newDueDateAdded, setNewDueDateAdded] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -239,19 +241,26 @@ export const TaskDetails = (props) => {
               setIsAttachmentDeleted={setIsAttachmentDeleted}
               isAttachmentDeleted={isAttachmentDeleted}
             />
-            <p className='task-actions'>Actions</p>
-            <div className='button-container flex'>
-              <ArrowForwardOutlinedIcon color='action' />
-              <Typography>Move</Typography>
-            </div>
-            <div className='button-container flex'>
-              <ContentCopyOutlinedIcon color='action' />
-              <Typography>Copy</Typography>
-            </div>
-            <div className='button-container flex'>
-              <Inventory2OutlinedIcon color='action' />
-              <Typography>Archive</Typography>
-            </div>
+          </div>
+          <AttachmentModal
+          task={selectedTask}
+          board={board} 
+          group={group}
+          setIsAttachmentActivated ={setIsAttachmentActivated}
+          />
+          <CoverModal setIsColorPicked={setIsColorPicked} isColorPicked={isColorPicked} board={board} groupIdx={groupIdx} taskIdx={taskIdx}  task={selectedTask}  />
+          <p className='task-actions'>Actions</p>
+          <div className='button-container flex'>
+            <ArrowForwardOutlinedIcon color='action' />
+            <Typography>Move</Typography>
+          </div>
+          <div className='button-container flex'>
+            <ContentCopyOutlinedIcon color='action' />
+            <Typography>Copy</Typography>
+          </div>
+          <div className='button-container flex'>
+            <Inventory2OutlinedIcon color='action' />
+            <Typography>Archive</Typography>
           </div>
         </div>
       </div>

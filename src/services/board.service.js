@@ -95,6 +95,10 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                cover: {
+                                    background: '#f5dd29',
+                                    spread: 'full'
+                                },
                                 checklists: [{
                                     _id: utilService.makeId(),
                                     title: 'Checklist',
@@ -107,6 +111,10 @@ async function _createBoards() {
                                 {
                                     _id: utilService.makeId(),
                                     title: 'Checklist',
+                                    cover: {
+                                        background: '#feae3f',
+                                        spread: 'partial'
+                                    },
                                     todos: [{
                                         _id: utilService.makeId(),
                                         title: 'Build the best Trello!',
@@ -154,6 +162,10 @@ async function _createBoards() {
                             },{
                                 _id: utilService.makeId(),
                                 title: 'Learn about the pyramids',
+                                cover: {
+                                    background: '#ee7564',
+                                    spread: 'partial'
+                                },
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#e9f062'
@@ -279,6 +291,10 @@ async function _createBoards() {
                             },
                             {
                                 _id: utilService.makeId(),
+                                cover: {
+                                    background: '#cd8de5',
+                                    spread: 'partial'
+                                },
                                 title: 'Adir you are a SAVAGE!',
                                 labels: [{
                                         name: 'Special',
@@ -306,6 +322,10 @@ async function _createBoards() {
                                 }],
                             }, {
                                 _id: utilService.makeId(),
+                                cover: {
+                                    background: 'https://images.jumpseller.com/store/hercules-it-llc/10188702/Nutella.jpg?1623999446',
+                                    spread: 'partial'
+                                },
                                 title: 'Buy Some Nutella',
                                 labels: [{
                                         name: 'Important',
@@ -398,6 +418,10 @@ async function _createBoards() {
                             {
                                 _id: utilService.makeId(),
                                 title: 'EFRAIM rulesss!',
+                                cover: {
+                                    background: '#6deca9',
+                                    spread: 'partial'
+                                },
                                 labels: [{
                                         name: 'new',
                                         bgc: '#F9B7'
@@ -435,6 +459,10 @@ async function _createBoards() {
                         tasks: [
                             {
                                 _id: utilService.makeId(),
+                                cover: {
+                                    background: '#ee7564',
+                                    spread: 'partial'
+                                },
                                 title: 'Learning to ride Bicycle',
                                 labels: [{
                                         name: 'Work',
@@ -486,6 +514,10 @@ async function _createBoards() {
                                 },{
                                     _id: utilService.makeId(),
                                     txt: 'Are you Sure?',
+                                    cover: {
+                                        background: '#5ba4cf',
+                                        spread: 'partial'
+                                    }, 
                                     createdAt: Date.now(),
                                     byMember: {
                                         _id: utilService.makeId(),
@@ -929,6 +961,10 @@ async function _createBoards() {
                             {
                                 _id: utilService.makeId(),
                                 title: 'Learn to Cook',
+                                cover: {
+                                    background: '#5ba4cf',
+                                    spread: 'full'
+                                },
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#51e879'
@@ -1193,6 +1229,10 @@ async function _createBoards() {
                             {
                                 _id: utilService.makeId(),
                                 title: 'Waiting for ilai!',
+                                cover: {
+                                    background: '#ff8ed4',
+                                    spread: 'full'
+                                },
                                 labels: [{
                                         name: 'General',
                                         bgc: '#8E6A'
@@ -1278,6 +1318,10 @@ async function _createBoards() {
                         tasks: [
                             {
                                 _id: utilService.makeId(),
+                                cover: {
+                                    background: '#ff8ed4',
+                                    spread: 'full'
+                                },
                                 title: 'Learning to ride Bicycle',
                                 labels: [{
                                         name: 'Work',

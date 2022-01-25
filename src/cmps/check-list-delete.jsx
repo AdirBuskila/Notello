@@ -25,7 +25,7 @@ export const CheckListDelete = (props) => {
     const onDelete = () => {
         task.checklists.splice(checklistIdx, 1);
         board.groups[groupIdx].tasks[taskIdx] = task;
-        const action = { type: 'SAVE_BOARD', board };
+        const action = { type: 'SET_BOARD', board };
         dispatch(action);
         props.setIsChanged(!isChanged);
         handleClose()

@@ -4,7 +4,8 @@ export const utilService = {
     getRandomIntInclusive,
     fixTimestamp,
     stringToColor,
-    getRandomColor
+    getRandomColor,
+    isStringColor
 }
 
 function makeId(length = 6) {
@@ -72,5 +73,10 @@ function stringToColor(string) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+  }
+
+  function isStringColor(str) {
+    if (str.charAt(0) === '#') return true;
+    return false;
   }
   

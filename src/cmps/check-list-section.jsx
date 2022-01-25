@@ -40,7 +40,7 @@ export const CheckListSection = (props) => {
         if (!todoTitle) return; // add a nice modal
         task.checklists[checklistIdx].todos[todoIdx].title = todoTitle;
         board.groups[groupIdx].tasks[taskIdx] = task;
-        const action = { type: 'SAVE_BOARD', board };
+        const action = { type: 'SET_BOARD', board };
         dispatch(action);
         props.setIsChanging(false);
         props.setIsAdding(false);
@@ -51,7 +51,7 @@ export const CheckListSection = (props) => {
         if (!newTodo.title) return; // add a nice modal
         task.checklists[checklistIdx].todos.push(newTodo)
         board.groups[groupIdx].tasks[taskIdx] = task;
-        const action = { type: 'SAVE_BOARD', board };
+        const action = { type: 'SET_BOARD', board };
         dispatch(action);
         props.setIsAdding(false);
     }

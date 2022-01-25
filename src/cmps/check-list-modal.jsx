@@ -34,7 +34,7 @@ export const CheckListModal = (props) => {
     const checklist = {_id: utilService.makeId(), title: checklistName, todos: []}
     task.checklists.unshift(checklist);
     board.groups[groupIdx].tasks[taskIdx] = task;
-    const action = {type: 'SAVE_BOARD', board};
+    const action = {type: 'SET_BOARD', board};
     dispatch(action);
     props.setIsCheckListAcctivated(!isCheckListAcctivated);
     setChecklistName('')
