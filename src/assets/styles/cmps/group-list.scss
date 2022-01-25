@@ -3,12 +3,6 @@
     padding: 0.25rem 1rem;
     overflow-y: hidden;
     flex: 0.99;
-    // &>div:not(:nth-last-child(-n + 2)) {
-    //     border-radius: 3px;
-    //     height: fit-content;
-    //     background-color: #ebecf0;
-    //     padding: 0 4px 0 0;
-    // }
     &>.add-item {
         row-gap: 0.5rem;
         width: rem(272px);
@@ -79,16 +73,5 @@
         font-weight: 700;
         font-size: rem(20px);
         flex: 1;
-    }
-    & ::-webkit-scrollbar {
-        width: 8px;
-    }
-    & ::-webkit-scrollbar-track {
-        background: #091e4214;
-        border-radius: 50rem;
-    }
-    & ::-webkit-scrollbar-thumb {
-        border-radius: 50rem;
-        background: #091e4214;
     }
 }
