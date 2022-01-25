@@ -130,6 +130,7 @@ export const TaskDetails = (props) => {
               group={group}
               attachments={selectedTask.attachments}
               setIsAttachmentDeleted={setIsAttachmentDeleted}
+              isAttachmentDeleted={isAttachmentDeleted}
             />
           </div>
           <div className='activity-container flex column'>
