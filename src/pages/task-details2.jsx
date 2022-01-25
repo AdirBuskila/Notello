@@ -1,7 +1,10 @@
+import { useSelector, useDispatch } from 'react-redux';
 import * as React from 'react';
 import { utilService } from '../services/util.service';
-import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
+
+
 import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
+import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
 import { Textarea } from '../cmps/task-details-cmps/textarea-task-description';
 import { Textarea1 } from '../cmps/task-details-cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal';
@@ -9,16 +12,16 @@ import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
 import { ActivitySection } from '../cmps/details-activity';
 import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
-
-import { useSelector, useDispatch } from 'react-redux';
+import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
+import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
+///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action';
-
+///// ICONS
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import NotesIcon from '@mui/icons-material/Notes';
@@ -27,16 +30,16 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { deepOrange } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
-import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 
 export const TaskDetails = (props) => {
   const board = useSelector((state) => state.boardModule.board);
   React.useEffect(() => {
     onLoadTask();
   }, []);
-
   
   const [selectedTask, updateTask] = React.useState('');
+  const [isOpen, setIsOpen] = React.useState(false);
+
   
 
   const onLoadTask = async () => {
@@ -51,7 +54,6 @@ export const TaskDetails = (props) => {
   };
   
   const group = boardService.getGroup(board, selectedTask._id)
-  console.log('group', group);
   
 
   if (!selectedTask) return <div className=''></div>;
@@ -125,9 +127,16 @@ export const TaskDetails = (props) => {
             <Typography>Members</Typography>
           </div>
 
-          <div className='button-container flex'>
+          <div onClick={()=>{setIsOpen(true)}} className='button-container flex'>
             <QueryBuilderIcon color='action' />
-            <Typography>Dates</Typography>
+            <Typography  >Dates</Typography>
+            <DatePickerModal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            task={selectedTask}
+            board={board}
+            group={group}
+            />
           </div>
           <AttachmentModal
           task={selectedTask}
