@@ -123,6 +123,7 @@ async function _createBoards() {
                                         isDone: true
                                     }]
                                 }],
+                                dueDate: [],
                                 attachments: [],
                                 description: 'important',
                                 members: [
@@ -162,7 +163,7 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
-                                dueDate: [],
+                                dueDate: [{date: "2022-01-25T00:00:00.000Z", isDone:false}],
                                 checklists: [
                                     {
                                         _id: utilService.makeId(),
@@ -469,6 +470,7 @@ async function _createBoards() {
                                         }]
                                     }
                                 ],
+                                dueDate: [{date: "2022-02-27T00:00:00.000Z", isDone:true}],
                                 attachments: [],
                                 description: '',
                                 createdAt: Date.now(),
@@ -741,6 +743,7 @@ async function _createBoards() {
                                         }]
                                     }
                                 ],
+                                dueDate: [],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -881,7 +884,7 @@ async function _createBoards() {
                 createdAt: Date.now(),
                 createdBy: {
                     _id: utilService.makeId(),
-                    fullname: "Adir B",
+                    fullname: "Netanel C",
                     imgUrl: ""
                 },
                 style: {
@@ -935,20 +938,37 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
-                                dueDate: [],
-                                checklists: [
+                                checklists: [{
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'Fly to the moon',
+                                        isDone: true
+                                    }]
+                                },
+                                {
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    },
                                     {
                                         _id: utilService.makeId(),
-                                        title: 'Checklist',
-                                        todos: [{
-                                            _id: utilService.makeId(),
-                                            title: 'New New New!',
-                                            isDone: false
-                                        }]
-                                    }
-                                ],
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    }]
+                                }],
+                                dueDate: [],
                                 attachments: [],
-                                description: '',
+                                description: 'important',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -986,22 +1006,41 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
-                                dueDate: [],
-                                checklists: [],
+                                dueDate: [{date: "2022-01-25T00:00:00.000Z", isDone:false}],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'To Do 1',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'To Do 2',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 createdAt: Date.now(),
@@ -1018,6 +1057,12 @@ async function _createBoards() {
                             },{
                                 _id: utilService.makeId(),
                                 title: 'Gurevich loves scrolling (specially Y axis)',
+                                attachments: [{
+                                        _id: utilService.makeId(),
+                                        txt: 'Wuba La Dub Dub',
+                                        url: 'https://cdn.europosters.eu/image/750/posters/rick-and-morty-watch-i50046.jpg',
+                                        createdAt: 1642950358371,
+                                    }],
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#8E806A'
@@ -1028,8 +1073,26 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
-                                attachments: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Do this',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Do that',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 description: '',
                                 members: [
                                     {
@@ -1071,9 +1134,41 @@ async function _createBoards() {
                                 ],
                                 dueDate: [],
                                 members: [],
+                                comments: [],
                                 attachments: [],
                                 description: '',
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }, {
+                                _id: utilService.makeId(),
+                                title: 'Buy Some Nutella',
+                                labels: [{
+                                        name: 'Important',
+                                        bgc: '#F569B7'
+                                    },
+                                    {
+                                        name: 'Food',
+                                        bgc: '#82306A'
+                                    }
+                                ],
+                                dueDate: [],
+                                members: [],
                                 comments: [],
+                                attachments: [{
+                                    _id: utilService.makeId(),
+                                    txt: 'Nutella',
+                                    url: 'https://images.jumpseller.com/store/hercules-it-llc/10188702/Nutella.jpg?1623999446',
+                                    createdAt: Date.now()
+                                }],
+                                description: '',
                                 createdAt: Date.now(),
                                 checklists: [{
                                     _id: utilService.makeId(),
@@ -1094,7 +1189,8 @@ async function _createBoards() {
                         style: {
                             bgColor: '#ee3'
                         },
-                        tasks: [{
+                        tasks: [
+                            {
                                 _id: utilService.makeId(),
                                 title: 'Waiting for ilai!',
                                 labels: [{
@@ -1107,7 +1203,26 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Click me!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Please!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -1136,10 +1251,10 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                members: [],
                                 comments: [],
                                 attachments: [],
                                 description: '',
+                                members: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     _id: utilService.makeId(),
@@ -1173,24 +1288,34 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
-                                dueDate: [],
-                                checklists: [],
-                                attachments: [],
-                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
+                                dueDate: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     _id: utilService.makeId(),
@@ -1224,7 +1349,26 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -1254,7 +1398,7 @@ async function _createBoards() {
                                 }],
                             },{
                                 _id: utilService.makeId(),
-                                title: 'Most Powerful Programming ',
+                                title: 'Most Powerful Programming Language',
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#f2a28a'
@@ -1265,21 +1409,31 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 createdAt: Date.now(),
@@ -1308,9 +1462,9 @@ async function _createBoards() {
                                 ],
                                 dueDate: [],
                                 members: [],
+                                comments: [],
                                 attachments: [],
                                 description: '',
-                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     _id: utilService.makeId(),
@@ -1344,7 +1498,35 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -1384,22 +1566,41 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'New New New!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Old Old Old!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 dueDate: [],
-                                checklists: [],
                                 attachments: [],
                                 description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 createdAt: Date.now(),
@@ -1426,7 +1627,17 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'New New New!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -1481,6 +1692,15 @@ async function _createBoards() {
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
+                                },
+                                {
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'To Do 2',
+                                        isDone: true
+                                    }]
                                 }],
                             }
                         ],
@@ -1503,11 +1723,11 @@ async function _createBoards() {
             },
             {
                 _id: utilService.makeId(),
-                title: 'Trip to Japan',
+                title: 'Trip To Japan',
                 createdAt: Date.now(),
                 createdBy: {
                     _id: utilService.makeId(),
-                    fullname: "Nati G",
+                    fullname: "Netanel C",
                     imgUrl: ""
                 },
                 style: {
@@ -1561,10 +1781,37 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
+                                checklists: [{
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'Fly to the moon',
+                                        isDone: true
+                                    }]
+                                },
+                                {
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Build the best Trello!',
+                                        isDone: true
+                                    }]
+                                }],
                                 dueDate: [],
-                                checklists: [],
                                 attachments: [],
-                                description: '',
+                                description: 'important',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1602,24 +1849,43 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
-                                dueDate: [],
-                                checklists: [],
-                                members: [
+                                dueDate: [{date: "2022-01-25T00:00:00.000Z", isDone:false}],
+                                checklists: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'To Do 1',
+                                            isDone: false
+                                        }]
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'To Do 2',
+                                            isDone: false
+                                        }]
                                     }
                                 ],
                                 attachments: [],
                                 description: '',
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
+                                    }
+                                ],
                                 createdAt: Date.now(),
                                 comments: [{
                                     id: utilService.makeId(),
@@ -1634,6 +1900,12 @@ async function _createBoards() {
                             },{
                                 _id: utilService.makeId(),
                                 title: 'Gurevich loves scrolling (specially Y axis)',
+                                attachments: [{
+                                        _id: utilService.makeId(),
+                                        txt: 'Wuba La Dub Dub',
+                                        url: 'https://cdn.europosters.eu/image/750/posters/rick-and-morty-watch-i50046.jpg',
+                                        createdAt: 1642950358371,
+                                    }],
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#8E806A'
@@ -1644,7 +1916,27 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Do this',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Do that',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
+                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
@@ -1659,8 +1951,6 @@ async function _createBoards() {
                                         imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
                                     }
                                 ],
-                                attachments: [],
-                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     _id: utilService.makeId(),
@@ -1687,9 +1977,41 @@ async function _createBoards() {
                                 ],
                                 dueDate: [],
                                 members: [],
+                                comments: [],
                                 attachments: [],
                                 description: '',
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
+                            }, {
+                                _id: utilService.makeId(),
+                                title: 'Buy Some Nutella',
+                                labels: [{
+                                        name: 'Important',
+                                        bgc: '#F569B7'
+                                    },
+                                    {
+                                        name: 'Food',
+                                        bgc: '#82306A'
+                                    }
+                                ],
+                                dueDate: [],
+                                members: [],
                                 comments: [],
+                                attachments: [{
+                                    _id: utilService.makeId(),
+                                    txt: 'Nutella',
+                                    url: 'https://images.jumpseller.com/store/hercules-it-llc/10188702/Nutella.jpg?1623999446',
+                                    createdAt: Date.now()
+                                }],
+                                description: '',
                                 createdAt: Date.now(),
                                 checklists: [{
                                     _id: utilService.makeId(),
@@ -1710,7 +2032,8 @@ async function _createBoards() {
                         style: {
                             bgColor: '#ee3'
                         },
-                        tasks: [{
+                        tasks: [
+                            {
                                 _id: utilService.makeId(),
                                 title: 'Waiting for ilai!',
                                 labels: [{
@@ -1723,7 +2046,26 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Click me!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Please!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 members: [],
                                 attachments: [],
                                 description: '',
@@ -1752,10 +2094,10 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                members: [],
+                                comments: [],
                                 attachments: [],
                                 description: '',
-                                comments: [],
+                                members: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     _id: utilService.makeId(),
@@ -1789,24 +2131,34 @@ async function _createBoards() {
                                         bgc: '#51e8d9'
                                     }
                                 ],
-                                dueDate: [],
-                                checklists: [],
-                                attachments: [],
-                                description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
+                                dueDate: [],
+                                attachments: [],
+                                description: '',
                                 createdAt: Date.now(),
                                 comments: [{
                                     _id: utilService.makeId(),
@@ -1840,7 +2192,26 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -1870,7 +2241,7 @@ async function _createBoards() {
                                 }],
                             },{
                                 _id: utilService.makeId(),
-                                title: 'Most Powerful Programming ',
+                                title: 'Most Powerful Programming Language',
                                 labels: [{
                                         name: 'Work',
                                         bgc: '#f2a28a'
@@ -1881,21 +2252,31 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 createdAt: Date.now(),
@@ -1924,9 +2305,9 @@ async function _createBoards() {
                                 ],
                                 dueDate: [],
                                 members: [],
+                                comments: [],
                                 attachments: [],
                                 description: '',
-                                comments: [],
                                 createdAt: Date.now(),
                                 checklists: [{
                                     _id: utilService.makeId(),
@@ -1960,7 +2341,35 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -2000,22 +2409,41 @@ async function _createBoards() {
                                         bgc: '#b48aeb'
                                     }
                                 ],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'New New New!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Old Old Old!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 dueDate: [],
-                                checklists: [],
                                 attachments: [],
                                 description: '',
                                 members: [
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Rick",
-                                        fullname: "Rick Sanchez",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                        username: "Barney",
+                                        fullname: "Barney Stinson",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022678/Notello/barney_fs8vju.png"
                                     },
                                     {
                                         _id: utilService.makeId(),
-                                        username: "Dumbledore",
-                                        fullname: "Albus Dumbledore",
-                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                        username: "Dwight",
+                                        fullname: "Dwight Schrute",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1643022679/Notello/dwight_vuc6ll.png"
                                     }
                                 ],
                                 createdAt: Date.now(),
@@ -2042,7 +2470,17 @@ async function _createBoards() {
                                     }
                                 ],
                                 dueDate: [],
-                                checklists: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'New New New!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
                                 attachments: [],
                                 description: '',
                                 members: [
@@ -2097,6 +2535,15 @@ async function _createBoards() {
                                         title: 'To Do 1',
                                         isDone: false
                                     }]
+                                },
+                                {
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'To Do 2',
+                                        isDone: true
+                                    }]
                                 }],
                             }
                         ],
@@ -2116,7 +2563,8 @@ async function _createBoards() {
                         title: 'Notello'
                     }
                 }]
-            }
+            },
+
         ]
             pathToStorage.saveToStorage(STORAGE_KEY, gBoards);
             return gBoards;

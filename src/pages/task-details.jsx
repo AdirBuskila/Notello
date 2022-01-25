@@ -32,6 +32,7 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { deepOrange } from '@mui/material/colors';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
+import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
 
 export const TaskDetails = (props) => {
   const currBoard = useSelector((state) => state.boardModule.board);
@@ -109,6 +110,7 @@ export const TaskDetails = (props) => {
             <div className='task-info flex align-center'>
               <LabelsCmp labels={selectedTask.labels} />
               <MembersCmp members={selectedTask.members} />
+              <DueDateCmp dueDate={selectedTask.dueDate} / >
             </div>
             <div className='description-container'>
               <div className='description flex'>
@@ -225,19 +227,3 @@ export const TaskDetails = (props) => {
     </React.Fragment>
   );
 };
-
-// function mapStateToProps({ boardModule }) {
-//   return {
-//     board: boardModule.board,
-//   };
-// }
-
-// const mapDispatchToProps = {
-//   // loadBoard,
-//   // saveBoard,
-// };
-
-// export const TaskDetails = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(_TaskDetails);

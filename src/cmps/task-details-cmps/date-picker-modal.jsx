@@ -28,8 +28,9 @@ export function DatePickerModal(props) {
   }
 
   const AddDate = () => {
-    board.groups[groupIdx].tasks[taskIdx].dueDate.push(selectedDate)
-    boardService.saveBoard(board)
+    console.log('selectedDate', selectedDate);
+    // board.groups[groupIdx].tasks[taskIdx].dueDate.push(selectedDate)
+    // boardService.saveBoard(board)
   }
 
   return (
