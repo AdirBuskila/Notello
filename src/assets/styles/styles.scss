@@ -16,11 +16,6 @@
 // @import "cmps/blabla.scss";
 @import 'cmps/app-header.scss';
 @import 'cmps/workspaces-header-modal.scss';
-@import 'cmps/recent-header-modal.scss';
-@import 'cmps/starred-header-modal.scss';
-@import 'cmps/templates-header-modal.scss';
-@import 'cmps/create-header-modal.scss';
-@import 'cmps/checklist-modal.scss';
 @import 'cmps/inner-checklist-section.scss';
 @import 'cmps/labels-modal.scss';
 @import 'cmps/home-header.scss';
@@ -31,17 +26,24 @@
 // @import 'cmps/task-details.scss';
 @import 'cmps/boards-menu.scss';
 @import 'cmps/board-header.scss';
-@import 'cmps/labels-task-details.scss';
 @import 'cmps/members-task-details.scss';
 @import 'cmps/description-task-details.scss';
-@import 'cmps/comment-task-details.scss';
 @import 'cmps/checklist-popper.scss';
 @import 'cmps/attachments-cmp.scss';
-@import 'cmps/checklist-badge.scss';
-@import 'cmps/comments-badge.scss';
-@import 'cmps/attachments-badge.scss';
-@import 'cmps/members-badge.scss';
+@import 'cmps/checklist-modal.scss';
 // general
 // @import "cmps/app-footer.scss";
+
+//sub cmps
+@import 'sub-cmps/templates-header-modal.scss';
+@import 'sub-cmps/recent-header-modal.scss';
+@import 'sub-cmps/create-header-modal.scss';
+@import 'sub-cmps/starred-header-modal.scss';
+@import 'sub-cmps/labels-task-details.scss';
+@import 'sub-cmps/comment-task-details.scss';
+@import 'sub-cmps/checklist-badge.scss';
+@import 'sub-cmps/comments-badge.scss';
+@import 'sub-cmps/attachments-badge.scss';
+@import 'sub-cmps/members-badge.scss';
 @import 'cmps/task-details1.scss';
-@import 'cmps/attachment-modal.scss';
+@import 'sub-cmps/attachment-modal.scss';

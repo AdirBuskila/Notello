@@ -8,7 +8,7 @@ import { utilService } from '../../services/util.service';
 
 export const AttachmentModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [attachmentTitle, setAttachmentTitle] = React.useState('attachment');
+  const [attachmentName, setAttachmentName] = React.useState('');
   const [attachmentUrl, setAttachmentUrl] = React.useState('');
 
   const {board, group,task} = props
@@ -28,15 +28,15 @@ export const AttachmentModal = (props) => {
 
   const handleSubmit = (eve) => {
     eve.preventDefault()
+    const title = (!attachmentName) ? 'attachment' : attachmentName
     const attachment = {
       _id: utilService.makeId(),
-      txt: 'title',
+      txt: title,
       url: attachmentUrl,
       createdAt: Date.now()
   }
-    console.log('attachment', attachment);
-    // board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment)
-    // console.log(event);
+    board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment)
+    boardService.saveBoard(board)
   }
 
 
@@ -67,10 +67,24 @@ export const AttachmentModal = (props) => {
           </div>
           <div className='attachment-inner flex column'>
             <form onSubmit={handleSubmit}>
+              <p>Attach a link</p>
             <input
             autoFocus
+            onChange={({target})=> {
+              setAttachmentUrl(target.value)
+            }}
+            value={attachmentUrl}
             placeholder='Paste any link here...'
             ></input>
+            {attachmentUrl.length > 0 && <div className="link-name">
+              <p>Link name (optional)</p>
+            <input
+            onChange={({target})=> {
+              setAttachmentName(target.value)
+            }}
+            value={attachmentName}
+            ></input>
+            </div> }
             <button>Attach</button>
             </form>
             </div>
