@@ -5,13 +5,25 @@ import { ScrollDialog } from '../pages/task-details';
 import { ChecklistBadge } from './badge-cmps/checklist-badge';
 import SubjectIcon from '@mui/icons-material/Subject';
 
+import { utilService } from '../services/util.service';
+
 import { Link, Route } from 'react-router-dom';
 import { CommentsBadge } from './badge-cmps/comments-badge';
 import { MembersBadge } from './badge-cmps/members-badge';
 import { AttachmentsBadge } from './badge-cmps/attachments-badge';
 
+
+// cover: {
+//   background: '#ff8ed4',
+//   spread: 'full'
+// },
+
 export const TaskPreview = (props) => {
   const { task, board } = props;
+  const taskCover = (task.cover) ? (task.cover.background) ? task.cover : '' : '';
+  console.log("taskCover: ", taskCover);
+  const coverType = (taskCover) ? (utilService.isStringColor(taskCover.background)) ? 'backgroudColor' : 'backgroundImage' : null;
+  // console.log('IM READY!!!', (taskCover && task.cover.spread === 'full'));
   const dispatch = useDispatch();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
@@ -20,6 +32,7 @@ export const TaskPreview = (props) => {
 
   const onHandleLablesClick = (ev) => {
     ev.stopPropagation();
+    ev.preventDefault();
     dispatch({ type: 'HANDLE_LABELS' });
   };
   const className = isLabelsExpended
@@ -35,14 +48,17 @@ export const TaskPreview = (props) => {
           type='task'>
           {(provided) => (
             <div
-              className='task-preview flex column'
-              onClick={() => {
-                setOpenPopup(true);
-              }}
-              ref={provided.innerRef}
-              {...provided.dragHandleProps}
-              {...provided.draggableProps}
-              key={task._id}>
+            style={(taskCover && taskCover.spread === 'full') ? {backgroundColor: `${taskCover.background}`} : null}
+            className='task-preview flex column'
+            onClick={() => {
+              setOpenPopup(true);
+            }}
+            ref={provided.innerRef}
+            {...provided.dragHandleProps}
+            {...provided.draggableProps}
+            key={task._id}>
+                {(taskCover && taskCover.spread === 'partial') ?
+                (coverType === 'backgroudColor') ? <div className='task-cover' style={{backgroundColor: `${taskCover.background}`, height: '32px'}}></div> : <div style={{minHeight: '260px'}}><img src={taskCover.background} alt="task-img" /></div> : null}
               {task.labels && (
                 <ul className='labels flex'>
                   {task.labels.map((label, idx) => {

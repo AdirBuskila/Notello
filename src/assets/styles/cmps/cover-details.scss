@@ -1,0 +1,160 @@
+.cover-task-modal {
+    width: 93%;
+    margin: auto;
+    padding-inline-start: 33%;
+    font-size: rem(14px);
+    border-bottom: 1px solid #091e4221;
+    box-sizing: border-box;
+    color: #5e6c84;
+    line-height: 40px;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 10px;
+    a {
+        margin-left: auto;
+    }
+}
+    
+    .cover-modal {
+
+        width: 320px;
+        
+        span {
+            padding-inline-start: rem(12px);
+            color: #5e6c84;
+            display: block;
+            font-size: rem(12px);
+            font-weight: 700;
+            line-height: 16px;
+        }
+
+        .top-cover-modal {
+            margin-top: rem(14px);
+            padding: 0 rem(12px) rem(12px);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            .full-header {
+                border: 2px solid rgba(9, 30, 66, 0.08);
+                margin-inline-start: 10px;
+                border-radius: 3px;
+                width: rem(136px);
+                height: rem(64px);
+                background-color: #5E6C84;
+                opacity: .3;
+                cursor: pointer
+            }
+            
+            .half-header {
+                border: 2px solid rgba(9, 30, 66, 0.08);
+                margin-inline-end: 10px;
+                border-radius: 3px;
+                width: rem(136px);
+                height: rem(64px);
+                cursor: pointer;
+                
+                .top-half {
+                    height: 50%;
+                    background-color: #5E6C84;
+                    opacity: .3;
+                }
+                
+                .bottom-half {
+                    height: 50%;
+                    background-color: white;
+                }
+            }
+
+            .remove-btn {
+                font-size: 14px;
+                width: 98%;
+                margin: 4px 0 0;
+                -webkit-appearance: none;
+                border: none;
+                border-radius: 3px;
+                box-sizing: border-box;
+                display: inline-block;
+                line-height: 20px;
+                margin-bottom: 8px;
+                padding: 6px 12px;
+                position: relative;
+                text-decoration: none;
+            }
+
+            .remove-btn:hover {
+                background-color: #091e4214;
+            }
+
+        }
+
+        .color-picker {
+            margin: auto;
+            height: 80px;
+            width: 90%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: rem(8px);
+            padding: rem(8px);
+            overflow-x: hidden;
+
+            button {
+                border-radius: 3px;
+            }
+
+            button:hover {
+                filter: saturate(85%) brightness(85%);
+            }
+    
+            .green {
+    
+                background-color: #7BC86C;
+            } 
+
+            
+            .yellow {
+                background-color: #F5DD29;
+            }
+
+            
+            .orange {
+                background-color: #FFAF3F;
+
+            }
+            .red {
+                background-color: #EF7564;
+            }
+            
+            .purple {
+                background-color: #CD8DE5;
+            }
+            
+            .blue {
+                background-color: #5BA4CF;
+            }
+            .lightblue {
+                background-color: #29CCE5;
+            }
+            .lightgreen {
+                background-color: #6DECA9;
+            }
+            
+            .pink {
+                background-color: #FF8ED4;
+            }
+            
+            .darkblue {
+                background-color: #172B4D;
+            }
+        }   
+    }
+    
+    
+    // button {
+    //     background-color: #0079bf;
+    //     border-radius: 3px;
+    //     color: #fff;
+    //     padding: 0.5rem 0.75rem;
+    //     width: rem(74px);
+    // }

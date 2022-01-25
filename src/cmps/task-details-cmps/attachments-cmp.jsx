@@ -25,7 +25,7 @@ export const AttachmentsCmp = (props) => {
             return (attachment._id !== attachmentId)
         })
         console.log('newBoard', newBoard);
-        const action = {type: 'SAVE_BOARD', newBoard}
+        const action = {type: 'SET_BOARD', newBoard}
         dispatch(action)
         setIsAttachmentDeleted(true)
     }

@@ -15,6 +15,7 @@ import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmp } from '../cmps/check-list-cmp';
+import { CoverModal } from '../cmps/cover-modal';
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action';
@@ -46,6 +47,7 @@ export const TaskDetails = (props) => {
   const [isCheckListAcctivated, setIsCheckListAcctivated] = React.useState(false);
   const [isAttachmentActivated, setIsAttachmentActivated] = React.useState(false);
   const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
+  const [isColorPicked, setIsColorPicked] = React.useState(false);
 
   /* VALUES IN DETAILS : 
 
@@ -194,6 +196,7 @@ export const TaskDetails = (props) => {
           group={group}
           setIsAttachmentActivated ={setIsAttachmentActivated}
           />
+          <CoverModal setIsColorPicked={setIsColorPicked} isColorPicked={isColorPicked} board={board} groupIdx={groupIdx} taskIdx={taskIdx}  task={selectedTask}  />
           <p className='task-actions'>Actions</p>
           <div className='button-container flex'>
             <ArrowForwardOutlinedIcon color='action' />

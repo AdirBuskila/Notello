@@ -6,6 +6,17 @@
     padding: 6px 8px;
     width: 100%;
     box-shadow: 0 1px 0 #091e4240;
+
+    .task-cover {
+        width: 100%;
+        border-radius: 3px 3px 0 0;
+        margin-bottom: 5px;
+        // object-fit: contain;
+        // background-position: 50%;
+        // background-repeat: no-repeat;
+        // background-size: cover;
+    }
+
     .task-preview:hover {
         background-color: $clr2;
         cursor: pointer;
