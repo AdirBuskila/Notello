@@ -202,7 +202,9 @@ export const TaskDetails = (props) => {
               task={selectedTask}
               board={board}
               group={group}
-              setIsAttachmentActivated={setIsAttachmentActivated}
+              attachments={selectedTask.attachments}
+              setIsAttachmentDeleted={setIsAttachmentDeleted}
+              isAttachmentDeleted={isAttachmentDeleted}
             />
             <p className='task-actions'>Actions</p>
             <div className='button-container flex'>
