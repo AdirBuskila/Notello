@@ -38,6 +38,7 @@ export function DatePickerModal(props) {
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <DatePicker
         variant="inline"
+        style={{zIndex:'-1'}}
         open={isOpen}
         onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}
