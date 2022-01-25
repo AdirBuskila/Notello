@@ -70,7 +70,13 @@ export const CheckList = (props) => {
                 {!td.isDone ? (
                   <CheckBoxOutlineBlankOutlinedIcon className='checkbox' />
                 ) : (
-                  <CheckBoxIcon className='checkbox' />
+                  <CheckBoxIcon
+                    sx={{
+                      color: 'white',
+                      fill: '#0079bf',
+                    }}
+                    className='checkbox'
+                  />
                 )}
               </div>
               {isChanging && currTodoId === td._id ? (
