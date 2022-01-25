@@ -20,6 +20,7 @@ export const TaskPreview = (props) => {
   const [isDueDateChanged, setIsDueDateChanged] = useState(false)
 
   const onHandleLablesClick = (ev) => {
+    ev.preventDefault();
     ev.stopPropagation();
     dispatch({ type: 'HANDLE_LABELS' });
   };
