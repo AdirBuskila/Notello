@@ -32,7 +32,7 @@ export const CheckListModal = (props) => {
   const onAddClick = () => {
     if (!checklistName) return // add nice modal
     const checklist = {_id: utilService.makeId(), title: checklistName, todos: []}
-    task.checklists.push(checklist);
+    task.checklists.unshift(checklist);
     board.groups[groupIdx].tasks[taskIdx] = task;
     const action = {type: 'SAVE_BOARD', board};
     dispatch(action);

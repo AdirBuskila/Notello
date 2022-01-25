@@ -15,6 +15,7 @@ import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmp } from '../cmps/check-list-cmp';
+import { Backdrop } from '../cmps/UI/Backdrop';
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action';
@@ -43,8 +44,10 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = React.useState('');
   const [groupIdx, setGroupIdx] = React.useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
-  const [isCheckListAcctivated, setIsCheckListAcctivated] = React.useState(false);
-  const [isAttachmentActivated, setIsAttachmentActivated] = React.useState(false);
+  const [isCheckListAcctivated, setIsCheckListAcctivated] =
+    React.useState(false);
+  const [isAttachmentActivated, setIsAttachmentActivated] =
+    React.useState(false);
   const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
 
   /* VALUES IN DETAILS : 
@@ -88,43 +91,114 @@ export const TaskDetails = (props) => {
 
   if (!selectedTask || !board) return <div className=''></div>;
   return (
-    <div className='task-details flex column'>
-      <div className='window-header align-center flex space-between'>
-        <div className='task-title flex align-center'>
-          <WebAssetIcon sx={{ marginTop: 0.5 }} />
-          <p>{selectedTask.title}</p>
-        </div>
+    <React.Fragment>
+      <Backdrop />
+      <div className='task-details flex column'>
+        <div className='window-header align-center flex space-between'>
+          <div className='task-title flex align-center'>
+            <WebAssetIcon sx={{ marginTop: 0.5 }} />
+            <p>{selectedTask.title}</p>
+          </div>
           <div className='close-button flex align-center'>
             <CloseIcon onClick={onHandleClose} />
           </div>
-      </div>
+        </div>
 
-      <div className='task-main-container'>
-        <div className='main-content'>
-          <div className='task-info flex align-center'>
-            <LabelsCmp labels={selectedTask.labels} />
-            <MembersCmp members={selectedTask.members} />
-          </div>
-          <div className='description-container'>
-            <div className='description flex'>
-              <NotesIcon />
-              <p>Description</p>
+        <div className='task-main-container'>
+          <div className='main-content'>
+            <div className='task-info flex align-center'>
+              <LabelsCmp labels={selectedTask.labels} />
+              <MembersCmp members={selectedTask.members} />
             </div>
-            <div className='add-description-container'>
-              <Textarea />
+            <div className='description-container'>
+              <div className='description flex'>
+                <NotesIcon />
+                <p>Description</p>
+              </div>
+              <div className='add-description-container'>
+                <Textarea />
+              </div>
+            </div>
+            <CheckListCmp
+              key={utilService.makeId()}
+              isCheckListAcctivated={isCheckListAcctivated}
+              task={selectedTask}
+              groupIdx={groupIdx}
+              board={board}
+              taskIdx={taskIdx}
+              group={group}
+            />
+            <div className='attachments-container'>
+              <AttachmentsCmp
+                task={selectedTask}
+                board={board}
+                group={group}
+                attachments={selectedTask.attachments}
+                setIsAttachmentDeleted={setIsAttachmentDeleted}
+              />
+            </div>
+            <div className='activity-container flex column'>
+              <div className='activity flex align-center space-between'>
+                <div className='activity-header-container flex'>
+                  <FormatListBulletedIcon />
+                  <p>Activity</p>
+                </div>
+                <button>show Details</button>
+              </div>
+              <div className='comment-container flex'>
+                <div className='user-container'>
+                  <Avatar
+                    sx={{
+                      bgcolor: deepOrange[500],
+                      width: 32,
+                      height: 32,
+                    }}>
+                    <p>NC</p>
+                  </Avatar>
+                </div>
+                <Textarea1 />
+              </div>
+              <div className='comments-area flex column'>
+                <CommentsSection comments={selectedTask.comments} />
+              </div>
             </div>
           </div>
-          <CheckListCmp
-            key={utilService.makeId()}
-            isCheckListAcctivated={isCheckListAcctivated}
-            task={selectedTask}
-            groupIdx={groupIdx}
-            board={board}
-            taskIdx={taskIdx}
-            group={group}
-          />
-          <div className='attachments-container'>
-            <AttachmentsCmp
+          <div className='window-sidebar'>
+            <p className='task-actions'>Suggested</p>
+            <div className='button-container flex'>
+              <PersonOutlineOutlinedIcon color='action' />
+              <Typography>Join</Typography>
+            </div>
+            <p className='task-actions'>Add to card</p>
+            <div className='button-container flex'>
+              <PersonOutlineOutlinedIcon color='action' />
+              <Typography>Members</Typography>
+            </div>
+            <CheckListModal
+              isCheckListAcctivated={isCheckListAcctivated}
+              board={board}
+              groupIdx={groupIdx}
+              taskIdx={taskIdx}
+              task={selectedTask}
+              setIsCheckListAcctivated={setIsCheckListAcctivated}
+            />
+
+            <div
+              onClick={() => {
+                setIsOpen(true);
+              }}
+              className='button-container flex'>
+              <QueryBuilderIcon color='action' />
+              <Typography>Dates</Typography>
+              <DatePickerModal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                task={selectedTask}
+                board={board}
+                group={group}
+              />
+            </div>
+            <AttachmentModal
               task={selectedTask}
               board={board}
               group={group}
@@ -132,85 +206,23 @@ export const TaskDetails = (props) => {
               setIsAttachmentDeleted={setIsAttachmentDeleted}
               isAttachmentDeleted={isAttachmentDeleted}
             />
-          </div>
-          <div className='activity-container flex column'>
-            <div className='activity flex align-center space-between'>
-              <div className='activity-header-container flex'>
-                <FormatListBulletedIcon />
-                <p>Activity</p>
-              </div>
-              <button>show Details</button>
+            <p className='task-actions'>Actions</p>
+            <div className='button-container flex'>
+              <ArrowForwardOutlinedIcon color='action' />
+              <Typography>Move</Typography>
             </div>
-            <div className='comment-container flex'>
-              <div className='user-container'>
-                <Avatar
-                  sx={{
-                    bgcolor: deepOrange[500],
-                    width: 32,
-                    height: 32,
-                  }}
-                >
-                  <p>NC</p>
-                </Avatar>
-              </div>
-              <Textarea1 />
+            <div className='button-container flex'>
+              <ContentCopyOutlinedIcon color='action' />
+              <Typography>Copy</Typography>
             </div>
-            <div className='comments-area flex column'>
-              <CommentsSection comments={selectedTask.comments} />
+            <div className='button-container flex'>
+              <Inventory2OutlinedIcon color='action' />
+              <Typography>Archive</Typography>
             </div>
-          </div>
-        </div>
-        <div className='window-sidebar'>
-          <p className='task-actions'>Suggested</p>
-          <div className='button-container flex'>
-            <PersonOutlineOutlinedIcon color='action' />
-            <Typography>Join</Typography>
-          </div>
-          <p className='task-actions'>Add to card</p>
-          <div className='button-container flex'>
-            <PersonOutlineOutlinedIcon color='action' />
-            <Typography>Members</Typography>
-          </div>
-          <CheckListModal isCheckListAcctivated={isCheckListAcctivated} board={board} groupIdx={groupIdx} taskIdx={taskIdx}  task={selectedTask} setIsCheckListAcctivated={setIsCheckListAcctivated} />
-
-          <div
-            onClick={() => {
-              setIsOpen(true);
-            }}
-            className='button-container flex'
-          >
-            <QueryBuilderIcon color='action' />
-            <Typography>Dates</Typography>
-            <DatePickerModal
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              task={selectedTask}
-              board={board}
-              group={group}
-            />
-          </div>
-          <AttachmentModal
-          task={selectedTask}
-          board={board} 
-          group={group}
-          setIsAttachmentActivated ={setIsAttachmentActivated}
-          />
-          <p className='task-actions'>Actions</p>
-          <div className='button-container flex'>
-            <ArrowForwardOutlinedIcon color='action' />
-            <Typography>Move</Typography>
-          </div>
-          <div className='button-container flex'>
-            <ContentCopyOutlinedIcon color='action' />
-            <Typography>Copy</Typography>
-          </div>
-          <div className='button-container flex'>
-            <Inventory2OutlinedIcon color='action' />
-            <Typography>Archive</Typography>
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
