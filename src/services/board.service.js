@@ -303,6 +303,38 @@ async function _createBoards() {
                                         isDone: false
                                     }]
                                 }],
+                            }, {
+                                _id: utilService.makeId(),
+                                title: 'Buy Some Nutella',
+                                labels: [{
+                                        name: 'Important',
+                                        bgc: '#F569B7'
+                                    },
+                                    {
+                                        name: 'Food',
+                                        bgc: '#82306A'
+                                    }
+                                ],
+                                dueDate: [],
+                                members: [],
+                                comments: [],
+                                attachments: [{
+                                    _id: utilService.makeId(),
+                                    txt: Nutella,
+                                    url: 'https://images.jumpseller.com/store/hercules-it-llc/10188702/Nutella.jpg?1623999446',
+                                    createdAt: Date.now()
+                                }],
+                                description: '',
+                                createdAt: Date.now(),
+                                checklists: [{
+                                    _id: utilService.makeId(),
+                                    title: 'Checklist',
+                                    todos: [{
+                                        _id: utilService.makeId(),
+                                        title: 'To Do 1',
+                                        isDone: false
+                                    }]
+                                }],
                             }
                         ]
                     },
@@ -2316,18 +2348,3 @@ function getTask(board, taskId) {
     })
     return task
 }
-
-// async function addLabel(label, boardId, groupId, taskId, activity) {
-//     label._id = utilService.makeId()
-//     try {
-//         let board = await getBoardById(boardId)
-//         const groupIdx = getGroupIdxById(board, groupId)
-//         const taskIdx = getTaskIdxById(board, groupId, taskId)
-//         board.groups[groupIdx].tasks[taskIdx].labels.push(label)
-//         board.activities.unshift(activity)
-//         const updatedBoard = saveBoard(board)
-//         return updatedBoard
-//     } catch (err) {
-//         console.log(`Cant add label to ${taskId}`);
-//     }
-// }
