@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import * as React from 'react';
 import { utilService } from '../services/util.service';
 
@@ -15,6 +15,7 @@ import { ActivitySection } from '../cmps/details-activity';
 import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
+import { CheckListCmp } from '../cmps/check-list-cmp';
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action';
@@ -43,12 +44,13 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = React.useState('');
   const [groupIdx, setGroupIdx] = React.useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
+  const [isCheckListAcctivated, setIsCheckListAcctivated] = React.useState(false);
 
-  /* 
-  VALUES IN DETAILS : 
-  
-  board, group, task, groupIdx, taskIdx
-  */
+
+  /* VALUES IN DETAILS : 
+
+  board, group, task, groupIdx, taskIdx */
+
 
   React.useEffect(async () => {
     try {
@@ -76,8 +78,10 @@ export const TaskDetails = (props) => {
     }
   };
 
+  
 
-  if (!selectedTask) return <div className=''></div>;
+
+  if (!selectedTask || !board) return <div className=''></div>;
   return (
     <div className='task-details flex column'>
       <div className='window-header align-center flex space-between'>
@@ -86,9 +90,12 @@ export const TaskDetails = (props) => {
           <p>{selectedTask.title}</p>
         </div>
 
-        <div className='close-button flex align-center'>
-          <CloseIcon />
-        </div>
+        {/* <Link to={`b/${board._id}`}> */}
+          <div className='close-button flex align-center'>
+            <CloseIcon onClick={() => 
+            console.log('history', props.history)}/>
+          </div>
+        {/* </Link> */}
       </div>
 
       <div className='task-main-container'>
@@ -106,6 +113,7 @@ export const TaskDetails = (props) => {
               <Textarea />
             </div>
           </div>
+          <CheckListCmp key={utilService.makeId()} isCheckListAcctivated={isCheckListAcctivated} task={selectedTask} groupIdx={groupIdx} board={board} taskIdx={taskIdx} group={group} />
           <div className='attachments-container'>
             <AttachmentsCmp attachments={selectedTask.attachments} />
           </div>
@@ -147,6 +155,7 @@ export const TaskDetails = (props) => {
             <PersonOutlineOutlinedIcon color='action' />
             <Typography>Members</Typography>
           </div>
+          <CheckListModal setIsCheckListAcctivated={setIsCheckListAcctivated} />
 
           <div onClick={() => { setIsOpen(true) }} className='button-container flex'>
             <QueryBuilderIcon color='action' />
