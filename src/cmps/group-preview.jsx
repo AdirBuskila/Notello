@@ -81,7 +81,7 @@ const _GroupPreview = (props) => {
                       groupId={group._id}
                       tasks={tasks}
                     />
-                    <div style={{ height: '5px' }}></div>
+                    <div style={{ height: '1px' }}></div>
                     {provided.placeholder}
                   </div>
                 )}

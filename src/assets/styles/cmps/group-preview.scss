@@ -7,6 +7,7 @@
     background-color: #ebecf0;
     align-items: flex-start;
     &>.group-data-container {
+        width: calc(100% - 4px);
         overflow-y: auto;
     }
      ::-webkit-scrollbar {
@@ -55,7 +56,7 @@
     .task-list-container {
         width: 100%;
         gap: 0.5rem;
-        padding: 0 8px;
+        padding: 0 4px 0 8px;
         max-height: inherit;
     }
     .add-item {
@@ -63,7 +64,7 @@
         min-height: rem(40px);
         width: 100%;
         border-radius: 3px;
-        padding: rem(8px);
+        padding: 0.25rem 0.25rem 0.5rem 0.5rem;
         button {
             gap: 4px;
             border-radius: 3px;
