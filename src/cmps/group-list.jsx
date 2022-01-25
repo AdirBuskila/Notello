@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { Loader } from './loader';
 
 import { GroupPreview } from './group-preview';
 import { PreFeatureAdd } from './preFeatureAdd';
@@ -52,7 +53,7 @@ export const GroupList = (props) => {
     }
   };
 
-  if (!board.groups) return <q>No groups</q>;
+  if (!board.groups) return <Loader />;
   return (
     <React.Fragment>
       <DragDropContext onDragEnd={onDragEnd}>

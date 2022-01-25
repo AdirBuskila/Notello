@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
+import {utilService} from '../services/util.service'
 
 export const CheckListModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
+  const {board, groupIdx, taskIdx, task, isCheckListAcctivated} = props;
+  const dispatch = useDispatch()
   const [checklistName, setChecklistName] = useState('');
 
   const handleClick = (event) => {
@@ -26,8 +30,14 @@ export const CheckListModal = (props) => {
   };
 
   const onAddClick = () => {
+    if (!checklistName) return // add nice modal
+    const checklist = {_id: utilService.makeId(), title: checklistName, todos: []}
+    task.checklists.push(checklist);
+    board.groups[groupIdx].tasks[taskIdx] = task;
+    const action = {type: 'SAVE_BOARD', board};
+    dispatch(action);
+    props.setIsCheckListAcctivated(!isCheckListAcctivated);
     setChecklistName('')
-    props.setIsCheckListAcctivated(true);
     handleClose()
   }
 
@@ -49,7 +59,7 @@ export const CheckListModal = (props) => {
         <div sx={{ p: 0.5, width: '304px', height: '227px' }}>
           <div className='check-list-modal flex justify-center'>
             Add checklist
-            <a href='#' onClick={handleClose}>
+            <a onClick={handleClose}>
               ✕
             </a>
           </div>

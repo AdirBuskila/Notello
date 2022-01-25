@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { AppHeader } from '../cmps/app-header';
 import { boardService } from '../services/board.service';
+import { Loader } from '../cmps/loader';
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
@@ -16,7 +17,7 @@ export const BoardWorkspaces = () => {
       }
     })();
   }, []);
-  if (!boards || boards.length === 0) return <q>Loading...</q>;
+  if (!boards || boards.length === 0) return <Loader />
   return (
     <React.Fragment>
       <AppHeader />

@@ -11,6 +11,7 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARD':
+            boardService.saveBoard(action.board);
             newState = {...state, board: action.board }
             break;
         case 'ADD_TASK':

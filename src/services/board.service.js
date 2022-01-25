@@ -2303,7 +2303,6 @@ function removeBoard(boardId) {
 }
 
 function saveBoard(board) {
-    console.log("board: ", board);
     if (board._id) {
         return storageService.put(STORAGE_KEY, board)
     } else {
