@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux'
 import Button from '@mui/material/Button';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -11,8 +11,8 @@ import { boardService } from '../services/board.service';
 export const CheckListDelete = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const { board, task, taskIdx, groupIdx, checklistIdx, checkList } = props;
     const dispatch = useDispatch();
+    const { board, task, taskIdx, groupIdx, checklistIdx, checklist, isChanged } = props;
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -25,9 +25,9 @@ export const CheckListDelete = (props) => {
     const onDelete = () => {
         task.checklists.splice(checklistIdx, 1);
         board.groups[groupIdx].tasks[taskIdx] = task;
-        boardService.saveBoard(board);
-        const action = { type: 'SET_BOARD', board };
+        const action = { type: 'SAVE_BOARD', board };
         dispatch(action);
+        props.setIsChanged(!isChanged);
         handleClose()
     }
 
@@ -46,8 +46,8 @@ export const CheckListDelete = (props) => {
                 }}>
                 <Typography sx={{ p: 0.5, width: '304px', height: '148px', overflow: 'hidden' }}>
                     <div className='check-list-modal flex justify-center'>
-                        <span>{'Deleting ' + checkList.title + ' ?'}</span>
-                        <a href='#' onClick={handleClose}>
+                        <span>{'Deleting ' + checklist.title + ' ?'}</span>
+                        <a onClick={handleClose}>
                             ✕
                         </a>
                     </div>
