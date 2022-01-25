@@ -46,7 +46,6 @@ export const TaskDetails = (props) => {
   const [taskIdx, setTaskIdx] = React.useState('');
   const [isCheckListAcctivated, setIsCheckListAcctivated] = React.useState(false);
 
-
   /* VALUES IN DETAILS : 
 
   board, group, task, groupIdx, taskIdx */
@@ -93,12 +92,9 @@ export const TaskDetails = (props) => {
           <WebAssetIcon sx={{ marginTop: 0.5 }} />
           <p>{selectedTask.title}</p>
         </div>
-
-        {/* <Link to={`b/${board._id}`}> */}
           <div className='close-button flex align-center'>
             <CloseIcon onClick={onHandleClose} />
           </div>
-        {/* </Link> */}
       </div>
 
       <div className='task-main-container'>
@@ -158,7 +154,7 @@ export const TaskDetails = (props) => {
             <PersonOutlineOutlinedIcon color='action' />
             <Typography>Members</Typography>
           </div>
-          <CheckListModal setIsCheckListAcctivated={setIsCheckListAcctivated} />
+          <CheckListModal isCheckListAcctivated={isCheckListAcctivated} board={board} groupIdx={groupIdx} taskIdx={taskIdx}  task={selectedTask} setIsCheckListAcctivated={setIsCheckListAcctivated} />
 
           <div onClick={() => { setIsOpen(true) }} className='button-container flex'>
             <QueryBuilderIcon color='action' />

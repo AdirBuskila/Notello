@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { AppHeader } from '../cmps/app-header';
 import { BoardHeader } from '../cmps/board-header.jsx';
+import {Loader} from '../cmps/loader'
 
 import { GroupList } from '../cmps/group-list.jsx';
 import { TaskDetails } from '../pages/task-details';
@@ -14,7 +15,6 @@ const _BoardDetails = (props) => {
     const { id } = props.match.params;
     try {
       await props.loadBoard(id);
-      console.log(props.board.style.imgUrl);
     } catch (err) {
       console.log('Cant load current board');
       throw new Error(err);
@@ -24,16 +24,18 @@ const _BoardDetails = (props) => {
   useEffect(async () => {
     try {
       await onLoadBoard();
-      console.log(props.board.style.imgUrl);
     } catch (err) {
       console.log('Cannot load board', err);
     }
   }, []);
 
   if (!props.board || props.board.length === 0) {
-    console.log('board wast find');
-    return <q>Loading...</q>;
+    return (<Loader />)
   }
+  
+  // setTimeout(() => {
+
+  // }, 1500)
 
   return (
     <div
@@ -56,6 +58,7 @@ const _BoardDetails = (props) => {
     </div>
   );
 };
+
 
 function mapStateToProps({ boardModule }) {
   return {

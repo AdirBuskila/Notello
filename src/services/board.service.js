@@ -2247,7 +2247,6 @@ function getGroupIdxById(board, groupId) {
 }
 
 async function getTaskIdxById(board, groupId, taskId) {
-    console.log('IM HEREEEEEEEE');
     try {
         const groupIdx = await getGroupIdxById(board, groupId)
         const _idx = board.groups[groupIdx].tasks.findIndex(task => {
@@ -2272,7 +2271,6 @@ function removeBoard(boardId) {
 }
 
 function saveBoard(board) {
-    console.log("board: ", board);
     if (board._id) {
         return storageService.put(STORAGE_KEY, board)
     } else {
@@ -2302,8 +2300,6 @@ async function addAttachment(attachment, boardId, groupId, taskId, activity) {
 }
 
 function getGroup(board,taskId) {
-    console.log("taskId !!!!!!: ", taskId);
-    console.log("board !!!!!!: ", board);
     const group = board.groups.filter((group) => {
         return group.tasks.find((currTask) => {
             return currTask._id === taskId
@@ -2313,13 +2309,10 @@ function getGroup(board,taskId) {
 }
 
 function getTask(board, taskId) {
-    console.log("taskId in service: ", taskId); 
-    console.log("board in service: ", board);
     const group = getGroup(board,taskId)
     const task = group.tasks.find((currTask)=>{
         return (currTask._id === taskId)
     })
-    console.log(task,'task in SERVICE!!!');
     return task
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
@@ -8,71 +8,61 @@ import {CheckListSection} from '../cmps/check-list-section'
 import { CheckListDelete } from './check-list-delete';
 
 import { boardService } from '../services/board.service';
+import {utilService} from '../services/util.service'
+
+{/* <CheckList setIsChanged={setIsChanged} /> */}
+
 
 export const CheckList = (props) => {
-    const board = useSelector(
-        (state) => state.boardModule.board
-      );
-    const {task, taskIdx, groupIdx, checklistIdx } = props;
-    const [checkList, setCheckList] = useState(props.checklist)
-    const [isEdditing, setIsEdditing] = useState(false);
+    const {task, taskIdx, groupIdx, checklistIdx, board, checklist, isChanged} = props;
+    const dispatch = useDispatch()
     const [currTodoId, setCurrTodoId] = useState('');
     const [isChanging, setIsChanging] = useState(false);
     const [isAdding, setIsAdding] = useState(false);
 
-    useEffect(() => {
-        setCheckList(props.checklist)
-    }, [board])
-
-    // useEffect(() => {
-    //     props.setTask(task);
-    // }, [isEdditing, isChanging, isAdding])
-
-
-    const handleCheckBoxClick = (checkListId, todoId) => {
-        const checklistIdx = task.checklists.findIndex((chk) => {
-            return (chk._id === checkListId)
-        })
+    const handleCheckBoxClick = (todoId) => {
         const todoIdx = task.checklists[checklistIdx].todos.findIndex((td) => {
             return (td._id === todoId);
         })
-        let { isDone } = task.checklists[checklistIdx].todos[todoIdx];
+        let {isDone} = task.checklists[checklistIdx].todos[todoIdx];
         task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;
         board.groups[groupIdx].tasks[taskIdx] = task;
-        boardService.saveBoard(board);
+        const action = {type: 'SAVE_BOARD', board};
+        dispatch(action);
+        props.setIsChanged(!isChanged);
+        setIsAdding(false);
         setIsChanging(false);
-        setIsEdditing(!isEdditing)
     }
 
-    const getProgressValue = (checkList) => {
-        return checkList.todos.reduce((acc, t) => {
-            (t.isDone) ? acc += (100 / checkList.todos.length) : acc += 0;
+    const getProgressValue = () => {
+        return checklist.todos.reduce((acc, t) => {
+            (t.isDone) ? acc += (100 / checklist.todos.length) : acc += 0;
             return acc
         }, 0)
     }
 
-    if (!checkList) return (<></>)
+    if (!checklist) return (<></>)
     return (
         <div>
             <div className="checklist-header flex align-center">
                 <AssignmentTurnedInOutlinedIcon className='header-icon' />
                 <section className='checklist-header-title flex align-center space-between'>
-                    <p>{checkList.title}</p>
+                    <p>{checklist.title}</p>
                     <div className='flex end'>
-                        <CheckListDelete setTask={props.setTask} checklistIdx={checklistIdx} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} checkList={checkList} />                    
+                        <CheckListDelete isChanged={isChanged} setIsChanged={props.setIsChanged} checklistIdx={checklistIdx} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} checklist={checklist} />                    
                         </div>
                 </section>
             </div>
-            <LinearWithValueLabel value={getProgressValue(checkList)} />
+            <LinearWithValueLabel value={getProgressValue()} />
             <div className='checkbox-info flex column'>
-            {checkList.todos.map((td, index) => {
+            {checklist.todos.map((td, index) => {
                 return (<div className='individual-checklist flex'>
                         <div className='flex' onClick={() => {
-                            handleCheckBoxClick(checkList._id, td._id)
+                            handleCheckBoxClick(td._id)
                         }}>
                             {!td.isDone ? <CheckBoxOutlineBlankOutlinedIcon className='checkbox' /> : <CheckBoxOutlinedIcon className='checkbox' />}
                         </div>
-                        {isChanging && currTodoId === td._id ? <CheckListSection type={'oldTodo'} todo={td} checklistIdx={checklistIdx} setIsChanging={setIsChanging} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} todoIdx={index} />
+                        {isChanging && currTodoId === td._id ? <CheckListSection setIsChanging={setIsChanging} setIsAdding={setIsAdding} type={'oldTodo'} todo={td} checklistIdx={checklistIdx} setIsChanged={props.setIsChanged} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} todoIdx={index} />
                         :
                         <div className='todo-title' onClick={() => {
                             setCurrTodoId(td._id)
