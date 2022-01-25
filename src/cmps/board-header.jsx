@@ -49,6 +49,10 @@ export const BoardHeader = (props) => {
           className='title-input'
           defaultValue={board.title}
           onBlur={onHandleChange}
+          onFocus={(ev) => {
+            console.log('here');
+            ev.target.select();
+          }}
           onChange={(ev) => setBoardTitle(ev.target.value)}
         />
         <div className='rating-container flex align-center justify-center'>
