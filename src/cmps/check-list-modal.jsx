@@ -47,7 +47,7 @@ export const CheckListModal = (props) => {
           vertical: 'bottom',
           horizontal: 'left',
         }}>
-        <Typography sx={{ p: 0.5, width: '304px', height: '227px' }}>
+        <div sx={{ p: 0.5, width: '304px', height: '227px' }}>
           <div className='check-list-modal flex justify-center'>
             Add checklist
             <a href='#' onClick={handleClose}>
@@ -68,7 +68,7 @@ export const CheckListModal = (props) => {
             </div>
             <button onClick={onAddClick}>Add</button>
           </div>
-        </Typography>
+        </div>
       </Popover>
     </div>
   );

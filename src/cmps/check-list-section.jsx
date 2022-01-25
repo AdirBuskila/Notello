@@ -25,6 +25,7 @@ export const CheckListSection = (props) => {
       };
 
       const onSave = () => {
+          if (!todoTitle) return; // add a nice modal
           task.checklists[checklistIdx].todos[props.todoIdx].title = todoTitle;
           board.groups[groupIdx].tasks[taskIdx] = task;
           boardService.saveBoard(board);
@@ -33,6 +34,7 @@ export const CheckListSection = (props) => {
 
       const onAdd = () => {
         let newTodo = {title: todoTitle, _id: utilService.makeId(), isDone: false};
+        if (!newTodo.title) return; // add a nice modal
         task.checklists[checklistIdx].todos.push(newTodo)
         board.groups[groupIdx].tasks[taskIdx] = {...board.groups[groupIdx].tasks[taskIdx], task};
         boardService.saveBoard(board);
@@ -43,12 +45,14 @@ export const CheckListSection = (props) => {
     return (
         <section>
             <div className='new-item flex column'>
-                <textArea
+                <textarea
                     required
                     autoFocus
                     onChange={onHandleChange}
+                    rows={3}
+                    cols={5}
                     value={todoTitle}
-                />
+                ></textarea>
                 <div className='new-item-actions flex align-center'>
                     <div>
                     {props.type === 'newTodo' ? <button onClick={onAdd}>Add</button> 

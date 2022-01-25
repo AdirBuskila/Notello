@@ -27,12 +27,12 @@ export const routes = [{
         path: '/b/:id',
         component: BoardDetails,
     },
-    // {
-    //     path: '/c/:id',
-    //     component: ScrollDialog,
-    // },
     {
         path: '/b/:id/c/:id',
-        component: TaskDetails,
+        component: ScrollDialog,
     },
+    // {
+    //     path: '/b/:id/c/:id',
+    //     component: TaskDetails,
+    // },
 ];

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import {CheckList} from '../cmps/checklist'
 
 export const CheckListCmp = (props) => {
+    console.log("props: ", props);
     const board = useSelector(
         (state) => state.boardModule.board
     );
@@ -20,7 +21,7 @@ export const CheckListCmp = (props) => {
         <section>
             {board.groups[props.groupIdx].tasks[taskIdx].checklists.map((checklist, index) => {
                 return <section>
-                    <CheckList key={index} board={board} task={task} checklistIdx={index} taskIdx={taskIdx} groupIdx={props.groupIdx} checklist={checklist} />
+                    <CheckList setTask={setTask} key={index} board={board} task={task} checklistIdx={index} taskIdx={taskIdx} groupIdx={props.groupIdx} checklist={checklist} />
                 </section>
             })}
         </section>

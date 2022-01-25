@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import { LinearWithValueLabel } from '../cmps/progress-bar'
 import {CheckListSection} from '../cmps/check-list-section'
+import { CheckListDelete } from './check-list-delete';
 
 import { boardService } from '../services/board.service';
 
 export const CheckList = (props) => {
-    const { board, task, taskIdx, groupIdx, checklistIdx } = props;
+    const board = useSelector(
+        (state) => state.boardModule.board
+      );
+    const {task, taskIdx, groupIdx, checklistIdx } = props;
     const [checkList, setCheckList] = useState(props.checklist)
     const [isEdditing, setIsEdditing] = useState(false);
-    const [currTodoId, setCurrTodoId] = useState('')
+    const [currTodoId, setCurrTodoId] = useState('');
     const [isChanging, setIsChanging] = useState(false);
-    const [isAdding, setIsAdding] = useState(false)
+    const [isAdding, setIsAdding] = useState(false);
+
+    useEffect(() => {
+        console.log('IM THE EFFECT');
+        setCheckList(props.checklist)
+    }, [board])
 
 
     const handleCheckBoxClick = (checkListId, todoId) => {
@@ -46,8 +56,8 @@ export const CheckList = (props) => {
                 <section className='checklist-header-title flex align-center space-between'>
                     <p>{checkList.title}</p>
                     <div className='flex end'>
-                        <button>Delete</button>
-                    </div>
+                        <CheckListDelete setIsEdditing={setIsEdditing} checklistIdx={checklistIdx} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} checkList={checkList} />                    
+                        </div>
                 </section>
             </div>
             <LinearWithValueLabel value={getProgressValue(checkList)} />

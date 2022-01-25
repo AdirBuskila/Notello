@@ -33,7 +33,7 @@ import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 
 import { utilService } from '../services/util.service';
 import { boardService } from '../services/board.service';
-import { useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react/cjs/react.development';
 
 export const ScrollDialog = (props) => {
   const [scroll, setScroll] = React.useState('body');
@@ -46,6 +46,10 @@ export const ScrollDialog = (props) => {
 
   const board = useSelector((state) => state.boardModule.board);
   const { openPopup, setOpenPopup, labels, members, title, attachments } = props;
+
+  useEffect(() => {
+    setIsCheckListAcctivated(true);
+  }, [board])
 
   const handleMaxWidthChange = (event) => {
     setMaxWidth(
