@@ -1,3 +1,3 @@
-export const Backdrop = () => {
-  return <div className='backdrop'> </div>;
+export const Backdrop = ({ onClick }) => {
+  return <div className='backdrop' onClick={onClick}></div>;
 };
