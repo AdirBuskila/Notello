@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
-import { ScrollDialog } from '../pages/task-details';
 import { ChecklistBadge } from './badge-cmps/checklist-badge';
 import SubjectIcon from '@mui/icons-material/Subject';
 
@@ -12,12 +11,13 @@ import { AttachmentsBadge } from './badge-cmps/attachments-badge';
 import { DueDateBadge } from './badge-cmps/due-date-badge';
 
 export const TaskPreview = (props) => {
-  const { task, board } = props;
+  const { task, board, groupIdx } = props;
   const dispatch = useDispatch();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
   );
   const [openPopup, setOpenPopup] = useState(false);
+  const [isDueDateChanged, setIsDueDateChanged] = useState(false)
 
   const onHandleLablesClick = (ev) => {
     ev.stopPropagation();
@@ -26,6 +26,7 @@ export const TaskPreview = (props) => {
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
+
 
   return (
     <React.Fragment>
@@ -64,7 +65,7 @@ export const TaskPreview = (props) => {
               <div className='task-info-icons flex space-between'>
                 <div className='task-badges flex align-center'>
 
-                  {task.dueDate.length > 0 && (<DueDateBadge dueDate={task.dueDate} />)}
+                  {task.dueDate.length > 0 && (<DueDateBadge groupIdx={groupIdx} task={task} board={board} isDueDateChanged={isDueDateChanged} setIsDueDateChanged={setIsDueDateChanged} dueDate={task.dueDate} />)}
 
                   {task.comments.length > 0 && (<CommentsBadge comments={task.comments} />)}
                   {task.attachments.length > 0 && (
