@@ -34,7 +34,7 @@ export const BoardHeader = (props) => {
   return (
     <section className='upper-header flex'>
       <div className='info-details flex align-center'>
-        <div className='board-stats board-header-btn flex align-center space-between'>
+        <div className='board-stats board-header-btn flex align-center space-around'>
           <img src={STATS} alt='stats' />
           <span>Board</span>
           <img
@@ -50,8 +50,10 @@ export const BoardHeader = (props) => {
           defaultValue={board.title}
           onBlur={onHandleChange}
           onFocus={(ev) => {
-            console.log('here');
-            ev.target.select();
+            ev.currentTarget.select();
+          }}
+          onClick={(ev) => {
+            ev.currentTarget.select();
           }}
           onChange={(ev) => setBoardTitle(ev.target.value)}
         />
