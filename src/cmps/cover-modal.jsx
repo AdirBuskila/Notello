@@ -25,8 +25,8 @@ export const CoverModal = (props) => {
 
 
   const onHandlePick = (ev) => {
-    console.log('getComputedStyle(ev.target)', getComputedStyle(ev.target));
-    // const bgc = getComputedStyle(ev.target).backgroundColor;
+    const bgc = getComputedStyle(ev.target).backgroundColor;
+    console.log("bgc: ", bgc);
     // task.cover = bgc;
     // board.groups[groupIdx].tasks[taskIdx] = task;
     // const action = {type: 'SET_BOARD', board}

@@ -16,7 +16,7 @@ import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmp } from '../cmps/check-list-cmp';
 import { CoverModal } from '../cmps/cover-modal';
-import {Backdrop} from '../cmps/UI/Backdrop'
+import {Backdrop} from '../cmps/UI/backdrop'
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action';
@@ -241,13 +241,13 @@ export const TaskDetails = (props) => {
               setIsAttachmentDeleted={setIsAttachmentDeleted}
               isAttachmentDeleted={isAttachmentDeleted}
             />
-          </div>
-          <AttachmentModal
+          
+          {/* <AttachmentModal
           task={selectedTask}
           board={board} 
           group={group}
           setIsAttachmentActivated ={setIsAttachmentActivated}
-          />
+          /> */}
           <CoverModal setIsColorPicked={setIsColorPicked} isColorPicked={isColorPicked} board={board} groupIdx={groupIdx} taskIdx={taskIdx}  task={selectedTask}  />
           <p className='task-actions'>Actions</p>
           <div className='button-container flex'>
@@ -263,6 +263,7 @@ export const TaskDetails = (props) => {
             <Typography>Archive</Typography>
           </div>
         </div>
+      </div>
       </div>
     </Backdrop>
   );
