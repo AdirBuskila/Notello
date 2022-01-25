@@ -10,4 +10,19 @@
         color: #fff;
         font-weight: 400;
     }
+    &.soon {
+        padding: 2px;
+        background-color: #f2d600;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: 400;
+    }
+    &.over-due {
+        padding: 2px;
+        background-color: #ec9488;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: 400;
+
+    }
 }

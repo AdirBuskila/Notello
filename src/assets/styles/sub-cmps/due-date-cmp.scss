@@ -8,11 +8,25 @@
     font-size: 14px;
     color: #172b4d;
     .complete {
-    
     height: 17px;
     border-radius: 2px;
     color: #FFFFFF;
     background-color: #61BD4F;
     font-size: 12px;
+    }
+    .soon{
+        width: 10px;
+        height: 17px;
+        border-radius: 2px;
+        color: #172B4D;
+        background-color: #f2d600;
+        font-size: 12px;
+    }
+    .over-due {
+        height: 17px;
+        border-radius: 2px;
+        color: #FFFFFF;
+        background-color: #ec9488;
+        font-size: 12px;
     }
 }

@@ -32,7 +32,19 @@ export const DueDateCmp = ({ dueDate }) => {
     const hours = date1.getHours()
     let minutes = date1.getMinutes()
     const timeAmPm = formatAMPM(date1)
-
+    const Diff = newDate - Date.now()
+    let isOverDue = (Diff < 0) ? true : false
+    let isSoon = (Diff < 86400000) ? true : false
+    if (isDone) {
+      isSoon = false
+      isOverDue = false
+    }
+    if (isOverDue) {
+      isSoon = false
+    }
+    if (isSoon) {
+      isOverDue = false
+    }
     if (minutes === 0 ) {
         minutes = '00'
     }
@@ -41,7 +53,12 @@ export const DueDateCmp = ({ dueDate }) => {
       <div className='due-date-info-container'>
           <span>Due Date</span>
         <div className='span-container flex'>
-          <span className='due-date flex align-center' >{months[month]} {day} at {timeAmPm}{isDone && <span className='complete' >complete</span>}</span>
+          <span className='due-date flex align-center' >
+          {months[month]} {day} at {timeAmPm}
+          {isDone && <span className='complete' >complete</span>}
+          {isOverDue && <span className='over-due' >over due</span> }
+          {isSoon && <span className='soon' >due soon</span> }
+          </span>
           
         </div>
       </div>
