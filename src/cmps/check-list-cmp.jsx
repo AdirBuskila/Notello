@@ -3,8 +3,6 @@ import {CheckList} from '../cmps/checklist'
 
 export const CheckListCmp = (props) => {
     const {board, group, groupIdx, task, taskIdx} = props;
-    console.log("group: ", group);
-    console.log("task: ", task);
 
     if (!task.checklists || task.checklists.length === 0) return (<></>)
     return (

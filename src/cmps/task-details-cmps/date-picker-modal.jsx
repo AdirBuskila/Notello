@@ -16,7 +16,6 @@ export function DatePickerModal(props) {
   const classes = useStyles();
   const {isOpen, setIsOpen, task, group, board} = props
   const [selectedDate, handleDateChange] = useState("2022-01-25T00:00:00.000Z");
-  console.log('selectedDate', selectedDate);
 
   const groupIdx = boardService.getGroupIdxById(board, group._id)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
@@ -38,7 +37,6 @@ export function DatePickerModal(props) {
     <div className={classes.container}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <DatePicker
-        style={{zIndex:'-1'}}
         variant="inline"
         open={isOpen}
         onOpen={() => setIsOpen(true)}

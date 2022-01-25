@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 import * as React from 'react';
 import { utilService } from '../services/util.service';
-
 
 import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
 import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
@@ -35,43 +34,47 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 
 export const TaskDetails = (props) => {
   const currBoard = useSelector((state) => state.boardModule.board);
-  const params = useParams()
+  const params = useParams();
   const boardId = params.boardId;
   const taskId = params.id;
-  const [board, setBoard] = React.useState(currBoard)
-  const [group, setGroup] = React.useState({})
+  const [board, setBoard] = React.useState(currBoard);
+  const [group, setGroup] = React.useState({});
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedTask, updateTask] = React.useState('');
   const [groupIdx, setGroupIdx] = React.useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
   const [isCheckListAcctivated, setIsCheckListAcctivated] = React.useState(false);
-
+  const [isAttachmentActivated, setIsAttachmentActivated] = React.useState(false);
+  const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
 
   /* VALUES IN DETAILS : 
 
   board, group, task, groupIdx, taskIdx */
 
-
   React.useEffect(async () => {
     try {
       const newBoard = await boardService.getBoardById(boardId);
       const newGroup = boardService.getGroup(newBoard, taskId);
-      setBoard(newBoard)
-      setGroup(newGroup)
-      await onLoadTask(newBoard, newGroup, taskId)
+      setBoard(newBoard);
+      setGroup(newGroup);
+      await onLoadTask(newBoard, newGroup, taskId);
     } catch (err) {
       console.log('Cant load board');
     }
-  }, [])
+  }, []);
 
   const onLoadTask = async (board, group, taskId) => {
     try {
       const task = await boardService.getTask(board, taskId);
       const currGroupIdx = await boardService.getGroupIdxById(board, group._id);
-      const currTaskIdx = await boardService.getTaskIdxById(board, group._id, taskId)
+      const currTaskIdx = await boardService.getTaskIdxById(
+        board,
+        group._id,
+        taskId
+      );
       updateTask(task);
-      setGroupIdx(currGroupIdx)
-      setTaskIdx(currTaskIdx)
+      setGroupIdx(currGroupIdx);
+      setTaskIdx(currTaskIdx);
     } catch (err) {
       console.log('Cant load current task');
       throw new Error(err);
@@ -79,11 +82,9 @@ export const TaskDetails = (props) => {
   };
 
   const onHandleClose = () => {
-    const boardLoacation = '/b/' + boardId + ''; 
-     props.history.push(boardLoacation)
-  }
-
-
+    const boardLoacation = '/b/' + boardId + '';
+    props.history.push(boardLoacation);
+  };
 
   if (!selectedTask || !board) return <div className=''></div>;
   return (
@@ -95,9 +96,9 @@ export const TaskDetails = (props) => {
         </div>
 
         {/* <Link to={`b/${board._id}`}> */}
-          <div className='close-button flex align-center'>
-            <CloseIcon onClick={onHandleClose} />
-          </div>
+        <div className='close-button flex align-center'>
+          <CloseIcon onClick={onHandleClose} />
+        </div>
         {/* </Link> */}
       </div>
 
@@ -116,9 +117,23 @@ export const TaskDetails = (props) => {
               <Textarea />
             </div>
           </div>
-          <CheckListCmp key={utilService.makeId()} isCheckListAcctivated={isCheckListAcctivated} task={selectedTask} groupIdx={groupIdx} board={board} taskIdx={taskIdx} group={group} />
+          <CheckListCmp
+            key={utilService.makeId()}
+            isCheckListAcctivated={isCheckListAcctivated}
+            task={selectedTask}
+            groupIdx={groupIdx}
+            board={board}
+            taskIdx={taskIdx}
+            group={group}
+          />
           <div className='attachments-container'>
-            <AttachmentsCmp attachments={selectedTask.attachments} />
+            <AttachmentsCmp
+              task={selectedTask}
+              board={board}
+              group={group}
+              attachments={selectedTask.attachments}
+              setIsAttachmentDeleted={setIsAttachmentDeleted}
+            />
           </div>
           <div className='activity-container flex column'>
             <div className='activity flex align-center space-between'>
@@ -160,9 +175,14 @@ export const TaskDetails = (props) => {
           </div>
           <CheckListModal setIsCheckListAcctivated={setIsCheckListAcctivated} />
 
-          <div onClick={() => { setIsOpen(true) }} className='button-container flex'>
+          <div
+            onClick={() => {
+              setIsOpen(true);
+            }}
+            className='button-container flex'
+          >
             <QueryBuilderIcon color='action' />
-            <Typography  >Dates</Typography>
+            <Typography>Dates</Typography>
             <DatePickerModal
               isOpen={isOpen}
               setIsOpen={setIsOpen}
@@ -172,9 +192,10 @@ export const TaskDetails = (props) => {
             />
           </div>
           <AttachmentModal
-            task={selectedTask}
-            board={board}
-            group={group}
+          task={selectedTask}
+          board={board} 
+          group={group}
+          setIsAttachmentActivated ={setIsAttachmentActivated}
           />
           <p className='task-actions'>Actions</p>
           <div className='button-container flex'>

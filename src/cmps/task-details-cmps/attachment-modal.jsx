@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -8,15 +9,23 @@ import { utilService } from '../../services/util.service';
 
 export const AttachmentModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  let open = Boolean(anchorEl);
   const [attachmentName, setAttachmentName] = React.useState('');
   const [attachmentUrl, setAttachmentUrl] = React.useState('');
+  const dispatch = useDispatch()
 
-  const {board, group,task} = props
+  
+
+  const {board, group, task, setIsAttachmentActivated} = props
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (event) => {
+    console.log('im here');
+    open = false
+    console.log('open', open);;
+
     setAnchorEl(null);
   };
 
@@ -27,6 +36,7 @@ export const AttachmentModal = (props) => {
 
 
   const handleSubmit = (eve) => {
+    if (!attachmentUrl) return
     eve.preventDefault()
     const title = (!attachmentName) ? 'attachment' : attachmentName
     const attachment = {
@@ -36,20 +46,22 @@ export const AttachmentModal = (props) => {
       createdAt: Date.now()
   }
     board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment)
-    boardService.saveBoard(board)
+    const action = {type: 'SAVE_BOARD', board}
+    dispatch(action)
+    setIsAttachmentActivated(true)
+    handleClose()
   }
 
 
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'attachment-modal' : undefined;
+  // const open = Boolean(anchorEl);
+  // const id = open ? 'attachment-modal' : undefined;
 
   return (
-    <div className='button-container flex' onClick={handleClick}>
-      <AttachFileIcon color='action' />
-      <Typography>Attachment</Typography>
+    <div className='button-container flex' >
+      <AttachFileIcon onClick={handleClick} color='action' />
+      <Typography onClick={handleClick} >Attachment</Typography>
       <Popover
-        id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -61,7 +73,7 @@ export const AttachmentModal = (props) => {
         <div className='attachment-modal-container'>
           <div className='attachment-modal-header flex space-between'>
             <p> Add Attachment</p>
-            <div className='close-button' onClick={handleClick}>
+            <div className='close-button pointer' onClick={handleClose}>
               ✕
             </div>
           </div>
