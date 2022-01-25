@@ -27,7 +27,7 @@ export const TaskPreview = (props) => {
     : 'flex align-center';
   return (
     <React.Fragment>
-      <Link to={`/b/${board._id}/c/${task._id}`}>
+      <Link to={`/b/${board._id}/${task._id}`}>
         <Draggable
           draggableId={task._id}
           index={props.index}
