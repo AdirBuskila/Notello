@@ -22,12 +22,13 @@ export const CheckListDelete = (props) => {
         setAnchorEl(null);
     };
 
-    const onDeleteClick = () => {
+    const onDelete = () => {
         task.checklists.splice(checklistIdx, 1);
         board.groups[groupIdx].tasks[taskIdx] = task;
         boardService.saveBoard(board);
         // const action = { type: 'SET_BOARD', board };
         // dispatch(action);
+        props.setTask(task);
         handleClose()
     }
 
@@ -55,7 +56,7 @@ export const CheckListDelete = (props) => {
                         <div>
                             Deleting a checklist is permanent and there is no way to get it back.
                         </div>
-                        <button style={{ backgroundColor: 'red', width: 'fit-content', margin: 'auto', marginTop: '10px' }} onClick={onDeleteClick}>Delete checklist</button>
+                        <button style={{ backgroundColor: 'red', width: 'fit-content', margin: 'auto', marginTop: '10px' }} onClick={onDelete}>Delete checklist</button>
                     </div>
                 </Typography>
             </Popover>

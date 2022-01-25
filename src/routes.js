@@ -7,7 +7,12 @@ import { SignUp } from './pages/sign-up-page';
 import { TaskDetails } from './pages/task-details2';
 
 
-export const routes = [{
+export const routes = [
+    {
+        path: '/b/:id/',
+        component: BoardDetails,
+    },
+    {
         path: '/home',
         component: HomePage,
     },
@@ -23,14 +28,10 @@ export const routes = [{
         path: '/board',
         component: BoardWorkspaces,
     },
-    {
-        path: '/b/:id',
-        component: BoardDetails,
-    },
-    {
-        path: '/b/:id/c/:id',
-        component: ScrollDialog,
-    },
+    // {
+    //     path: '/b/:id/c/:id',
+    //     component: ScrollDialog,
+    // },
     // {
     //     path: '/b/:id/c/:id',
     //     component: TaskDetails,

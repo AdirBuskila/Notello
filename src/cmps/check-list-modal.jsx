@@ -26,7 +26,6 @@ export const CheckListModal = (props) => {
   };
 
   const onAddClick = () => {
-    console.log(checklistName);
     setChecklistName('')
     props.setIsCheckListAcctivated(true);
     handleClose()

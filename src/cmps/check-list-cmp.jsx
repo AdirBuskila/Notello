@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import {CheckList} from '../cmps/checklist'
 
 export const CheckListCmp = (props) => {
-    console.log("props: ", props);
     const board = useSelector(
         (state) => state.boardModule.board
     );

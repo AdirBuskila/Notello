@@ -21,9 +21,12 @@ export const CheckList = (props) => {
     const [isAdding, setIsAdding] = useState(false);
 
     useEffect(() => {
-        console.log('IM THE EFFECT');
         setCheckList(props.checklist)
     }, [board])
+
+    // useEffect(() => {
+    //     props.setTask(task);
+    // }, [isEdditing, isChanging, isAdding])
 
 
     const handleCheckBoxClick = (checkListId, todoId) => {
@@ -56,7 +59,7 @@ export const CheckList = (props) => {
                 <section className='checklist-header-title flex align-center space-between'>
                     <p>{checkList.title}</p>
                     <div className='flex end'>
-                        <CheckListDelete setIsEdditing={setIsEdditing} checklistIdx={checklistIdx} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} checkList={checkList} />                    
+                        <CheckListDelete setTask={props.setTask} checklistIdx={checklistIdx} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} checkList={checkList} />                    
                         </div>
                 </section>
             </div>

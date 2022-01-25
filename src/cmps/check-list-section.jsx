@@ -36,7 +36,7 @@ export const CheckListSection = (props) => {
         let newTodo = {title: todoTitle, _id: utilService.makeId(), isDone: false};
         if (!newTodo.title) return; // add a nice modal
         task.checklists[checklistIdx].todos.push(newTodo)
-        board.groups[groupIdx].tasks[taskIdx] = {...board.groups[groupIdx].tasks[taskIdx], task};
+        board.groups[groupIdx].tasks[taskIdx] = task;
         boardService.saveBoard(board);
         props.setIsAdding(false);
       }
