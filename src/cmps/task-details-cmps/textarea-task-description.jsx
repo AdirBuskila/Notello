@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button';
 
-
 export const Textarea = (props) => {
   const [newState, onNewState] = useState({});
   const [isAdding, onIsAdding] = useState(false);
@@ -23,10 +22,7 @@ export const Textarea = (props) => {
   return (
     <React.Fragment>
       {!isAdding && (
-        <button
-          className='add-description flex'
-          onClick={onHandleModal}
-        >
+        <button className='add-description flex' onClick={onHandleModal}>
           <p>Add a more detailed description</p>
         </button>
       )}
@@ -36,13 +32,14 @@ export const Textarea = (props) => {
             autoFocus
             onChange={onHandleChange}
             rows='4'
-            placeholder={`Add a more detailed description `}
-          ></textarea>
+            placeholder={`Add a more detailed description... `}></textarea>
           <div className='new-description-actions flex align-center'>
-            <Button 
-            onClick={onAdd}
-            variant='contained'
-            >Save</Button>
+            <Button
+              onClick={onAdd}
+              variant='contained'
+              sx={{ textTransform: 'none', minWidth: 52.5 }}>
+              Save
+            </Button>
             <a href='#' onClick={onHandleModal}>
               ✕
             </a>

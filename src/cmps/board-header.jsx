@@ -73,18 +73,18 @@ export const BoardHeader = (props) => {
         <div className='members-avatars'>
           <AvatarGroup sx={{ gap: 0.5 }} max={3}>
             <Avatar
-              alt='NC'
-              src={AVATAR1}
-              style={{ width: '28px', height: '28px', border: '0' }}
-            />
-            <Avatar
               alt='NG'
-              src={AVATAR2}
+              src={'https://res.cloudinary.com/dubjerksn/image/upload/v1643131873/Notello/NG_e1fglp.png'}
               style={{ width: '28px', height: '28px', border: '0' }}
             />
             <Avatar
-              alt='NA'
-              src={AVATAR3}
+              alt='NC'
+              src={'https://res.cloudinary.com/dubjerksn/image/upload/v1643131867/Notello/NC_foadck.png'}
+              style={{ width: '28px', height: '28px', border: '0' }}
+            />
+            <Avatar
+              alt='AB'
+              src={'https://res.cloudinary.com/dubjerksn/image/upload/v1643131869/Notello/AB_pplonl.png'}
               style={{ width: '28px', height: '28px', border: '0' }}
             />
           </AvatarGroup>

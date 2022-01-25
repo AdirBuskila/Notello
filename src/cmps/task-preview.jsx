@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
-import { ScrollDialog } from '../pages/task-details';
 import { ChecklistBadge } from './badge-cmps/checklist-badge';
 import SubjectIcon from '@mui/icons-material/Subject';
 
@@ -11,6 +10,7 @@ import { Link, Route } from 'react-router-dom';
 import { CommentsBadge } from './badge-cmps/comments-badge';
 import { MembersBadge } from './badge-cmps/members-badge';
 import { AttachmentsBadge } from './badge-cmps/attachments-badge';
+import { DueDateBadge } from './badge-cmps/due-date-badge';
 
 
 // cover: {
@@ -29,8 +29,10 @@ export const TaskPreview = (props) => {
     (state) => state.boardModule.isLabelsExpended
   );
   const [openPopup, setOpenPopup] = useState(false);
+  const [isDueDateChanged, setIsDueDateChanged] = useState(false)
 
   const onHandleLablesClick = (ev) => {
+    ev.preventDefault();
     ev.stopPropagation();
     ev.preventDefault();
     dispatch({ type: 'HANDLE_LABELS' });
@@ -38,6 +40,8 @@ export const TaskPreview = (props) => {
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
+
+
   return (
     <React.Fragment>
       <Link to={`/b/${board._id}/${task._id}`}>
@@ -77,9 +81,10 @@ export const TaskPreview = (props) => {
               <p>{task.title}</p>
               <div className='task-info-icons flex space-between'>
                 <div className='task-badges flex align-center'>
-                  {task.comments.length > 0 && (
-                    <CommentsBadge comments={task.comments} />
-                  )}
+
+                  {task.dueDate.length > 0 && (<DueDateBadge groupIdx={groupIdx} task={task} board={board} isDueDateChanged={isDueDateChanged} setIsDueDateChanged={setIsDueDateChanged} dueDate={task.dueDate} />)}
+
+                  {task.comments.length > 0 && (<CommentsBadge comments={task.comments} />)}
                   {task.attachments.length > 0 && (
                     <AttachmentsBadge attachments={task.attachments} />
                   )}
@@ -99,16 +104,6 @@ export const TaskPreview = (props) => {
             </div>
           )}
         </Draggable>
-        {/* <ScrollDialog
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        onLoadBoard={props.onLoadBoard}
-        groupIdx={props.groupIdx}
-        task={task}
-        members={task.members}
-        title={task.title}
-        labels={task.labels}
-        attachments={task.attachments}></ScrollDialog> */}
       </Link>
     </React.Fragment>
   );

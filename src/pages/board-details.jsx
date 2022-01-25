@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { AppHeader } from '../cmps/app-header';
 import { BoardHeader } from '../cmps/board-header.jsx';
-import {Loader} from '../cmps/loader'
+import { Loader } from '../cmps/loader';
 
 import { GroupList } from '../cmps/group-list.jsx';
 import { TaskDetails } from '../pages/task-details';
-import { Backdrop } from '../cmps/UI/Backdrop';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
@@ -30,9 +29,9 @@ const _BoardDetails = (props) => {
   }, []);
 
   if (!props.board || props.board.length === 0) {
-    return (<Loader />)
+    return <Loader />;
   }
-  
+
   // setTimeout(() => {
 
   // }, 1500)
@@ -58,7 +57,6 @@ const _BoardDetails = (props) => {
     </div>
   );
 };
-
 
 function mapStateToProps({ boardModule }) {
   return {

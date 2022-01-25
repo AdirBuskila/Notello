@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 
 export const AttachmentsCmp = (props) => {
 
-    const {attachments, task, group, board, setIsAttachmentDeleted} = props
+    const {attachments, task, group, board, setIsAttachmentDeleted, isAttachmentDeleted} = props
 
     const groupIdx = boardService.getGroupIdxById(board, group._id)
     const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
@@ -21,13 +21,17 @@ export const AttachmentsCmp = (props) => {
     const DeleteAttachment = (attachmentId) => {
         console.log('attachmentId', attachmentId);
         console.log(board.groups[groupIdx].tasks[taskIdx].attachments)
-        const newBoard = board.groups[groupIdx].tasks[taskIdx].attachments.filter((attachment)=> {
-            return (attachment._id !== attachmentId)
+        const attachmentIdx = task.attachments.findIndex((attachment)=>{
+            return (attachmentId === attachment._id)
         })
-        console.log('newBoard', newBoard);
-        const action = {type: 'SET_BOARD', newBoard}
+        task.attachments.splice(attachmentIdx,1)
+        board.groups[groupIdx].tasks[taskIdx] = task
+        const action = {type: 'SET_BOARD', board}
         dispatch(action)
-        setIsAttachmentDeleted(true)
+        setIsAttachmentDeleted(!isAttachmentDeleted)
+        console.log('after');
+        console.log(task.attachments);
+
     }
   
 

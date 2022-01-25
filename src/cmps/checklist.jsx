@@ -70,6 +70,5 @@ export const CheckList = (props) => {
             </div>
             {!isAdding ? <button onClick={() => setIsAdding(true)} className='last-btn'>Add an item</button> : <CheckListSection type={'newTodo'} checklistIdx={checklistIdx} setIsAdding={setIsAdding} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} />}
         </div>
-
     )
 }
