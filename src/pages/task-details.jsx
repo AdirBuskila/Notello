@@ -15,7 +15,7 @@ import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmp } from '../cmps/check-list-cmp';
-import { Backdrop } from '../cmps/UI/backdrop';
+import { Backdrop } from '../cmps/UI/Backdrop';
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action';
