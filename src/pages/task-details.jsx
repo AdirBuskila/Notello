@@ -50,6 +50,7 @@ export const TaskDetails = (props) => {
   const [isAttachmentActivated, setIsAttachmentActivated] =
     React.useState(false);
   const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
+  const [newDueDateAdded, setNewDueDateAdded] = React.useState(false);
   const dispatch = useDispatch()
 
 
@@ -104,12 +105,6 @@ export const TaskDetails = (props) => {
     board.groups[groupIdx].tasks[taskIdx] = selectedTask
     const action = {type: 'SET_BOARD', board}
     dispatch(action)
-
-
-    // const newBoard = board;
-    // newBoard.title = boardTitle;
-    // boardService.saveBoard(board);
-    // await props.onLoadBoard();
   };
 
   if (!selectedTask || !board) return <div className=''></div>;
@@ -227,11 +222,11 @@ export const TaskDetails = (props) => {
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>
               <DatePickerModal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
                 task={selectedTask}
                 board={board}
                 group={group}
+                setNewDueDateAdded={setNewDueDateAdded}
+                newDueDateAdded={newDueDateAdded}
               />
             </div>
             <AttachmentModal

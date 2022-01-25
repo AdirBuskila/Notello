@@ -22,7 +22,6 @@ function formatAMPM(date) {
 export const DueDateCmp = ({ dueDate }) => {
     const months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-
     const date = dueDate[0].date
     const isDone = dueDate[0].isDone
     const newDate = Date.parse(date);
@@ -33,12 +32,10 @@ export const DueDateCmp = ({ dueDate }) => {
     const hours = date1.getHours()
     let minutes = date1.getMinutes()
     const timeAmPm = formatAMPM(date1)
-    console.log(timeAmPm);
 
     if (minutes === 0 ) {
         minutes = '00'
     }
-    console.log(minutes);
   return (
     <section className='due-date-main-container'>
       <div className='due-date-info-container'>

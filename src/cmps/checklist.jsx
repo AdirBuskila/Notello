@@ -56,7 +56,7 @@ export const CheckList = (props) => {
             <LinearWithValueLabel value={getProgressValue()} />
             <div className='checkbox-info flex column'>
             {checklist.todos.map((td, index) => {
-                return (<div className='individual-checklist flex'>
+                return (<div key={utilService.makeId()} className='individual-checklist flex'>
                         <div className='flex' onClick={() => {
                             handleCheckBoxClick(td._id)
                         }}>
