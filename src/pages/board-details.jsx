@@ -7,7 +7,7 @@ import {Loader} from '../cmps/loader'
 
 import { GroupList } from '../cmps/group-list.jsx';
 import { TaskDetails } from '../pages/task-details';
-import { Card } from '../cmps/UI/Card';
+import { Backdrop } from '../cmps/UI/Backdrop';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
