@@ -6,8 +6,8 @@ import { routes } from './routes';
 
 export const RootCmp = () => {
   return (
-    <Switch>
-      <div className='page-contianer flex column'>
+    <div className='page-contianer flex column'>
+      <Switch>
         <Route path='/' exact>
           <Redirect to='/home' />
         </Route>
@@ -19,7 +19,7 @@ export const RootCmp = () => {
           />
         ))}
         {/* <AppFooter /> */}
-      </div>
-    </Switch>
+      </Switch>
+    </div>
   );
 };

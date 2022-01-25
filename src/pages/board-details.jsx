@@ -41,17 +41,18 @@ const _BoardDetails = (props) => {
       style={{
         backgroundImage: `url(${props.board.style?.imgUrl})`,
         backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}>
       <AppHeader />
       <BoardHeader onLoadBoard={onLoadBoard} board={props.board} />
-      <Card className='board-details-container flex column '>
+      <div className='board-details-container flex column '>
         <GroupList
           onLoadBoard={onLoadBoard}
           board={props.board}
           groups={props.board.groups}
         />
-        <Route component={TaskDetails} path={`/b/:boardId/c/:id`} />
-      </Card>
+        <Route component={TaskDetails} path={`/b/:boardId/:id`} />
+      </div>
     </div>
   );
 };

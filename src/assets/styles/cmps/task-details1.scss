@@ -1,131 +1,134 @@
 .task-details {
-    min-height: 600px;
-    width: rem(768px);
-    background-color: #f4f5f7;
-    margin: auto;
-    border-radius: 3px;
-    .window-header {
-        min-height: 32px;
-        color: #172b4d;
-        .close-button {
-            margin-top: rem(7px);
-            margin-right: rem(7px);
-            width: rem(40px);
-            height: rem(40px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-        .close-button:hover {
-            background-color: #091e4214;
-        }
+  position: fixed;
+  top: 50px;
+  left: 30%;
+  min-height: 100%;
+  width: rem(768px);
+  background-color: #f4f5f7;
+  margin: auto;
+  border-radius: 3px;
+  .window-header {
+    min-height: 32px;
+    color: #172b4d;
+    .close-button {
+      margin-top: rem(7px);
+      margin-right: rem(7px);
+      width: rem(40px);
+      height: rem(40px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 50%;
     }
-}
-.task-title {
-    svg {
-        margin-inline-end: rem(10px);
+    .close-button:hover {
+      background-color: #091e4214;
     }
-    p {
-        font-size: 20px;
-    font-weight: 600;
-    }
-    padding-left: 16px;
+  }
 }
 
+.task-title {
+  svg {
+    margin-inline-end: rem(10px);
+  }
+  p {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  padding-left: 16px;
+}
 
 .window-sidebar {
-    float: right;
-    overflow: hidden;
-    padding: 0 16px 8px 8px;
-    width: calc(100% - 577px);
-    .button-container {
-        width: rem(168px);
-        height: rem(32px);
-        cursor: pointer;
-        align-items: center;
-        transition: 0.2s background-color;
-        margin-bottom: rem(8px);
-        background-color: #091e420a;
-        border-radius: rem(3px);
-        svg {
-            width: rem(16px);
-            margin-left: rem(5px);
-            margin-right: rem(5px);
-        }
-        p {
-            font-size: rem(14px);
-        }
+  float: right;
+  overflow: hidden;
+  padding: 0 16px 8px 8px;
+  width: calc(100% - 577px);
+  .button-container {
+    width: rem(168px);
+    height: rem(32px);
+    cursor: pointer;
+    align-items: center;
+    transition: 0.2s background-color;
+    margin-bottom: rem(8px);
+    background-color: #091e420a;
+    border-radius: rem(3px);
+    svg {
+      width: rem(16px);
+      margin-left: rem(5px);
+      margin-right: rem(5px);
     }
-    .task-actions {
-        padding-bottom: rem(15px);
+    p {
+      font-size: rem(14px);
     }
-    .button-container:hover {
-        background-color: #091e4214;
-    }
+  }
+  .task-actions {
+    padding-bottom: rem(15px);
+  }
+  .button-container:hover {
+    background-color: #091e4214;
+  }
 }
 
 .main-content {
-    float: left;
-    color: #172b4d;
-    display: flex;
-    flex-direction: column;
-    width: rem(576px);
-    gap: 20px;
-    padding-left: rem(16px);
-    p {
-        font-weight: 500;
+  float: left;
+  color: #172b4d;
+  display: flex;
+  flex-direction: column;
+  width: rem(576px);
+  gap: 20px;
+  padding-left: rem(16px);
+  p {
+    font-weight: 500;
+  }
+  textarea {
+    padding-inline-start: 1rem;
+    border-radius: rem(3px);
+  }
+  .description-container {
+    .description {
+      margin-bottom: rem(10px);
+      svg {
+        margin-inline-end: rem(10px);
+      }
     }
     textarea {
-        padding-inline-start: 1rem;
-        border-radius: rem(3px);
+      padding-inline-start: 1rem;
+      cursor: pointer;
+      outline-color: #2684ff;
     }
-    .description-container {
-        .description {
-            margin-bottom: rem(10px);
-            svg {
-                margin-inline-end: rem(10px);
-            }
-        }
-        textarea {
-            padding-inline-start: 1rem;
-            cursor: pointer;
-            outline-color: #2684ff;
-        }
-    }
-    .description-container {
-        font-size: rem(16px);
-        margin-bottom: rem(15px);
-        font-weight: 600;
-    }
+  }
+  .description-container {
+    font-size: rem(16px);
+    margin-bottom: rem(15px);
+    font-weight: 600;
+  }
 }
 
 .activity-container {
+  gap: 8px;
+  font-size: rem(16px);
+  font-weight: 600;
+  .activity {
+    margin-bottom: rem(15px);
+    svg {
+      margin-inline-end: rem(10px);
+    }
+  }
+  .comment {
+    font-size: 14px;
     gap: 8px;
-    font-size: rem(16px);
-    font-weight: 600;
-    .activity {
-        margin-bottom: rem(15px);
-        svg {
-            margin-inline-end: rem(10px);
-        }
+  }
+  .comment-container {
+    .comments-area {
+      gap: 8px;
     }
-    .comment {
-        font-size: 14px;
-        gap: 8px;
+    p {
+      font-size: rem(15px);
     }
-    .comment-container {
-        .comments-area {
-            gap: 8px;
-        }
-        p {
-            font-size: rem(15px);
-        }
-    }
+  }
 }
 
 .task-info {
-    margin-left: 33px;
-    gap: rem(20px);
+  margin-left: 33px;
+  gap: rem(20px);
 }
