@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
-import { ScrollDialog } from '../pages/task-details';
 import { ChecklistBadge } from './badge-cmps/checklist-badge';
 import SubjectIcon from '@mui/icons-material/Subject';
 
@@ -19,6 +18,7 @@ export const TaskPreview = (props) => {
   const [openPopup, setOpenPopup] = useState(false);
 
   const onHandleLablesClick = (ev) => {
+    ev.preventDefault();
     ev.stopPropagation();
     dispatch({ type: 'HANDLE_LABELS' });
   };

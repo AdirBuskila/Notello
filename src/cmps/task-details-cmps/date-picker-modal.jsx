@@ -1,55 +1,53 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider  } from "@material-ui/pickers";
-import { Button, makeStyles } from "@material-ui/core";
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { Button, makeStyles } from '@material-ui/core';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { boardService } from "../../services/board.service";
+import { boardService } from '../../services/board.service';
 
 const useStyles = makeStyles({
   container: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
   },
 });
 
 export function DatePickerModal(props) {
   const classes = useStyles();
-  const {isOpen, setIsOpen, task, group, board} = props
-  const [selectedDate, handleDateChange] = useState("2022-01-25T00:00:00.000Z");
+  const { isOpen, setIsOpen, task, group, board } = props;
+  const [selectedDate, handleDateChange] = useState('2022-01-25T00:00:00.000Z');
 
-  const groupIdx = boardService.getGroupIdxById(board, group._id)
-  const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
-    return (currTask._id === task._id)
-  })
+  const groupIdx = boardService.getGroupIdxById(board, group._id);
+  const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
+    return currTask._id === task._id;
+  });
 
-  const HandleClose = ()=> {
-    AddDate()
-    setIsOpen(false)
-  }
+  const HandleClose = () => {
+    AddDate();
+    setIsOpen(false);
+  };
 
   const AddDate = () => {
-    board.groups[groupIdx].tasks[taskIdx].dueDate.push(selectedDate)
-    boardService.saveBoard(board)
-  }
+    board.groups[groupIdx].tasks[taskIdx].dueDate.push(selectedDate);
+    boardService.saveBoard(board);
+  };
 
   return (
-
     <div className={classes.container}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <DatePicker
-        variant="inline"
-        style={{zIndex:'-1'}}
-        open={isOpen}
-        onOpen={() => setIsOpen(true)}
-        onClose={() => setIsOpen(false)}
-        label="Open me from button"
-        format="d MMM yyyy"
-        value={selectedDate}
-        onAccept={()=> setIsOpen(false)}
-        onChange={handleDateChange}
+        <DatePicker
+          variant='inline'
+          style={{ zIndex: '-1' }}
+          open={isOpen}
+          onOpen={() => setIsOpen(true)}
+          onClose={() => setIsOpen(false)}
+          label='Open me from button'
+          format='d MMM yyyy'
+          value={selectedDate}
+          onAccept={() => setIsOpen(false)}
+          onChange={handleDateChange}
         />
       </MuiPickersUtilsProvider>
     </div>
   );
 }
-
