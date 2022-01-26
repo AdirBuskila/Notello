@@ -5,7 +5,7 @@ import { utilService } from '../services/util.service';
 
 import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
 import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
-import { Textarea } from '../cmps/task-details-cmps/textarea-task-description';
+import { AddDescription } from '../cmps/task-details-cmps/textarea-task-description';
 import { AddCommentCmp } from '../cmps/task-details-cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal';
 import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
@@ -107,8 +107,8 @@ export const TaskDetails = (props) => {
 
   if (!selectedTask || !board) return <div className=''></div>;
   return (
-      <div className="task-details-container">
-      <Backdrop onClick={onHandleClose}/>  
+    <div className='task-details-container'>
+      <Backdrop onClick={onHandleClose} />
 
       <div
         className='task-details flex column '
@@ -184,7 +184,16 @@ export const TaskDetails = (props) => {
                 <p>Description</p>
               </div>
               <div className='add-description-container'>
-                <Textarea />
+                {selectedTask.description === '' && (
+                  <AddDescription
+                  task={selectedTask}
+                  board={board}
+                  group={group}
+                  />
+                )}
+                {selectedTask.description !== '' && (
+                  <p className='task-description' >{selectedTask.description}</p>
+                )}
               </div>
             </div>
             <CheckListCmp
@@ -242,11 +251,7 @@ export const TaskDetails = (props) => {
               <Typography>Join</Typography>
             </div>
             <p className='task-actions'>Add to card</p>
-            <MembersModal
-            task={selectedTask}
-            board={board}
-            group={group}
-            />
+            <MembersModal task={selectedTask} board={board} group={group} />
             <CheckListModal
               isCheckListAcctivated={isCheckListAcctivated}
               board={board}
@@ -304,8 +309,6 @@ export const TaskDetails = (props) => {
           </div>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
-
-

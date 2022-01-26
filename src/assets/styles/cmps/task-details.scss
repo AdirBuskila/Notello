@@ -139,7 +139,7 @@
     width: rem(568px);
     gap: 20px;
     padding-left: rem(16px);
-    p {
+    p:not(.task-description){
       font-weight: 500;
     }
     textarea:not(:last-child) {
