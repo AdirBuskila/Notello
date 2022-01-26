@@ -16,7 +16,7 @@ export const AttachmentModal = (props) => {
 
   
 
-  const {board, group, task, setIsAttachmentActivated} = props
+  const {board, group, task} = props
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,15 +48,9 @@ export const AttachmentModal = (props) => {
     board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment)
     const action = {type: 'SET_BOARD', board}
     dispatch(action)
-    setIsAttachmentActivated(true)
     handleClose()
   }
-
-
-
-  // const open = Boolean(anchorEl);
-  // const id = open ? 'attachment-modal' : undefined;
-
+  
   return (
     <div className='button-container flex' >
       <AttachFileIcon onClick={handleClick} color='action' />

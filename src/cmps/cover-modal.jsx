@@ -11,7 +11,6 @@ export const CoverModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task, isColorPicked } = props;
-  const [isPicked, setIsPicked] = useState(false);
   const dispatch = useDispatch()
 
   const handleClick = (event) => {

@@ -36,26 +36,22 @@ import SubjectIcon from '@mui/icons-material/Subject';
 import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
 
 export const TaskDetails = (props) => {
+  const {useState} = React
   const currBoard = useSelector((state) => state.boardModule.board);
   const params = useParams();
   const boardId = params.boardId;
   const taskId = params.id;
-  const [board, setBoard] = React.useState(currBoard);
-  const [group, setGroup] = React.useState({});
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedTask, updateTask] = React.useState('');
-  const [groupIdx, setGroupIdx] = React.useState('');
+  const [board, setBoard] = useState(currBoard);
+  const [group, setGroup] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedTask, updateTask] = useState('');
+  const [groupIdx, setGroupIdx] = useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
   const [isCheckListAcctivated, setIsCheckListAcctivated] = React.useState(false);
-  const [isAttachmentActivated, setIsAttachmentActivated] = React.useState(false);
-  const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
   const [isColorPicked, setIsColorPicked] = React.useState('');
-  const [newDueDateAdded, setNewDueDateAdded] = React.useState(false);
-  const [newCommentAdded, setNewCommentAdded] = React.useState(false);
-
-  const whichBgcExist = (selectedTask.cover) ? selectedTask.cover.background : null;
   const dispatch = useDispatch();
-
+  
+  const whichBgcExist = (selectedTask.cover) ? selectedTask.cover.background : null;
 
   React.useEffect(async () => {
     try {
@@ -67,7 +63,7 @@ export const TaskDetails = (props) => {
     } catch (err) {
       console.log('Cant load board');
     }
-  }, []);
+  }, [currBoard]);
 
   const onLoadTask = async (board, group, taskId) => {
     try {
@@ -136,6 +132,7 @@ export const TaskDetails = (props) => {
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
+          <div className="task-title-container flex">
             <input
               className='task-title-input'
               defaultValue={selectedTask.title}
@@ -148,6 +145,10 @@ export const TaskDetails = (props) => {
               }}
               onChange={(ev) => setTaskTitle(ev.target.value)}
             />
+          </div>
+            <div className="group-title">
+              <p>in list {group.title}</p>
+            </div>
           </div>
         </div>
 
@@ -179,11 +180,10 @@ export const TaskDetails = (props) => {
             />
             <div className='attachments-container'>
               <AttachmentsCmp
+              attachments={selectedTask.attachments}
                 task={selectedTask}
                 board={board}
                 group={group}
-                attachments={selectedTask.attachments}
-                setIsAttachmentDeleted={setIsAttachmentDeleted}
               />
             </div>
             <div className='activity-container flex column'>
@@ -207,8 +207,6 @@ export const TaskDetails = (props) => {
                   </Avatar>
                 </div>
                 <AddCommentCmp
-                  setNewCommentAdded={setNewCommentAdded}
-                  newCommentAdded={newCommentAdded}
                   task={selectedTask}
                   board={board}
                   group={group}
@@ -250,8 +248,6 @@ export const TaskDetails = (props) => {
                 task={selectedTask}
                 board={board}
                 group={group}
-                setNewDueDateAdded={setNewDueDateAdded}
-                newDueDateAdded={newDueDateAdded}
               />
             </div>
             <AttachmentModal
@@ -259,8 +255,6 @@ export const TaskDetails = (props) => {
               board={board}
               group={group}
               attachments={selectedTask.attachments}
-              setIsAttachmentDeleted={setIsAttachmentDeleted}
-              isAttachmentDeleted={isAttachmentDeleted}
             />
             {/* {(!selectedTask.cover && !selectedTask.cover.background) &&  */}
             {(!whichBgcExist) && <CoverModal

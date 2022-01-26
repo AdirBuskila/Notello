@@ -7,7 +7,7 @@ import { boardService } from '../../services/board.service';
 
 
 export const AddCommentCmp = (props) => {
-  const {task, group, board, newCommentAdded, setNewCommentAdded} = props
+  const {task, group, board,} = props
   
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
@@ -51,7 +51,6 @@ export const AddCommentCmp = (props) => {
     board.groups[groupIdx].tasks[taskIdx].comments.push(comment)
     const action = {type: 'SET_BOARD', board}
     dispatch(action)
-    setNewCommentAdded(!newCommentAdded)
     
   };
 

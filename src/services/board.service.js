@@ -69,11 +69,25 @@ async function _createBoards() {
                         bgc: '#FF5677'
                     }
                 ],
-                members: [{
+                members: [
+                    {
                     _id: utilService.makeId(),
-                    fullname: 'Adir adir',
-                    imgUrl: ''
-                }],
+                    fullname: 'Adir Buskila',
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131869/Notello/AB_pplonl.png'
+                },{
+                    _id: utilService.makeId(),
+                    fullname: 'Nati Gurevich',
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131873/Notello/NG_e1fglp.png'
+                },{
+                    _id: utilService.makeId(),
+                    fullname: 'Nati Cohen',
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131867/Notello/NC_foadck.png'
+                },{
+                    _id: utilService.makeId(),
+                    fullname: 'Ilai Greco',
+                    imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643212002/Notello/T02BJ4W8H45-U02E0QXA9PD-8469fc199211-512_a1jdtm.jpg'
+                }
+                ],
                 groups: [
                     {
                         _id: utilService.makeId(),

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 
 export function DatePickerModal(props) {
   const classes = useStyles();
-  const { task, group, board, newDueDateAdded, setNewDueDateAdded } = props;
+  const { task, group, board} = props;
   const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
 
@@ -32,7 +32,6 @@ export function DatePickerModal(props) {
     board.groups[groupIdx].tasks[taskIdx].dueDate = newArray;
     const action = { type: 'SET_BOARD', board };
     dispatch(action);
-    setNewDueDateAdded(!newDueDateAdded);
   };
 
   return (
@@ -46,7 +45,7 @@ export function DatePickerModal(props) {
         }}
         id='date-picker'
         margin='normal'
-        variant='modal'
+        variant='inline'
         label=''
         format='dd MMM yyyy'
         value={selectedDate}
