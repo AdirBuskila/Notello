@@ -34,9 +34,10 @@ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import SubjectIcon from '@mui/icons-material/Subject';
 import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
+import { MembersModal } from '../cmps/task-details-cmps/members-modal';
 
 export const TaskDetails = (props) => {
-  const {useState} = React
+  const { useState } = React;
   const currBoard = useSelector((state) => state.boardModule.board);
   const params = useParams();
   const boardId = params.boardId;
@@ -47,11 +48,14 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = useState('');
   const [groupIdx, setGroupIdx] = useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
-  const [isCheckListAcctivated, setIsCheckListAcctivated] = React.useState(false);
+  const [isCheckListAcctivated, setIsCheckListAcctivated] =
+    React.useState(false);
   const [isColorPicked, setIsColorPicked] = React.useState('');
   const dispatch = useDispatch();
-  
-  const whichBgcExist = (selectedTask.cover) ? selectedTask.cover.background : null;
+
+  const whichBgcExist = selectedTask.cover
+    ? selectedTask.cover.background
+    : null;
 
   React.useEffect(async () => {
     try {
@@ -111,11 +115,21 @@ export const TaskDetails = (props) => {
           ev.stopPropagation();
         }}
       >
-        {(whichBgcExist) ? <div className='task-header-cover' style={(whichBgcExist.includes('#') || whichBgcExist.includes('rgb')) ? { backgroundColor: `${selectedTask.cover.background}` }
-          : { backgroundImage: `url(${whichBgcExist})`, backgroundColor: '#415647a6' }}>
-          <div className='close-button flex align-center end'>
-            <CloseIcon onClick={onHandleClose} />
-          </div>
+        {whichBgcExist ? (
+          <div
+            className='task-header-cover'
+            style={
+              whichBgcExist.includes('#') || whichBgcExist.includes('rgb')
+                ? { backgroundColor: `${selectedTask.cover.background}` }
+                : {
+                    backgroundImage: `url(${whichBgcExist})`,
+                    backgroundColor: '#415647a6',
+                  }
+            }
+          >
+            <div className='close-button flex align-center end'>
+              <CloseIcon onClick={onHandleClose} />
+            </div>
             <CoverModal
               updateTask={updateTask}
               setIsColorPicked={setIsColorPicked}
@@ -125,28 +139,30 @@ export const TaskDetails = (props) => {
               taskIdx={taskIdx}
               task={selectedTask}
             />
-        </div> :
+          </div>
+        ) : (
           <div className='close-button flex align-center end'>
             <CloseIcon onClick={onHandleClose} />
-          </div>}
+          </div>
+        )}
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
-          <div className="task-title-container flex">
-            <input
-              className='task-title-input'
-              defaultValue={selectedTask.title}
-              onBlur={onHandleChange}
-              onFocus={(ev) => {
-                ev.currentTarget.select();
-              }}
-              onClick={(ev) => {
-                ev.currentTarget.select();
-              }}
-              onChange={(ev) => setTaskTitle(ev.target.value)}
-            />
-          </div>
-            <div className="group-title">
+            <div className='task-title-container flex'>
+              <input
+                className='task-title-input'
+                defaultValue={selectedTask.title}
+                onBlur={onHandleChange}
+                onFocus={(ev) => {
+                  ev.currentTarget.select();
+                }}
+                onClick={(ev) => {
+                  ev.currentTarget.select();
+                }}
+                onChange={(ev) => setTaskTitle(ev.target.value)}
+              />
+            </div>
+            <div className='group-title'>
               <p>in list {group.title}</p>
             </div>
           </div>
@@ -180,7 +196,7 @@ export const TaskDetails = (props) => {
             />
             <div className='attachments-container'>
               <AttachmentsCmp
-              attachments={selectedTask.attachments}
+                attachments={selectedTask.attachments}
                 task={selectedTask}
                 board={board}
                 group={group}
@@ -224,10 +240,11 @@ export const TaskDetails = (props) => {
               <Typography>Join</Typography>
             </div>
             <p className='task-actions'>Add to card</p>
-            <div className='button-container flex'>
-              <PersonOutlineOutlinedIcon color='action' />
-              <Typography>Members</Typography>
-            </div>
+            <MembersModal
+            task={selectedTask}
+            board={board}
+            group={group}
+            />
             <CheckListModal
               isCheckListAcctivated={isCheckListAcctivated}
               board={board}
@@ -257,15 +274,17 @@ export const TaskDetails = (props) => {
               attachments={selectedTask.attachments}
             />
             {/* {(!selectedTask.cover && !selectedTask.cover.background) &&  */}
-            {(!whichBgcExist) && <CoverModal
-              updateTask={updateTask}
-              setIsColorPicked={setIsColorPicked}
-              isColorPicked={isColorPicked}
-              board={board}
-              groupIdx={groupIdx}
-              taskIdx={taskIdx}
-              task={selectedTask}
-            />}
+            {!whichBgcExist && (
+              <CoverModal
+                updateTask={updateTask}
+                setIsColorPicked={setIsColorPicked}
+                isColorPicked={isColorPicked}
+                board={board}
+                groupIdx={groupIdx}
+                taskIdx={taskIdx}
+                task={selectedTask}
+              />
+            )}
             {/* } */}
             <p className='task-actions'>Actions</p>
             <div className='button-container flex'>

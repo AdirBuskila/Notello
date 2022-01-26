@@ -23,6 +23,7 @@ export const boardService = {
     addAttachment,
     getTask,
     getGroup,
+    getMemberById,
 }
 
 const STORAGE_KEY = 'board_DB'
@@ -71,20 +72,25 @@ async function _createBoards() {
                 ],
                 members: [
                     {
-                    _id: utilService.makeId(),
+                    _id: 'ABAB123123',
                     fullname: 'Adir Buskila',
+                    username: 'busi',
                     imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131869/Notello/AB_pplonl.png'
                 },{
-                    _id: utilService.makeId(),
+                    _id: 'NGNG123123',
                     fullname: 'Nati Gurevich',
+                    username: 'natiG4',
                     imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131873/Notello/NG_e1fglp.png'
                 },{
-                    _id: utilService.makeId(),
+                    _id: 'NCNC123123',
                     fullname: 'Nati Cohen',
+                    username: 'natiC',
+
                     imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131867/Notello/NC_foadck.png'
                 },{
-                    _id: utilService.makeId(),
+                    _id: 'IGIG123123',
                     fullname: 'Ilai Greco',
+                    username: 'ilaiG',
                     imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643212002/Notello/T02BJ4W8H45-U02E0QXA9PD-8469fc199211-512_a1jdtm.jpg'
                 }
                 ],
@@ -761,7 +767,81 @@ async function _createBoards() {
                                         imgUrl: ''
                                     }
                                 }],
-                            },{
+                            }, {
+                                _id: utilService.makeId(),
+                                title: 'Fixing all the bugs',
+                                labels: [{
+                                        name: 'Work',
+                                        bgc: '#51e879'
+                                    },
+                                    {
+                                        name: 'Relavent',
+                                        bgc: '#51e8d9'
+                                    }
+                                ],
+                                cover: {
+                                    background: 'https://c.tenor.com/9ItR8nSuxE0AAAAC/thumbs-up-computer.gif',
+                                    spread: 'partial'
+                                },
+                                dueDate: [],
+                                checklists: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        title: 'Checklist',
+                                        todos: [{
+                                            _id: utilService.makeId(),
+                                            title: 'Im a todo!',
+                                            isDone: false
+                                        }]
+                                    }
+                                ],
+                                attachments: [],
+                                description: '',
+                                members: [
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Rick",
+                                        fullname: "Rick Sanchez",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860696/Notello/rick_aadonv.png"
+                                    },
+                                    {
+                                        _id: utilService.makeId(),
+                                        username: "Dumbledore",
+                                        fullname: "Albus Dumbledore",
+                                        imgUrl: "https://res.cloudinary.com/dubjerksn/image/upload/v1642860790/Notello/dumbeldore_wz43lk.png"
+                                    }
+                                ],
+                                createdAt: Date.now(),
+                                comments: [{
+                                    _id: utilService.makeId(),
+                                    txt: 'Gotta fix them all!',
+                                    createdAt: Date.now(),
+                                    byMember: {
+                                        _id: utilService.makeId(),
+                                        fullname: 'Netanel G',
+                                        imgUrl: ''
+                                    }
+                                }],
+                            }
+                            ,{
                                 _id: utilService.makeId(),
                                 title: 'Hakuna Matata',
                                 labels: [{
@@ -2879,4 +2959,14 @@ function getTask(board, taskId) {
         return (currTask._id === taskId)
     })
     return task
+}
+
+
+function getMemberById(board, memberId) {
+    const member =  board.members.find((currMember)=>{
+        return (currMember._id === memberId)
+    })
+    console.log('member in service', member);
+    return member
+
 }
