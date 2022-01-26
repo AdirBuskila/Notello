@@ -16,7 +16,6 @@ export const TaskPreview = (props) => {
   const { task, board, groupIdx } = props;
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const isFull = (taskCover.spread === 'full') ? true : false;
-  console.log("isFull: ", isFull);
   const coverType = taskCover
   ? utilService.isStringColor(taskCover.background)
   ? 'backgroudColor'

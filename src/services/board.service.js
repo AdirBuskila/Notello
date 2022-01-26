@@ -48,26 +48,41 @@ async function _createBoards() {
                     bgColor: '#222',
                     imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1642885717/Notello/template4_avwoqv.jpg'
                 },
-                labels: [{
+                labels: [
+                    {
                         _id: utilService.makeId(),
-                        name: 'Work',
-                        bgc: '#8E806A'
+                        name: 'QA',
+                        bgc: '#F5DD29'
                     },
                     {
                         _id: utilService.makeId(),
-                        name: 'Relavent',
-                        bgc: '#F0BB62'
-                    },
-                    {
-                        _id: utilService.makeId(),
-                        name: 'Special',
-                        bgc: '#F999B7'
+                        name: 'Done',
+                        bgc: '#ff9f1a'
                     },
                     {
                         _id: utilService.makeId(),
                         name: 'Important',
-                        bgc: '#FF5677'
+                        bgc: '#eb5a46'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Todo',
+                        bgc: '#c377e0'
+                    },
+                    
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Development',
+                        bgc: '#6EC2A9'
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        name: 'Critical',
+                        bgc: '#29CCE5'
                     }
+
+                    
+                    
                 ],
                 members: [
                     {

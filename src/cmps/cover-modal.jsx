@@ -10,7 +10,7 @@ import { utilService } from '../services/util.service'
 export const CoverModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const { board, groupIdx, taskIdx, task, isColorPicked } = props;
+  const { board, groupIdx, taskIdx, task } = props;
   const dispatch = useDispatch()
 
   const handleClick = (event) => {
@@ -55,8 +55,6 @@ export const CoverModal = (props) => {
     board.groups[groupIdx].tasks[taskIdx] = task;
     const action = { type: 'SET_BOARD', board };
     dispatch(action);
-    props.updateTask(task);
-    // props.setIsColorPicked(!isColorPicked);
   }
 
 
