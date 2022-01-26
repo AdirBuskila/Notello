@@ -1,11 +1,10 @@
 import Avatar from '@mui/material/Avatar';
 import { utilService } from '../../services/util.service';
 
-
 export const CommentsSection = ({ comments }) => {
   if (!comments.length) return <p></p>;
   return (
-    <div className='comments-container'>
+    <div className='comments-container flex column'>
       {comments.map((comment) => {
         return (
           <div key={utilService.makeId()} className='comment flex'>
