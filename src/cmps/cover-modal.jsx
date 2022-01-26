@@ -25,7 +25,8 @@ export const CoverModal = (props) => {
 
   const onHandlePick = (ev) => {
     const bgc = getComputedStyle(ev.target).backgroundColor;
-    console.log("bgc: ", bgc);
+    console.log("bgc: ", bgc)
+    const backgroun = utilService.getProperRGB(bgc)
     // task.cover = bgc;
     // board.groups[groupIdx].tasks[taskIdx] = task;
     // const action = {type: 'SET_BOARD', board}

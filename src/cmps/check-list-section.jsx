@@ -7,18 +7,9 @@ import { CheckListActionModal } from "./check-list-actions-modal";
 import { utilService } from "../services/util.service";
 import { boardService } from "../services/board.service"
 
-{/* <CheckListSection type={'oldTodo'} 
-todo={td} 
-checklistIdx={checklistIdx} 
-setIsChanged={props.setIsChanged} 
-board={board} 
-task={task} 
-taskIdx={taskIdx} 
-groupIdx={groupIdx} 
-todoIdx={index} /> */}
-
 export const CheckListSection = (props) => {
-    const { todo, todoIdx, board, task, taskIdx, groupIdx, checklistIdx } = props;
+    console.log("props: ", props.setIsChanging);
+    const { todo, todoIdx, board, task, taskIdx, groupIdx, isChanging, checklistIdx, isAdding } = props;
     const dispatch = useDispatch()
     const [todoTitle, setTodoTitle] = useState('');
     const [isActionsOpen, setIsActionsOpen] = useState(false);
@@ -28,6 +19,7 @@ export const CheckListSection = (props) => {
     }, [])
 
     const onHandleModal = () => {
+        // props.setIsChanging(false);
         props.setIsAdding(false);
     }
 
@@ -53,7 +45,7 @@ export const CheckListSection = (props) => {
         board.groups[groupIdx].tasks[taskIdx] = task;
         const action = { type: 'SET_BOARD', board };
         dispatch(action);
-        props.setIsAdding(false);
+        props.setIsAdding(!isAdding);
     }
 
 

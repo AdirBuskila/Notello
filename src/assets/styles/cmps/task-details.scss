@@ -128,6 +128,7 @@
     margin-block-end: 0.5rem;
     margin-block-start: 0.5rem;
     .individual-checklist {
+      align-self: baseline;
       padding-block-end: 0.75rem;
       align-items: center;
       width: 100%;
@@ -148,6 +149,9 @@
       .new-item {
         padding-inline-start: 0;
         width: 100%;
+      }
+      & > div {
+        align-self: baseline;
       }
     }
     .individual-checklist:hover {
@@ -226,6 +230,9 @@
     gap: rem(20px);
   }
   .comments-area {
+    .comments-container {
+      gap: 2rem;
+    }
     .comment-creator {
       position: absolute;
       left: 0.5rem;
