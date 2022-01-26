@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
@@ -15,11 +15,14 @@ import { utilService } from '../services/util.service';
 export const TaskPreview = (props) => {
   const { task, board, groupIdx } = props;
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
+  const isFull = (taskCover.spread === 'full') ? true : false;
+  console.log("isFull: ", isFull);
   const coverType = taskCover
-    ? utilService.isStringColor(taskCover.background)
-      ? 'backgroudColor'
-      : 'backgroundImage'
-    : null;
+  ? utilService.isStringColor(taskCover.background)
+  ? 'backgroudColor'
+  : 'backgroundImage'
+  : null;
+
   const dispatch = useDispatch();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
@@ -46,11 +49,6 @@ export const TaskPreview = (props) => {
           type='task'>
           {(provided) => (
             <div
-              style={
-                taskCover && taskCover.spread === 'full'
-                  ? { backgroundColor: `${taskCover.background}` }
-                  : null
-              }
               className='task-preview flex column'
               onClick={() => {
                 setOpenPopup(true);
@@ -59,10 +57,11 @@ export const TaskPreview = (props) => {
               {...provided.dragHandleProps}
               {...provided.draggableProps}
               key={task._id}>
-              {taskCover && taskCover.spread === 'partial' ? (
+                
+              {(taskCover && !isFull) && (
                 coverType === 'backgroudColor' ? (
                   <div
-                    className='task-cover'
+                className='task-cover'
                     style={{
                       backgroundColor: `${taskCover.background}`,
                       height: '32px',
@@ -72,8 +71,10 @@ export const TaskPreview = (props) => {
                     <img src={taskCover.background} alt='task-img' />
                   </div>
                 )
-              ) : null}
-              <div className='task-not-cover flex column'>
+              )} 
+              <div 
+              style={(isFull) ? { backgroundColor: `${taskCover.background}` } : null}
+              className='task-not-cover flex column'>
                 {task.labels && (
                   <ul className='labels flex'>
                     {task.labels.map((label, idx) => {
@@ -82,7 +83,7 @@ export const TaskPreview = (props) => {
                           className={className}
                           onClick={(ev) => onHandleLablesClick(ev)}
                           key={idx}
-                          style={{ backgroundColor: `${label.bgc}` }}>
+                          style={(isFull) ? { backgroundColor: `${label.bgc}`, filter: 'brightness(85%)'} : { backgroundColor: `${label.bgc}`}}>
                           {isLabelsExpended && `${label.name}`}
                         </li>
                       );

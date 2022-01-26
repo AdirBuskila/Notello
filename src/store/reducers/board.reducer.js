@@ -14,15 +14,17 @@ export function boardReducer(state = initialState, action) {
             boardService.saveBoard(action.board);
             newState = {...state, board: action.board }
             break;
-        case 'ADD_TASK':
-            let { groups } = state.board;
-            groups[action.addAction.idx].tasks.push(action.addAction.task)
-            newState = {...state, board: {...state.board, groups } }
-            break;
         case 'HANDLE_LABELS':
             const isLabelsExpended = state.isLabelsExpended;
             newState = {...state, isLabelsExpended: !isLabelsExpended }
             break;
-    }
-    return newState;
-}
+        }
+            return newState;
+        }
+
+
+// case 'ADD_TASK':
+//     let { groups } = state.board;
+//     groups[action.addAction.idx].tasks.push(action.addAction.task)
+//     newState = {...state, board: {...state.board, groups } }
+//     break;

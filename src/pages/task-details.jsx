@@ -46,20 +46,14 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = React.useState('');
   const [groupIdx, setGroupIdx] = React.useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
-  const [isCheckListAcctivated, setIsCheckListAcctivated] =
-    React.useState(false);
-  const [isAttachmentActivated, setIsAttachmentActivated] =
-    React.useState(false);
+  const [isCheckListAcctivated, setIsCheckListAcctivated] = React.useState(false);
+  const [isAttachmentActivated, setIsAttachmentActivated] = React.useState(false);
   const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
   const [isColorPicked, setIsColorPicked] = React.useState('');
   const [newDueDateAdded, setNewDueDateAdded] = React.useState(false);
   const [newCommentAdded, setNewCommentAdded] = React.useState(false);
   const dispatch = useDispatch();
-  console.log('STATE CHANGED!!!!!');
 
-  /* VALUES IN DETAILS : 
-
-  board, group, task, groupIdx, taskIdx */
 
   React.useEffect(async () => {
     try {
@@ -119,20 +113,20 @@ export const TaskDetails = (props) => {
           ev.stopPropagation();
         }}
       >
+        {/* {(selectedTask.cover && selectedTask.cover.background) && <div className='header-cover' style={(selectedTask.cover) ? { backgroundColor: `${selectedTask.cover.background}` } : null}>
+          <CoverModal
+          updateTask={updateTask}
+          setIsColorPicked={setIsColorPicked}
+          isColorPicked={isColorPicked}
+          board={board}
+          groupIdx={groupIdx}
+          taskIdx={taskIdx}
+          task={selectedTask}
+          />
+        </div>} */}
         <div className='close-button flex align-center end'>
           <CloseIcon onClick={onHandleClose} />
         </div>
-        {/* {(selectedTask.cover && selectedTask.cover.background) && <div className='header-cover' style={(selectedTask.cover) ? { backgroundColor: `${selectedTask.cover.background}` } : null}>
-          <CoverModal
-            updateTask={updateTask}
-            setIsColorPicked={setIsColorPicked}
-            isColorPicked={isColorPicked}
-            board={board}
-            groupIdx={groupIdx}
-            taskIdx={taskIdx}
-            task={selectedTask}
-          />
-        </div>} */}
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />

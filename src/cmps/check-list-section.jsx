@@ -18,6 +18,8 @@ export const CheckListSection = (props) => {
     }, [])
 
     const onHandleModal = () => {
+        // console.log('isAdding', isAdding);
+        // console.log('isChanging', isChanging);
         // props.setIsChanging(false);
         props.setIsAdding(false);
     }
@@ -44,7 +46,7 @@ export const CheckListSection = (props) => {
         board.groups[groupIdx].tasks[taskIdx] = task;
         const action = { type: 'SET_BOARD', board };
         dispatch(action);
-        props.setIsAdding(!isAdding);
+        props.setIsAdding(false);
     }
 
 

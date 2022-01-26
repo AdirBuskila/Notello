@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { PreFeatureAdd } from './preFeatureAdd';
@@ -7,8 +7,6 @@ import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-// import { Card } from './UI/Card';
-// import { cardActionAreaClasses } from '@mui/material';
 
 const _GroupPreview = (props) => {
   const { group, board } = props;
