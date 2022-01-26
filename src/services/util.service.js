@@ -6,7 +6,6 @@ export const utilService = {
     stringToColor,
     getRandomColor,
     isStringColor,
-    getProperRGB
 }
 
 function makeId(length = 6) {
@@ -77,7 +76,7 @@ function stringToColor(string) {
   }
 
   function isStringColor(str) {
-    if (str.charAt(0) === '#') return true;
+    if (str.charAt(0) === '#' || str.includes('rgb')) return true;
     return false;
   }
 
@@ -88,13 +87,5 @@ function stringToColor(string) {
   
   function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-  }
-
-  function getProperRGB(string) {
-    let stringToArray = string.substring(4);
-    stringToArray.replace('(', '')
-    stringToArray.replace(')', '')
-    return stringToArray.split(',');
-
   }
   

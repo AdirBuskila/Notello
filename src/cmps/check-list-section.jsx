@@ -8,7 +8,6 @@ import { utilService } from "../services/util.service";
 import { boardService } from "../services/board.service"
 
 export const CheckListSection = (props) => {
-    console.log("props: ", props.setIsChanging);
     const { todo, todoIdx, board, task, taskIdx, groupIdx, isChanging, checklistIdx, isAdding } = props;
     const dispatch = useDispatch()
     const [todoTitle, setTodoTitle] = useState('');

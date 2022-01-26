@@ -51,10 +51,11 @@ export const TaskDetails = (props) => {
   const [isAttachmentActivated, setIsAttachmentActivated] =
     React.useState(false);
   const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
-  const [isColorPicked, setIsColorPicked] = React.useState(false);
+  const [isColorPicked, setIsColorPicked] = React.useState('');
   const [newDueDateAdded, setNewDueDateAdded] = React.useState(false);
   const [newCommentAdded, setNewCommentAdded] = React.useState(false);
   const dispatch = useDispatch();
+  console.log('STATE CHANGED!!!!!');
 
   /* VALUES IN DETAILS : 
 
@@ -118,6 +119,20 @@ export const TaskDetails = (props) => {
           ev.stopPropagation();
         }}
       >
+        <div className='close-button flex align-center end'>
+          <CloseIcon onClick={onHandleClose} />
+        </div>
+        {/* {(selectedTask.cover && selectedTask.cover.background) && <div className='header-cover' style={(selectedTask.cover) ? { backgroundColor: `${selectedTask.cover.background}` } : null}>
+          <CoverModal
+            updateTask={updateTask}
+            setIsColorPicked={setIsColorPicked}
+            isColorPicked={isColorPicked}
+            board={board}
+            groupIdx={groupIdx}
+            taskIdx={taskIdx}
+            task={selectedTask}
+          />
+        </div>} */}
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
@@ -133,9 +148,6 @@ export const TaskDetails = (props) => {
               }}
               onChange={(ev) => setTaskTitle(ev.target.value)}
             />
-          </div>
-          <div className='close-button flex align-center justify-center'>
-            <CloseIcon onClick={onHandleClose} />
           </div>
         </div>
 
@@ -226,7 +238,6 @@ export const TaskDetails = (props) => {
               task={selectedTask}
               setIsCheckListAcctivated={setIsCheckListAcctivated}
             />
-
             <div
               onClick={() => {
                 setIsOpen(true);
@@ -251,7 +262,9 @@ export const TaskDetails = (props) => {
               setIsAttachmentDeleted={setIsAttachmentDeleted}
               isAttachmentDeleted={isAttachmentDeleted}
             />
+            {/* {(!selectedTask.cover && !selectedTask.cover.background) &&  */}
             <CoverModal
+              updateTask={updateTask}
               setIsColorPicked={setIsColorPicked}
               isColorPicked={isColorPicked}
               board={board}
@@ -259,6 +272,7 @@ export const TaskDetails = (props) => {
               taskIdx={taskIdx}
               task={selectedTask}
             />
+            {/* } */}
             <p className='task-actions'>Actions</p>
             <div className='button-container flex'>
               <ArrowForwardOutlinedIcon color='action' />
