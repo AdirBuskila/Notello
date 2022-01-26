@@ -30,20 +30,20 @@
     height: 48px;
     input {
       color: #172b4d;
-      padding: 4px 8px;
+      padding: 0.5rem;
       border: none;
       background-color: transparent;
       width: 100%;
       font-size: rem(20px);
     }
-    svg {
-      margin-inline-end: rem(10px);
-    }
+    // svg {
+    //   margin-inline-end: rem(10px);
+    // }
     p {
       font-size: 20px;
       font-weight: 600;
     }
-    padding-left: 16px;
+    padding-left: 1rem;
   }
   .task-main-container {
     width: 100%;
