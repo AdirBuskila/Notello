@@ -14,7 +14,6 @@ import { utilService } from '../services/util.service';
 
 export const TaskPreview = (props) => {
   const { task, board, groupIdx } = props;
-  console.log('task: ', task);
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const coverType = taskCover
     ? utilService.isStringColor(taskCover.background)
