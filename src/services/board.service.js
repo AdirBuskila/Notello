@@ -23,6 +23,7 @@ export const boardService = {
     addAttachment,
     getTask,
     getGroup,
+    getMemberById,
 }
 
 const STORAGE_KEY = 'board_DB'
@@ -79,10 +80,7 @@ async function _createBoards() {
                         _id: utilService.makeId(),
                         name: 'Critical',
                         bgc: '#29CCE5'
-                    }
-
-                    
-                    
+                    } 
                 ],
                 members: [
                     {
@@ -2878,6 +2876,7 @@ async function addAttachment(attachment, boardId, groupId, taskId, activity) {
     }
 
 }
+
 
 function getGroup(board,taskId) {
     const group = board.groups.filter((group) => {

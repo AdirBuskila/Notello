@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button';
+import { boardService } from '../../services/board.service';
+import { useDispatch } from 'react-redux';
 
-export const Textarea = (props) => {
-  const [newState, onNewState] = useState({});
+
+export const AddDescription = (props) => {
+  const [newDescriptionTxt, setNewDescription] = useState({});
   const [isAdding, onIsAdding] = useState(false);
+
+  const { task, group ,board} = props
+
+  const groupIdx = boardService.getGroupIdxById(board, group._id)
+    const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
+      return (currTask._id === task._id)
+    })
+
+  const dispatch = useDispatch()
+
 
   const onHandleModal = () => {
     onIsAdding(!isAdding);
@@ -12,11 +25,14 @@ export const Textarea = (props) => {
 
   const onHandleChange = ({ target }) => {
     const value = target.value;
-    onNewState(value);
+    setNewDescription(value);
   };
 
-  const onAdd = ({ target }) => {
-    console.log(target);
+  const onAdd = () => {
+    console.log(board.groups[groupIdx].tasks[taskIdx]);
+    board.groups[groupIdx].tasks[taskIdx].description = newDescriptionTxt
+    const action = {type: 'SET_BOARD', board}
+    dispatch(action)
   };
 
   return (
