@@ -107,13 +107,15 @@ export const TaskDetails = (props) => {
 
   if (!selectedTask || !board) return <div className=''></div>;
   return (
-    <Backdrop onClick={onHandleClose}>
+      <div className="task-details-container">
+      <Backdrop onClick={onHandleClose}/>  
+
       <div
         className='task-details flex column '
-        onClick={(ev) => {
-          ev.preventDefault();
-          ev.stopPropagation();
-        }}
+        // onClick={(ev) => {
+        //   ev.preventDefault();
+        //   ev.stopPropagation();
+        // }}
       >
         {whichBgcExist ? (
           <div
@@ -302,6 +304,8 @@ export const TaskDetails = (props) => {
           </div>
         </div>
       </div>
-    </Backdrop>
+      </div>
   );
 };
+
+

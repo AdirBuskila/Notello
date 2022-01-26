@@ -1,5 +1,22 @@
+.task-details-container {
+  // height: 100%;
+  overflow-y: scroll;
+  & > ::-webkit-scrollbar {
+    height: 0.75rem;
+    border-radius: 50rem;
+  }
+  & > ::-webkit-scrollbar-track {
+    background: #00000026;
+    border-radius: 3px;
+    margin: 25px;
+  }
+  & > ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #e2e3e480;
+  }
+
+
 .task-details {
-  overflow-y: auto;
   position: fixed;
   top: 50px;
   left: 50%;
@@ -280,4 +297,5 @@
       margin-inline-start: 2.2rem;
     }
   }
+}
 }
