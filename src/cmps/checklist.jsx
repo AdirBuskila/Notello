@@ -56,7 +56,7 @@ export const CheckList = (props) => {
                         }}>
                             {!td.isDone ? <CheckBoxOutlineBlankOutlinedIcon className='checkbox' /> : <CheckBoxIcon className='checkbox' />}
                         </div>
-                        {isChanging && currTodoId === td._id ? <CheckListSection setIsChanging={setIsChanging} setIsAdding={setIsAdding} type={'oldTodo'} todo={td} checklistIdx={checklistIdx} setIsChanged={props.setIsChanged} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} todoIdx={index} />
+                        {isChanging && currTodoId === td._id ? <CheckListSection isChanging={isChanging}  setIsAdding={setIsAdding} type={'oldTodo'} todo={td} checklistIdx={checklistIdx} setIsChanged={props.setIsChanged} board={board} task={task} taskIdx={taskIdx} groupIdx={groupIdx} todoIdx={index} setIsChanging={setIsChanging} />
                         :
                         <div className='todo-title' onClick={() => {
                             setCurrTodoId(td._id)

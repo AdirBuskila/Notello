@@ -8,7 +8,6 @@ import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import {utilService} from '../services/util.service'
 
 export const CoverModal = (props) => {
-  console.log("props: ", props);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const {board, groupIdx, taskIdx, task, isColorPicked} = props;
@@ -26,7 +25,8 @@ export const CoverModal = (props) => {
 
   const onHandlePick = (ev) => {
     const bgc = getComputedStyle(ev.target).backgroundColor;
-    console.log("bgc: ", bgc);
+    console.log("bgc: ", bgc)
+    const backgroun = utilService.getProperRGB(bgc)
     // task.cover = bgc;
     // board.groups[groupIdx].tasks[taskIdx] = task;
     // const action = {type: 'SET_BOARD', board}
