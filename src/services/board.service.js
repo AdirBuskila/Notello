@@ -419,7 +419,7 @@ async function _createBoards() {
                                 _id: utilService.makeId(),
                                 title: 'EFRAIM rulesss!',
                                 cover: {
-                                    background: '#6deca9',
+                                    background: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643154516/Notello/Screenshot_5_k3jvza.png',
                                     spread: 'partial'
                                 },
                                 labels: [{
