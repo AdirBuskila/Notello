@@ -537,6 +537,10 @@ async function _createBoards() {
                                         bgc: '#b0285a'
                                     }
                                 ],
+                                cover: {
+                                    background: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643158771/Notello/egypt-cairo-pyramids-of-giza-and-camels-2_s36zt6.jpg',
+                                    spread: 'partial'
+                                },
                                 dueDate: [],
                                 checklists: [
                                     {

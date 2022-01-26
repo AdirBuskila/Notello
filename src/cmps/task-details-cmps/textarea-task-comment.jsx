@@ -1,35 +1,58 @@
 import React, { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button';
+import { useDispatch } from 'react-redux';
+import { utilService } from '../../services/util.service';
+import { boardService } from '../../services/board.service';
 
-export const Textarea1 = (props) => {
-  const [newState, onNewState] = useState({ text: '' });
+
+export const AddCommentCmp = (props) => {
+  const {task, group, board, newCommentAdded, setNewCommentAdded} = props
+  
+  const dispatch = useDispatch();
+  const [newComment, setNewComment] = useState('');
   const [isAdding, onIsAdding] = useState(false);
 
+  const groupIdx = boardService.getGroupIdxById(board, group._id)
+  const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
+    return (currTask._id === task._id)
+  })
+
   const onHandleModal = () => {
-    console.log(newState);
+    console.log(newComment);
     onIsAdding(!isAdding);
   };
 
   const onCloseModal = () => {
-    console.log(newState.text);
-    if (newState.text !== '') return;
+    console.log(newComment);
+    if (newComment !== '') return;
     onHandleModal();
   };
 
   const onHandleChange = ({ target }) => {
     const value = target.value;
-    onNewState({
-      text: value,
-    });
-  };
+    setNewComment(value);
+    console.log(newComment);
 
-  const onAdd = (ev) => {
-    ev.preventDefault();
-    console.log(ev.target);
-    onNewState({
-      text: '',
-    });
+  };
+  
+  const onAdd = () => {
+    const comment = {
+      _id: utilService.makeId(),
+      txt: newComment,
+      createdAt: Date.now(),
+      byMember: {
+        _id: utilService.makeId(),
+        fullname: 'Guest',
+        imgUrl: ''
+      }
+    }
+ 
+    board.groups[groupIdx].tasks[taskIdx].comments.push(comment)
+    const action = {type: 'SET_BOARD', board}
+    dispatch(action)
+    setNewCommentAdded(!newCommentAdded)
+    
   };
 
   return (
@@ -47,24 +70,13 @@ export const Textarea1 = (props) => {
             autoFocus
             // onBlurCapture={onCloseModal}
             onChange={onHandleChange}
-            rows='3'
-            defaultValue={newState.text}
+            rows='2'
+            defaultValue={newComment}
             placeholder={`Add a more detailed comment `}></textarea>
           <div className='new-comment-actions flex align-center'>
             <Button
-              onClick={(ev) => {
-                onAdd(ev);
-              }}
+              onClick={() => {onAdd()}}
               variant='contained'
-              // sx={{
-              //   textTransform: 'none',
-              //   minWidth: 52.5,
-              //   backgroundColor: '#091e420a',
-              //   '&:hover': {
-              //     color: 'red',
-              //     backgroundColor: 'white',
-              //   },
-              // }}
             >
               Save
             </Button>

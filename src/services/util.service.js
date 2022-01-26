@@ -5,7 +5,8 @@ export const utilService = {
     fixTimestamp,
     stringToColor,
     getRandomColor,
-    isStringColor
+    isStringColor,
+    getProperRGB
 }
 
 function makeId(length = 6) {
@@ -87,5 +88,13 @@ function stringToColor(string) {
   
   function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  }
+
+  function getProperRGB(string) {
+    let stringToArray = string.substring(4);
+    stringToArray.replace('(', '')
+    stringToArray.replace(')', '')
+    return stringToArray.split(',');
+
   }
   
