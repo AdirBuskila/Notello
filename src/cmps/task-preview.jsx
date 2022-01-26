@@ -1,21 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
+
 import { ChecklistBadge } from './badge-cmps/checklist-badge';
 import SubjectIcon from '@mui/icons-material/Subject';
-
-import { utilService } from '../services/util.service';
-
-import { Link, Route } from 'react-router-dom';
 import { CommentsBadge } from './badge-cmps/comments-badge';
 import { MembersBadge } from './badge-cmps/members-badge';
 import { AttachmentsBadge } from './badge-cmps/attachments-badge';
 import { DueDateBadge } from './badge-cmps/due-date-badge';
 
-// cover: {
-//   background: '#ff8ed4',
-//   spread: 'full'
-// },
+import { utilService } from '../services/util.service';
 
 export const TaskPreview = (props) => {
   const { task, board, groupIdx } = props;
@@ -34,7 +29,6 @@ export const TaskPreview = (props) => {
   const [isDueDateChanged, setIsDueDateChanged] = useState(false);
 
   const onHandleLablesClick = (ev) => {
-    ev.preventDefault();
     ev.stopPropagation();
     ev.preventDefault();
     dispatch({ type: 'HANDLE_LABELS' });
