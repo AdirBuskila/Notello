@@ -14,7 +14,7 @@ export const CommentsSection = ({ comments }) => {
                 src={comment.byMember.imgUrl}
                 alt={comment.byMember.fullname}
                 sx={{
-                  bgcolor: 'green',
+                  bgcolor: utilService.stringToColor(comment.byMember.fullname),
                   width: 32,
                   height: 32,
                   marginInlineEnd: 1,
