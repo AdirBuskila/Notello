@@ -8,7 +8,6 @@ import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import {utilService} from '../services/util.service'
 
 export const CoverModal = (props) => {
-  console.log("props: ", props);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const {board, groupIdx, taskIdx, task, isColorPicked} = props;

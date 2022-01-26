@@ -6,7 +6,7 @@ import { utilService } from '../services/util.service';
 import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
 import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
 import { Textarea } from '../cmps/task-details-cmps/textarea-task-description';
-import { Textarea1 } from '../cmps/task-details-cmps/textarea-task-comment';
+import { AddCommentCmp } from '../cmps/task-details-cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal';
 import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
@@ -53,6 +53,7 @@ export const TaskDetails = (props) => {
   const [isAttachmentDeleted, setIsAttachmentDeleted] = React.useState(false);
   const [isColorPicked, setIsColorPicked] = React.useState(false);
   const [newDueDateAdded, setNewDueDateAdded] = React.useState(false);
+  const [newCommentAdded, setNewCommentAdded] = React.useState(false);
   const dispatch = useDispatch();
 
   /* VALUES IN DETAILS : 
@@ -115,7 +116,8 @@ export const TaskDetails = (props) => {
         onClick={(ev) => {
           ev.preventDefault();
           ev.stopPropagation();
-        }}>
+        }}
+      >
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
@@ -187,11 +189,18 @@ export const TaskDetails = (props) => {
                       bgcolor: deepOrange[500],
                       width: 32,
                       height: 32,
-                    }}>
+                    }}
+                  >
                     <p>NC</p>
                   </Avatar>
                 </div>
-                <Textarea1 />
+                <AddCommentCmp
+                  setNewCommentAdded={setNewCommentAdded}
+                  newCommentAdded={newCommentAdded}
+                  task={selectedTask}
+                  board={board}
+                  group={group}
+                />
               </div>
               <div className='comments-area flex column'>
                 <CommentsSection comments={selectedTask.comments} />
@@ -222,7 +231,8 @@ export const TaskDetails = (props) => {
               onClick={() => {
                 setIsOpen(true);
               }}
-              className='button-container flex'>
+              className='button-container flex'
+            >
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>
               <DatePickerModal
@@ -241,29 +251,29 @@ export const TaskDetails = (props) => {
               setIsAttachmentDeleted={setIsAttachmentDeleted}
               isAttachmentDeleted={isAttachmentDeleted}
             />
-          
-          {/* <AttachmentModal
-          task={selectedTask}
-          board={board} 
-          group={group}
-          setIsAttachmentActivated ={setIsAttachmentActivated}
-          /> */}
-          <CoverModal setIsColorPicked={setIsColorPicked} isColorPicked={isColorPicked} board={board} groupIdx={groupIdx} taskIdx={taskIdx}  task={selectedTask}  />
-          <p className='task-actions'>Actions</p>
-          <div className='button-container flex'>
-            <ArrowForwardOutlinedIcon color='action' />
-            <Typography>Move</Typography>
-          </div>
-          <div className='button-container flex'>
-            <ContentCopyOutlinedIcon color='action' />
-            <Typography>Copy</Typography>
-          </div>
-          <div className='button-container flex'>
-            <Inventory2OutlinedIcon color='action' />
-            <Typography>Archive</Typography>
+            <CoverModal
+              setIsColorPicked={setIsColorPicked}
+              isColorPicked={isColorPicked}
+              board={board}
+              groupIdx={groupIdx}
+              taskIdx={taskIdx}
+              task={selectedTask}
+            />
+            <p className='task-actions'>Actions</p>
+            <div className='button-container flex'>
+              <ArrowForwardOutlinedIcon color='action' />
+              <Typography>Move</Typography>
+            </div>
+            <div className='button-container flex'>
+              <ContentCopyOutlinedIcon color='action' />
+              <Typography>Copy</Typography>
+            </div>
+            <div className='button-container flex'>
+              <Inventory2OutlinedIcon color='action' />
+              <Typography>Archive</Typography>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </Backdrop>
   );
