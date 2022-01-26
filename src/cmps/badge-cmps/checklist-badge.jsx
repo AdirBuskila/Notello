@@ -1,19 +1,26 @@
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 
 export const ChecklistBadge = ({ checklists }) => {
-  let done = 0;
-  const todos = checklists[0].todos;
-  todos.forEach((todo) => {
-    if (todo.isDone) done++;
-  });
+  let sum = 0
+  let doneCounter = 0
+  checklists.map((object)=>{
+    return object.todos.map((todo)=>{
+      sum++
+      if (todo.isDone) {
+        doneCounter++
+      }
+    })
+
+  })
+  
   const isDone =
-    done === todos.length ? 'checklist-badge done' : 'checklist-badge';
-  const color = done === todos.length ? 'white' : 'action'
+  doneCounter === sum ? 'checklist-badge done' : 'checklist-badge';
+  const color = doneCounter === sum ? 'white' : 'action'
   return (
     <div className={'flex align-center ' + isDone}>
       <CheckBoxOutlinedIcon fontSize='extra-small' color={color} />
       <p>
-        {done}/{todos.length}
+        {doneCounter}/{sum}
       </p>
     </div>
   );
