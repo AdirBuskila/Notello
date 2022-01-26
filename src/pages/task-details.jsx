@@ -52,6 +52,8 @@ export const TaskDetails = (props) => {
   const [isColorPicked, setIsColorPicked] = React.useState('');
   const [newDueDateAdded, setNewDueDateAdded] = React.useState(false);
   const [newCommentAdded, setNewCommentAdded] = React.useState(false);
+
+  const whichBgcExist = (selectedTask.cover) ? selectedTask.cover.background : null;
   const dispatch = useDispatch();
 
 
@@ -113,20 +115,24 @@ export const TaskDetails = (props) => {
           ev.stopPropagation();
         }}
       >
-        {/* {(selectedTask.cover && selectedTask.cover.background) && <div className='header-cover' style={(selectedTask.cover) ? { backgroundColor: `${selectedTask.cover.background}` } : null}>
-          <CoverModal
-          updateTask={updateTask}
-          setIsColorPicked={setIsColorPicked}
-          isColorPicked={isColorPicked}
-          board={board}
-          groupIdx={groupIdx}
-          taskIdx={taskIdx}
-          task={selectedTask}
-          />
-        </div>} */}
-        <div className='close-button flex align-center end'>
-          <CloseIcon onClick={onHandleClose} />
-        </div>
+        {(whichBgcExist) ? <div className='task-header-cover' style={(whichBgcExist.includes('#') || whichBgcExist.includes('rgb')) ? { backgroundColor: `${selectedTask.cover.background}` }
+          : { backgroundImage: `url(${whichBgcExist})`, backgroundColor: '#415647a6' }}>
+          <div className='close-button flex align-center end'>
+            <CloseIcon onClick={onHandleClose} />
+          </div>
+            <CoverModal
+              updateTask={updateTask}
+              setIsColorPicked={setIsColorPicked}
+              isColorPicked={isColorPicked}
+              board={board}
+              groupIdx={groupIdx}
+              taskIdx={taskIdx}
+              task={selectedTask}
+            />
+        </div> :
+          <div className='close-button flex align-center end'>
+            <CloseIcon onClick={onHandleClose} />
+          </div>}
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
@@ -257,7 +263,7 @@ export const TaskDetails = (props) => {
               isAttachmentDeleted={isAttachmentDeleted}
             />
             {/* {(!selectedTask.cover && !selectedTask.cover.background) &&  */}
-            <CoverModal
+            {(!whichBgcExist) && <CoverModal
               updateTask={updateTask}
               setIsColorPicked={setIsColorPicked}
               isColorPicked={isColorPicked}
@@ -265,7 +271,7 @@ export const TaskDetails = (props) => {
               groupIdx={groupIdx}
               taskIdx={taskIdx}
               task={selectedTask}
-            />
+            />}
             {/* } */}
             <p className='task-actions'>Actions</p>
             <div className='button-container flex'>

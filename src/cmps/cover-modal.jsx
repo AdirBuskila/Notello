@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 
 import { utilService } from '../services/util.service'
 
@@ -62,8 +62,8 @@ export const CoverModal = (props) => {
 
 
   return (
-    <div className='button-container flex'>
-      <CropOriginalIcon onClick={handleClick} color='action' />
+    <div className='button-container flex align-center'>
+      <VideoLabelIcon sx={{ fontSize: 'medium'}} onClick={handleClick} color='action' />
       <Typography onClick={handleClick}>Cover</Typography>
       <Popover
         open={open}

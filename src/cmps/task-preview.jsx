@@ -67,15 +67,16 @@ export const TaskPreview = (props) => {
                       height: '32px',
                     }}></div>
                 ) : (
-                  <div style={{ minHeight: '260px' }}>
+                  <div>
                     <img src={taskCover.background} alt='task-img' />
                   </div>
                 )
               )} 
+
               <div 
               style={(isFull) ? { backgroundColor: `${taskCover.background}` } : null}
               className='task-not-cover flex column'>
-                {task.labels && (
+                {(task.labels && !isFull) && (
                   <ul className='labels flex'>
                     {task.labels.map((label, idx) => {
                       return (
@@ -83,7 +84,7 @@ export const TaskPreview = (props) => {
                           className={className}
                           onClick={(ev) => onHandleLablesClick(ev)}
                           key={idx}
-                          style={(isFull) ? { backgroundColor: `${label.bgc}`, filter: 'brightness(85%)'} : { backgroundColor: `${label.bgc}`}}>
+                          style={{ backgroundColor: `${label.bgc}`}}>
                           {isLabelsExpended && `${label.name}`}
                         </li>
                       );
@@ -91,7 +92,7 @@ export const TaskPreview = (props) => {
                   </ul>
                 )}
                 <p>{task.title}</p>
-                <div className='task-info-icons flex space-between'>
+                {!isFull && <div className='task-info-icons flex space-between'>
                   <div className='task-badges flex align-center'>
                     {task.dueDate.length > 0 && (
                       <DueDateBadge
@@ -122,7 +123,7 @@ export const TaskPreview = (props) => {
                       <MembersBadge members={task.members} />
                     )}
                   </div>
-                </div>
+                </div>}
               </div>
             </div>
           )}

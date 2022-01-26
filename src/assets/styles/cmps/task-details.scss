@@ -9,13 +9,44 @@
   background-color: #f4f5f7;
   border-radius: 3px;
   z-index: 1000;
+
+  .task-header-cover {  
+    height: 160px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    position: relative;
+    width: 100%;
+
+    .button-container {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      background-color: #00000014;
+      border-radius: 3px;
+      color: #172b4d;
+      padding: 6px 12px 6px 6px;
+      gap: rem(4px);
+      
+      p {
+        font-size: rem(14px);
+        font-weight: 400;
+      }
+      
+    }
+    .button-container:hover {
+      cursor: pointer;
+      background-color: #00000025;
+    }
+  }
+
   .window-header {
     min-height: 32px;
-    color: #172b4d;
+    color: #172b4d; 
+
     .close-button {
-      position: relative;
-      top: rem(8px);
-      right: rem(8px);
+      // top: rem(8px);
+      // right: rem(8px);
       width: rem(40px);
       height: rem(40px);
       cursor: pointer;
