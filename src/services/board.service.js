@@ -895,6 +895,29 @@ async function _createBoards() {
                                         isDone: true
                                     }]
                                 }],
+                            },{
+                                _id: utilService.makeId(),
+                                title: 'Explore The Solar System',
+                                labels: [{
+                                        name: 'Special',
+                                        bgc: '#F669B7'
+                                    },
+                                    {
+                                        name: 'Work',
+                                        bgc: '#87806A'
+                                    }
+                                ],
+                                cover: {
+                                    background: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643160390/Notello/6baa4d7703d0f76d0347acfae3a3fa8a_fsazsd.gif',
+                                    spread: 'partial'
+                                },
+                                dueDate: [],
+                                members: [],
+                                attachments: [],
+                                description: '',
+                                comments: [],
+                                createdAt: Date.now(),
+                                checklists: [],
                             }
                         ],
                     },
