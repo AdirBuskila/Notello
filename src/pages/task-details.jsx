@@ -110,13 +110,7 @@ export const TaskDetails = (props) => {
     <React.Fragment>
       <div className='task-details-container'>
         <Backdrop onClick={onHandleClose} />
-        <div
-          className='task-details flex column '
-          // onClick={(ev) => {
-          //   ev.preventDefault();
-          //   ev.stopPropagation();
-          // }}
-        >
+        <div className='task-details flex column '>
           {whichBgcExist ? (
             <div
               className='task-header-cover'
