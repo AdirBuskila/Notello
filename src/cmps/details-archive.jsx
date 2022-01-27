@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { useHistory } from "react-router-dom";
@@ -11,6 +11,7 @@ export const ArchiveModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task } = props;
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -29,7 +30,7 @@ export const ArchiveModal = (props) => {
       _id: utilService.makeId(),
       txt: `deleted task - ${task.title}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
@@ -45,7 +46,7 @@ export const ArchiveModal = (props) => {
       _id: utilService.makeId(),
       txt: `archived task - ${task.title}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,

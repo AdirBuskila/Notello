@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
@@ -11,6 +11,7 @@ export const CheckListModal = (props) => {
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task } = props;
   const [checklistName, setChecklistName] = useState('');
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
@@ -35,9 +36,9 @@ export const CheckListModal = (props) => {
     };
     const activity = {
       _id: utilService.makeId(),
-      txt: `created checklist - (${checklist.title})`,
+      txt: `created checklist - ${checklist.title}`,
       createdAt: Date.now(),
-      byMember: 'user',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,

@@ -23,6 +23,7 @@ export const LabelsModal = (props) => {
 
   const handleClose = (event) => {
     setAnchorEl(null);
+
   };
 
   const onHandleLabelTitle = ({ target }) => {
@@ -52,10 +53,11 @@ export const LabelsModal = (props) => {
     }
   };
 
-  const onHandlePick = (labelId) => {
+  const onHandlePick = (ev, labelId) => {
     const isExist = task.labels.findIndex((label) => {
       return label._id === labelId;
     });
+    setAnchorEl(ev.currentTarget);
     if (isExist !== -1) return onRemoveLabel(labelId);
     else onAddLabel(labelId);
   };
@@ -123,7 +125,8 @@ export const LabelsModal = (props) => {
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
-        }}>
+        }}
+        >
         <div sx={{ p: 0.5, width: '304px' }}>
           <div className='labels-task-modal flex justify-center'>
             Labels
@@ -138,8 +141,8 @@ export const LabelsModal = (props) => {
                     onBlur={() => applyLabelTitle(index, label._id)}
                     className='color-label'>
                     <button
-                      onClick={() => {
-                        onHandlePick(label._id);
+                      onClick={(ev) => {
+                        onHandlePick(ev, label._id);
                       }}
                       style={{ backgroundColor: `${label.bgc}` }}>
                       {isEditing && currLabelId === label._id ? (

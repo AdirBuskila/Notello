@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 
@@ -8,6 +8,7 @@ import {utilService} from '../services/util.service'
 export const CheckListDelete = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const loggedInUser = useSelector((state) => state.userModule.loggedInUser)
     const dispatch = useDispatch();
     const { board, task, taskIdx, groupIdx, checklistIdx, checklist } = props;
 
@@ -22,9 +23,9 @@ export const CheckListDelete = (props) => {
     const onDelete = async () => {
         const activity = {
             _id: utilService.makeId(),
-            txt: `deleted checklist - (${checklist.title})`,
+            txt: `deleted checklist - ${checklist.title}`,
             createdAt: Date.now(),
-            byMember: 'user',
+            byMember: loggedInUser,
             task: {
                 _id: task._id,
                 title: task.title

@@ -4,12 +4,6 @@ import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { utilService } from '../../services/util.service';
 import { boardService } from '../../services/board.service';
-<<<<<<< HEAD
-
-export const AddCommentCmp = (props) => {
-  const { task, group, board } = props;
-
-=======
 import { useSelector} from 'react-redux';
 
 export const AddCommentCmp = (props) => {
@@ -18,17 +12,16 @@ export const AddCommentCmp = (props) => {
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   
->>>>>>> 04034caa174fee12f54f10b030050d02249b23de
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
   const [active, setActive] = useState('');
+  const [isAdding, onIsAdding] = useState(false);
   console.log('newComment', newComment);
 
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
   });
-<<<<<<< HEAD
 
   const onHandleModal = () => {
     console.log(newComment);
@@ -40,16 +33,11 @@ export const AddCommentCmp = (props) => {
     if (newComment !== '') return;
     onHandleModal();
   };
-=======
->>>>>>> 04034caa174fee12f54f10b030050d02249b23de
 
   const onHandleChange = ({ target }) => {
     const value = target.value;
     setNewComment(value);
-<<<<<<< HEAD
     console.log(newComment);
-=======
->>>>>>> 04034caa174fee12f54f10b030050d02249b23de
   };
 
   const onAdd = async () => {
@@ -57,7 +45,6 @@ export const AddCommentCmp = (props) => {
       _id: utilService.makeId(),
       txt: newComment,
       createdAt: Date.now(),
-<<<<<<< HEAD
       byMember: {
         _id: utilService.makeId(),
         fullname: 'Guest',
@@ -76,22 +63,11 @@ export const AddCommentCmp = (props) => {
     };
     try {
       board.activities.unshift(activity);
-=======
-      byMember: {loggedInUser},
-    };
-    setNewComment('');
-    // console.log('newComment', newComment);
-    try {
->>>>>>> 04034caa174fee12f54f10b030050d02249b23de
       board.groups[groupIdx].tasks[taskIdx].comments.push(comment);
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);
     } catch (err) {
-<<<<<<< HEAD
       console.log('Cannot add comment to task');
-=======
-      console.log('cannot add new comment', err);
->>>>>>> 04034caa174fee12f54f10b030050d02249b23de
     }
   };
 
@@ -112,15 +88,7 @@ export const AddCommentCmp = (props) => {
           placeholder={`Add a more detailed comment `}></textarea>
         {active && (
           <div className='new-comment-actions flex align-center'>
-<<<<<<< HEAD
-            <Button
-              onClick={() => {
-                onAdd();
-              }}
-              variant='contained'>
-=======
             <Button variant='contained' onClick={onAdd}>
->>>>>>> 04034caa174fee12f54f10b030050d02249b23de
               Save
             </Button>
           </div>

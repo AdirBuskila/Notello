@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { CheckListActionModal } from "./check-list-actions-modal";
 
@@ -7,6 +7,7 @@ import { utilService } from "../services/util.service";
 
 export const CheckListSection = (props) => {
     const { todo, todoIdx, board, task, taskIdx, isChanging, groupIdx, checklistIdx } = props;
+    const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
     const dispatch = useDispatch()
     const [todoTitle, setTodoTitle] = useState('');
     const [isActionsOpen, setIsActionsOpen] = useState(false);
@@ -33,9 +34,9 @@ export const CheckListSection = (props) => {
         if (!todoTitle) return; // add a nice modal
         const activity = {
             _id: utilService.makeId(),
-            txt: `updated todo (${todoTitle}) title at checlist - ${task.checklists[checklistIdx].title}`,
+            txt: `updated todo ${todoTitle} title, at checklist - ${task.checklists[checklistIdx].title}`,
             createdAt: Date.now(),
-            byMember: 'user',
+            byMember: loggedInUser,
             task: {
                 _id: task._id,
                 title: task.title
@@ -57,9 +58,9 @@ export const CheckListSection = (props) => {
         if (!newTodo.title) return; // add a nice modal
         const activity = {
             _id: utilService.makeId(),
-            txt: `added todo (${newTodo.title}) to checklist - ${task.checklists[checklistIdx].title}`,
+            txt: `added todo (${newTodo.title}), to checklist - ${task.checklists[checklistIdx].title}`,
             createdAt: Date.now(),
-            byMember: 'user',
+            byMember: loggedInUser,
             task: {
                 _id: task._id,
                 title: task.title
