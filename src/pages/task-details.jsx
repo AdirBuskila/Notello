@@ -41,6 +41,7 @@ import { JoinCmp } from '../cmps/task-details-cmps/join-member';
 
 export const TaskDetails = (props) => {
   const { useState } = React;
+  const dispatch = useDispatch();
   const currBoard = useSelector((state) => state.boardModule.board);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const params = useParams();
@@ -52,19 +53,21 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = useState('');
   const [groupIdx, setGroupIdx] = useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
-  const dispatch = useDispatch();
-
+  
+  // const board = useSelector((state) => state.boardModule.board);
+  
+  
   const whichBgcExist = selectedTask.cover
-    ? selectedTask.cover.background
-    : null;
-
+  ? selectedTask.cover.background
+  : null;
+  
   React.useEffect(async () => {
     try {
       const newBoard = await boardService.getById(boardId);
       const newGroup = boardService.getGroup(newBoard, taskId);
       setBoard(newBoard);
       setGroup(newGroup);
-      await onLoadTask(newBoard, newGroup, taskId);
+      await onLoadTask(board, newGroup, taskId);
     } catch (err) {
       console.log('Cant load board');
     }
@@ -150,9 +153,8 @@ export const TaskDetails = (props) => {
             </div>
           ) : (
             <div className='close-button flex align-center end'>
-              <CloseIcon
-                sx={{ fontSize: '2.5rem', padding: '8px' }}
-                onClick={onHandleClose}
+              <CloseIcon 
+              onClick={onHandleClose}
               />
             </div>
           )}

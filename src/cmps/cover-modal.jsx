@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
@@ -10,6 +10,7 @@ export const CoverModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task } = props;
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
@@ -50,9 +51,9 @@ export const CoverModal = (props) => {
   const submitChanges = async (task) => {
     const activity = {
       _id: utilService.makeId(),
-      txt: `updated the cover`,
+      txt: `updated the cover to ${task.cover.background}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,

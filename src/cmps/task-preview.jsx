@@ -84,8 +84,8 @@ export const TaskPreview = (props) => {
                           className={className}
                           onClick={(ev) => onHandleLablesClick(ev)}
                           key={idx}
-                          style={{ backgroundColor: `${label.bgc}` }}>
-                          {isLabelsExpended && `${label.name}`}
+                          style={{ backgroundColor: `${label.bgc}`}}>
+                          {(isLabelsExpended && label.name) && `${label.name}`}
                         </li>
                       );
                     })}

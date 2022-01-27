@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { utilService } from '../services/util.service';
 import { boardService } from '../services/board.service';
@@ -16,7 +16,7 @@ export const CopyMoveModal = (props) => {
   const [keepChecklistsInitial, setKeepChecklistsInitial] = useState(true);
   const [keepLabelsInitial, setKeepLabelsInitial] = useState(true);
   const [keepGroupInitial, setKeepGroupInitial] = useState(groupIdx);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -28,37 +28,37 @@ export const CopyMoveModal = (props) => {
 
   const onHandleTitleChange = ({ target }) => {
     setNewCardTitle(target.value);
-  }
+  };
 
   const onHandleChecklists = () => {
     setKeepChecklistsInitial(!keepChecklistsInitial);
-  }
+  };
 
   const onHandleLabels = () => {
     setKeepLabelsInitial(!keepLabelsInitial);
-  }
+  };
 
-  const onHandleGroupChange = ({target}) => {
+  const onHandleGroupChange = ({ target }) => {
     setKeepGroupInitial(target.value);
-  }
-  
+  };
+
   const onHandleSave = () => {
-    newTask._id = utilService.makeId()
+    newTask._id = utilService.makeId();
     newTask.title = newCardTitle;
-    newTask.labels = (keepChecklistsInitial) ? task.labels : [];
-    newTask.labels = (keepLabelsInitial) ? task.labels : [];
+    newTask.labels = keepChecklistsInitial ? task.labels : [];
+    newTask.labels = keepLabelsInitial ? task.labels : [];
     // board.groups[+keepGroupInitial].tasks.push(newTask);
     // submitChanges(board);
-  }
+  };
 
   const submitChanges = async (board) => {
-        try {
-            const action = {type: 'SET_BOARD', board};
-            await dispatch(action);
-        } catch (err) {
-            console.log('Cant handle card copy / move :', err);
-        }
-  }
+    try {
+      const action = { type: 'SET_BOARD', board };
+      await dispatch(action);
+    } catch (err) {
+      console.log('Cant handle card copy / move :', err);
+    }
+  };
 
   return (
     <div className='button-container flex align-center'>
@@ -77,56 +77,55 @@ export const CopyMoveModal = (props) => {
         <div sx={{ p: 0.5, width: '304px' }}>
           <div className='copy-move-task-modal flex justify-center'>
             {type === 'copy' ? <p>Copy card</p> : <p>Move</p>}
-            <a onClick={handleClose}>
-              ✕
-            </a>
+            <a onClick={handleClose}>✕</a>
           </div>
           <div className='copy-move-modal flex column'>
             <span>Copy</span>
             <textarea
               autoFocus
               defaultValue={task.title + ' copy'}
-              onChange={(ev) => onHandleTitleChange(ev)}>
-            </textarea>
+              onChange={(ev) => onHandleTitleChange(ev)}></textarea>
             <span>Keep...</span>
             <section className='keep-section flex column'>
               <div className='inner-keepers flex align-center'>
                 <input
                   onChange={onHandleChecklists}
-                  type="checkbox"
+                  type='checkbox'
                   defaultChecked={true}
-                  name="checklist"
+                  name='checklist'
                 />
-                <label htmlFor="checklist">
+                <label htmlFor='checklist'>
                   Checklists ({`${task.checklists.length}`})
                 </label>
               </div>
               <div className='inner-keepers flex align-center'>
                 <input
                   onChange={onHandleLabels}
-                  type="checkbox"
+                  type='checkbox'
                   defaultChecked={true}
-                  name="labels"
+                  name='labels'
                 />
-                <label htmlFor="labels">
+                <label htmlFor='labels'>
                   Labels ({`${task.labels.length}`})
                 </label>
               </div>
             </section>
             <span>Copy to...</span>
-            <select
-            onChange={(ev) => onHandleGroupChange(ev)}
-              name="group">
+            <select onChange={(ev) => onHandleGroupChange(ev)} name='group'>
               {board.groups.map((group, index) => {
                 return (
-                  <option value={index}>{group.title}</option>
-                )
+                  <option key={index} value={index}>
+                    {group.title}
+                  </option>
+                );
               })}
             </select>
-            <button className='save-button' onClick={onHandleSave}>Create card</button>
+            <button className='save-button' onClick={onHandleSave}>
+              Create card
+            </button>
           </div>
-        </div >
-      </Popover >
-    </div >
+        </div>
+      </Popover>
+    </div>
   );
 };

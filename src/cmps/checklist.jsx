@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxIcon from '@mui/icons-material/CheckBoxOutlined';
@@ -11,6 +11,7 @@ import { utilService } from '../services/util.service';
 
 export const CheckList = (props) => {
   const { task, taskIdx, groupIdx, checklistIdx, board, checklist } = props;
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [currTodoId, setCurrTodoId] = useState('');
   const [isChanging, setIsChanging] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
@@ -26,7 +27,7 @@ export const CheckList = (props) => {
       _id: utilService.makeId(),
       txt: `changed todo (${checklist.todos[todoIdx].title}) state to - ${state}`,
       createdAt: Date.now(),
-      byMember: 'user',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
