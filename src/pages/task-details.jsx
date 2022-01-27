@@ -41,6 +41,7 @@ import { CopyMoveModal } from '../cmps/copy-move-details';
 export const TaskDetails = (props) => {
   const { useState } = React;
   const currBoard = useSelector((state) => state.boardModule.board);
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const params = useParams();
   const boardId = params.boardId;
   const taskId = params.id;
@@ -241,13 +242,13 @@ export const TaskDetails = (props) => {
                 <div className='comment-container flex'>
                   <div className='user-container'>
                     <Avatar
+                      src={loggedInUser.imgUrl}
                       sx={{
-                        bgcolor: deepOrange[500],
                         width: 32,
                         height: 32,
                       }}
                     >
-                      <p>NC</p>
+                      <p>{utilService.getInitials(loggedInUser.fullname)}</p>
                     </Avatar>
                   </div>
                   <AddCommentCmp

@@ -38,6 +38,14 @@ export const GoogleLoginButton = () => {
         console.clear();
         setShowloginButton(true);
         setShowlogoutButton(false);
+        const user = {
+            _id: 'GuestId',
+            username: 'Guest',
+            fullname: 'Guest',
+            imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643293928/Notello/wkyvzzdkw2e4whnbt1lt.png'
+        }
+        const action = {type: 'SET_USER', user}
+        dispatch(action)
     };
 
     return (
