@@ -96,7 +96,12 @@
     .task-title {
       padding-top: 1rem;
       width: 100%;
-      height: 48px;
+      height: rem(48px);
+      .task-title-container {
+        padding-top: 1rem;
+        width: 90%;
+        flex-wrap: wrap;
+      }
       input {
         color: #172b4d;
         padding: 0.5rem;
@@ -113,8 +118,6 @@
       padding-left: 1rem;
     }
     .task-main-container {
-      // width: 100%;
-      // height: 100%;
       display: grid;
       grid-template-columns: 0.7fr 0.3fr;
       gap: 16px;
@@ -217,7 +220,7 @@
           padding-inline-start: 0;
           width: 100%;
         }
-        & > div {
+        .self-top {
           align-self: baseline;
         }
       }
@@ -299,7 +302,7 @@
     }
     .comments-area {
       .comments-container {
-        gap: 2rem;
+        gap: 1rem;
       }
       .comment-creator {
         position: absolute;
@@ -307,8 +310,10 @@
       }
       .comment {
         border-radius: 3px;
-        padding-block-end: rem(20px);
         margin-inline-start: 2.2rem;
+      }
+      .comment:last-child {
+        padding-block-end: rem(20px);
       }
     }
   }

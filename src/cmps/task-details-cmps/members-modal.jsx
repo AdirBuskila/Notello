@@ -20,7 +20,6 @@ export const MembersModal = (props) => {
   };
   const handleClose = (event) => {
     open = false;
-    console.log('hi')
     setAnchorEl(null);
   };
 
@@ -30,19 +29,17 @@ export const MembersModal = (props) => {
   });
 
   const onAddMember = (memberId) => {
-      const taskMembers = board.groups[groupIdx].tasks[taskIdx].members
-      const alreadyInside  = taskMembers.find((member)=> {
-          return (member._id === memberId)         
-        })
-        if (alreadyInside) return
-        const newMember = boardService.getMemberById(board, memberId) 
-        taskMembers.push(newMember)
-        board.groups[groupIdx].tasks[taskIdx].members = taskMembers
-        const action = {type: 'SET_BOARD', board}
-        dispatch(action)
-        
-  }
-
+    const taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
+    const alreadyInside = taskMembers.find((member) => {
+      return member._id === memberId;
+    });
+    if (alreadyInside) return;
+    const newMember = boardService.getMemberById(board, memberId);
+    taskMembers.push(newMember);
+    board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
+    const action = { type: 'SET_BOARD', board };
+    dispatch(action);
+  };
 
   return (
     <div className='button-container flex'>
@@ -55,8 +52,7 @@ export const MembersModal = (props) => {
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
-        }}
-      >
+        }}>
         <div className='members-modal-container'>
           <div className='members-modal-header flex space-between'>
             <div className='close-button pointer' onClick={handleClose}>
@@ -68,7 +64,10 @@ export const MembersModal = (props) => {
             <div className='board-members-container'>
               {board.members.map((member) => {
                 return (
-                  <div key={member._id} onClick={()=>onAddMember(member._id)} className='inner-member flex pointer'>
+                  <div
+                    key={member._id}
+                    onClick={() => onAddMember(member._id)}
+                    className='inner-member flex pointer'>
                     <Avatar
                       alt={utilService.getInitials(member.fullname)}
                       src={member.imgUrl}

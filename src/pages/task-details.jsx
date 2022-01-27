@@ -28,6 +28,7 @@ import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ArchiveSharpIcon from '@mui/icons-material/ArchiveSharp';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { deepOrange } from '@mui/material/colors';
@@ -124,7 +125,10 @@ export const TaskDetails = (props) => {
                     }
               }>
               <div className='close-button flex align-center end'>
-                <CloseIcon onClick={onHandleClose} />
+                <CloseIcon
+                  onClick={onHandleClose}
+                  sx={{ fontSize: '2.5rem', padding: '8px' }}
+                />
               </div>
               <CoverModal
                 updateTask={updateTask}
@@ -141,13 +145,15 @@ export const TaskDetails = (props) => {
               <CloseIcon onClick={onHandleClose} />
             </div>
           )}
-          {selectedTask.isArchived && <div className='archived-task flex align-center'>
-        <ArchiveSharpIcon />
-        <span>This card is archived.</span> 
-          </div>}
+          {selectedTask.isArchived && (
+            <div className='archived-task flex align-center'>
+              <DeleteOutlineIcon sx={{ color: '#42526e' }} />
+              <span>This card is archived.</span>
+            </div>
+          )}
           <div className='window-header align-center flex space-between'>
             <div className='task-title flex align-center'>
-              <WebAssetIcon sx={{ marginTop: 0.5 }} />
+              <WebAssetIcon sx={{ mb: 0.5 }} />
               <div className='task-title-container flex column'>
                 <input
                   className='task-title-input'
@@ -176,13 +182,14 @@ export const TaskDetails = (props) => {
                   <DueDateCmp dueDate={selectedTask.dueDate} />
                 )}
               </div>
-              <LabelsCmp 
-            key={utilService.makeId()}
-            task={selectedTask}
-            groupIdx={groupIdx}
-            board={board}
-            taskIdx={taskIdx}
-            labels={selectedTask.labels} />
+              <LabelsCmp
+                key={utilService.makeId()}
+                task={selectedTask}
+                groupIdx={groupIdx}
+                board={board}
+                taskIdx={taskIdx}
+                labels={selectedTask.labels}
+              />
               <div className='description-container'>
                 <div className='description flex'>
                   <SubjectIcon />
@@ -212,14 +219,16 @@ export const TaskDetails = (props) => {
                 taskIdx={taskIdx}
                 group={group}
               />
-              <div className='attachments-container'>
-                <AttachmentsCmp
-                  attachments={selectedTask.attachments}
-                  task={selectedTask}
-                  board={board}
-                  group={group}
-                />
-              </div>
+              {selectedTask.attachments?.length > 0 && (
+                <div className='attachments-container'>
+                  <AttachmentsCmp
+                    attachments={selectedTask.attachments}
+                    task={selectedTask}
+                    board={board}
+                    group={group}
+                  />
+                </div>
+              )}
               <div className='activity-container flex column'>
                 <div className='activity flex align-center space-between'>
                   <div className='activity-header-container flex'>
@@ -258,12 +267,13 @@ export const TaskDetails = (props) => {
               </div>
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
-              <LabelsModal 
-            key={utilService.makeId()}
-            task={selectedTask}
-            groupIdx={groupIdx}
-            board={board}
-            taskIdx={taskIdx} />
+              <LabelsModal
+                key={utilService.makeId()}
+                task={selectedTask}
+                groupIdx={groupIdx}
+                board={board}
+                taskIdx={taskIdx}
+              />
               <CheckListModal
                 isCheckListAcctivated={isCheckListAcctivated}
                 board={board}
@@ -309,18 +319,19 @@ export const TaskDetails = (props) => {
                 <ArrowForwardOutlinedIcon color='action' />
                 <Typography>Move</Typography>
               </div>
-              <CopyMoveModal 
-              type={'copy'}
-              board={board}
-              groupIdx={groupIdx}
-              task={selectedTask} 
+              <CopyMoveModal
+                type={'copy'}
+                board={board}
+                groupIdx={groupIdx}
+                taskIdx={taskIdx}
+                task={selectedTask}
               />
-              <ArchiveModal 
-            board={board}
-            groupIdx={groupIdx}
-            taskIdx={taskIdx}
-            task={selectedTask} 
-            />
+              <ArchiveModal
+                board={board}
+                groupIdx={groupIdx}
+                taskIdx={taskIdx}
+                task={selectedTask}
+              />
             </div>
           </div>
         </div>
@@ -328,4 +339,3 @@ export const TaskDetails = (props) => {
     </React.Fragment>
   );
 };
-
