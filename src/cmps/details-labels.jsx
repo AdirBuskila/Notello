@@ -1,135 +1,196 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Popper from '@mui/material/Popper';
+import { useDispatch } from 'react-redux';
+import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Fade from '@mui/material/Fade';
-import Paper from '@mui/material/Paper';
-import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
-import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
-
-import { boardService } from '../services/board.service';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 
 export const LabelsModal = (props) => {
-  const dispatch = useDispatch();
-  const board = useSelector((state) => state.boardModule.board);
-
   const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState();
+  const open = Boolean(anchorEl);
+  const { board, groupIdx, taskIdx, task } = props;
+  const isFromInnerWindow = (props.source) ? true : false;
+  const [isEditing, setIsEditing] = useState(false)
+  const [currLabelId, setCurrLabelId] = useState(null);
+  const [labelTitle, setLabelTitle] = useState('');
+  const dispatch = useDispatch()
+  
 
-  const handleClick = (newPlacement) => (event) => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    setOpen((prev) => placement !== newPlacement || !prev);
-    setPlacement(newPlacement);
   };
 
-  const onHandleModal = (ev) => {
-    ev.preventDefault();
-    setOpen(false);
+  const handleClose = (event) => {
+    setAnchorEl(null);
   };
 
-  const handleColorPick = async (ev) => {
-    const name = ev.target.innerText;
-    const bgc = getComputedStyle(ev.target).backgroundColor;
-    const label = { name, bgc };
-    const { groupIdx, task } = props;
-    const group = board.groups.find((group, idx) => {
-      return idx === groupIdx;
-    });
-    await boardService.addLabel(
-      label,
-      board._id,
-      group._id,
-      task._id,
-      `Label ${name} has been added`
-    );
-    await props.onLoadBoard();
+  const onHandleLabelTitle = ({ target }) => {
+    const value = target.value;
+    setLabelTitle(value);
+  }
+
+  const applyLabelTitle = (index, labelId) => {
+    board.labels[index].name = labelTitle;
+    const labelIdx = task.labels.findIndex((label) => {
+      return (label._id === labelId)
+    })
+    if (labelIdx !== -1) {
+      task.labels[labelIdx].name = labelTitle;
+      board.groups[groupIdx].tasks[taskIdx] = task;
+    }
+    const action = { type: 'SET_BOARD', board };
+    dispatch(action);
+  }
+
+  const onHandlePick = (labelId) => {
+    const isExist = task.labels.findIndex((label) => {
+      return (label._id === labelId)
+    })
+    if (isExist !== -1) return onRemoveLabel(labelId)
+    else onAddLabel(labelId)
   };
+
+  const onRemoveLabel = (labelId) => {
+    const labelIdx = task.labels.findIndex((label) => {
+      return (label._id === labelId)
+    })
+    task.labels.splice(labelIdx, 1);
+    onSaveChanges()
+  }
+
+  const onAddLabel = (labelId) => {
+    const label = board.labels.find((currLabel) => {
+      return (currLabel._id === labelId);
+    })
+    task.labels.push(label);
+    onSaveChanges()
+  }
+
+  const onSaveChanges = () => {
+    board.groups[groupIdx].tasks[taskIdx] = task;
+    const action = { type: 'SET_BOARD', board };
+    dispatch(action);
+  }
 
   return (
-    <div
-      className='button-container flex'
-      onClick={handleClick('bottom-start')}>
-      <LocalOfferOutlinedIcon color='action' />
-      <Typography>Labels</Typography>
-      <Popper
-        className='checklist-popper'
+    <div className='button-container flex align-center'>
+      <div className='flex align-center' style={isFromInnerWindow ? {opacity: '0'} : null}>
+      <LocalOfferOutlinedIcon color='action' onClick={handleClick}  />
+      <Typography onClick={handleClick}>Labels</Typography>
+      </div>
+      <Popover
         open={open}
         anchorEl={anchorEl}
-        placement={placement}
-        transition>
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Paper>
-              <Typography
-                className='header-board-typography'
-                sx={{ p: 1, mt: 1, width: '304px', height: '320px' }}>
-                <div className='labels-modal-title flex align-center justify-center'>
-                  Labels
-                  <a href='#' onClick={(ev) => onHandleModal(ev)}>
-                    ✕
-                  </a>
-                </div>
-                <hr />
-                <section
-                  className='labels-details flex column'
-                  style={{ height: 'fit-content' }}>
-                  <section className='flex align-center'>
-                    <div
-                      className='flex yellow'
-                      onClick={(ev) => handleColorPick(ev)}>
-                      <span>Important</span>
-                    </div>
-                    <ModeEditOutlinedIcon />
-                  </section>
-                  <section className='flex align-center'>
-                    <div
-                      className='flex orange'
-                      onClick={(ev) => handleColorPick(ev)}>
-                      <span>Special</span>
-                    </div>
-                    <ModeEditOutlinedIcon />
-                  </section>
-                  <section className='flex align-center'>
-                    <div
-                      className='flex red'
-                      onClick={(ev) => handleColorPick(ev)}>
-                      <span>Urgent</span>
-                    </div>
-                    <ModeEditOutlinedIcon />
-                  </section>
-                  <section className='flex align-center'>
-                    <div
-                      className='flex dark-red'
-                      onClick={(ev) => handleColorPick(ev)}>
-                      <span>Casual</span>
-                    </div>
-                    <ModeEditOutlinedIcon />
-                  </section>
-                  <section className='flex align-center'>
-                    <div
-                      className='flex purple'
-                      onClick={(ev) => handleColorPick(ev)}>
-                      <span>Work</span>
-                    </div>
-                    <ModeEditOutlinedIcon />
-                  </section>
-                  <section className='flex align-center'>
-                    <div
-                      className='flex blue'
-                      onClick={(ev) => handleColorPick(ev)}>
-                      <span>Private</span>
-                    </div>
-                    <ModeEditOutlinedIcon />
-                  </section>
-                </section>
-              </Typography>
-            </Paper>
-          </Fade>
-        )}
-      </Popper>
-    </div>
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}>
+        <div sx={{ p: 0.5, width: '304px' }}>
+          <div className='labels-task-modal flex justify-center'>
+            Labels
+            <a onClick={handleClose}>
+              ✕
+            </a>
+          </div>
+          <div className='labels-modal flex column'>
+            <span>Labels</span>
+            <section className='labels-picker'>
+
+              {board.labels.map((label, index) => {
+                return (
+                  <div onBlur={() => applyLabelTitle(index, label._id)} className='color-label'>
+                    <button
+                      onClick={(ev) => {
+                        onHandlePick(label._id)
+                      }}
+                      style={{ backgroundColor: `${label.bgc}`}}
+                    >
+                      {isEditing && currLabelId === label._id ? <input autoFocus defaultValue={label.name} onChange={(ev) => onHandleLabelTitle(ev)}></input>
+                        : <p>{label.name}</p>}
+                      {(task.labels.findIndex((currLabel) => {
+                        return (currLabel._id === label._id)
+                      }) !== -1) && <span>✓</span>}
+                    </button>
+                    <CreateOutlinedIcon onClick={() => {
+                        setIsEditing(true)
+                        setCurrLabelId(label._id)
+                      }
+                    } 
+                      sx={{ fontSize: 'large' }} />
+                  </div>
+                )
+              })}
+            </section>
+          </div>
+        </div >
+      </Popover >
+    </div >
   );
 };
+
+/* 
+<button onClick={(ev) => {
+                  onHandlePick(ev)
+                }} className='yellow'>
+                  Important
+                </button>
+                  {(task.labels.findIndex((label) => {
+                    return (label.name === 'Important')
+                  }) !== -1) && <span>✓</span>}
+                <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
+              </div>
+              <div className='color-label'>
+                <button onClick={(ev) => {
+                  onHandlePick(ev)
+                }} className='orange'>
+                  QA
+                </button>
+                  {(task.labels.findIndex((label) => {
+                    return (label.name === 'QA')
+                  }) !== -1) && <span>✓</span>}
+                <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
+              </div>
+              <div className='color-label'>
+                <button onClick={(ev) => {
+                  onHandlePick(ev)
+                }} className='red'>
+                  Urgent
+                </button>
+                  {(task.labels.findIndex((label) => {
+                    return (label.name === 'Urgent')
+                  }) !== -1) && <span>✓</span>}
+                <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
+                </div>
+                <div className='color-label'>
+                  <button onClick={(ev) => {
+                    onHandlePick(ev)
+                  }} className='lightblue'>
+                    Development
+                  </button>
+                    {(task.labels.findIndex((label) => {
+                    return (label.name === 'Development')
+                  }) !== -1) && <span>✓</span>}
+                  <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
+                </div>
+                <div className='color-label'>
+                  <button onClick={(ev) => {
+                    onHandlePick(ev)
+                  }} className='lightgreen'>
+                    Done
+                  </button>
+                    {(task.labels.findIndex((label) => {
+                    return (label.name === 'Done')
+                  }) !== -1) && <span>✓</span>}
+                  <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
+                </div>
+                <div className='color-label'>
+                  <button onClick={(ev) => {
+                    onHandlePick(ev)
+                  }} className='pink'>
+                    Product
+                  </button>
+                    {(task.labels.findIndex((label) => {
+                    return (label.name === 'Product')
+                  }) !== -1) && <span>✓</span>}
+                  <CreateOutlinedIcon sx={{ fontSize: 'large' }} /> */

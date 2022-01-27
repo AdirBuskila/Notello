@@ -53,9 +53,7 @@ export const TaskDetails = (props) => {
   const [isColorPicked, setIsColorPicked] = React.useState('');
   const dispatch = useDispatch();
 
-  const whichBgcExist = selectedTask.cover
-    ? selectedTask.cover.background
-    : null;
+  const whichBgcExist = (selectedTask.cover) ? selectedTask.cover.background : null;
 
   React.useEffect(async () => {
     try {
@@ -117,21 +115,9 @@ export const TaskDetails = (props) => {
         //   ev.stopPropagation();
         // }}
       >
-        {whichBgcExist ? (
-          <div
-            className='task-header-cover'
-            style={
-              whichBgcExist.includes('#') || whichBgcExist.includes('rgb')
-                ? { backgroundColor: `${selectedTask.cover.background}` }
-                : {
-                    backgroundImage: `url(${whichBgcExist})`,
-                    backgroundColor: '#415647a6',
-                  }
-            }
-          >
-            <div className='close-button flex align-center end'>
-              <CloseIcon onClick={onHandleClose} />
-            </div>
+        {(whichBgcExist) ? <div className='task-header-cover' style={(whichBgcExist.includes('#') || whichBgcExist.includes('rgb')) ? { backgroundColor: `${selectedTask.cover.background}` }
+          : { backgroundImage: `url(${whichBgcExist})`, backgroundColor: '#415647a6' }}>
+            <CloseIcon className='close-button' onClick={onHandleClose} />
             <CoverModal
               updateTask={updateTask}
               setIsColorPicked={setIsColorPicked}
@@ -141,12 +127,7 @@ export const TaskDetails = (props) => {
               taskIdx={taskIdx}
               task={selectedTask}
             />
-          </div>
-        ) : (
-          <div className='close-button flex align-center end'>
-            <CloseIcon onClick={onHandleClose} />
-          </div>
-        )}
+        </div> : <CloseIcon className='close-button' onClick={onHandleClose} />}
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
@@ -178,6 +159,13 @@ export const TaskDetails = (props) => {
                 <DueDateCmp dueDate={selectedTask.dueDate} />
               )}
             </div>
+            <LabelsCmp 
+            key={utilService.makeId()}
+            task={selectedTask}
+            groupIdx={groupIdx}
+            board={board}
+            taskIdx={taskIdx}
+            labels={selectedTask.labels} />
             <div className='description-container'>
               <div className='description flex'>
                 <SubjectIcon />
@@ -251,7 +239,16 @@ export const TaskDetails = (props) => {
               <Typography>Join</Typography>
             </div>
             <p className='task-actions'>Add to card</p>
-            <MembersModal task={selectedTask} board={board} group={group} />
+            <div className='button-container flex'>
+              <PersonOutlineOutlinedIcon color='action' />
+              <Typography>Members</Typography>
+            </div>
+            <LabelsModal 
+            key={utilService.makeId()}
+            task={selectedTask}
+            groupIdx={groupIdx}
+            board={board}
+            taskIdx={taskIdx} />
             <CheckListModal
               isCheckListAcctivated={isCheckListAcctivated}
               board={board}

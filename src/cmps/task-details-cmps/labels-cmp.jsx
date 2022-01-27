@@ -1,10 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import AddIcon from '@mui/icons-material/Add';
+import { LabelsModal } from '../details-labels';
 
 import { utilService } from '../../services/util.service';
 
 
-export const LabelsCmp = ({ labels }) => {
+export const LabelsCmp = (props) => {
+  const {task, groupIdx, board, taskIdx, labels} = props;
+  
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  
   return (
     <section className='labels-main-container flex column'>
       <div className='labels-info-container'>
@@ -30,9 +35,20 @@ export const LabelsCmp = ({ labels }) => {
         key={utilService.makeId()}
         className='add-square-icon flex align-center justify-center'
       >
-        <AddIcon key={utilService.makeId()} />
+        <AddIcon style={{ position: 'absolute'}} key={utilService.makeId()} />
+          <LabelsModal
+          source={'inner'}
+           task={props.task}
+           groupIdx={groupIdx}
+           board={board}
+           taskIdx={taskIdx}
+           
+           />
       </div>
       </div>
     </section>
   );
 };
+
+
+// onClick={() => setIsModalOpen(true)}

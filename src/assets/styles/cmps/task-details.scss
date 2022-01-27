@@ -62,15 +62,16 @@
     color: #172b4d; 
 
     .close-button {
-      // top: rem(8px);
-      // right: rem(8px);
+      position: relative;
+      right: 12px;
+      top: 12px;
       width: rem(40px);
       height: rem(40px);
       cursor: pointer;
       border-radius: 50%;
     }
     .close-button:hover {
-      background-color: #091e4214;
+      background-color: #33353929;
     }
     .group-title {
       p{
