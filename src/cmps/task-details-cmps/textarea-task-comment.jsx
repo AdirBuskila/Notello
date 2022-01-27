@@ -11,32 +11,22 @@ export const AddCommentCmp = (props) => {
   
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
-  const [isAdding, onIsAdding] = useState(false);
+  console.log('newComment', newComment);
 
   const groupIdx = boardService.getGroupIdxById(board, group._id)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
     return (currTask._id === task._id)
   })
 
-  const onHandleModal = () => {
-    console.log(newComment);
-    onIsAdding(!isAdding);
-  };
-
-  const onCloseModal = () => {
-    console.log(newComment);
-    if (newComment !== '') return;
-    onHandleModal();
-  };
 
   const onHandleChange = ({ target }) => {
     const value = target.value;
     setNewComment(value);
-    console.log(newComment);
 
   };
   
-  const onAdd = () => {
+  const onAdd = async () => {
+    console.log('hi');
     const comment = {
       _id: utilService.makeId(),
       txt: newComment,
@@ -47,41 +37,35 @@ export const AddCommentCmp = (props) => {
         imgUrl: ''
       }
     }
- 
-    board.groups[groupIdx].tasks[taskIdx].comments.push(comment)
-    const action = {type: 'SET_BOARD', board}
-    dispatch(action)
-    
+    setNewComment('')
+    // console.log('newComment', newComment);
+    try{
+      board.groups[groupIdx].tasks[taskIdx].comments.push(comment)
+      const action = {type: 'SET_BOARD', board}
+      await dispatch(action)
+    } catch (err) {
+      console.log('cannot add new comment', err);
+    }
+
   };
 
   return (
     <React.Fragment>
-      {!isAdding && (
-        <textarea
-          rows='2'
-          placeholder='Write a comment...'
-          className='add-comment flex align-center'
-          onClick={onHandleModal}></textarea>
-      )}
-      {isAdding && (
         <div className='new-comment flex column'>
           <textarea
-            autoFocus
-            // onBlurCapture={onCloseModal}
+            // autoFocus
             onChange={onHandleChange}
             rows='2'
-            defaultValue={newComment}
-            placeholder={`Add a more detailed comment `}></textarea>
-          <div className='new-comment-actions flex align-center'>
+            // defaultValue={newComment}
+            placeholder={`Add a more detailed comment `}>
+            </textarea>
+          {(newComment.length) ? <div className='new-comment-actions flex align-center'>
             <Button
-              onClick={() => {onAdd()}}
-              variant='contained'
-            >
-              Save
-            </Button>
-          </div>
+            variant='contained'
+            onClick={onAdd}
+            >Save</Button>
+          </div>: null}
         </div>
-      )}
     </React.Fragment>
   );
 };

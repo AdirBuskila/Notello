@@ -271,6 +271,11 @@
       .comment {
         font-size: 14px;
         gap: 8px;
+        p.delete-comment {
+          color: #5e6c84;
+          font-size: 12px;
+          font-weight: 400;
+        }
       }
       .comment-container {
         .user-container {
