@@ -177,6 +177,13 @@ export const TaskDetails = (props) => {
                 <DueDateCmp dueDate={selectedTask.dueDate} />
               )}
             </div>
+            <LabelsCmp 
+            key={utilService.makeId()}
+            task={selectedTask}
+            groupIdx={groupIdx}
+            board={board}
+            taskIdx={taskIdx}
+            labels={selectedTask.labels} />
             <div className='description-container'>
               <div className='description flex'>
                 <SubjectIcon />
@@ -250,6 +257,12 @@ export const TaskDetails = (props) => {
             </div>
             <p className='task-actions'>Add to card</p>
             <MembersModal task={selectedTask} board={board} group={group} />
+            <LabelsModal 
+            key={utilService.makeId()}
+            task={selectedTask}
+            groupIdx={groupIdx}
+            board={board}
+            taskIdx={taskIdx} />
             <CheckListModal
               isCheckListAcctivated={isCheckListAcctivated}
               board={board}
