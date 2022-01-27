@@ -8,7 +8,10 @@ import { CreateHeaderModal } from './create-header-modal';
 import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 
+
 export const AppHeader = () => {
+
+  
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   return (
     <header className='app-header flex align-center space-between'>
@@ -20,11 +23,14 @@ export const AppHeader = () => {
       <TemplatesHeaderModal />
       <CreateHeaderModal />
       </div>
+
       <Avatar
         alt='NG'
+        variant='dot'
         src={loggedInUser.imgUrl}
         style={{ width: '32px', height: '32px', border: '0', position:'absolute', right: '10px'}}
       />
+
       <nav className='nav-links clean-list flex align-center'></nav>
     </header>
   );

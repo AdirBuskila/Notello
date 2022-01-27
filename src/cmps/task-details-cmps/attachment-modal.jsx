@@ -69,10 +69,12 @@ export const AttachmentModal = (props) => {
         url: obj.url,
         createdAt: Date.now(),
       };
+      const cover = { background: obj.url, spread: 'partial' };
+      task.cover = cover;
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
       console.log('added attachment');
       const action = { type: 'SET_BOARD', board };
-      const dispatched = await dispatch(action);
+      await dispatch(action);
       console.log('dispatch');
       handleClose();
     } catch (err) {

@@ -37,11 +37,13 @@ import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
 import { MembersModal } from '../cmps/task-details-cmps/members-modal';
 import { ArchiveModal } from '../cmps/details-archive';
 import { CopyMoveModal } from '../cmps/copy-move-details';
+import { JoinCmp } from '../cmps/task-details-cmps/join-member';
 
 export const TaskDetails = (props) => {
   const { useState } = React;
   const dispatch = useDispatch();
   const currBoard = useSelector((state) => state.boardModule.board);
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const params = useParams();
   const boardId = params.boardId;
   const taskId = params.id;
@@ -139,9 +141,7 @@ export const TaskDetails = (props) => {
               }
             >
               <div className='close-button flex align-center end'>
-                <CloseIcon
-                  onClick={onHandleClose}
-                />
+                <CloseIcon onClick={onHandleClose} />
               </div>
               <CoverModal
                 updateTask={updateTask}
@@ -252,13 +252,13 @@ export const TaskDetails = (props) => {
                 <div className='comment-container flex'>
                   <div className='user-container'>
                     <Avatar
+                      src={loggedInUser.imgUrl}
                       sx={{
-                        bgcolor: deepOrange[500],
                         width: 32,
                         height: 32,
                       }}
                     >
-                      <p>NC</p>
+                      <p>{utilService.getInitials(loggedInUser.fullname)}</p>
                     </Avatar>
                   </div>
                   <AddCommentCmp
@@ -279,10 +279,10 @@ export const TaskDetails = (props) => {
             </div>
             <div className='window-sidebar'>
               <p className='task-actions'>Suggested</p>
-              <div className='button-container flex'>
-                <PersonOutlineOutlinedIcon color='action' />
-                <Typography>Join</Typography>
-              </div>
+              <JoinCmp
+              task={selectedTask}
+              board={board}
+              group={group}/>
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
               <LabelsModal

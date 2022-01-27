@@ -74,7 +74,7 @@ export const CheckList = (props) => {
       <div className='checkbox-info flex column'>
         {checklist.todos.map((td, index) => {
           return (
-            <div className='individual-checklist flex'>
+            <div key={index} className='individual-checklist flex'>
               {/* Add class self-top when textarea is open */}
               <div
                 className='flex'
