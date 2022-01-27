@@ -14,7 +14,7 @@ export const AddCommentCmp = (props) => {
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
   const [active, setActive] = useState('');
-  console.log('newComment', newComment);
+  // console.log('newComment', newComment);
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
