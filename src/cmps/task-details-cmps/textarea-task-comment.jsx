@@ -4,10 +4,14 @@ import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { utilService } from '../../services/util.service';
 import { boardService } from '../../services/board.service';
+import { useSelector} from 'react-redux';
 
 
 export const AddCommentCmp = (props) => {
   const {task, group, board,} = props
+
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+
   
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
@@ -26,16 +30,11 @@ export const AddCommentCmp = (props) => {
   };
   
   const onAdd = async () => {
-    console.log('hi');
     const comment = {
       _id: utilService.makeId(),
       txt: newComment,
       createdAt: Date.now(),
-      byMember: {
-        _id: utilService.makeId(),
-        fullname: 'Guest',
-        imgUrl: ''
-      }
+      byMember: {loggedInUser}
     }
     setNewComment('')
     // console.log('newComment', newComment);
