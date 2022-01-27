@@ -37,6 +37,7 @@ import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
 import { MembersModal } from '../cmps/task-details-cmps/members-modal';
 import { ArchiveModal } from '../cmps/details-archive';
 import { CopyMoveModal } from '../cmps/copy-move-details';
+import { JoinCmp } from '../cmps/task-details-cmps/join-member';
 
 export const TaskDetails = (props) => {
   const { useState } = React;
@@ -134,12 +135,10 @@ export const TaskDetails = (props) => {
                       backgroundImage: `url(${whichBgcExist})`,
                       backgroundColor: '#415647a6',
                     }
-              }>
+              }
+            >
               <div className='close-button flex align-center end'>
-                <CloseIcon
-                  onClick={onHandleClose}
-                  sx={{ fontSize: '2.5rem', padding: '8px' }}
-                />
+                <CloseIcon onClick={onHandleClose} />
               </div>
               <CoverModal
                 updateTask={updateTask}
@@ -278,10 +277,10 @@ export const TaskDetails = (props) => {
             </div>
             <div className='window-sidebar'>
               <p className='task-actions'>Suggested</p>
-              <div className='button-container flex'>
-                <PersonOutlineOutlinedIcon color='action' />
-                <Typography>Join</Typography>
-              </div>
+              <JoinCmp
+              task={selectedTask}
+              board={board}
+              group={group}/>
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
               <LabelsModal
@@ -301,7 +300,8 @@ export const TaskDetails = (props) => {
                 onClick={() => {
                   setIsOpen(true);
                 }}
-                className='button-container flex'>
+                className='button-container flex'
+              >
                 <QueryBuilderIcon color='action' />
                 <Typography>Dates</Typography>
                 <DatePickerModal
