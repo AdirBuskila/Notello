@@ -17,23 +17,29 @@ export const GroupList = (props) => {
   };
 
   const onDragEnd = (result) => {
-    const { destination, source, draggableId, type} = result;
-    
+    const { destination, source, draggableId, type } = result;
+
     if (!destination) return;
 
     if (type === 'list') {
       const draggingGroup = board.groups.filter((group) => {
-        return group._id === draggableId
-      })[0]
-      board.groups.splice(source.index, 1)
-      board.groups.splice(destination.index, 0, draggingGroup)
-      boardService.saveBoard(board);
+        return group._id === draggableId;
+      })[0];
+      board.groups.splice(source.index, 1);
+      board.groups.splice(destination.index, 0, draggingGroup);
+      boardService.save(board);
       onSetBoard(board);
-      return 
+      return;
     }
 
-    const sourceGroupIdx = boardService.getGroupIdxById(board, source.droppableId);
-    const destinationGroupIdx = boardService.getGroupIdxById(board, destination.droppableId);
+    const sourceGroupIdx = boardService.getGroupIdxById(
+      board,
+      source.droppableId
+    );
+    const destinationGroupIdx = boardService.getGroupIdxById(
+      board,
+      destination.droppableId
+    );
     const sourceGroup = board.groups[sourceGroupIdx];
     const destinationGroup = board.groups[destinationGroupIdx];
     const draggingTask = sourceGroup.tasks.filter((task) => {
@@ -43,12 +49,12 @@ export const GroupList = (props) => {
     if (source.dropabbleId === destination.droppableId) {
       sourceGroup.tasks.splice(source.index, 1);
       destinationGroup.tasks.splice(destination.index, 0, draggingTask);
-      boardService.saveBoard(board);
+      boardService.save(board);
       onSetBoard(board);
     } else {
       sourceGroup.tasks.splice(source.index, 1);
       destinationGroup.tasks.splice(destination.index, 0, draggingTask);
-      boardService.saveBoard(board);
+      boardService.save(board);
       onSetBoard(board);
     }
   };
