@@ -37,8 +37,8 @@ export const TaskPreview = (props) => {
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
-
-  return (
+    
+    return (
     <React.Fragment>
       <Link to={`/b/${board._id}/${task._id}`}>
         <Draggable

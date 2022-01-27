@@ -1,0 +1,59 @@
+.copy-move-task-modal {
+    width: 93%;
+    margin: auto;
+    padding-inline-start: 38%;
+    font-size: rem(14px);
+    border-bottom: 1px solid #091e4221;
+    box-sizing: border-box;
+    color: #5e6c84;
+    line-height: 40px;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 10px;
+    a {
+        margin-left: auto;
+    }
+}
+    
+    .copy-move-modal {
+
+        width: 320px;
+        min-height: 250px;
+        
+        span {
+            margin-top: rem(6px);
+            padding-inline-start: rem(12px);
+            color: #5e6c84;
+            display: block;
+            font-size: rem(12px);
+            font-weight: 700;
+            line-height: 16px;
+        }
+
+        textarea {
+            margin-top: rem(10px);
+            margin-inline-start: rem(16px);
+            margin-inline-end: rem(16px);
+            min-height: rem(50px);
+            padding: rem(6px);
+            font-size: rem(12px);
+            font-weight: 500;
+            line-height: 16px;
+            resize: vertical;
+        }
+
+        .keep-section {
+            margin-inline-start: rem(16px);
+            margin-top: rem(10px);
+            font-size: rem(14px);
+            line-height: 16px;
+        }
+
+        select {
+            width: rem(90px);
+            margin-top: rem(10px);
+            margin-inline-start: rem(16px);
+            text-align: center;
+        }
+
+    }

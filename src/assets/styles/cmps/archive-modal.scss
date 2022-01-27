@@ -1,0 +1,100 @@
+
+.archive-task-modal {
+    width: 93%;
+    margin: auto;
+    padding-inline-start: 40%;
+    font-size: rem(14px);
+    border-bottom: 1px solid #091e4221;
+    box-sizing: border-box;
+    color: #5e6c84;
+    line-height: 40px;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 10px;
+    a {
+        margin-left: auto;
+    }
+}
+    
+    .archive-modal {
+
+        width: 320px;
+        
+        span, p {
+            padding-inline-start: rem(12px);
+            color: #5e6c84;
+            display: block;
+            font-size: rem(12px);
+            font-weight: 700;
+            line-height: 16px;
+        }
+
+        p {
+            margin-top: rem(5px);
+            padding-inline-start: rem(14px);
+            color: #41464e;
+            font-size: rem(12px);
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+        }
+
+        .archive-actions {
+            margin: auto;
+            height: 80px;
+            width: 90%;
+            justify-content: space-between;
+
+            button {
+                width: rem(90px);
+                height: rem(40px);
+                border-radius: rem(3px);
+                font-weight: 700;
+                font-size: rem(12px);
+            }
+            button:hover {
+                filter: brightness(95%) saturate(90%);
+            }
+
+
+
+            .archive-action {
+                background-color: #FDFAE5;
+                background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
+                background-size: 14px 14px
+            }
+
+            .return-action {
+                background-color: rgba(144, 202, 249, 0.787);
+                
+                .retrieve-action {
+                    position: absolute;
+                    right: 59%;
+                    bottom: 14%;
+                }
+            }
+
+            .delete-action {
+                background-color: rgb(246, 96, 126);
+            }
+        }   
+
+        .archived-task {
+            width: 100%;
+            background-color: #FDFAE5;
+            background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
+            background-size: 14px 14px;
+            min-height: 30px;
+            padding: 12px 12px 12px 50px;
+            position: relative;
+            
+
+            span {
+                font-size: 16px;
+                line-height: 30px;
+                margin: 0;
+                color: #182a4d;
+                padding-inline-start: rem(14px);
+            }
+        }

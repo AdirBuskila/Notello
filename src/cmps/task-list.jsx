@@ -6,8 +6,9 @@ export const TaskList = (props) => {
   return (
     <div className='task-list-container flex column'>
       {props.tasks.map((task, index) => {
+        
         return (
-          <TaskPreview
+          (!task.isArchived) && <TaskPreview
             board={props.board}
             onLoadBoard={props.onLoadBoard}
             groupIdx={groupIdx}

@@ -66,10 +66,14 @@ export const LabelsModal = (props) => {
     onSaveChanges()
   }
 
-  const onSaveChanges = () => {
-    board.groups[groupIdx].tasks[taskIdx] = task;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+  const onSaveChanges = async () => {
+    try {
+      board.groups[groupIdx].tasks[taskIdx] = task;
+      const action = { type: 'SET_BOARD', board };
+      await dispatch(action);
+    } catch (err) {
+      console.log('Cant add / remove label', err);
+    }
   }
 
   return (
@@ -96,12 +100,11 @@ export const LabelsModal = (props) => {
           <div className='labels-modal flex column'>
             <span>Labels</span>
             <section className='labels-picker'>
-
               {board.labels.map((label, index) => {
                 return (
                   <div onBlur={() => applyLabelTitle(index, label._id)} className='color-label'>
                     <button
-                      onClick={(ev) => {
+                      onClick={() => {
                         onHandlePick(label._id)
                       }}
                       style={{ backgroundColor: `${label.bgc}`}}
@@ -128,69 +131,3 @@ export const LabelsModal = (props) => {
     </div >
   );
 };
-
-/* 
-<button onClick={(ev) => {
-                  onHandlePick(ev)
-                }} className='yellow'>
-                  Important
-                </button>
-                  {(task.labels.findIndex((label) => {
-                    return (label.name === 'Important')
-                  }) !== -1) && <span>✓</span>}
-                <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
-              </div>
-              <div className='color-label'>
-                <button onClick={(ev) => {
-                  onHandlePick(ev)
-                }} className='orange'>
-                  QA
-                </button>
-                  {(task.labels.findIndex((label) => {
-                    return (label.name === 'QA')
-                  }) !== -1) && <span>✓</span>}
-                <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
-              </div>
-              <div className='color-label'>
-                <button onClick={(ev) => {
-                  onHandlePick(ev)
-                }} className='red'>
-                  Urgent
-                </button>
-                  {(task.labels.findIndex((label) => {
-                    return (label.name === 'Urgent')
-                  }) !== -1) && <span>✓</span>}
-                <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
-                </div>
-                <div className='color-label'>
-                  <button onClick={(ev) => {
-                    onHandlePick(ev)
-                  }} className='lightblue'>
-                    Development
-                  </button>
-                    {(task.labels.findIndex((label) => {
-                    return (label.name === 'Development')
-                  }) !== -1) && <span>✓</span>}
-                  <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
-                </div>
-                <div className='color-label'>
-                  <button onClick={(ev) => {
-                    onHandlePick(ev)
-                  }} className='lightgreen'>
-                    Done
-                  </button>
-                    {(task.labels.findIndex((label) => {
-                    return (label.name === 'Done')
-                  }) !== -1) && <span>✓</span>}
-                  <CreateOutlinedIcon sx={{ fontSize: 'large' }} />
-                </div>
-                <div className='color-label'>
-                  <button onClick={(ev) => {
-                    onHandlePick(ev)
-                  }} className='pink'>
-                    Product
-                  </button>
-                    {(task.labels.findIndex((label) => {
-                    return (label.name === 'Product')
-                  }) !== -1) && <span>✓</span>}
-                  <CreateOutlinedIcon sx={{ fontSize: 'large' }} /> */

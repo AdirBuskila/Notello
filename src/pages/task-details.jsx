@@ -27,14 +27,15 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import ArchiveSharpIcon from '@mui/icons-material/ArchiveSharp';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { deepOrange } from '@mui/material/colors';
-import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import SubjectIcon from '@mui/icons-material/Subject';
 import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
 import { MembersModal } from '../cmps/task-details-cmps/members-modal';
+import { ArchiveModal } from '../cmps/details-archive';
+import { CopyMoveModal } from '../cmps/copy-move-details';
 
 export const TaskDetails = (props) => {
   const { useState } = React;
@@ -109,14 +110,7 @@ export const TaskDetails = (props) => {
   return (
     <div className='task-details-container'>
       <Backdrop onClick={onHandleClose} />
-
-      <div
-        className='task-details flex column '
-        // onClick={(ev) => {
-        //   ev.preventDefault();
-        //   ev.stopPropagation();
-        // }}
-      >
+      <div className='task-details flex column'>
         {whichBgcExist ? (
           <div
             className='task-header-cover'
@@ -146,6 +140,10 @@ export const TaskDetails = (props) => {
             <CloseIcon onClick={onHandleClose} />
           </div>
         )}
+        {selectedTask.isArchived && <div className='archived-task flex align-center'>
+        <ArchiveSharpIcon />
+        <span>This card is archived.</span> 
+          </div>}
         <div className='window-header align-center flex space-between'>
           <div className='task-title flex align-center'>
             <WebAssetIcon sx={{ marginTop: 0.5 }} />
@@ -308,14 +306,19 @@ export const TaskDetails = (props) => {
               <ArrowForwardOutlinedIcon color='action' />
               <Typography>Move</Typography>
             </div>
-            <div className='button-container flex'>
-              <ContentCopyOutlinedIcon color='action' />
-              <Typography>Copy</Typography>
-            </div>
-            <div className='button-container flex'>
-              <Inventory2OutlinedIcon color='action' />
-              <Typography>Archive</Typography>
-            </div>
+            <CopyMoveModal 
+            type={'copy'}
+            board={board}
+            groupIdx={groupIdx}
+            taskIdx={taskIdx}
+            task={selectedTask} 
+            />
+            <ArchiveModal 
+            board={board}
+            groupIdx={groupIdx}
+            taskIdx={taskIdx}
+            task={selectedTask} 
+            />
           </div>
         </div>
       </div>

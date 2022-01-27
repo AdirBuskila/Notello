@@ -89,7 +89,7 @@ export const CoverModal = (props) => {
               </section>
               <button onClick={onHandleRemove} className='remove-btn'>Remove cover</button>
             </div>
-            <span>Copy items from</span>
+            <span>Colors</span>
             <section className='color-picker'>
               <button onClick={(ev) => {
                 onHandlePick(ev)
