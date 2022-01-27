@@ -56,4 +56,17 @@
             text-align: center;
         }
 
+        .save-button {
+            margin: auto;
+            width: rem(120px);
+            height: rem(30px);
+            color: white;
+            background-color: #0079bf;
+            border-radius: 3px;
+        }
+        .save-button:hover {
+            cursor: pointer;
+            background-color: #0079bfcd;
+        }
+
     }

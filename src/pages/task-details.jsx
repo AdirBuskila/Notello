@@ -313,7 +313,6 @@ export const TaskDetails = (props) => {
               type={'copy'}
               board={board}
               groupIdx={groupIdx}
-              taskIdx={taskIdx}
               task={selectedTask} 
               />
               <ArchiveModal 
