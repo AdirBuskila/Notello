@@ -49,6 +49,7 @@ export const AddCommentCmp = (props) => {
     <React.Fragment>
       <div className='new-comment flex column'>
         <textarea
+          style={{ resize: 'none', width: '94%' }}
           onFocus={() => {
             setActive(true);
           }}
