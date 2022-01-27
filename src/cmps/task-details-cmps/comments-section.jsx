@@ -2,11 +2,13 @@ import Avatar from '@mui/material/Avatar';
 import { utilService } from '../../services/util.service';
 import { useDispatch } from 'react-redux';
 import { boardService } from '../../services/board.service';
+import { useSelector} from 'react-redux';
+
 
 export const CommentsSection = (props) => {
 
   const {comments, task, group, board} = props
-
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const groupIdx = boardService.getGroupIdxById(board, group._id)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
     return (currTask._id === task._id)

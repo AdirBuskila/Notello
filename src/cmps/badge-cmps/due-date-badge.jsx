@@ -3,6 +3,8 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { boardService } from '../../services/board.service';
 
+import { utilService } from '../../services/util.service';
+
 const months = [
   'Jan',
   'Feb',
@@ -30,15 +32,32 @@ export const DueDateBadge = (props) => {
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
   });
+
   const dispatch = useDispatch();
+
   const handleClick = async (ev, isDone) => {
     ev.stopPropagation();
     ev.preventDefault();
-    task.dueDate[0].isDone = !isDone;
-    board.groups[groupIdx].tasks[taskIdx] = task;
-    await boardService.save(board);
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `added due date for task ${task.title} set to (${dueDate[0].date})`,
+      createdAt: Date.now(),
+      byMember: 'Guest',
+      task: {
+        _id: task._id,
+        title: task.title,
+      }
+    };
+    try {
+      board.activities.unshift(activity);
+      task.dueDate[0].isDone = !isDone;
+      board.groups[groupIdx].tasks[taskIdx] = task;
+      await boardService.save(board);
+      const action = { type: 'SET_BOARD', board };
+      await dispatch(action);
+    } catch (err) {
+      console.log('Cannot add due date to task');
+    }
     setIsDueDateChanged(!isDueDateChanged);
   };
 

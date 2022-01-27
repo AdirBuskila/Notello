@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Loader } from './loader';
+
+import { utilService } from '../services/util.service';
 
 import { GroupPreview } from './group-preview';
 import { PreFeatureAdd } from './preFeatureAdd';
@@ -11,9 +13,20 @@ export const GroupList = (props) => {
   const dispatch = useDispatch();
   const board = useSelector((state) => state.boardModule.board);
 
-  const onSetBoard = (board) => {
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+  const onSetBoard = async (board) => {
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `entered to (${board.title}) board`,
+      createdAt: Date.now(),
+      byMember: 'Guest',
+    };
+    try {
+      board.activities.unshift(activity);
+      const action = { type: 'SET_BOARD', board };
+      dispatch(action);
+    } catch (err) {
+      console.log(`Cannot set board ${board._id}`);
+    }
   };
 
   const onDragEnd = (result) => {

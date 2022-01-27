@@ -86,7 +86,9 @@ class _MyLogin extends React.Component {
                 control={<Checkbox value='remember' color='primary' />}
                 label='Remember me'
               />
-              <GoogleLoginButton />
+              <div style={{width: '100%'}}  className="google-login-container flex align-center justify-center">
+              <GoogleLoginButton  />
+              </div>
               <Button
                 type='submit'
                 fullWidth

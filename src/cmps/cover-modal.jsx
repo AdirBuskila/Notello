@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 
-import { utilService } from '../services/util.service'
+import { utilService } from '../services/util.service';
 
 export const CoverModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task } = props;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,46 +20,61 @@ export const CoverModal = (props) => {
     setAnchorEl(null);
   };
 
-
   const onHandleRemove = () => {
-    const spread = (task.cover) ? task.cover.spread : 'partial';
+    const spread = task.cover ? task.cover.spread : 'partial';
     const cover = { background: '', spread };
     task.cover = cover;
     submitChanges(task);
-  }
-
-
+  };
 
   const onHandlePick = (ev) => {
     const bgc = getComputedStyle(ev.target).backgroundColor;
-    const spread = (task.cover) ? task.cover.spread : 'partial';
+    const spread = task.cover ? task.cover.spread : 'partial';
     const cover = { background: bgc, spread };
     task.cover = cover;
     submitChanges(task);
   };
 
   const onHandleSpreadPartial = () => {
-    const cover = { background: task.cover.background, spread: 'partial' }
+    const cover = { background: task.cover.background, spread: 'partial' };
     task.cover = cover;
     submitChanges(task);
-  }
+  };
 
   const onHandleSpreadFull = () => {
-    const cover = { background: task.cover.background, spread: 'full' }
+    const cover = { background: task.cover.background, spread: 'full' };
     task.cover = cover;
     submitChanges(task);
-  }
+  };
 
-  const submitChanges = (task) => {
-    board.groups[groupIdx].tasks[taskIdx] = task;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
-  }
-
+  const submitChanges = async (task) => {
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `updated the cover`,
+      createdAt: Date.now(),
+      byMember: 'Guest',
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    };
+    try {
+      board.activities.unshift(activity);
+      board.groups[groupIdx].tasks[taskIdx] = task;
+      const action = { type: 'SET_BOARD', board };
+      await dispatch(action);
+    } catch (err) {
+      console.log('Cant load cover', err);
+    }
+  };
 
   return (
     <div className='button-container flex align-center'>
-      <VideoLabelIcon sx={{ fontSize: 'medium'}} onClick={handleClick} color='action' />
+      <VideoLabelIcon
+        sx={{ fontSize: 'medium' }}
+        onClick={handleClick}
+        color='action'
+      />
       <Typography onClick={handleClick}>Cover</Typography>
       <Popover
         open={open}
@@ -73,9 +87,7 @@ export const CoverModal = (props) => {
         <div sx={{ p: 0.5, width: '304px' }}>
           <div className='cover-task-modal flex justify-center'>
             Cover
-            <a onClick={handleClose}>
-              ✕
-            </a>
+            <a onClick={handleClose}>✕</a>
           </div>
           <div className='cover-modal flex column'>
             <span>Size</span>
@@ -87,40 +99,62 @@ export const CoverModal = (props) => {
                 </div>
                 <div onClick={onHandleSpreadFull} className='full-header'></div>
               </section>
-              <button onClick={onHandleRemove} className='remove-btn'>Remove cover</button>
+              <button onClick={onHandleRemove} className='remove-btn'>
+                Remove cover
+              </button>
             </div>
             <span>Colors</span>
             <section className='color-picker'>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='green'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='yellow'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='orange'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='red'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='purple'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='blue'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='lightblue'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='lightgreen'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='pink'></button>
-              <button onClick={(ev) => {
-                onHandlePick(ev)
-              }} className='darkblue'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='green'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='yellow'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='orange'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='red'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='purple'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='blue'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='lightblue'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='lightgreen'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='pink'></button>
+              <button
+                onClick={(ev) => {
+                  onHandlePick(ev);
+                }}
+                className='darkblue'></button>
             </section>
           </div>
         </div>

@@ -28,17 +28,32 @@ export const MembersModal = (props) => {
     return currTask._id === task._id;
   });
 
-  const onAddMember = (memberId) => {
+  const onAddMember = async (memberId) => {
     const taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
     if (alreadyInside) return;
     const newMember = boardService.getMemberById(board, memberId);
-    taskMembers.push(newMember);
-    board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `${newMember.title} joined to task ${task.title}`,
+      createdAt: Date.now(),
+      byMember: 'Guest',
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    };
+    try {
+      board.activities.unshift(activity);
+      taskMembers.push(newMember);
+      board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
+      const action = { type: 'SET_BOARD', board };
+      await dispatch(action);
+    } catch (err) {
+      console.log('Cannot add member to task', err);
+    }
   };
 
   return (
