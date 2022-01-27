@@ -24,7 +24,7 @@ export const BoardHeader = (props) => {
   const onHandleChange = async () => {
     const newBoard = board;
     newBoard.title = boardTitle;
-    boardService.saveBoard(board);
+    boardService.save(board);
     await props.onLoadBoard();
   };
 
@@ -44,19 +44,20 @@ export const BoardHeader = (props) => {
           />
         </div>
 
-        <input
-          // style={{ width: `${board.title.length*14}` + '10px' }}
-          className='title-input'
-          defaultValue={board.title}
-          onBlur={onHandleChange}
-          onFocus={(ev) => {
-            ev.currentTarget.select();
-          }}
-          onClick={(ev) => {
-            ev.currentTarget.select();
-          }}
-          onChange={(ev) => setBoardTitle(ev.target.value)}
-        />
+        <div className='title-container'>
+          <input
+            className='title-input'
+            defaultValue={board.title}
+            onBlur={onHandleChange}
+            onFocus={(ev) => {
+              ev.currentTarget.select();
+            }}
+            onClick={(ev) => {
+              ev.currentTarget.select();
+            }}
+            onChange={(ev) => setBoardTitle(ev.target.value)}
+          />
+        </div>
         <div className='rating-container flex align-center justify-center'>
           <Rating name='half-rating' defaultValue={0} precision={1} max={1} />
         </div>
@@ -74,17 +75,23 @@ export const BoardHeader = (props) => {
           <AvatarGroup sx={{ gap: 0.5 }} max={3}>
             <Avatar
               alt='NG'
-              src={'https://res.cloudinary.com/dubjerksn/image/upload/v1643131873/Notello/NG_e1fglp.png'}
+              src={
+                'https://res.cloudinary.com/dubjerksn/image/upload/v1643131873/Notello/NG_e1fglp.png'
+              }
               style={{ width: '28px', height: '28px', border: '0' }}
             />
             <Avatar
               alt='NC'
-              src={'https://res.cloudinary.com/dubjerksn/image/upload/v1643131867/Notello/NC_foadck.png'}
+              src={
+                'https://res.cloudinary.com/dubjerksn/image/upload/v1643131867/Notello/NC_foadck.png'
+              }
               style={{ width: '28px', height: '28px', border: '0' }}
             />
             <Avatar
               alt='AB'
-              src={'https://res.cloudinary.com/dubjerksn/image/upload/v1643131869/Notello/AB_pplonl.png'}
+              src={
+                'https://res.cloudinary.com/dubjerksn/image/upload/v1643131869/Notello/AB_pplonl.png'
+              }
               style={{ width: '28px', height: '28px', border: '0' }}
             />
           </AvatarGroup>
