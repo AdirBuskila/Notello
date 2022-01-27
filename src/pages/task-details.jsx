@@ -51,9 +51,6 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = useState('');
   const [groupIdx, setGroupIdx] = useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
-  const [isCheckListAcctivated, setIsCheckListAcctivated] =
-    React.useState(false);
-  const [isColorPicked, setIsColorPicked] = React.useState('');
   const dispatch = useDispatch();
 
   const whichBgcExist = selectedTask.cover
@@ -98,14 +95,27 @@ export const TaskDetails = (props) => {
   };
 
   const onHandleChange = async () => {
-    console.log('taskTitle', taskTitle);
     const newTask = selectedTask;
     newTask.title = taskTitle;
     selectedTask.title = taskTitle;
-    console.log('selectedTask', selectedTask);
-    board.groups[groupIdx].tasks[taskIdx] = selectedTask;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `changed task ${selectedTask.title} title to - ${taskTitle}`,
+      createdAt: Date.now(),
+      byMember: 'Guest',
+      task: {
+        _id: selectedTask._id,
+        title: selectedTask.taskTitle,
+      },
+    };
+    try {
+      board.activities.unshift(activity);
+      board.groups[groupIdx].tasks[taskIdx] = selectedTask;
+      const action = { type: 'SET_BOARD', board };
+      dispatch(action);
+    } catch (err) {
+      console.log('Cannot change task title');
+    }
   };
 
   if (!selectedTask || !board) return <div className=''></div>;
@@ -124,8 +134,7 @@ export const TaskDetails = (props) => {
                       backgroundImage: `url(${whichBgcExist})`,
                       backgroundColor: '#415647a6',
                     }
-              }
-            >
+              }>
               <div className='close-button flex align-center end'>
                 <CloseIcon
                   onClick={onHandleClose}
@@ -134,8 +143,6 @@ export const TaskDetails = (props) => {
               </div>
               <CoverModal
                 updateTask={updateTask}
-                setIsColorPicked={setIsColorPicked}
-                isColorPicked={isColorPicked}
                 board={board}
                 groupIdx={groupIdx}
                 taskIdx={taskIdx}
@@ -144,7 +151,10 @@ export const TaskDetails = (props) => {
             </div>
           ) : (
             <div className='close-button flex align-center end'>
-              <CloseIcon onClick={onHandleClose} />
+              <CloseIcon
+                sx={{ fontSize: '2.5rem', padding: '8px' }}
+                onClick={onHandleClose}
+              />
             </div>
           )}
           {selectedTask.isArchived && (
@@ -214,7 +224,6 @@ export const TaskDetails = (props) => {
               </div>
               <CheckListCmp
                 key={utilService.makeId()}
-                isCheckListAcctivated={isCheckListAcctivated}
                 task={selectedTask}
                 groupIdx={groupIdx}
                 board={board}
@@ -283,19 +292,16 @@ export const TaskDetails = (props) => {
                 taskIdx={taskIdx}
               />
               <CheckListModal
-                isCheckListAcctivated={isCheckListAcctivated}
                 board={board}
                 groupIdx={groupIdx}
                 taskIdx={taskIdx}
                 task={selectedTask}
-                setIsCheckListAcctivated={setIsCheckListAcctivated}
               />
               <div
                 onClick={() => {
                   setIsOpen(true);
                 }}
-                className='button-container flex'
-              >
+                className='button-container flex'>
                 <QueryBuilderIcon color='action' />
                 <Typography>Dates</Typography>
                 <DatePickerModal
@@ -314,8 +320,6 @@ export const TaskDetails = (props) => {
               {!whichBgcExist && (
                 <CoverModal
                   updateTask={updateTask}
-                  setIsColorPicked={setIsColorPicked}
-                  isColorPicked={isColorPicked}
                   board={board}
                   groupIdx={groupIdx}
                   taskIdx={taskIdx}

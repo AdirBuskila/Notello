@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { useHistory } from "react-router-dom";
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import AutorenewSharpIcon from '@mui/icons-material/AutorenewSharp';
+
+import { utilService } from '../services/util.service';
 
 export const ArchiveModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -24,27 +25,59 @@ export const ArchiveModal = (props) => {
   const onHandleDeleteAction = () => {
     history.push(`/b/${board._id}`);
     board.groups[groupIdx].tasks.splice(taskIdx, 1);
-    submitChanges(board);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `deleted task - ${task.title}`,
+      createdAt: Date.now(),
+      byMember: 'Guest',
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    }; 
+    submitChanges(board, activity);
     
   }
 
   const onHandleArchiveAction = () => {
     board.groups[groupIdx].tasks[taskIdx].isArchived = true;
-    submitChanges(board);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `archived task - ${task.title}`,
+      createdAt: Date.now(),
+      byMember: 'Guest',
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    }; 
+    submitChanges(board, activity);
   }
 
   const onHandleRetrieveAction = () => {
+    if ( task.isArchived !== true) return
     board.groups[groupIdx].tasks[taskIdx].isArchived = false;
-    submitChanges(board);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `retrieved task - ${task.title}`,
+      createdAt: Date.now(),
+      byMember: 'Guest',
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    }; 
+    submitChanges(board, activity);
   }
 
 
-  const submitChanges = async (board) => {
+  const submitChanges = async (board, activity) => {
       try {
+        board.activities.unshift(activity);
           const action = {type: 'SET_BOARD', board};
           await dispatch(action);
       } catch (err) {
-          console.log('Cant handle card state change:', err);
+          console.log('Cant handle card state change', err);
       }
   }
 

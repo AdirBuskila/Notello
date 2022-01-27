@@ -9,8 +9,7 @@ import { utilService } from '../services/util.service';
 export const CheckListModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
-  const { board, groupIdx, taskIdx, task, isCheckListAcctivated } = props;
+  const { board, groupIdx, taskIdx, task } = props;
   const [checklistName, setChecklistName] = useState('');
   const dispatch = useDispatch();
 
@@ -53,17 +52,15 @@ export const CheckListModal = (props) => {
     } catch (err) {
       console.log(`Cant add new checklist`, err);
     }
-    props.setIsCheckListAcctivated(!isCheckListAcctivated);
-    setChecklistName('');
-    handleClose();
-  };
+    setChecklistName('')
+    handleClose()
+  }
 
   return (
     <div className='button-container flex'>
       <CheckBoxOutlined onClick={handleClick} color='action' />
       <Typography onClick={handleClick}>Checklist</Typography>
       <Popover
-        id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
