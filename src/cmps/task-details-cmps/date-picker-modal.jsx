@@ -45,7 +45,7 @@ export function DatePickerModal(props) {
         }}
         id='date-picker'
         margin='normal'
-        variant='inline'
+        variant='modal'
         label=''
         format='dd MMM yyyy'
         value={selectedDate}
