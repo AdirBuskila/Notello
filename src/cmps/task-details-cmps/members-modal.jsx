@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -14,6 +14,7 @@ export const MembersModal = (props) => {
   const dispatch = useDispatch();
 
   const { board, group, task } = props;
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,7 +40,7 @@ export const MembersModal = (props) => {
       _id: utilService.makeId(),
       txt: `${newMember.fullname} joined to task ${task.title}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
