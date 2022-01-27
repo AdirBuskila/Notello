@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { GoogleLogin, GoogleLoginButton } from './google-login';
 
 
 const theme = createTheme();
@@ -85,6 +86,7 @@ class _MyLogin extends React.Component {
                 control={<Checkbox value='remember' color='primary' />}
                 label='Remember me'
               />
+              <GoogleLoginButton />
               <Button
                 type='submit'
                 fullWidth

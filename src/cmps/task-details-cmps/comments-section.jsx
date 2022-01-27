@@ -1,7 +1,31 @@
 import Avatar from '@mui/material/Avatar';
 import { utilService } from '../../services/util.service';
+import { useDispatch } from 'react-redux';
+import { boardService } from '../../services/board.service';
 
-export const CommentsSection = ({ comments }) => {
+export const CommentsSection = (props) => {
+
+  const {comments, task, group, board} = props
+
+  const groupIdx = boardService.getGroupIdxById(board, group._id)
+  const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
+    return (currTask._id === task._id)
+  })
+
+
+  const dispatch = useDispatch()
+
+
+  const onDeleteComment = (commentId) => {
+    const commentIdx = task.comments.findIndex((comment)=>{
+      return (commentId === comment._id)
+  })
+  task.comments.splice(commentIdx,1)
+  board.groups[groupIdx].tasks[taskIdx] = task
+  const action = {type: 'SET_BOARD', board}
+  dispatch(action)
+  }
+
   if (!comments.length) return <p></p>;
   return (
     <div className='comments-container flex column'>
@@ -25,6 +49,7 @@ export const CommentsSection = ({ comments }) => {
                 {utilService.fixTimestamp(comment.createdAt)}
               </p>
               <p>{comment.txt}</p>
+              <p className='delete-comment pointer' onClick={()=>{onDeleteComment(comment._id)}} >delete</p>
             </div>
           </div>
         );

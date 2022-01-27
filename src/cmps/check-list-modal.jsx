@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 import { utilService } from '../services/util.service';
 
@@ -13,8 +11,8 @@ export const CheckListModal = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
   const { board, groupIdx, taskIdx, task, isCheckListAcctivated } = props;
-  const dispatch = useDispatch();
   const [checklistName, setChecklistName] = useState('');
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,17 +27,32 @@ export const CheckListModal = (props) => {
     setChecklistName(value);
   };
 
-  const onAddClick = () => {
+  const onAddClick = async () => {
     if (!checklistName) return; // add nice modal
     const checklist = {
       _id: utilService.makeId(),
       title: checklistName,
       todos: [],
     };
-    task.checklists.unshift(checklist);
-    board.groups[groupIdx].tasks[taskIdx] = task;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `created checklist - (${checklist.title})`,
+      createdAt: Date.now(),
+      byMember: 'user',
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    };
+    try {
+      board.activities.unshift(activity);
+      task.checklists.unshift(checklist);
+      board.groups[groupIdx].tasks[taskIdx] = task;
+      const action = { type: 'SET_BOARD', board };
+      await dispatch(action);
+    } catch (err) {
+      console.log(`Cant add new checklist`, err);
+    }
     props.setIsCheckListAcctivated(!isCheckListAcctivated);
     setChecklistName('');
     handleClose();
@@ -47,10 +60,8 @@ export const CheckListModal = (props) => {
 
   return (
     <div className='button-container flex'>
-      {/* <div className='flex align-center' onClick={handleClick}> */}
       <CheckBoxOutlined onClick={handleClick} color='action' />
       <Typography onClick={handleClick}>Checklist</Typography>
-      {/* </div> */}
       <Popover
         id={id}
         open={open}

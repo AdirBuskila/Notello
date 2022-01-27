@@ -3,6 +3,7 @@ import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Button from '@mui/material/Button';
+import { MenuBar } from './board-menu-bar';
 
 import STATS from '../assets/img/stats.svg';
 import DOWNICON from '../assets/img/down-arrow.png';
@@ -20,6 +21,7 @@ import { boardService } from '../services/board.service';
 export const BoardHeader = (props) => {
   const board = props.board;
   const [boardTitle, setBoardTitle] = useState(board.title);
+  
 
   const onHandleChange = async () => {
     const newBoard = board;
@@ -30,7 +32,6 @@ export const BoardHeader = (props) => {
 
   if (!board) return <h1> No board </h1>;
 
-  // const bLength = board.title.length || 50;
   return (
     <section className='upper-header flex'>
       <div className='info-details flex align-center'>
@@ -129,7 +130,7 @@ export const BoardHeader = (props) => {
             alt='menu'
             style={{ width: '16px', height: '16px' }}
           />
-          <span className='span-width'>Show menu</span>
+          <MenuBar />
         </div>
       </div>
     </section>

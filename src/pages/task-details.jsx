@@ -123,7 +123,8 @@ export const TaskDetails = (props) => {
                       backgroundImage: `url(${whichBgcExist})`,
                       backgroundColor: '#415647a6',
                     }
-              }>
+              }
+            >
               <div className='close-button flex align-center end'>
                 <CloseIcon
                   onClick={onHandleClose}
@@ -244,7 +245,8 @@ export const TaskDetails = (props) => {
                         bgcolor: deepOrange[500],
                         width: 32,
                         height: 32,
-                      }}>
+                      }}
+                    >
                       <p>NC</p>
                     </Avatar>
                   </div>
@@ -255,7 +257,12 @@ export const TaskDetails = (props) => {
                   />
                 </div>
                 <div className='comments-area flex column'>
-                  <CommentsSection comments={selectedTask.comments} />
+                  <CommentsSection
+                    task={selectedTask}
+                    board={board}
+                    group={group}
+                    comments={selectedTask.comments}
+                  />
                 </div>
               </div>
             </div>
@@ -286,7 +293,8 @@ export const TaskDetails = (props) => {
                 onClick={() => {
                   setIsOpen(true);
                 }}
-                className='button-container flex'>
+                className='button-container flex'
+              >
                 <QueryBuilderIcon color='action' />
                 <Typography>Dates</Typography>
                 <DatePickerModal

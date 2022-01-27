@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
@@ -7,26 +7,40 @@ import { LinearWithValueLabel } from '../cmps/progress-bar';
 import { CheckListSection } from '../cmps/check-list-section';
 import { CheckListDelete } from './check-list-delete';
 
+import { utilService } from '../services/util.service';
+
 export const CheckList = (props) => {
-  const { task, taskIdx, groupIdx, checklistIdx, board, checklist, isChanged } =
-    props;
-  const dispatch = useDispatch();
+  const { task, taskIdx, groupIdx, checklistIdx, board, checklist } = props;
   const [currTodoId, setCurrTodoId] = useState('');
   const [isChanging, setIsChanging] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleCheckBoxClick = (todoId) => {
+  const handleCheckBoxClick = async (todoId) => {
     const todoIdx = task.checklists[checklistIdx].todos.findIndex((td) => {
       return td._id === todoId;
     });
     let { isDone } = task.checklists[checklistIdx].todos[todoIdx];
-    task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;
-    board.groups[groupIdx].tasks[taskIdx] = task;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
-    props.setIsChanged(!isChanged);
-    setIsAdding(false);
-    setIsChanging(false);
+    const state = isDone ? 'Done' : 'In work';
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `changed todo (${checklist.todos[todoIdx].title}) state to - ${state}`,
+      createdAt: Date.now(),
+      byMember: 'user',
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    };
+    try {
+      board.activities.unshift(activity);
+      task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;
+      board.groups[groupIdx].tasks[taskIdx] = task;
+      const action = { type: 'SET_BOARD', board };
+      await dispatch(action);
+    } catch (err) {
+      console.log('Cant change todo state', err);
+    }
   };
 
   const getProgressValue = () => {
@@ -45,8 +59,6 @@ export const CheckList = (props) => {
           <p>{checklist.title}</p>
           <div className='flex end'>
             <CheckListDelete
-              isChanged={isChanged}
-              setIsChanged={props.setIsChanged}
               checklistIdx={checklistIdx}
               board={board}
               task={task}
@@ -62,6 +74,7 @@ export const CheckList = (props) => {
         {checklist.todos.map((td, index) => {
           return (
             <div className='individual-checklist flex'>
+              {/* Add class self-top when textarea is open */}
               <div
                 className='flex'
                 onClick={() => {
@@ -70,7 +83,7 @@ export const CheckList = (props) => {
                 {!td.isDone ? (
                   <CheckBoxOutlineBlankOutlinedIcon className='checkbox' />
                 ) : (
-                  <CheckBoxIcon className='checkbox self-top;' />
+                  <CheckBoxIcon className='checkbox' />
                 )}
               </div>
               {isChanging && currTodoId === td._id ? (
