@@ -282,16 +282,6 @@
           position: absolute;
           left: 0.5rem;
         }
-        textarea {
-          border-radius: 3px;
-          height: rem(36px);
-          padding: 0.5rem 0.75rem;
-          margin-inline-start: 2.2rem;
-        }
-        textarea:focus {
-          height: rem(72px);
-          width: 100%;
-        }
         .comments-area {
           gap: 8px;
         }
