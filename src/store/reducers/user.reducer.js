@@ -1,5 +1,10 @@
 const initialState = {
-    loggedInUser : null,
+    loggedInUser : {
+        _id: 'GuestId',
+        username: 'Guest',
+        fullname: 'Guest',
+        imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643293928/Notello/wkyvzzdkw2e4whnbt1lt.png'
+    }
 }
 
 export function userReducer(state = initialState, action) {

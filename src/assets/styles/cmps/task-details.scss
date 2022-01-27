@@ -271,21 +271,16 @@
       .comment {
         font-size: 14px;
         gap: 8px;
+        p.delete-comment {
+          color: #5e6c84;
+          font-size: 12px;
+          font-weight: 400;
+        }
       }
       .comment-container {
         .user-container {
           position: absolute;
           left: 0.5rem;
-        }
-        textarea {
-          border-radius: 3px;
-          height: rem(36px);
-          padding: 0.5rem 0.75rem;
-          margin-inline-start: 2.2rem;
-        }
-        textarea:focus {
-          height: rem(72px);
-          width: 100%;
         }
         .comments-area {
           gap: 8px;

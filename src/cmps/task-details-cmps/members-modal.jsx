@@ -74,9 +74,10 @@ export const MembersModal = (props) => {
               ✕
             </div>
           </div>
-          <div className='members-inner flex column'>
-            <p>Board members</p>
-            <div className='board-members-container'>
+          <div className='members-inner flex column align-center'>
+            <p>Members</p>
+            <div className='members-container flex column'>
+              <h4>Board members</h4>
               {board.members.map((member) => {
                 return (
                   <div
@@ -89,7 +90,7 @@ export const MembersModal = (props) => {
                       style={{ width: '32px', height: '32px', border: '0' }}
                     />
                     <p>{member.fullname}</p>
-                    <p>({member.username})</p>
+                    {/* <p>({member.username})</p> */}
                   </div>
                 );
               })}

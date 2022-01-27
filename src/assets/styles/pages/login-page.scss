@@ -16,6 +16,17 @@
         margin-bottom: rem(20px);
         width: rem(200px);
     }
+    .google-login-container {
+        padding-bottom: 10px;
+    }
+    .google-button-container {
+        display: flex;
+        align-items: center;
+    }
+    .google-login-button {
+        justify-content: center;
+        width: 343px;
+    }
 }
 
 

@@ -1,17 +1,17 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 
-import { utilService } from '../services/util.service'
+import { utilService } from '../services/util.service';
 
 export const CheckListModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task } = props;
   const [checklistName, setChecklistName] = useState('');
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,8 +27,12 @@ export const CheckListModal = (props) => {
   };
 
   const onAddClick = async () => {
-    if (!checklistName) return // add nice modal 
-    const checklist = { _id: utilService.makeId(), title: checklistName, todos: [] }
+    if (!checklistName) return; // add nice modal
+    const checklist = {
+      _id: utilService.makeId(),
+      title: checklistName,
+      todos: [],
+    };
     const activity = {
       _id: utilService.makeId(),
       txt: `created checklist - (${checklist.title})`,
@@ -36,9 +40,9 @@ export const CheckListModal = (props) => {
       byMember: 'user',
       task: {
         _id: task._id,
-        title: task.title
-      }
-    }
+        title: task.title,
+      },
+    };
     try {
       board.activities.unshift(activity);
       task.checklists.unshift(checklist);
@@ -46,7 +50,7 @@ export const CheckListModal = (props) => {
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);
     } catch (err) {
-        console.log(`Cant add new checklist`, err);
+      console.log(`Cant add new checklist`, err);
     }
     setChecklistName('')
     handleClose()
@@ -64,28 +68,41 @@ export const CheckListModal = (props) => {
           vertical: 'bottom',
           horizontal: 'left',
         }}>
-        <div sx={{ p: 0.5, width: '304px', height: '227px' }}>
-          <div className='check-list-modal flex justify-center'>
-            Add checklist
-            <a onClick={handleClose}>
+        <React.Fragment>
+          <div className='check-list-modal flex column align center'>
+            <div className='close-button pointer' onClick={handleClose}>
               ✕
-            </a>
-          </div>
-          <div className='check-list-inner flex column'>
-            <div className='check-list-title flex column '>
-              <span>Title</span>
-              <input onChange={onHandleName} placeholder='Checklist'></input>
-              <span>Copy items from</span>
-              <select>
-                <option value='-1'>none</option>
-                <option value='0'>checklist-1</option>
-                <option value='1'>checklist-2</option>
-                <option value='2'>checklist-3</option>
-              </select>
             </div>
-            <button onClick={onAddClick}>Add</button>
+
+            <div className='check-list-inner flex column align-center'>
+              <p>Add checklist</p>
+              <div className='check-list-title flex column '>
+                <div className='flex column'>
+                  <span>Title</span>
+                  <input
+                    onClick={(ev) => ev.stopPropagation()}
+                    defaultValue='Checklist'
+                    autoFocus
+                    onChange={onHandleName}
+                    placeholder='Checklist'
+                    onFocus={(ev) => {
+                      ev.currentTarget.select();
+                    }}></input>
+                </div>
+                <div className='flex column'>
+                  <span>Copy items from</span>
+                  <select>
+                    <option value='-1'>(none)</option>
+                    <option value='0'>checklist-1</option>
+                    <option value='1'>checklist-2</option>
+                    <option value='2'>checklist-3</option>
+                  </select>
+                </div>
+              </div>
+              <button onClick={onAddClick}>Add</button>
+            </div>
           </div>
-        </div>
+        </React.Fragment>
       </Popover>
     </div>
   );
