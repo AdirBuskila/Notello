@@ -5,8 +5,10 @@ import { useDispatch } from 'react-redux';
 import { utilService } from '../../services/util.service';
 import { boardService } from '../../services/board.service';
 import { useSelector } from 'react-redux';
+
 export const AddCommentCmp = (props) => {
   const { task, group, board } = props;
+
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const dispatch = useDispatch();
