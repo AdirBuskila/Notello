@@ -20,6 +20,7 @@ export const MembersModal = (props) => {
   };
   const handleClose = (event) => {
     open = false;
+    console.log('hi')
     setAnchorEl(null);
   };
 

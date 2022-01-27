@@ -37,7 +37,7 @@ export const CheckList = (props) => {
 
     if (!checklist) return (<></>)
     return (
-        <div>
+        <div className='checklist-container'>
             <div className="checklist-header flex align-center">
                 <AssignmentTurnedInOutlinedIcon className='header-icon' />
                 <section className='checklist-header-title flex align-center space-between'>

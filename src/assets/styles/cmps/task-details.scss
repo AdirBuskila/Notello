@@ -1,5 +1,22 @@
+.task-details-container {
+  // height: 100%;
+  overflow-y: scroll;
+  & > ::-webkit-scrollbar {
+    height: 0.75rem;
+    border-radius: 50rem;
+  }
+  & > ::-webkit-scrollbar-track {
+    background: #00000026;
+    border-radius: 3px;
+    margin: 25px;
+  }
+  & > ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #e2e3e480;
+  }
+
+
 .task-details {
-  overflow-y: auto;
   position: fixed;
   top: 50px;
   left: 50%;
@@ -45,15 +62,16 @@
     color: #172b4d; 
 
     .close-button {
-      // top: rem(8px);
-      // right: rem(8px);
+      position: relative;
+      right: 12px;
+      top: 12px;
       width: rem(40px);
       height: rem(40px);
       cursor: pointer;
       border-radius: 50%;
     }
     .close-button:hover {
-      background-color: #091e4214;
+      background-color: #33353929;
     }
     .group-title {
       p{
@@ -122,7 +140,7 @@
     width: rem(568px);
     gap: 20px;
     padding-left: rem(16px);
-    p {
+    p:not(.task-description){
       font-weight: 500;
     }
     textarea:not(:last-child) {
@@ -280,4 +298,5 @@
       margin-inline-start: 2.2rem;
     }
   }
+}
 }
