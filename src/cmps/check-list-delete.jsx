@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { boardService } from '../services/board.service';
 
+import {utilService} from '../services/util.service'
 
 export const CheckListDelete = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
-    const { board, task, taskIdx, groupIdx, checklistIdx, checklist, isChanged } = props;
+    const { board, task, taskIdx, groupIdx, checklistIdx, checklist } = props;
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -22,12 +19,26 @@ export const CheckListDelete = (props) => {
         setAnchorEl(null);
     };
 
-    const onDelete = () => {
-        task.checklists.splice(checklistIdx, 1);
-        board.groups[groupIdx].tasks[taskIdx] = task;
-        const action = { type: 'SET_BOARD', board };
-        dispatch(action);
-        props.setIsChanged(!isChanged);
+    const onDelete = async () => {
+        const activity = {
+            _id: utilService.makeId(),
+            txt: `deleted checklist - (${checklist.title})`,
+            createdAt: Date.now(),
+            byMember: 'user',
+            task: {
+                _id: task._id,
+                title: task.title
+            }
+        }
+        try {
+            board.activities.unshift(activity);
+            task.checklists.splice(checklistIdx, 1);
+            board.groups[groupIdx].tasks[taskIdx] = task;
+            const action = { type: 'SET_BOARD', board };
+            await dispatch(action);
+        } catch (err) {
+            console.log(`Cant delete checklist`, err);
+        }
         handleClose()
     }
 
