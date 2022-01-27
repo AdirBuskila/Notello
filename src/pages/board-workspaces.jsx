@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { AppHeader } from '../cmps/app-header';
 import { boardService } from '../services/board.service';
 import { Loader } from '../cmps/loader';
+import PersonIcon from '@mui/icons-material/Person';
+import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
@@ -20,8 +22,11 @@ export const BoardWorkspaces = () => {
   return (
     <React.Fragment>
       <AppHeader />
-      <div className='board-container flex column align-center'>
-        <h1>Your Workspaces</h1>
+      <div className='board-container flex column '>
+        <div className="board-workspace-title flex align-center">
+          <PersonIcon className='workspace-logo' />
+        <h1> Your Workspaces</h1>
+        </div>
         <div className='boards-container flex'>
           {boards.map((board) => {
             if (!board) return <h1>Loading...</h1>;
@@ -36,6 +41,13 @@ export const BoardWorkspaces = () => {
               </Link>
             );
           })}
+        </div>
+        <div className="stared-workspace">
+        <div className="stared-workspace-title flex align-center">
+        <StarRateRoundedIcon className='workspace-logo' />
+        <h1>Starred Boards</h1>
+        </div>
+
         </div>
       </div>
     </React.Fragment>

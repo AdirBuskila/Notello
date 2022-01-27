@@ -108,188 +108,24 @@ export const TaskDetails = (props) => {
 
   if (!selectedTask || !board) return <div className=''></div>;
   return (
-    <div className='task-details-container'>
-      <Backdrop onClick={onHandleClose} />
-      <div className='task-details flex column'>
-        {whichBgcExist ? (
-          <div
-            className='task-header-cover'
-            style={
-              whichBgcExist.includes('#') || whichBgcExist.includes('rgb')
-                ? { backgroundColor: `${selectedTask.cover.background}` }
-                : {
-                    backgroundImage: `url(${whichBgcExist})`,
-                    backgroundColor: '#415647a6',
-                  }
-            }>
-            <div className='close-button flex align-center end'>
-              <CloseIcon onClick={onHandleClose} />
-            </div>
-            <CoverModal
-              updateTask={updateTask}
-              setIsColorPicked={setIsColorPicked}
-              isColorPicked={isColorPicked}
-              board={board}
-              groupIdx={groupIdx}
-              taskIdx={taskIdx}
-              task={selectedTask}
-            />
-          </div>
-        ) : (
-          <div className='close-button flex align-center end'>
-            <CloseIcon onClick={onHandleClose} />
-          </div>
-        )}
-        {selectedTask.isArchived && <div className='archived-task flex align-center'>
-        <ArchiveSharpIcon />
-        <span>This card is archived.</span> 
-          </div>}
-        <div className='window-header align-center flex space-between'>
-          <div className='task-title flex align-center'>
-            <WebAssetIcon sx={{ marginTop: 0.5 }} />
-            <div className='task-title-container flex'>
-              <input
-                className='task-title-input'
-                defaultValue={selectedTask.title}
-                onBlur={onHandleChange}
-                onFocus={(ev) => {
-                  ev.currentTarget.select();
-                }}
-                onClick={(ev) => {
-                  ev.currentTarget.select();
-                }}
-                onChange={(ev) => setTaskTitle(ev.target.value)}
-              />
-            </div>
-            <div className='group-title'>
-              <p>in list {group.title}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className='task-main-container'>
-          <div className='main-content'>
-            <div className='task-info flex align-center'>
-              <MembersCmp members={selectedTask.members} />
-              {selectedTask.dueDate.length > 0 && (
-                <DueDateCmp dueDate={selectedTask.dueDate} />
-              )}
-            </div>
-            <LabelsCmp 
-            key={utilService.makeId()}
-            task={selectedTask}
-            groupIdx={groupIdx}
-            board={board}
-            taskIdx={taskIdx}
-            labels={selectedTask.labels} />
-            <div className='description-container'>
-              <div className='description flex'>
-                <SubjectIcon />
-                <p>Description</p>
-              </div>
-              <div className='add-description-container'>
-                {selectedTask.description === '' && (
-                  <AddDescription
-                    task={selectedTask}
-                    board={board}
-                    group={group}
-                  />
-                )}
-                {selectedTask.description !== '' && (
-                  <p className='task-description'>{selectedTask.description}</p>
-                )}
-              </div>
-            </div>
-            <CheckListCmp
-              key={utilService.makeId()}
-              isCheckListAcctivated={isCheckListAcctivated}
-              task={selectedTask}
-              groupIdx={groupIdx}
-              board={board}
-              taskIdx={taskIdx}
-              group={group}
-            />
-            <div className='attachments-container'>
-              <AttachmentsCmp
-                attachments={selectedTask.attachments}
-                task={selectedTask}
-                board={board}
-                group={group}
-              />
-            </div>
-            <div className='activity-container flex column'>
-              <div className='activity flex align-center space-between'>
-                <div className='activity-header-container flex'>
-                  <FormatListBulletedIcon />
-                  <p>Activity</p>
-                </div>
-                <button>Show details</button>
-              </div>
-              <div className='comment-container flex'>
-                <div className='user-container'>
-                  <Avatar
-                    sx={{
-                      bgcolor: deepOrange[500],
-                      width: 32,
-                      height: 32,
-                    }}>
-                    <p>NC</p>
-                  </Avatar>
-                </div>
-                <AddCommentCmp
-                  task={selectedTask}
-                  board={board}
-                  group={group}
-                />
-              </div>
-              <div className='comments-area flex column'>
-                <CommentsSection comments={selectedTask.comments} />
-              </div>
-            </div>
-          </div>
-          <div className='window-sidebar'>
-            <p className='task-actions'>Suggested</p>
-            <div className='button-container flex'>
-              <PersonOutlineOutlinedIcon color='action' />
-              <Typography>Join</Typography>
-            </div>
-            <p className='task-actions'>Add to card</p>
-            <MembersModal task={selectedTask} board={board} group={group} />
-            <LabelsModal 
-            key={utilService.makeId()}
-            task={selectedTask}
-            groupIdx={groupIdx}
-            board={board}
-            taskIdx={taskIdx} />
-            <CheckListModal
-              isCheckListAcctivated={isCheckListAcctivated}
-              board={board}
-              groupIdx={groupIdx}
-              taskIdx={taskIdx}
-              task={selectedTask}
-              setIsCheckListAcctivated={setIsCheckListAcctivated}
-            />
+    <React.Fragment>
+      <div className='task-details-container'>
+        <Backdrop onClick={onHandleClose} />
+        <div className='task-details flex column '>
+          {whichBgcExist ? (
             <div
-              onClick={() => {
-                setIsOpen(true);
-              }}
-              className='button-container flex'>
-              <QueryBuilderIcon color='action' />
-              <Typography>Dates</Typography>
-              <DatePickerModal
-                task={selectedTask}
-                board={board}
-                group={group}
-              />
-            </div>
-            <AttachmentModal
-              task={selectedTask}
-              board={board}
-              group={group}
-              attachments={selectedTask.attachments}
-            />
-            {/* {(!selectedTask.cover && !selectedTask.cover.background) &&  */}
-            {!whichBgcExist && (
+              className='task-header-cover'
+              style={
+                whichBgcExist.includes('#') || whichBgcExist.includes('rgb')
+                  ? { backgroundColor: `${selectedTask.cover.background}` }
+                  : {
+                      backgroundImage: `url(${whichBgcExist})`,
+                      backgroundColor: '#415647a6',
+                    }
+              }>
+              <div className='close-button flex align-center end'>
+                <CloseIcon onClick={onHandleClose} />
+              </div>
               <CoverModal
                 updateTask={updateTask}
                 setIsColorPicked={setIsColorPicked}
@@ -299,29 +135,198 @@ export const TaskDetails = (props) => {
                 taskIdx={taskIdx}
                 task={selectedTask}
               />
-            )}
-            {/* } */}
-            <p className='task-actions'>Actions</p>
-            <div className='button-container flex'>
-              <ArrowForwardOutlinedIcon color='action' />
-              <Typography>Move</Typography>
             </div>
-            <CopyMoveModal 
-            type={'copy'}
+          ) : (
+            <div className='close-button flex align-center end'>
+              <CloseIcon onClick={onHandleClose} />
+            </div>
+          )}
+          {selectedTask.isArchived && <div className='archived-task flex align-center'>
+        <ArchiveSharpIcon />
+        <span>This card is archived.</span> 
+          </div>}
+          <div className='window-header align-center flex space-between'>
+            <div className='task-title flex align-center'>
+              <WebAssetIcon sx={{ marginTop: 0.5 }} />
+              <div className='task-title-container flex column'>
+                <input
+                  className='task-title-input'
+                  defaultValue={selectedTask.title}
+                  onBlur={onHandleChange}
+                  onFocus={(ev) => {
+                    ev.currentTarget.select();
+                  }}
+                  onClick={(ev) => {
+                    ev.currentTarget.select();
+                  }}
+                  onChange={(ev) => setTaskTitle(ev.target.value)}
+                />
+                <div className='group-title'>
+                  <p>in list {group.title}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='task-main-container'>
+            <div className='main-content'>
+              <div className='task-info flex align-center'>
+                <MembersCmp members={selectedTask.members} />
+                {selectedTask.dueDate.length > 0 && (
+                  <DueDateCmp dueDate={selectedTask.dueDate} />
+                )}
+              </div>
+              <LabelsCmp 
+            key={utilService.makeId()}
+            task={selectedTask}
+            groupIdx={groupIdx}
+            board={board}
+            taskIdx={taskIdx}
+            labels={selectedTask.labels} />
+              <div className='description-container'>
+                <div className='description flex'>
+                  <SubjectIcon />
+                  <p>Description</p>
+                </div>
+                <div className='add-description-container'>
+                  {selectedTask.description === '' && (
+                    <AddDescription
+                      task={selectedTask}
+                      board={board}
+                      group={group}
+                    />
+                  )}
+                  {selectedTask.description !== '' && (
+                    <p className='task-description'>
+                      {selectedTask.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <CheckListCmp
+                key={utilService.makeId()}
+                isCheckListAcctivated={isCheckListAcctivated}
+                task={selectedTask}
+                groupIdx={groupIdx}
+                board={board}
+                taskIdx={taskIdx}
+                group={group}
+              />
+              <div className='attachments-container'>
+                <AttachmentsCmp
+                  attachments={selectedTask.attachments}
+                  task={selectedTask}
+                  board={board}
+                  group={group}
+                />
+              </div>
+              <div className='activity-container flex column'>
+                <div className='activity flex align-center space-between'>
+                  <div className='activity-header-container flex'>
+                    <FormatListBulletedIcon />
+                    <p>Activity</p>
+                  </div>
+                  <button>Show details</button>
+                </div>
+                <div className='comment-container flex'>
+                  <div className='user-container'>
+                    <Avatar
+                      sx={{
+                        bgcolor: deepOrange[500],
+                        width: 32,
+                        height: 32,
+                      }}>
+                      <p>NC</p>
+                    </Avatar>
+                  </div>
+                  <AddCommentCmp
+                    task={selectedTask}
+                    board={board}
+                    group={group}
+                  />
+                </div>
+                <div className='comments-area flex column'>
+                  <CommentsSection comments={selectedTask.comments} />
+                </div>
+              </div>
+            </div>
+            <div className='window-sidebar'>
+              <p className='task-actions'>Suggested</p>
+              <div className='button-container flex'>
+                <PersonOutlineOutlinedIcon color='action' />
+                <Typography>Join</Typography>
+              </div>
+              <p className='task-actions'>Add to card</p>
+              <MembersModal task={selectedTask} board={board} group={group} />
+              <LabelsModal 
+            key={utilService.makeId()}
+            task={selectedTask}
+            groupIdx={groupIdx}
+            board={board}
+            taskIdx={taskIdx} />
+              <CheckListModal
+                isCheckListAcctivated={isCheckListAcctivated}
+                board={board}
+                groupIdx={groupIdx}
+                taskIdx={taskIdx}
+                task={selectedTask}
+                setIsCheckListAcctivated={setIsCheckListAcctivated}
+              />
+              <div
+                onClick={() => {
+                  setIsOpen(true);
+                }}
+                className='button-container flex'>
+                <QueryBuilderIcon color='action' />
+                <Typography>Dates</Typography>
+                <DatePickerModal
+                  task={selectedTask}
+                  board={board}
+                  group={group}
+                />
+              </div>
+              <AttachmentModal
+                task={selectedTask}
+                board={board}
+                group={group}
+                attachments={selectedTask.attachments}
+              />
+              {/* {(!selectedTask.cover && !selectedTask.cover.background) &&  */}
+              {!whichBgcExist && (
+                <CoverModal
+                  updateTask={updateTask}
+                  setIsColorPicked={setIsColorPicked}
+                  isColorPicked={isColorPicked}
+                  board={board}
+                  groupIdx={groupIdx}
+                  taskIdx={taskIdx}
+                  task={selectedTask}
+                />
+              )}
+              {/* } */}
+              <p className='task-actions'>Actions</p>
+              <div className='button-container flex'>
+                <ArrowForwardOutlinedIcon color='action' />
+                <Typography>Move</Typography>
+              </div>
+              <CopyMoveModal 
+              type={'copy'}
+              board={board}
+              groupIdx={groupIdx}
+              taskIdx={taskIdx}
+              task={selectedTask} 
+              />
+              <ArchiveModal 
             board={board}
             groupIdx={groupIdx}
             taskIdx={taskIdx}
             task={selectedTask} 
             />
-            <ArchiveModal 
-            board={board}
-            groupIdx={groupIdx}
-            taskIdx={taskIdx}
-            task={selectedTask} 
-            />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
+
