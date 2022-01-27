@@ -5,18 +5,17 @@ import { useDispatch } from 'react-redux';
 import { utilService } from '../../services/util.service';
 import { boardService } from '../../services/board.service';
 
-
 export const AddCommentCmp = (props) => {
-  const {task, group, board,} = props
-  
+  const { task, group, board } = props;
+
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
   const [isAdding, onIsAdding] = useState(false);
 
-  const groupIdx = boardService.getGroupIdxById(board, group._id)
-  const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask)=>{
-    return (currTask._id === task._id)
-  })
+  const groupIdx = boardService.getGroupIdxById(board, group._id);
+  const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
+    return currTask._id === task._id;
+  });
 
   const onHandleModal = () => {
     console.log(newComment);
@@ -33,10 +32,9 @@ export const AddCommentCmp = (props) => {
     const value = target.value;
     setNewComment(value);
     console.log(newComment);
-
   };
-  
-  const onAdd = () => {
+
+  const onAdd = async () => {
     const comment = {
       _id: utilService.makeId(),
       txt: newComment,
@@ -44,14 +42,27 @@ export const AddCommentCmp = (props) => {
       byMember: {
         _id: utilService.makeId(),
         fullname: 'Guest',
-        imgUrl: ''
-      }
+        imgUrl: '',
+      },
+    };
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `added comment to task (${task.title}) - ${comment.txt}`,
+      createdAt: Date.now(),
+      byMember: comment.byMember.fullname,
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    };
+    try {
+      board.activities.unshift(activity);
+      board.groups[groupIdx].tasks[taskIdx].comments.push(comment);
+      const action = { type: 'SET_BOARD', board };
+      await dispatch(action);
+    } catch (err) {
+      console.log('Cannot add comment to task');
     }
- 
-    board.groups[groupIdx].tasks[taskIdx].comments.push(comment)
-    const action = {type: 'SET_BOARD', board}
-    dispatch(action)
-    
   };
 
   return (
@@ -74,9 +85,10 @@ export const AddCommentCmp = (props) => {
             placeholder={`Add a more detailed comment `}></textarea>
           <div className='new-comment-actions flex align-center'>
             <Button
-              onClick={() => {onAdd()}}
-              variant='contained'
-            >
+              onClick={() => {
+                onAdd();
+              }}
+              variant='contained'>
               Save
             </Button>
           </div>
