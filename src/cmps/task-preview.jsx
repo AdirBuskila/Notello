@@ -15,19 +15,19 @@ import { utilService } from '../services/util.service';
 export const TaskPreview = (props) => {
   const { task, board, groupIdx } = props;
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
-  const isFull = (taskCover.spread === 'full') ? true : false;
+  const isFull = taskCover.spread === 'full' ? true : false;
+  const [openPopup, setOpenPopup] = useState(false);
+  const [isDueDateChanged, setIsDueDateChanged] = useState(false);
   const coverType = taskCover
-  ? utilService.isStringColor(taskCover.background)
-  ? 'backgroudColor'
-  : 'backgroundImage'
-  : null;
+    ? utilService.isStringColor(taskCover.background)
+      ? 'backgroudColor'
+      : 'backgroundImage'
+    : null;
 
   const dispatch = useDispatch();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
   );
-  const [openPopup, setOpenPopup] = useState(false);
-  const [isDueDateChanged, setIsDueDateChanged] = useState(false);
 
   const onHandleLablesClick = (ev) => {
     ev.stopPropagation();
@@ -37,8 +37,8 @@ export const TaskPreview = (props) => {
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
-    
-    return (
+
+  return (
     <React.Fragment>
       <Link to={`/b/${board._id}/${task._id}`}>
         <Draggable
@@ -56,26 +56,27 @@ export const TaskPreview = (props) => {
               {...provided.dragHandleProps}
               {...provided.draggableProps}
               key={task._id}>
-                
-              {(taskCover && !isFull) && (
-                coverType === 'backgroudColor' ? (
+              {taskCover &&
+                !isFull &&
+                (coverType === 'backgroudColor' ? (
                   <div
-                className='task-cover'
+                    className='task-cover'
                     style={{
                       backgroundColor: `${taskCover.background}`,
-                      height: '32px',
+                      height: '2rem',
                     }}></div>
                 ) : (
                   <div>
                     <img src={taskCover.background} alt='task-img' />
                   </div>
-                )
-              )} 
+                ))}
 
-              <div 
-              style={(isFull) ? { backgroundColor: `${taskCover.background}` } : null}
-              className='task-not-cover flex column'>
-                {(task.labels && !isFull) && (
+              <div
+                style={
+                  isFull ? { backgroundColor: `${taskCover.background}` } : null
+                }
+                className='task-not-cover flex column'>
+                {task.labels && !isFull && (
                   <ul className='labels flex'>
                     {task.labels.map((label, idx) => {
                       return (
@@ -83,7 +84,7 @@ export const TaskPreview = (props) => {
                           className={className}
                           onClick={(ev) => onHandleLablesClick(ev)}
                           key={idx}
-                          style={{ backgroundColor: `${label.bgc}`}}>
+                          style={{ backgroundColor: `${label.bgc}` }}>
                           {isLabelsExpended && `${label.name}`}
                         </li>
                       );
@@ -91,38 +92,40 @@ export const TaskPreview = (props) => {
                   </ul>
                 )}
                 <p>{task.title}</p>
-                {!isFull && <div className='task-info-icons flex space-between'>
-                  <div className='task-badges flex align-center'>
-                    {task.dueDate.length > 0 && (
-                      <DueDateBadge
-                        groupIdx={groupIdx}
-                        task={task}
-                        board={board}
-                        isDueDateChanged={isDueDateChanged}
-                        setIsDueDateChanged={setIsDueDateChanged}
-                        dueDate={task.dueDate}
-                      />
-                    )}
+                {!isFull && (
+                  <div className='task-info-icons flex space-between'>
+                    <div className='task-badges flex align-center'>
+                      {task.dueDate.length > 0 && (
+                        <DueDateBadge
+                          groupIdx={groupIdx}
+                          task={task}
+                          board={board}
+                          isDueDateChanged={isDueDateChanged}
+                          setIsDueDateChanged={setIsDueDateChanged}
+                          dueDate={task.dueDate}
+                        />
+                      )}
 
-                    {task.comments.length > 0 && (
-                      <CommentsBadge comments={task.comments} />
-                    )}
-                    {task.attachments.length > 0 && (
-                      <AttachmentsBadge attachments={task.attachments} />
-                    )}
-                    {task.description && (
-                      <SubjectIcon fontSize='extra-small' color='action' />
-                    )}
-                    {task.checklists.length > 0 && (
-                      <ChecklistBadge checklists={task.checklists} />
-                    )}
+                      {task.comments.length > 0 && (
+                        <CommentsBadge comments={task.comments} />
+                      )}
+                      {task.attachments.length > 0 && (
+                        <AttachmentsBadge attachments={task.attachments} />
+                      )}
+                      {task.description && (
+                        <SubjectIcon fontSize='extra-small' color='action' />
+                      )}
+                      {task.checklists.length > 0 && (
+                        <ChecklistBadge checklists={task.checklists} />
+                      )}
+                    </div>
+                    <div className='members-badge flex align-center'>
+                      {task.members.length > 0 && (
+                        <MembersBadge members={task.members} />
+                      )}
+                    </div>
                   </div>
-                  <div className='members-badge flex align-center'>
-                    {task.members.length > 0 && (
-                      <MembersBadge members={task.members} />
-                    )}
-                  </div>
-                </div>}
+                )}
               </div>
             </div>
           )}

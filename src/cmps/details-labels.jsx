@@ -135,6 +135,7 @@ export const LabelsModal = (props) => {
               {board.labels.map((label, index) => {
                 return (
                   <div
+                    key={index}
                     onBlur={() => applyLabelTitle(index, label._id)}
                     className='color-label'>
                     <button
