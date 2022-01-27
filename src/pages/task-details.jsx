@@ -123,8 +123,7 @@ export const TaskDetails = (props) => {
                       backgroundImage: `url(${whichBgcExist})`,
                       backgroundColor: '#415647a6',
                     }
-              }
-            >
+              }>
               <div className='close-button flex align-center end'>
                 <CloseIcon
                   onClick={onHandleClose}
@@ -143,7 +142,10 @@ export const TaskDetails = (props) => {
             </div>
           ) : (
             <div className='close-button flex align-center end'>
-              <CloseIcon onClick={onHandleClose} />
+              <CloseIcon
+                sx={{ fontSize: '2.5rem', padding: '8px' }}
+                onClick={onHandleClose}
+              />
             </div>
           )}
           {selectedTask.isArchived && (
@@ -245,8 +247,7 @@ export const TaskDetails = (props) => {
                         bgcolor: deepOrange[500],
                         width: 32,
                         height: 32,
-                      }}
-                    >
+                      }}>
                       <p>NC</p>
                     </Avatar>
                   </div>
@@ -293,8 +294,7 @@ export const TaskDetails = (props) => {
                 onClick={() => {
                   setIsOpen(true);
                 }}
-                className='button-container flex'
-              >
+                className='button-container flex'>
                 <QueryBuilderIcon color='action' />
                 <Typography>Dates</Typography>
                 <DatePickerModal
