@@ -34,15 +34,26 @@ export const AddCommentCmp = (props) => {
       createdAt: Date.now(),
       byMember: {loggedInUser},
     };
-    setNewComment('');
-    // console.log('newComment', newComment);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `added comment to task (${task.title}) - ${comment.txt}`,
+      createdAt: Date.now(),
+      byMember: loggedInUser.fullname,
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    };
     try {
+      board.activities.unshift(activity)
       board.groups[groupIdx].tasks[taskIdx].comments.push(comment);
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);
     } catch (err) {
       console.log('cannot add new comment', err);
     }
+
+    setNewComment('');
   };
 
   return (
