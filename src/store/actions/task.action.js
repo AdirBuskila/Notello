@@ -4,8 +4,8 @@ export function addTask(newTask) {
     return async (dispatch) => {
         try {
             const task = await taskService.save(newTask);
-            const action = {type: 'ADD_TASK', task}
-            dispatch(action) 
+            const action = { type: 'ADD_TASK', task }
+            dispatch(action)
         } catch (err) {
             console.log('cant add task');
             throw new Error(err);
@@ -14,7 +14,7 @@ export function addTask(newTask) {
 }
 
 export function loadTask(taskId) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const task = await getTaskById.getTask(taskId)
             const action = { type: 'SET_TASK', task }
@@ -28,9 +28,9 @@ export function loadTask(taskId) {
 }
 
 export function saveTask(board) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
-            await boardService.saveBoard(board)
+            await boardService.save(board)
             const action = { type: 'SET_BOARD', board }
             dispatch(action)
         } catch (err) {

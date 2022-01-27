@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { PreFeatureAdd } from './preFeatureAdd';
 import { TaskList } from './task-list';
-import { loadBoard } from '../store/actions/board.action';
+import { loadBoard } from '../store/actions/board.action no BE';
 import { boardService } from '../services/board.service';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -29,7 +29,7 @@ const _GroupPreview = (props) => {
     newBoard.groups[groupIdx].title = newGroupTitle;
     setClickedGroupId('');
     setNewGroupTitle('');
-    await boardService.saveBoard(newBoard);
+    await boardService.save(newBoard);
   };
 
   const className = clickedGroupId
@@ -84,13 +84,13 @@ const _GroupPreview = (props) => {
                   </div>
                 )}
               </Droppable>
-              <PreFeatureAdd
-                onLoadBoard={props.onLoadBoard}
-                board={board}
-                group={group}
-                type='task'
-              />
             </div>
+            <PreFeatureAdd
+              onLoadBoard={props.onLoadBoard}
+              board={board}
+              group={group}
+              type='task'
+            />
           </div>
         </div>
       )}

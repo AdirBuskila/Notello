@@ -11,7 +11,7 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARD':
-            boardService.save(action.board);
+            boardService.saveBoard(action.board);
             newState = { ...state, board: action.board }
             break;
         case 'HANDLE_LABELS':

@@ -19,7 +19,7 @@ import { CoverModal } from '../cmps/cover-modal';
 import { Backdrop } from '../cmps/UI/backdrop';
 ///// CMPS
 import { boardService } from '../services/board.service';
-import { loadTask, saveTask } from '../store/actions/board.action';
+import { loadTask, saveTask } from '../store/actions/board.action no BE';
 ///// ICONS
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -59,7 +59,7 @@ export const TaskDetails = (props) => {
 
   React.useEffect(async () => {
     try {
-      const newBoard = await boardService.getBoardById(boardId);
+      const newBoard = await boardService.getById(boardId);
       const newGroup = boardService.getGroup(newBoard, taskId);
       setBoard(newBoard);
       setGroup(newGroup);
@@ -127,8 +127,7 @@ export const TaskDetails = (props) => {
                     backgroundImage: `url(${whichBgcExist})`,
                     backgroundColor: '#415647a6',
                   }
-            }
-          >
+            }>
             <div className='close-button flex align-center end'>
               <CloseIcon onClick={onHandleClose} />
             </div>
@@ -186,13 +185,13 @@ export const TaskDetails = (props) => {
               <div className='add-description-container'>
                 {selectedTask.description === '' && (
                   <AddDescription
-                  task={selectedTask}
-                  board={board}
-                  group={group}
+                    task={selectedTask}
+                    board={board}
+                    group={group}
                   />
                 )}
                 {selectedTask.description !== '' && (
-                  <p className='task-description' >{selectedTask.description}</p>
+                  <p className='task-description'>{selectedTask.description}</p>
                 )}
               </div>
             </div>
@@ -228,8 +227,7 @@ export const TaskDetails = (props) => {
                       bgcolor: deepOrange[500],
                       width: 32,
                       height: 32,
-                    }}
-                  >
+                    }}>
                     <p>NC</p>
                   </Avatar>
                 </div>
@@ -264,8 +262,7 @@ export const TaskDetails = (props) => {
               onClick={() => {
                 setIsOpen(true);
               }}
-              className='button-container flex'
-            >
+              className='button-container flex'>
               <QueryBuilderIcon color='action' />
               <Typography>Dates</Typography>
               <DatePickerModal
