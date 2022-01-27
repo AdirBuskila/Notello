@@ -37,7 +37,7 @@ export const MembersModal = (props) => {
     const newMember = boardService.getMemberById(board, memberId);
     const activity = {
       _id: utilService.makeId(),
-      txt: `${newMember.title} joined to task ${task.title}`,
+      txt: `${newMember.fullname} joined to task ${task.title}`,
       createdAt: Date.now(),
       byMember: 'Guest',
       task: {
