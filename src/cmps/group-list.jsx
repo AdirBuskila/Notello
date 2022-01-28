@@ -71,7 +71,6 @@ export const GroupList = (props) => {
   if (!board.groups) return <Loader />;
   return (
     <React.Fragment>
-      <BoardActivity />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={board._id} type='list' direction='horizontal'>
           {(provided) => (

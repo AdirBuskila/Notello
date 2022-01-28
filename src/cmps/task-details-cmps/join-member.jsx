@@ -23,15 +23,33 @@ export const JoinCmp = (props) => {
 
   const onJoin = async (memberId) => {
     const taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
+    console.log('taskMembers', taskMembers);
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
     if (alreadyInside) return;
+<<<<<<< HEAD
     const newMember = boardService.getMemberById(board, memberId);
     const activity = boardService.addTaskActivity(`${newMember.fullname} joined to task ${task.title}`, task, loggedInUser);
     try {
       if (activity) board.activities.unshift(activity);
       taskMembers.push(newMember);
+=======
+    console.log('alreadyInside', alreadyInside);
+    const activity = {
+      _id: utilService.makeId(),
+      txt: `${loggedInUser.fullname} joined to task ${task.title}`,
+      createdAt: Date.now(),
+      byMember: loggedInUser,
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    };
+    try {
+      board.activities.unshift(activity);
+      taskMembers.push(loggedInUser);
+>>>>>>> 853babb95d92a3020613531166dc2f9b3060f9db
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);

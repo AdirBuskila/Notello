@@ -43,8 +43,8 @@ const _BoardDetails = (props) => {
       }}>
       <AppHeader />
       <BoardHeader onLoadBoard={onLoadBoard} board={props.board} />
+      <BoardActivity />
       <div className='board-details-container flex column '>
-      {/* <BoardActivity /> */}
         <GroupList
           onLoadBoard={onLoadBoard}
           board={props.board}

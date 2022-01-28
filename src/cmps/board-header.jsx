@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Button from '@mui/material/Button';
-// import { MenuBar } from './board-menu-bar';
-import { BoardActivity } from '../pages/board-activity';
+// import { BoardActivity } from '../pages/board-activity';
 
 import STATS from '../assets/img/stats.svg';
 import DOWNICON from '../assets/img/down-arrow.png';
@@ -17,18 +18,22 @@ import AVATAR3 from '../assets/img/avatar3.png';
 import AVATAR4 from '../assets/img/avatar4.png';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
-import { boardService } from '../services/board.service';
-
 export const BoardHeader = (props) => {
   const board = props.board;
-  const [boardTitle, setBoardTitle] = useState(board.title);
+  const [boardTitle, setBoardTitle] = useState();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setBoardTitle(board.title);
+  }, [board]);
 
   const onHandleChange = (ev) => {
     setBoardTitle(ev.target.value);
   };
   const changeBoardTitle = () => {
     board.title = boardTitle;
-    boardService.save(board);
+    const action = { type: 'SET_BOARD', board };
+    dispatch(action);
   };
 
   if (!board) return <h1> No board </h1>;
@@ -48,7 +53,7 @@ export const BoardHeader = (props) => {
         <div className='title-container'>
           <input
             className='title-input'
-            defaultValue={board.title}
+            defaultValue={boardTitle}
             onBlur={changeBoardTitle}
             onFocus={(ev) => {
               ev.currentTarget.select();

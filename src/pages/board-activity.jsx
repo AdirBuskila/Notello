@@ -11,10 +11,6 @@ import { utilService } from '../services/util.service';
 export const BoardActivity = (props) => {
   const board = useSelector((state) => state.boardModule.board);
 
-  // console.log('board', board);
-  // console.log('ACTIVITIES: ', board.activities);
-  // const {board} = props;
-
   if (!board || board.length === 0) return <p>Loading...</p>;
   return (
     <section className='board-activity-container'>

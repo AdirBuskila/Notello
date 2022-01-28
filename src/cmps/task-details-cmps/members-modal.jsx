@@ -12,9 +12,11 @@ export const MembersModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   let open = Boolean(anchorEl);
   const dispatch = useDispatch();
-
+  
   const { board, group, task } = props;
+  const [currTaskMembers, setCurrTaskMembers] =React.useState(task.members)
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,24 +31,55 @@ export const MembersModal = (props) => {
     return currTask._id === task._id;
   });
 
-  const onAddMember = async (memberId) => {
-    const taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
+  const onAddMember = (memberId) => {
+    console.log('memberId',memberId);
+    let taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
+<<<<<<< HEAD
     if (alreadyInside) return;
     const newMember = boardService.getMemberById(board, memberId);
     const activity = boardService.addTaskActivity(`${newMember.fullname} joined to task ${task.title}`, task, loggedInUser);
     try {
       if (activity) board.activities.unshift(activity);
+=======
+    console.log('taskMembers', taskMembers); 
+    if (alreadyInside)  {
+      console.log('in here');
+      handleAlreadyInside(alreadyInside._id, taskMembers)
+    } else if (!alreadyInside) {
+      const activity = {
+        _id: utilService.makeId(),
+        txt: `${loggedInUser.fullname} joined to task ${task.title}`,
+      createdAt: Date.now(),
+      byMember: loggedInUser,
+      task: {
+        _id: task._id,
+        title: task.title,
+      },
+    };
+      board.activities.unshift(activity);
+      const newMember =  boardService.getMemberById(board,memberId)
+      console.log('newMember', newMember);
+>>>>>>> 853babb95d92a3020613531166dc2f9b3060f9db
       taskMembers.push(newMember);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
       const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
-    } catch (err) {
-      console.log('Cannot add member to task', err);
-    }
+      dispatch(action);
+    
+  }
   };
+
+  const handleAlreadyInside = (memberId, taskMembers) => {
+    taskMembers = taskMembers.filter((member)=> {
+      return (member._id !== memberId)
+    })
+    setCurrTaskMembers(taskMembers)
+    board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
+    const action = { type: 'SET_BOARD', board };
+    dispatch(action);
+  }
 
   return (
     <div className='button-container flex'>
@@ -71,17 +104,24 @@ export const MembersModal = (props) => {
             <div className='members-container flex column'>
               <h4>Board members</h4>
               {board.members.map((member) => {
+                // console.log('member', member);
+                let memberClass
+                {currTaskMembers.map((currMember)=>{
+                  (member._id === currMember._id) ? memberClass = 'inner-member flex pointer inside' : memberClass = 'inner-member flex pointer'
+                })}
                 return (
                   <div
-                    key={member._id}
-                    onClick={() => onAddMember(member._id)}
-                    className='inner-member flex pointer'>
+                  key={member._id}
+                  onClick={() => onAddMember(member._id)}
+                  className={memberClass}
+                  >
                     <Avatar
                       alt={utilService.getInitials(member.fullname)}
                       src={member.imgUrl}
                       style={{ width: '32px', height: '32px', border: '0' }}
                     />
                     <p>{member.fullname}</p>
+                      {(memberClass === 'inner-member flex pointer inside') && <span>✓</span>}
                     {/* <p>({member.username})</p> */}
                   </div>
                 );

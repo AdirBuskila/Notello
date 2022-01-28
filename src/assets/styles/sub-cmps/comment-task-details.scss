@@ -24,6 +24,7 @@
   .new-comment {
     position: relative;
     & > textarea {
+      overflow: hidden;
       border-radius: 3px;
       height: rem(36px);
       padding: 0.5rem 0.75rem;
