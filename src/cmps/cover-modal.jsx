@@ -4,7 +4,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 
-import { utilService } from '../services/util.service';
+import { boardService } from '../services/board.service';
 
 export const CoverModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -49,18 +49,9 @@ export const CoverModal = (props) => {
   };
 
   const submitChanges = async (task) => {
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `updated the cover to ${task.cover.background}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+    const activity = boardService.addTaskActivity(`updated the cover to ${task.cover.background}`, task, loggedInUser)
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx] = task;
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);

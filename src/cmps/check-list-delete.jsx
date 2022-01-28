@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 
-import {utilService} from '../services/util.service'
+import { boardService } from '../services/board.service';
 
 export const CheckListDelete = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -21,18 +21,9 @@ export const CheckListDelete = (props) => {
     };
 
     const onDelete = async () => {
-        const activity = {
-            _id: utilService.makeId(),
-            txt: `deleted checklist - ${checklist.title}`,
-            createdAt: Date.now(),
-            byMember: loggedInUser,
-            task: {
-                _id: task._id,
-                title: task.title
-            }
-        }
+        const activity = boardService.addTaskActivity(`deleted checklist - ${checklist.title}`, task, loggedInUser)
         try {
-            board.activities.unshift(activity);
+            if (activity) board.activities.unshift(activity);
             task.checklists.splice(checklistIdx, 1);
             board.groups[groupIdx].tasks[taskIdx] = task;
             const action = { type: 'SET_BOARD', board };

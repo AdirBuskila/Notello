@@ -37,8 +37,12 @@ export const MembersModal = (props) => {
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
+
+    if (alreadyInside) return;
+    const newMember = boardService.getMemberById(board, memberId);
+    const activity = boardService.addTaskActivity(`${newMember.fullname} joined to task ${task.title}`, task, loggedInUser);
+    if (activity) board.activities.unshift(activity);
     if (alreadyInside)  {
-      console.log('in here');
       handleAlreadyInside(alreadyInside._id, taskMembers)
     } else if (!alreadyInside) {
       const activity = {
@@ -59,7 +63,8 @@ export const MembersModal = (props) => {
       dispatch(action);
     
   }
-  };
+}
+  
 
   const handleAlreadyInside = (memberId, taskMembers) => {
     taskMembers = taskMembers.filter((member)=> {
@@ -70,7 +75,6 @@ export const MembersModal = (props) => {
     const action = { type: 'SET_BOARD', board };
     dispatch(action);
   }
-  let memberClass = 'inner-member flex pointer'
   const handleClassName = (member)=>{
     const isExsit = currTaskMembers.findIndex((currMember)=>{
       return (currMember._id === member._id)
@@ -101,7 +105,6 @@ export const MembersModal = (props) => {
             <div className='members-container flex column'>
               <h4>Board members</h4>
               {board.members.map((member) => {
-                {console.log('()=>handleClassName(member)', handleClassName(member))}
                 return (
                   <div
                   key={member._id}
@@ -125,4 +128,4 @@ export const MembersModal = (props) => {
       </Popover>
     </div>
   );
-};
+}

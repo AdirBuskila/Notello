@@ -5,6 +5,8 @@ import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Button from '@mui/material/Button';
+// import { BoardActivity } from '../pages/board-activity';
+
 import STATS from '../assets/img/stats.svg';
 import DOWNICON from '../assets/img/down-arrow.png';
 import ADD_MEMBER from '../assets/img/add-user.png';
@@ -15,7 +17,6 @@ import AVATAR2 from '../assets/img/avatar2.png';
 import AVATAR3 from '../assets/img/avatar3.png';
 import AVATAR4 from '../assets/img/avatar4.png';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import { MenuBar } from './board-menu-bar';
 
 export const BoardHeader = (props) => {
   const board = props.board;
@@ -134,7 +135,7 @@ export const BoardHeader = (props) => {
             alt='menu'
             style={{ width: '16px', height: '16px' }}
           />
-          <MenuBar />
+          {/* <BoardActivity board={board}/> */}
         </div>
       </div>
     </section>

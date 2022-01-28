@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 
 import { utilService } from '../services/util.service';
+import { boardService } from '../services/board.service';
 
 export const CheckListModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -34,18 +35,9 @@ export const CheckListModal = (props) => {
       title: checklistName,
       todos: [],
     };
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `created checklist - ${checklist.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+    const activity = boardService.addTaskActivity(`created checklist - ${checklist.title}`,task, loggedInUser)
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       task.checklists.unshift(checklist);
       board.groups[groupIdx].tasks[taskIdx] = task;
       const action = { type: 'SET_BOARD', board };

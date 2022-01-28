@@ -8,7 +8,7 @@ import { taskReducer } from './reducers/task.reducer.js';
 const rootReducer = combineReducers({
     boardModule: boardReducer,
     userModule: userReducer,
-    taskModule: taskReducer 
+    taskModule: taskReducer,
 })
 
 

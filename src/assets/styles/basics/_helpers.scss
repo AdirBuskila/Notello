@@ -59,15 +59,6 @@
     cursor: pointer;
 }
 
-.close-button {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    border-radius: 20px;
+.flex.wrap {
+    flex-wrap: wrap;
 }
-
-.close-button:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    background-color:rgba(116, 92, 92, 0.338);
-}
-

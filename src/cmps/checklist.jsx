@@ -7,7 +7,7 @@ import { LinearWithValueLabel } from '../cmps/progress-bar';
 import { CheckListSection } from '../cmps/check-list-section';
 import { CheckListDelete } from './check-list-delete';
 
-import { utilService } from '../services/util.service';
+import { boardService } from '../services/board.service';
 
 export const CheckList = (props) => {
   const { task, taskIdx, groupIdx, checklistIdx, board, checklist } = props;
@@ -23,18 +23,9 @@ export const CheckList = (props) => {
     });
     let { isDone } = task.checklists[checklistIdx].todos[todoIdx];
     const state = isDone ? 'Done' : 'In work';
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `changed todo (${checklist.todos[todoIdx].title}) state to - ${state}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+    const activity = boardService.addTaskActivity(`changed todo (${checklist.todos[todoIdx].title}) state to - ${state}`, task, loggedInUser)
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;
       board.groups[groupIdx].tasks[taskIdx] = task;
       const action = { type: 'SET_BOARD', board };

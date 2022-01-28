@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 
-import { utilService } from '../services/util.service';
+import { boardService } from '../services/board.service';
 
 export const LabelsModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -65,17 +65,8 @@ export const LabelsModal = (props) => {
     const labelIdx = task.labels.findIndex((label) => {
       return label._id === labelId;
     });
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `removed label (${task.labels[labelIdx].bgc}) from ${task.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
-    board.activities.unshift(activity);
+    const activity = boardService.addTaskActivity(`removed label (${task.labels[labelIdx].bgc}) from ${task.title}`, task, loggedInUser)
+    if (activity) board.activities.unshift(activity);
     task.labels.splice(labelIdx, 1);
     onSaveChanges();
   };
@@ -84,17 +75,8 @@ export const LabelsModal = (props) => {
     const label = board.labels.find((currLabel) => {
       return currLabel._id === labelId;
     });
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `added label (${label.bgc}) to ${task.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
-    board.activities.unshift(activity);
+    const activity = boardService.addTaskActivity(`added label (${label.bgc}) to ${task.title}`, task, loggedInUser)
+    if (activity) board.activities.unshift(activity);
     task.labels.push(label);
     onSaveChanges();
   };

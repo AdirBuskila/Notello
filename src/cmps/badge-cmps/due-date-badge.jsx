@@ -3,8 +3,6 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { boardService } from '../../services/board.service';
 
-import { utilService } from '../../services/util.service';
-
 const months = [
   'Jan',
   'Feb',
@@ -39,18 +37,9 @@ export const DueDateBadge = (props) => {
   const handleClick = async (ev, isDone) => {
     ev.stopPropagation();
     ev.preventDefault();
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `added due date for task ${task.title} set to (${dueDate[0].date})`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      }
-    };
+    const activity = boardService.addTaskActivity(`added due date for task ${task.title} set to (${dueDate[0].date})`, task, loggedInUser)
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       task.dueDate[0].isDone = !isDone;
       board.groups[groupIdx].tasks[taskIdx] = task;
       await boardService.save(board);

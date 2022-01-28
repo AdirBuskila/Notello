@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { useHistory } from "react-router-dom";
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 
-import { utilService } from '../services/util.service';
+import { boardService } from '../services/board.service';
 
 export const ArchiveModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -26,55 +26,27 @@ export const ArchiveModal = (props) => {
   const onHandleDeleteAction = () => {
     history.push(`/b/${board._id}`);
     board.groups[groupIdx].tasks.splice(taskIdx, 1);
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `deleted task - ${task.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    }; 
+    const activity = boardService.addTaskActivity(`deleted task ${task.title}`, task, loggedInUser) 
     submitChanges(board, activity);
-    
   }
 
   const onHandleArchiveAction = () => {
     board.groups[groupIdx].tasks[taskIdx].isArchived = true;
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `archived task - ${task.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    }; 
+    const activity = boardService.addTaskActivity(`archived task ${task.title}`, task, loggedInUser)
     submitChanges(board, activity);
   }
 
   const onHandleRetrieveAction = () => {
     if ( task.isArchived !== true) return
     board.groups[groupIdx].tasks[taskIdx].isArchived = false;
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `retrieved task - ${task.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    }; 
+    const activity = boardService.addTaskActivity(`retrieved task ${task.title}`, task, loggedInUser)
     submitChanges(board, activity);
   }
 
 
   const submitChanges = async (board, activity) => {
       try {
-        board.activities.unshift(activity);
+        if (activity) board.activities.unshift(activity);
           const action = {type: 'SET_BOARD', board};
           await dispatch(action);
       } catch (err) {

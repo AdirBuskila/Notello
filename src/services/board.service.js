@@ -26,6 +26,9 @@ export const boardService = {
     getTask,
     getGroup,
     getMemberById,
+    addGeneralActivity,
+    addTaskActivity,
+    // addActivity
 }
 
 
@@ -95,9 +98,43 @@ function save(board) {
 
 /* Front Service */
 
+// async function addActivity(activity, board) {
+//     console.log("board: ", board);
+//     console.log("activity: ", activity);
+//     try {
+//         board.activities.unshift(activity);
+//         await save(board)
+//     } catch (err) {
+//         console.log(`Cant add activity to board`);
+//     }
+// }
 
 
-async function addTask(boardId, groupId, task, activity = '') {
+function addGeneralActivity(txt, loggedInUser) {
+    return {
+        txt,
+        byMember: loggedInUser,
+        _id: utilService.makeId(),
+        createdAt: Date.now(),
+    }
+}
+
+function addTaskActivity(txt, task, loggedInUser) {
+    console.log("loggedInUser SERVICE: ", loggedInUser);
+    console.log("task SERVICE: ", task);
+    console.log("txt SERVICE: ", txt);
+    return {
+        txt,
+        task,
+        byMember: loggedInUser,
+        _id: utilService.makeId(),
+        createdAt: Date.now(),
+    }
+}
+
+
+async function addTask(boardId, groupId, task, activity) {
+// async function addTask(boardId, groupId, task) {
     task._id = utilService.makeId()
     task.labels = (task.labels) ? task.labels : [];
     task.attachments = (task.attachments) ? task.attachments : [];
@@ -106,26 +143,26 @@ async function addTask(boardId, groupId, task, activity = '') {
     task.checklists = (task.checklists) ? task.checklists : [];
     task.members = (task.members) ? task.members : [];
     task.dueDate = (task.dueDate) ? task.dueDate : [];
+    activity.task = task;
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board.groups[groupIdx].tasks.push(task);
         board.activities.unshift(activity)
-        const updatedBoard = await save(board)
-        return updatedBoard
+        await save(board)
+        return task
     } catch (err) {
         console.log(`Cant add task to board`);
     }
 }
 
-async function removeTask(boardId, groupId, taskId, activity) {
+async function removeTask(boardId, groupId, taskId) {
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board = board.groups[groupIdx].tasks.filter(task => {
             return (task._id !== taskId)
         });
-        board.activities.unshift(activity)
         const updatedBoard = await save(board)
         return updatedBoard
     } catch (err) {
@@ -133,14 +170,13 @@ async function removeTask(boardId, groupId, taskId, activity) {
     }
 }
 
-async function updateTask(boardId, groupId, updatedTask, activity) {
+async function updateTask(boardId, groupId, updatedTask) {
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board = board.groups[groupIdx].tasks.map(task => {
             return (task._id === updatedTask._id) ? updatedTask : task
         });
-        board.activities.unshift(activity)
         const updatedBoard = await save(board)
         return updatedBoard
     } catch (err) {
@@ -158,6 +194,7 @@ async function getTaskById(boardId, groupId, taskId) {
 }
 
 async function addGroup(boardId, group, activity) {
+// async function addGroup(boardId, group) {
     group._id = utilService.makeId()
     group.tasks = [];
     try {
@@ -171,13 +208,12 @@ async function addGroup(boardId, group, activity) {
     }
 }
 
-async function removeGroup(boardId, groupId, activity) {
+async function removeGroup(boardId, groupId) {
     try {
         let board = await getById(boardId)
         board = board.groups.filter(group => {
             return (group._id !== groupId)
         });
-        board.activities.unshift(activity)
         const updatedBoard = save(board)
         return updatedBoard
     } catch (err) {
@@ -193,14 +229,13 @@ function getGroupsIds(board) {
     return groupsIds
 }
 
-async function addLabel(label, boardId, groupId, taskId, activity) {
+async function addLabel(label, boardId, groupId, taskId) {
     label._id = utilService.makeId()
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         const taskIdx = getTaskIdxById(board, groupId, taskId)
         board.groups[groupIdx].tasks[taskIdx].labels.push(label)
-        board.activities.unshift(activity)
         const updatedBoard = save(board)
         return updatedBoard
     } catch (err) {
@@ -208,7 +243,7 @@ async function addLabel(label, boardId, groupId, taskId, activity) {
     }
 }
 
-async function removeLabel(labelId, boardId, groupId, taskId, activity) {
+async function removeLabel(labelId, boardId, groupId, taskId) {
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
@@ -216,7 +251,6 @@ async function removeLabel(labelId, boardId, groupId, taskId, activity) {
         board = board.groups[groupIdx].tasks[taskIdx].labels.filter(label => {
             return (label._id !== labelId)
         })
-        board.activities.unshift(activity)
         const updatedBoard = save(board)
         return updatedBoard
     } catch (err) {
@@ -224,7 +258,7 @@ async function removeLabel(labelId, boardId, groupId, taskId, activity) {
     }
 }
 
-async function updateLabel(updatedLabel, boardId, groupId, taskId, activity) {
+async function updateLabel(updatedLabel, boardId, groupId, taskId) {
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
@@ -232,7 +266,6 @@ async function updateLabel(updatedLabel, boardId, groupId, taskId, activity) {
         board = board.groups[groupIdx].tasks[taskIdx].labels.map(label => {
             return (label._id === updatedLabel._id) ? updatedLabel : label
         })
-        board.activities.unshift(activity)
         const updatedBoard = save(board)
         return updatedBoard
     } catch (err) {
@@ -261,21 +294,16 @@ async function getTaskIdxById(board, groupId, taskId) {
 }
 
 
-async function addAttachment(attachment, boardId, groupId, taskId, activity) {
+async function addAttachment(attachment, boardId, groupId, taskId) {
     attachment._id = utilService.makeId()
     if (!attachment.name) attachment.name = 'New Attachment'
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         const taskIdx = getTaskIdxById(board, groupId, taskId)
-        /////
         board.groups[groupIdx].tasks[taskIdx].push(attachment)
-        board.activities.unshift(activity)
         const updatedBoard = save(board)
         return updatedBoard
-
-
-
     } catch (err) {
         console.log('cannot add attachment', err);
     }
