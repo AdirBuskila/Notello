@@ -29,17 +29,20 @@ export const MembersModal = (props) => {
     return currTask._id === task._id;
   });
 
-  const onAddMember = async (memberId) => {
-    const taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
+  const onAddMember = (memberId) => {
+    console.log('memberId',memberId);
+    let taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
+    console.log('taskMembers', taskMembers); 
     if (alreadyInside)  {
-      console.log('alreadyInside', alreadyInside);
-    }
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `${loggedInUser.fullname} joined to task ${task.title}`,
+      console.log('in here');
+      handleAlreadyInside(alreadyInside._id, taskMembers)
+    } else if (!alreadyInside) {
+      const activity = {
+        _id: utilService.makeId(),
+        txt: `${loggedInUser.fullname} joined to task ${task.title}`,
       createdAt: Date.now(),
       byMember: loggedInUser,
       task: {
@@ -47,16 +50,40 @@ export const MembersModal = (props) => {
         title: task.title,
       },
     };
-    try {
       board.activities.unshift(activity);
-      taskMembers.push(loggedInUser);
+      const newMember =  boardService.getMemberById(board,memberId)
+      console.log('newMember', newMember);
+      taskMembers.push(newMember);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
       const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
-    } catch (err) {
-      console.log('Cannot add member to task', err);
-    }
+      dispatch(action);
+    
+  }
   };
+
+  const handleAlreadyInside = (memberId, taskMembers) => {
+    taskMembers = taskMembers.filter((member)=> {
+      return (member._id !== memberId)
+    })
+    board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
+    const action = { type: 'SET_BOARD', board };
+    dispatch(action);
+  }
+
+  const handleMembersClass = (memberId) => {
+    const taskMembers =  board.groups[groupIdx].tasks[taskIdx].members
+    const memberClass = taskMembers.findIndex((member)=> {
+        return (member._id === memberId)
+    })
+    if (memberClass > -1) {
+      return 'inner-member flex pointer inside'
+    } 
+    else {
+      return 'inner-member flex pointer'
+    }
+  }
+
+
 
   return (
     <div className='button-container flex'>
@@ -85,7 +112,7 @@ export const MembersModal = (props) => {
                   <div
                     key={member._id}
                     onClick={() => onAddMember(member._id)}
-                    className='inner-member flex pointer'>
+                    className={()=>handleMembersClass(member._id)}>
                     <Avatar
                       alt={utilService.getInitials(member.fullname)}
                       src={member.imgUrl}
