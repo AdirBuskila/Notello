@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -39,13 +39,17 @@ export const AttachmentModal = (props) => {
       url: attachmentUrl,
       createdAt: Date.now(),
     };
-    const activity = boardService.addTaskActivity(`added attachment to task ${task.title} - ${attachment.url} / ${attachment.txt}`, task, loggedInUser);
+    const activity = boardService.addTaskActivity(
+      `added attachment to task ${task.title} - ${attachment.url} / ${attachment.txt}`,
+      task,
+      loggedInUser
+    );
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
       const cover = { background: attachmentUrl, spread: 'partial' };
       task.cover = cover;
-      board.groups[groupIdx].tasks[taskIdx] = task
+      board.groups[groupIdx].tasks[taskIdx] = task;
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);
     } catch (err) {
@@ -96,7 +100,7 @@ export const AttachmentModal = (props) => {
   };
 
   return (
-    <div className='button-container flex'>
+    <div className='button-container flex align-center'>
       <AttachFileIcon onClick={handleClick} color='action' />
       <Typography onClick={handleClick}>Attachment</Typography>
       <Popover
@@ -107,15 +111,25 @@ export const AttachmentModal = (props) => {
           vertical: 'bottom',
           horizontal: 'left',
         }}>
-        <div className='attachment-modal-container'>
-          <div className='attachment-modal-header flex space-between'>
-            <p> Add Attachment</p>
-            <div className='close-button pointer' onClick={handleClose}>
-              ✕
-            </div>
+        <div className='attachment-modal-container flex column align-center'>
+          <h4> Attach from...</h4>
+          <div className='close-button pointer' onClick={handleClose}>
+            ✕
           </div>
           <div className='attachment-inner flex column'>
-            <form onSubmit={handleSubmit}>
+            <div className='upload-image'>
+              <form>
+                <label htmlFor='file-upload'>Computer</label>
+                <input
+                  id='file-upload'
+                  onChange={(ev) => {
+                    uploadImg(ev);
+                  }}
+                  type='file'
+                />
+              </form>
+            </div>
+            <form onSubmit={handleSubmit} className='flex column attach-link'>
               <p>Attach a link</p>
               <input
                 autoFocus
@@ -136,16 +150,6 @@ export const AttachmentModal = (props) => {
               )}
               <button>Attach</button>
             </form>
-            <div className='upload-image'>
-              <form>
-                <input
-                  onChange={(ev) => {
-                    uploadImg(ev);
-                  }}
-                  type='file'
-                />
-              </form>
-            </div>
           </div>
         </div>
       </Popover>
