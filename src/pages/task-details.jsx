@@ -53,14 +53,13 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = useState('');
   const [groupIdx, setGroupIdx] = useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
-  
+
   // const board = useSelector((state) => state.boardModule.board);
-  
-  
+
   const whichBgcExist = selectedTask.cover
-  ? selectedTask.cover.background
-  : null;
-  
+    ? selectedTask.cover.background
+    : null;
+
   React.useEffect(async () => {
     try {
       const newBoard = await boardService.getById(boardId);
@@ -138,8 +137,7 @@ export const TaskDetails = (props) => {
                       backgroundImage: `url(${whichBgcExist})`,
                       backgroundColor: '#415647a6',
                     }
-              }
-            >
+              }>
               <div className='close-button flex align-center end'>
                 <CloseIcon onClick={onHandleClose} />
               </div>
@@ -153,9 +151,7 @@ export const TaskDetails = (props) => {
             </div>
           ) : (
             <div className='close-button flex align-center end'>
-              <CloseIcon 
-              onClick={onHandleClose}
-              />
+              <CloseIcon onClick={onHandleClose} />
             </div>
           )}
           {selectedTask.isArchived && (
@@ -256,8 +252,7 @@ export const TaskDetails = (props) => {
                       sx={{
                         width: 32,
                         height: 32,
-                      }}
-                    >
+                      }}>
                       <p>{utilService.getInitials(loggedInUser.fullname)}</p>
                     </Avatar>
                   </div>
@@ -279,14 +274,10 @@ export const TaskDetails = (props) => {
             </div>
             <div className='window-sidebar'>
               <p className='task-actions'>Suggested</p>
-              <JoinCmp
-              task={selectedTask}
-              board={board}
-              group={group}/>
+              <JoinCmp task={selectedTask} board={board} group={group} />
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
               <LabelsModal
-                key={utilService.makeId()}
                 task={selectedTask}
                 groupIdx={groupIdx}
                 board={board}
@@ -302,8 +293,7 @@ export const TaskDetails = (props) => {
                 onClick={() => {
                   setIsOpen(true);
                 }}
-                className='button-container flex'
-              >
+                className='button-container flex'>
                 <QueryBuilderIcon color='action' />
                 <Typography>Dates</Typography>
                 <DatePickerModal
