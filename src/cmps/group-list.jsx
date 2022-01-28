@@ -11,6 +11,7 @@ import { boardService } from '../services/board.service';
 
 export const GroupList = (props) => {
   const dispatch = useDispatch();
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const board = useSelector((state) => state.boardModule.board);
 
   const onSetBoard = async (board) => {
@@ -18,7 +19,7 @@ export const GroupList = (props) => {
       _id: utilService.makeId(),
       txt: `entered to (${board.title}) board`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
     };
     try {
       board.activities.unshift(activity);

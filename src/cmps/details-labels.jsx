@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
@@ -11,6 +11,7 @@ export const LabelsModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task } = props;
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const isFromInnerWindow = props.source ? true : false;
   const [isEditing, setIsEditing] = useState(false);
   const [currLabelId, setCurrLabelId] = useState(null);
@@ -23,6 +24,7 @@ export const LabelsModal = (props) => {
 
   const handleClose = (event) => {
     setAnchorEl(null);
+
   };
 
   const onHandleLabelTitle = ({ target }) => {
@@ -68,7 +70,7 @@ export const LabelsModal = (props) => {
       _id: utilService.makeId(),
       txt: `removed label (${task.labels[labelIdx].bgc}) from ${task.title}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
@@ -87,7 +89,7 @@ export const LabelsModal = (props) => {
       _id: utilService.makeId(),
       txt: `added label (${label.bgc}) to ${task.title}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
@@ -123,7 +125,8 @@ export const LabelsModal = (props) => {
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
-        }}>
+        }}
+        >
         <div sx={{ p: 0.5, width: '304px' }}>
           <div className='labels-task-modal flex justify-center'>
             Labels

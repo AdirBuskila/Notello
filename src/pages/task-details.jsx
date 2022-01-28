@@ -105,7 +105,7 @@ export const TaskDetails = (props) => {
       _id: utilService.makeId(),
       txt: `changed task ${selectedTask.title} title to - ${taskTitle}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: selectedTask._id,
         title: selectedTask.taskTitle,
@@ -192,7 +192,7 @@ export const TaskDetails = (props) => {
                 )}
               </div>
               <LabelsCmp
-                key={utilService.makeId()}
+                // key={utilService.makeId()}
                 task={selectedTask}
                 groupIdx={groupIdx}
                 board={board}

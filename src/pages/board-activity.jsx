@@ -6,8 +6,6 @@ import { Avatar } from '@mui/material';
 
 import { utilService } from '../services/util.service';
 
-
-
 export const BoardActivity = (props) => {
 
     const {board} = props;
@@ -28,15 +26,17 @@ export const BoardActivity = (props) => {
                 <span>Activity</span>
                 </div>
                 <article className='activities-container flex start column'>
-                {board.activities.map((activity) => {
-                    console.log("activity: ", activity);
-                    <Avatar
-                    alt='G'
-                    src={activity.byMember.imgUrl}
-                    style={{ width: '32px', height: '32px', border: '0', position:'absolute', right: '10px'}}
-                  />
-                })}
+                
                 </article>
         </section>
     )
 }
+
+/* {board.activities.map((activity) => {
+    // console.log("activity: ", activity);
+//     <Avatar
+//     alt='G'
+//     // src={activity.byMember.imgUrl}
+//     style={{ width: '32px', height: '32px', border: '0', position:'absolute', right: '10px'}}
+//   />
+})} */

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button';
 import { boardService } from '../../services/board.service';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { utilService } from '../../services/util.service';
 
 export const AddDescription = (props) => {
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [newDescriptionTxt, setNewDescription] = useState({});
   const [isAdding, onIsAdding] = useState(false);
 
@@ -33,7 +34,7 @@ export const AddDescription = (props) => {
       _id: utilService.makeId(),
       txt: `changed ${task.title} task description to - ${newDescriptionTxt}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
