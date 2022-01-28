@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { AppHeader } from '../cmps/app-header';
@@ -11,6 +12,8 @@ import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
+  const [menuOpen, setMenuOpen] = useState();
+  console.log(menuOpen);
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
@@ -21,12 +24,14 @@ const _BoardDetails = (props) => {
     }
   };
 
-  useEffect(async () => {
-    try {
-      await onLoadBoard();
-    } catch (err) {
-      console.log('Cannot load board', err);
-    }
+  useEffect(() => {
+    (async () => {
+      try {
+        await onLoadBoard();
+      } catch (err) {
+        console.log('Cannot load board', err);
+      }
+    })();
   }, []);
 
   if (!props.board || props.board.length === 0) {
@@ -42,8 +47,12 @@ const _BoardDetails = (props) => {
         backgroundPosition: 'center',
       }}>
       <AppHeader />
-      <BoardHeader onLoadBoard={onLoadBoard} board={props.board} />
-      {/* <BoardActivity /> */}
+      <BoardHeader
+        onLoadBoard={onLoadBoard}
+        board={props.board}
+        setMenuOpen={setMenuOpen}
+      />
+      {/* <BoardActivity setMenuOpen={setMenuOpen} menuOpen={menuOpen} /> */}
       <div className='board-details-container flex column '>
         <GroupList
           onLoadBoard={onLoadBoard}

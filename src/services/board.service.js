@@ -57,7 +57,7 @@ function getById(boardId) {
 }
 
 function remove(boardId) {
-    try { return httpService.delete(`board/${boardId}`) } catch (err) { }
+    try { return httpService.delete(`board/${boardId}`) } catch (err) {}
 }
 
 function save(board) {
@@ -120,9 +120,9 @@ function addGeneralActivity(txt, loggedInUser) {
 }
 
 function addTaskActivity(txt, task, loggedInUser) {
-    console.log("loggedInUser SERVICE: ", loggedInUser);
-    console.log("task SERVICE: ", task);
-    console.log("txt SERVICE: ", txt);
+    // console.log("loggedInUser SERVICE: ", loggedInUser);
+    // console.log("task SERVICE: ", task);
+    // console.log("txt SERVICE: ", txt);
     return {
         txt,
         task,
@@ -134,7 +134,7 @@ function addTaskActivity(txt, task, loggedInUser) {
 
 
 async function addTask(boardId, groupId, task, activity) {
-// async function addTask(boardId, groupId, task) {
+    // async function addTask(boardId, groupId, task) {
     task._id = utilService.makeId()
     task.labels = (task.labels) ? task.labels : [];
     task.attachments = (task.attachments) ? task.attachments : [];
@@ -194,7 +194,7 @@ async function getTaskById(boardId, groupId, taskId) {
 }
 
 async function addGroup(boardId, group, activity) {
-// async function addGroup(boardId, group) {
+    // async function addGroup(boardId, group) {
     group._id = utilService.makeId()
     group.tasks = [];
     try {
@@ -332,7 +332,6 @@ function getMemberById(board, memberId) {
     const member = board.members.find((currMember) => {
         return (currMember._id === memberId)
     })
-    console.log('member in service', member);
     return member
 
 }
