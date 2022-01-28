@@ -31,18 +31,9 @@ export const AddCommentCmp = (props) => {
       createdAt: Date.now(),
       byMember: { loggedInUser },
     };
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `added comment to task (${task.title}) - ${comment.txt}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser.fullname,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+    const activity = boardService.addTaskActivity(`added comment to task ${task.title} - ${comment.txt}`, task, loggedInUser);
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].comments.push(comment);
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);

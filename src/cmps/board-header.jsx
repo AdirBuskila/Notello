@@ -3,7 +3,8 @@ import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Button from '@mui/material/Button';
-import { MenuBar } from './board-menu-bar';
+// import { MenuBar } from './board-menu-bar';
+import { BoardActivity } from '../pages/board-activity';
 
 import STATS from '../assets/img/stats.svg';
 import DOWNICON from '../assets/img/down-arrow.png';
@@ -129,7 +130,7 @@ export const BoardHeader = (props) => {
             alt='menu'
             style={{ width: '16px', height: '16px' }}
           />
-          <MenuBar />
+          {/* <BoardActivity board={board}/> */}
         </div>
       </div>
     </section>

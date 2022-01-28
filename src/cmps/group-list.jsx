@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Loader } from './loader';
 
-import { utilService } from '../services/util.service';
+import { boardService } from '../services/board.service';
 
 import { GroupPreview } from './group-preview';
+import { BoardActivity } from '../pages/board-activity';
 import { PreFeatureAdd } from './preFeatureAdd';
-import { boardService } from '../services/board.service';
 
 export const GroupList = (props) => {
   const dispatch = useDispatch();
@@ -15,14 +15,9 @@ export const GroupList = (props) => {
   const board = useSelector((state) => state.boardModule.board);
 
   const onSetBoard = async (board) => {
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `entered to (${board.title}) board`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-    };
+    const activity = boardService.addGeneralActivity(`entered to ${board.title} board`, loggedInUser) 
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       const action = { type: 'SET_BOARD', board };
       dispatch(action);
     } catch (err) {
@@ -76,6 +71,7 @@ export const GroupList = (props) => {
   if (!board.groups) return <Loader />;
   return (
     <React.Fragment>
+      <BoardActivity />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={board._id} type='list' direction='horizontal'>
           {(provided) => (

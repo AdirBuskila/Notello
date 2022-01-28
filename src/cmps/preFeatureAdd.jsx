@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { boardService } from '../services/board.service';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
+import { utilService } from '../services/util.service';
+
 export const PreFeatureAdd = (props) => {
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+  const board = useSelector((state) => state.boardModule.board);
   const boardId = props.board._id;
   const group = props.group;
   const type = props.type; // group / task
+  let activity;
 
   const [newState, onNewState] = useState({});
   const [isAdding, onIsAdding] = useState(false);
@@ -24,8 +30,15 @@ export const PreFeatureAdd = (props) => {
     if (type === 'group') {
       try {
         const group = { title: newState.title };
-        const activity = `New group added at ${Date.now()}`;
+        activity = {
+          byMember: loggedInUser,
+          _id: utilService.makeId(),
+          createdAt: Date.now(),
+          txt: `added group ${group.title}`,
+        };
         await boardService.addGroup(boardId, group, activity);
+        // await boardService.addGroup(boardId, group);
+        await props.onLoadBoard();
       } catch (err) {
         console.log('Cant add new group');
         throw new Error(err);
@@ -33,8 +46,15 @@ export const PreFeatureAdd = (props) => {
     } else {
       try {
         const task = { title: newState.title };
-        const activity = `New task added at ${Date.now()}`;
+        activity = {
+          byMember: loggedInUser,
+          _id: utilService.makeId(),
+          createdAt: Date.now(),
+          txt: `added task ${task.title}`,
+        };
         await boardService.addTask(boardId, group._id, task, activity);
+        // await boardService.addTask(boardId, group._id, task);
+        await props.onLoadBoard();
       } catch (err) {
         console.log('Cant add new task');
         throw new Error(err);
@@ -42,7 +62,6 @@ export const PreFeatureAdd = (props) => {
     }
     onNewState({ title: '' });
     onHandleModal();
-    await props.onLoadBoard();
   };
 
   return (
@@ -68,13 +87,13 @@ export const PreFeatureAdd = (props) => {
         <div className='new-item flex column'>
           {props.type !== 'group' ? (
             <textarea
-            autoFocus
+              autoFocus
               onChange={onHandleChange}
               rows='5'
               placeholder={`Enter a title for this card... `}></textarea>
           ) : (
             <input
-            autoFocus
+              autoFocus
               onChange={onHandleChange}
               placeholder='Enter list title...'
             />

@@ -4,6 +4,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { CheckListActionModal } from "./check-list-actions-modal";
 
 import { utilService } from "../services/util.service";
+import { boardService } from "../services/board.service";
 
 export const CheckListSection = (props) => {
     const { todo, todoIdx, board, task, taskIdx, isChanging, groupIdx, checklistIdx } = props;
@@ -32,18 +33,9 @@ export const CheckListSection = (props) => {
 
     const onSave = async () => {
         if (!todoTitle) return; // add a nice modal
-        const activity = {
-            _id: utilService.makeId(),
-            txt: `updated todo ${todoTitle} title, at checklist - ${task.checklists[checklistIdx].title}`,
-            createdAt: Date.now(),
-            byMember: loggedInUser,
-            task: {
-                _id: task._id,
-                title: task.title
-            }
-        }
+        const activity = boardService.addTaskActivity(`updated todo ${todoTitle} title, at checklist - ${task.checklists[checklistIdx].title}`, task, loggedInUser)
         try {
-            board.activities.unshift(activity);
+            if (activity) board.activities.unshift(activity);
             task.checklists[checklistIdx].todos[todoIdx].title = todoTitle;
             board.groups[groupIdx].tasks[taskIdx] = task;
             const action = { type: 'SET_BOARD', board };
@@ -56,18 +48,9 @@ export const CheckListSection = (props) => {
     const onAdd = async () => {
         const newTodo = { title: todoTitle, _id: utilService.makeId(), isDone: false };
         if (!newTodo.title) return; // add a nice modal
-        const activity = {
-            _id: utilService.makeId(),
-            txt: `added todo (${newTodo.title}), to checklist - ${task.checklists[checklistIdx].title}`,
-            createdAt: Date.now(),
-            byMember: loggedInUser,
-            task: {
-                _id: task._id,
-                title: task.title
-            }
-        }
+        const activity = boardService.addTaskActivity(`added todo ${newTodo.title}, to checklist - ${task.checklists[checklistIdx].title}`, task, loggedInUser)
         try {
-            board.activities.unshift(activity);
+            if (activity) board.activities.unshift(activity);
             task.checklists[checklistIdx].todos.push(newTodo)
             board.groups[groupIdx].tasks[taskIdx] = task;
             const action = { type: 'SET_BOARD', board };

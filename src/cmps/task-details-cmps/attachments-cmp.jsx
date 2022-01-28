@@ -19,18 +19,9 @@ export const AttachmentsCmp = (props) => {
     const attachmentIdx = task.attachments.findIndex((attachment) => {
       return attachmentId === attachment._id;
     });
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `deleted ${attachments[attachmentIdx].url} / ${attachments[attachmentIdx].txt} attachment from task ${task.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+    const activity = boardService.addTaskActivity(`deleted ${attachments[attachmentIdx].url} / ${attachments[attachmentIdx].txt} attachment from task ${task.title}`, task, loggedInUser);
     try {
-        board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
         task.attachments.splice(attachmentIdx, 1);
         board.groups[groupIdx].tasks[taskIdx] = task;
         const action = { type: 'SET_BOARD', board };

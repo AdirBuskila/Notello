@@ -30,18 +30,9 @@ export const AddDescription = (props) => {
   };
 
   const onAdd = async () => {
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `changed ${task.title} task description to - ${newDescriptionTxt}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+    const activity = boardService.addTaskActivity(`changed ${task.title} task description to - ${newDescriptionTxt}`, task, loggedInUser);
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].description = newDescriptionTxt;
       const action = { type: 'SET_BOARD', board };
       dispatch(action);

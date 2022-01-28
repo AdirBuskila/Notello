@@ -40,18 +40,9 @@ export const AttachmentModal = (props) => {
       url: attachmentUrl,
       createdAt: Date.now(),
     };
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `added attachment to task ${task.title} - ${attachment.url} / ${attachment.txt}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+    const activity = boardService.addTaskActivity(`added attachment to task ${task.title} - ${attachment.url} / ${attachment.txt}`, task, loggedInUser);
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);

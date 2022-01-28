@@ -1,15 +1,22 @@
 .board-activity-container {
   position: absolute;
+  // transform: translate(105%);
+  // transition: ease-in-out 0.4s;
   top: rem(44px);
   right: 0;
   bottom: 0;
   width: rem(400px);
   background-color: #f4f5f7;
-  z-index: 100;
+  z-index: 1000;
   box-shadow: 0 12px 24px -6px #091e4240, 0 0 0 1px #091e4214;
   color: #172b4d;
   overflow-x: hidden;
-    overflow-y: auto;
+  overflow-y: auto;
+  // pointer-events: none;
+
+  .open {
+    transform: translate(0%);
+  }
 
   hr {
     background-color: #091e4221;
@@ -49,21 +56,29 @@
     line-height: 20px;
     padding: 6px 6px 6px 40px;
     color: #172b4d;
-    
-    
+
     span {
-        font-size: rem(14px);
+      font-size: rem(14px);
       font-weight: 700;
       padding-inline-start: rem(12px);
     }
   }
 
   .activities-container {
-      width: 85%;
-      height: rem(600px);
-      margin: auto;
-      border: 1px solid #172b4d;
+    width: 100%;
+    padding: rem(4px);
+    margin: auto;
+    gap: 0.5rem;
 
-      
+    .activity-individual {
+      width: 100%;
+      padding: 0.5rem;
+      border-bottom: 1px solid #172b4d;
+    }
   }
 }
+
+// .board-activity-container:hover {
+//   opacity: 1;
+//   transition: opacity 1s;
+// }

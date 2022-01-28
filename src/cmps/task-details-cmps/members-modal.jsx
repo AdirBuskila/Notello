@@ -36,18 +36,9 @@ export const MembersModal = (props) => {
     });
     if (alreadyInside) return;
     const newMember = boardService.getMemberById(board, memberId);
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `${newMember.fullname} joined to task ${task.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+    const activity = boardService.addTaskActivity(`${newMember.fullname} joined to task ${task.title}`, task, loggedInUser);
     try {
-      board.activities.unshift(activity);
+      if (activity) board.activities.unshift(activity);
       taskMembers.push(newMember);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
       const action = { type: 'SET_BOARD', board };
