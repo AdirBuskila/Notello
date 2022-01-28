@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { utilService } from '../../services/util.service';
 import { boardService } from '../../services/board.service';
@@ -6,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 export const AttachmentsCmp = (props) => {
   const { attachments, task, group, board } = props;
-
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
@@ -22,7 +23,7 @@ export const AttachmentsCmp = (props) => {
       _id: utilService.makeId(),
       txt: `deleted ${attachments[attachmentIdx].url} / ${attachments[attachmentIdx].txt} attachment from task ${task.title}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -9,6 +9,7 @@ import { utilService } from '../../services/util.service';
 export const AttachmentModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   let open = Boolean(anchorEl);
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [attachmentName, setAttachmentName] = React.useState('');
   const [attachmentUrl, setAttachmentUrl] = React.useState('');
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ export const AttachmentModal = (props) => {
       _id: utilService.makeId(),
       txt: `added attachment to task ${task.title} - ${attachment.url} / ${attachment.txt}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
