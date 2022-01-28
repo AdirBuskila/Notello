@@ -6,14 +6,12 @@ import { utilService } from '../../services/util.service';
 import { useDispatch, useSelector} from 'react-redux';
 
 
-
-export const AddDescription = (props) => {
-  const [newDescriptionTxt, setNewDescription] = useState({});
-  const [isAdding, onIsAdding] = useState(false);
+export const EditDescription = (props) => {
+  const { task, group, board, description, setEditMode } = props;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
-
-  const { task, group, board } = props;
+  const [DescriptionTxt, setNewDescription] = useState(description);
+  const [isEditing , onIsEditing] = useState(false);
 
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
@@ -23,7 +21,7 @@ export const AddDescription = (props) => {
   const dispatch = useDispatch();
 
   const onHandleModal = () => {
-    onIsAdding(!isAdding);
+    onIsEditing(!isEditing);
   };
 
   const onHandleChange = ({ target }) => {
@@ -34,7 +32,7 @@ export const AddDescription = (props) => {
   const onAdd = async () => {
     const activity = {
       _id: utilService.makeId(),
-      txt: `changed ${task.title} task description to - ${newDescriptionTxt}`,
+      txt: `changed ${task.title} task description to - ${DescriptionTxt}`,
       createdAt: Date.now(),
       byMember: loggedInUser,
       task: {
@@ -44,9 +42,10 @@ export const AddDescription = (props) => {
     };
     try {
       board.activities.unshift(activity);
-      board.groups[groupIdx].tasks[taskIdx].description = newDescriptionTxt;
+      board.groups[groupIdx].tasks[taskIdx].description = DescriptionTxt;
       const action = { type: 'SET_BOARD', board };
       dispatch(action);
+      setEditMode(false)
     } catch (err) {
       console.log('Cannot add description to task');
     }
@@ -54,31 +53,26 @@ export const AddDescription = (props) => {
 
   return (
     <React.Fragment>
-      {!isAdding && (
-        <button className='add-description flex' onClick={onHandleModal}>
-          <p>Add a more detailed description</p>
-        </button>
-      )}
-      {isAdding && (
-        <div className='new-description flex column'>
-          <textarea
-            autoFocus
-            onChange={onHandleChange}
-            rows='4'
-            placeholder={`Add a more detailed description... `}></textarea>
-          <div className='new-description-actions flex align-center'>
-            <Button
-              onClick={onAdd}
-              variant='contained'
-              sx={{ textTransform: 'none', minWidth: 52.5 }}>
-              Save
-            </Button>
-            <a href='#' onClick={onHandleModal}>
-              ✕
-            </a>
-          </div>
+ <div className='new-description flex column'>
+        <textarea
+          autoFocus
+          onChange={onHandleChange}
+          rows='4'
+          defaultValue={DescriptionTxt}
+        ></textarea>
+        <div className='new-description-actions flex align-center'>
+          <Button
+            onClick={onAdd}
+            variant='contained'
+            sx={{ textTransform: 'none', minWidth: 52.5 }}
+          >
+            Save
+          </Button>
+          <a href='#' onClick={onHandleModal}>
+            ✕
+          </a>
         </div>
-      )}
+      </div>
     </React.Fragment>
   );
 };

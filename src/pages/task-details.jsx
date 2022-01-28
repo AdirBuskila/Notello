@@ -38,6 +38,7 @@ import { MembersModal } from '../cmps/task-details-cmps/members-modal';
 import { ArchiveModal } from '../cmps/details-archive';
 import { CopyMoveModal } from '../cmps/copy-move-details';
 import { JoinCmp } from '../cmps/task-details-cmps/join-member';
+import { EditDescription } from '../cmps/task-details-cmps/description-edit';
 
 export const TaskDetails = (props) => {
   const { useState } = React;
@@ -121,6 +122,9 @@ export const TaskDetails = (props) => {
       console.log('Cannot change task title');
     }
   };
+
+  const [editMode, setEditMode] = React.useState(false);
+  console.log('editMode', editMode);
 
   if (!selectedTask || !board) return <div className=''></div>;
   return (
@@ -207,20 +211,28 @@ export const TaskDetails = (props) => {
                 <div className='description flex'>
                   <SubjectIcon />
                   <p>Description</p>
+                  {selectedTask.description !== '' && !editMode && <div className="edit-button-container flex justify-center"><button className='edit-description-button' onClick={()=>setEditMode(true)} >Edit</button></div>} 
                 </div>
                 <div className='add-description-container'>
-                  {selectedTask.description === '' && (
+                  {selectedTask.description !== '' && editMode && <EditDescription
+                  task={selectedTask}
+                  board={board}
+                  setEditMode={setEditMode}
+                  group={group}
+                  description={selectedTask.description}
+                  />}
+                  {selectedTask.description === '' && 
                     <AddDescription
                       task={selectedTask}
                       board={board}
                       group={group}
                     />
-                  )}
-                  {selectedTask.description !== '' && (
-                    <p className='task-description'>
+                   }
+                  {selectedTask.description !== '' && !editMode &&
+                    (<p className='task-description'>
                       {selectedTask.description}
-                    </p>
-                  )}
+                    </p>)
+                  }
                 </div>
               </div>
               <CheckListCmp
@@ -286,7 +298,6 @@ export const TaskDetails = (props) => {
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
               <LabelsModal
-                key={utilService.makeId()}
                 task={selectedTask}
                 groupIdx={groupIdx}
                 board={board}

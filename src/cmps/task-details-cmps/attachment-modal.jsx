@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -11,9 +11,9 @@ export const AttachmentModal = (props) => {
   let open = Boolean(anchorEl);
   const [attachmentName, setAttachmentName] = React.useState('');
   const [attachmentUrl, setAttachmentUrl] = React.useState('');
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const dispatch = useDispatch();
   const { board, group, task } = props;
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -43,7 +43,7 @@ export const AttachmentModal = (props) => {
       _id: utilService.makeId(),
       txt: `added attachment to task ${task.title} - ${attachment.url} / ${attachment.txt}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
@@ -52,6 +52,9 @@ export const AttachmentModal = (props) => {
     try {
       board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
+      const cover = { background: attachmentUrl, spread: 'partial' };
+      task.cover = cover;
+      board.groups[groupIdx].tasks[taskIdx] = task
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);
     } catch (err) {
@@ -71,6 +74,7 @@ export const AttachmentModal = (props) => {
       };
       const cover = { background: obj.url, spread: 'partial' };
       task.cover = cover;
+      console.log('task.cover', task.cover);
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
       console.log('added attachment');
       const action = { type: 'SET_BOARD', board };

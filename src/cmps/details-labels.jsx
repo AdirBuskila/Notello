@@ -16,7 +16,6 @@ export const LabelsModal = (props) => {
   const [currLabelId, setCurrLabelId] = useState(null);
   const [labelTitle, setLabelTitle] = useState(null);
   const dispatch = useDispatch();
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -57,7 +56,6 @@ export const LabelsModal = (props) => {
     const isExist = task.labels.findIndex((label) => {
       return label._id === labelId;
     });
-    setAnchorEl(ev.currentTarget);
     if (isExist !== -1) return onRemoveLabel(labelId);
     else onAddLabel(labelId);
   };

@@ -172,6 +172,21 @@
       }
       .description-container {
         .description {
+          .edit-button-container {
+            width: rem(47px);
+            height: rem(31px);
+            // background-color: #091e420a;
+            color: #172b4d;
+            margin-left: 15px;
+            button {
+              padding: 5px 10px;
+              border-radius: 3px;
+              background-color: #091e420a;
+              font-size: 14px;
+              font-weight: 400;
+            }
+
+          }
           margin-bottom: rem(10px);
           svg {
             margin-inline-end: rem(10px);
