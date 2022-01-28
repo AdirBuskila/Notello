@@ -34,11 +34,12 @@ export const MembersModal = (props) => {
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
-    if (alreadyInside) return;
-    const newMember = boardService.getMemberById(board, memberId);
+    if (alreadyInside)  {
+      console.log('alreadyInside', alreadyInside);
+    }
     const activity = {
       _id: utilService.makeId(),
-      txt: `${newMember.fullname} joined to task ${task.title}`,
+      txt: `${loggedInUser.fullname} joined to task ${task.title}`,
       createdAt: Date.now(),
       byMember: loggedInUser,
       task: {
@@ -48,7 +49,7 @@ export const MembersModal = (props) => {
     };
     try {
       board.activities.unshift(activity);
-      taskMembers.push(newMember);
+      taskMembers.push(loggedInUser);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);

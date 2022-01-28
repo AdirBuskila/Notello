@@ -123,7 +123,6 @@ export const TaskDetails = (props) => {
   };
 
   const [editMode, setEditMode] = React.useState(false);
-  console.log('editMode', editMode);
 
   if (!selectedTask || !board) return <div className=''></div>;
   return (
