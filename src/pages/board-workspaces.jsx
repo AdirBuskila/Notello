@@ -18,18 +18,17 @@ export const BoardWorkspaces = () => {
       }
     })();
   }, []);
-  if (!boards || boards.length === 0) return <Loader />
+  if (!boards || boards.length === 0) return <Loader />;
   return (
     <React.Fragment>
       <AppHeader />
       <div className='board-container flex column '>
-        <div className="board-workspace-title flex align-center">
+        <div className='board-workspace-title flex align-center'>
           <PersonIcon className='workspace-logo' />
-        <h1> Your Workspaces</h1>
+          <h1> Your Workspaces</h1>
         </div>
         <div className='boards-container flex'>
           {boards.map((board) => {
-            console.log('board.members', board.members);
             if (!board) return <h1>Loading...</h1>;
             return (
               <Link key={board._id} to={`/b/${board._id}`}>
@@ -43,12 +42,11 @@ export const BoardWorkspaces = () => {
             );
           })}
         </div>
-        <div className="stared-workspace">
-        <div className="stared-workspace-title flex align-center">
-        <StarRateRoundedIcon className='workspace-logo' />
-        <h1>Starred Boards</h1>
-        </div>
-
+        <div className='stared-workspace'>
+          <div className='stared-workspace-title flex align-center'>
+            <StarRateRoundedIcon className='workspace-logo' />
+            <h1>Starred Boards</h1>
+          </div>
         </div>
       </div>
     </React.Fragment>

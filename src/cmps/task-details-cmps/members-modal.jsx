@@ -12,12 +12,11 @@ export const MembersModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   let open = Boolean(anchorEl);
   const dispatch = useDispatch();
-  
-  const { board, group, task } = props;
-  const [currTaskMembers, setCurrTaskMembers] =React.useState(task.members)
-  console.log('currTaskMembers', currTaskMembers);
-  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
+  const { board, group, task } = props;
+  const [currTaskMembers, setCurrTaskMembers] = React.useState(task.members);
+  // console.log('currTaskMembers', currTaskMembers);
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -40,48 +39,51 @@ export const MembersModal = (props) => {
 
     if (alreadyInside) return;
     const newMember = boardService.getMemberById(board, memberId);
-    const activity = boardService.addTaskActivity(`${newMember.fullname} joined to task ${task.title}`, task, loggedInUser);
+    const activity = boardService.addTaskActivity(
+      `${newMember.fullname} joined to task ${task.title}`,
+      task,
+      loggedInUser
+    );
     if (activity) board.activities.unshift(activity);
-    if (alreadyInside)  {
-      handleAlreadyInside(alreadyInside._id, taskMembers)
+    if (alreadyInside) {
+      handleAlreadyInside(alreadyInside._id, taskMembers);
     } else if (!alreadyInside) {
       const activity = {
         _id: utilService.makeId(),
         txt: `${loggedInUser.fullname} joined to task ${task.title}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+        createdAt: Date.now(),
+        byMember: loggedInUser,
+        task: {
+          _id: task._id,
+          title: task.title,
+        },
+      };
       board.activities.unshift(activity);
-      const newMember =  boardService.getMemberById(board,memberId)
+      const newMember = boardService.getMemberById(board, memberId);
       taskMembers.push(newMember);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
+      // setCurrTaskMembers(taskMembers);
       const action = { type: 'SET_BOARD', board };
       dispatch(action);
-    
-  }
-}
-  
+    }
+  };
 
   const handleAlreadyInside = (memberId, taskMembers) => {
-    taskMembers = taskMembers.filter((member)=> {
-      return (member._id !== memberId)
-    })
-    setCurrTaskMembers(taskMembers)
+    taskMembers = taskMembers.filter((member) => {
+      return member._id !== memberId;
+    });
+    setCurrTaskMembers(taskMembers);
     board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
     const action = { type: 'SET_BOARD', board };
     dispatch(action);
-  }
-  const handleClassName = (member)=>{
-    const isExsit = currTaskMembers.findIndex((currMember)=>{
-      return (currMember._id === member._id)
-    })
-    if (isExsit === -1) return false
-    else return true
-  }
+  };
+  const handleClassName = (member) => {
+    const isExsit = currTaskMembers.findIndex((currMember) => {
+      return currMember._id === member._id;
+    });
+    if (isExsit === -1) return false;
+    else return true;
+  };
   return (
     <div className='button-container flex'>
       <PersonOutlineOutlinedIcon onClick={handleClick} color='action' />
@@ -107,17 +109,20 @@ export const MembersModal = (props) => {
               {board.members.map((member) => {
                 return (
                   <div
-                  key={member._id}
-                  onClick={() => onAddMember(member._id)}
-                  className={ handleClassName(member) ? 'inner-member flex pointer inside' : 'inner-member flex pointer'}
-                  >
+                    key={member._id}
+                    onClick={() => onAddMember(member._id)}
+                    className={
+                      handleClassName(member)
+                        ? 'inner-member flex pointer inside'
+                        : 'inner-member flex pointer'
+                    }>
                     <Avatar
                       alt={utilService.getInitials(member.fullname)}
                       src={member.imgUrl}
                       style={{ width: '32px', height: '32px', border: '0' }}
                     />
                     <p>{member.fullname}</p>
-                      { handleClassName(member) && <span>✓</span>}
+                    {handleClassName(member) && <span>✓</span>}
                     {/* <p>({member.username})</p> */}
                   </div>
                 );
@@ -128,4 +133,4 @@ export const MembersModal = (props) => {
       </Popover>
     </div>
   );
-}
+};
