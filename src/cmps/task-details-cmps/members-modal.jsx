@@ -15,7 +15,6 @@ export const MembersModal = (props) => {
   
   const { board, group, task } = props;
   const [currTaskMembers, setCurrTaskMembers] =React.useState(task.members)
-  console.log('currTaskMembers', currTaskMembers);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
 

@@ -44,12 +44,10 @@ export const BoardActivity = (props) => {
                         <p>{activity.txt}</p>
                         </div>
                     <span>{utilService.fixTimestamp(activity.createdAt)}</span>
-                      {console.log(activity.task._id)}
-                      {console.log(activity.task._id)}
-                    {(activity.task) ? 
-                    <Link to={`/b/${board._id}/${activity.task._id}`}>
-                      {!activity.txt.includes('deleted') && <q>{activity.task.title}</q>}
-                    </Link> : null}
+                    {/* {(activity.task._id) ? 
+                     <Link to={`/b/${board._id}/${activity.task._id}`}>
+                    {!activity.txt.includes('deleted') && <q>{activity.task.title}</q>}
+                    </Link> : null} */}
                     </div>
                   </div>
                 </div>
