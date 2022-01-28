@@ -15,6 +15,7 @@ export const MembersModal = (props) => {
   
   const { board, group, task } = props;
   const [currTaskMembers, setCurrTaskMembers] =React.useState(task.members)
+  console.log('currTaskMembers', currTaskMembers);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
 
@@ -32,12 +33,10 @@ export const MembersModal = (props) => {
   });
 
   const onAddMember = (memberId) => {
-    console.log('memberId',memberId);
     let taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
-    console.log('taskMembers', taskMembers); 
     if (alreadyInside)  {
       console.log('in here');
       handleAlreadyInside(alreadyInside._id, taskMembers)
@@ -54,7 +53,6 @@ export const MembersModal = (props) => {
     };
       board.activities.unshift(activity);
       const newMember =  boardService.getMemberById(board,memberId)
-      console.log('newMember', newMember);
       taskMembers.push(newMember);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
       const action = { type: 'SET_BOARD', board };
@@ -72,7 +70,14 @@ export const MembersModal = (props) => {
     const action = { type: 'SET_BOARD', board };
     dispatch(action);
   }
-
+  let memberClass = 'inner-member flex pointer'
+  const handleClassName = (member)=>{
+    const isExsit = currTaskMembers.findIndex((currMember)=>{
+      return (currMember._id === member._id)
+    })
+    if (isExsit === -1) return false
+    else return true
+  }
   return (
     <div className='button-container flex'>
       <PersonOutlineOutlinedIcon onClick={handleClick} color='action' />
@@ -96,16 +101,12 @@ export const MembersModal = (props) => {
             <div className='members-container flex column'>
               <h4>Board members</h4>
               {board.members.map((member) => {
-                // console.log('member', member);
-                let memberClass
-                {currTaskMembers.map((currMember)=>{
-                  (member._id === currMember._id) ? memberClass = 'inner-member flex pointer inside' : memberClass = 'inner-member flex pointer'
-                })}
+                {console.log('()=>handleClassName(member)', handleClassName(member))}
                 return (
                   <div
                   key={member._id}
                   onClick={() => onAddMember(member._id)}
-                  className={memberClass}
+                  className={ handleClassName(member) ? 'inner-member flex pointer inside' : 'inner-member flex pointer'}
                   >
                     <Avatar
                       alt={utilService.getInitials(member.fullname)}
@@ -113,7 +114,7 @@ export const MembersModal = (props) => {
                       style={{ width: '32px', height: '32px', border: '0' }}
                     />
                     <p>{member.fullname}</p>
-                      {(memberClass === 'inner-member flex pointer inside') && <span>✓</span>}
+                      { handleClassName(member) && <span>✓</span>}
                     {/* <p>({member.username})</p> */}
                   </div>
                 );
