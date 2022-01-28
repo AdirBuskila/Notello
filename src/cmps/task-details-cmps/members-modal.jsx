@@ -12,6 +12,10 @@ export const MembersModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   let open = Boolean(anchorEl);
   const dispatch = useDispatch();
+  
+  const { board, group, task } = props;
+  const [currTaskMembers, setCurrTaskMembers] =React.useState(task.members)
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const { board, group, task } = props;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
