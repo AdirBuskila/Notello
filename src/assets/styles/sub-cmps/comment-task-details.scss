@@ -1,44 +1,49 @@
 .comment-container {
-  .add-comment {
-    resize: none;
-    color: #172b4d;
-    font-weight: 400;
-    height: 36px;
-    width: 100%;
-    background-color: #fff;
-    border-bottom-color: rgb(23, 43, 77);
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.267);
-    span {
-      font-size: rem(14px);
+    .add-comment {
+        resize: none;
+        color: #172b4d;
+        font-weight: 400;
+        height: 36px;
+        width: 100%;
+        background-color: #fff;
+        border-bottom-color: rgb(23, 43, 77);
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border: 1px solid rgba(0, 0, 0, 0.267);
+        span {
+            font-size: rem(14px);
+        }
     }
-  }
-  .comments-area {
-    padding-top: 10px;
-  }
-  .new-comment-actions {
-    margin-top: 10px;
-    gap: rem(15px);
-  }
-  .new-comment {
-    position: relative;
-    & > textarea {
-      overflow: hidden;
-      border-radius: 3px;
-      height: rem(36px);
-      padding: 0.5rem 0.75rem;
-      margin-inline-start: 2.2rem;
+    .comments-area {
+        padding-top: 10px;
     }
-    & > textarea:focus {
-      height: rem(100px);
-      width: 100%;
+    .new-comment-actions {
+        margin-top: 10px;
+        gap: rem(15px);
     }
-    width: 100%;
-    button {
-      position: absolute;
-      left: 45px;
-      bottom: 20px;
+    .new-comment {
+        position: relative;
+        &>textarea {
+            color: #172b4d;
+            overflow: hidden;
+            border-radius: 3px;
+            height: rem(40px);
+            padding: 0.5rem 0.75rem;
+            border-color: #dfe1e6;
+            margin-inline-start: 2.2rem;
+        }
+        &>textarea::placeholder {
+            color: #172b4d;
+        }
+        &>textarea:focus {
+            height: rem(100px);
+            width: 100%;
+        }
+        width: 100%;
+        button {
+            position: absolute;
+            left: 45px;
+            bottom: 20px;
+        }
     }
-  }
 }
