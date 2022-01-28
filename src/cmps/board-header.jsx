@@ -19,7 +19,7 @@ import AVATAR4 from '../assets/img/avatar4.png';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
 export const BoardHeader = (props) => {
-  const board = props.board;
+  const board = { ...props.board };
   const [boardTitle, setBoardTitle] = useState();
   const dispatch = useDispatch();
 
@@ -129,7 +129,11 @@ export const BoardHeader = (props) => {
           />
           <span>Filter</span>
         </div>
-        <div className='board-header-btn menu-container flex align-center space-evenly'>
+        <div
+          className='board-header-btn menu-container flex align-center space-evenly'
+          onClick={() => {
+            props.setMenuOpen(true);
+          }}>
           <img
             src={MENU}
             alt='menu'
