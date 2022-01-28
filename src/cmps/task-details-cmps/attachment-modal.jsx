@@ -12,7 +12,6 @@ export const AttachmentModal = (props) => {
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [attachmentName, setAttachmentName] = React.useState('');
   const [attachmentUrl, setAttachmentUrl] = React.useState('');
-  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const dispatch = useDispatch();
   const { board, group, task } = props;
   const handleClick = (event) => {
