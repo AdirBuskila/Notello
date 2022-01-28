@@ -13,7 +13,6 @@ import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
-  console.log(menuOpen);
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
