@@ -21,17 +21,16 @@ import { boardService } from '../services/board.service';
 export const BoardHeader = (props) => {
   const board = props.board;
   const [boardTitle, setBoardTitle] = useState(board.title);
-  
 
-  const onHandleChange = async () => {
-    const newBoard = board;
-    newBoard.title = boardTitle;
+  const onHandleChange = (ev) => {
+    setBoardTitle(ev.target.value);
+  };
+  const changeBoardTitle = () => {
+    board.title = boardTitle;
     boardService.save(board);
-    await props.onLoadBoard();
   };
 
   if (!board) return <h1> No board </h1>;
-
   return (
     <section className='upper-header flex'>
       <div className='info-details flex align-center'>
@@ -49,14 +48,14 @@ export const BoardHeader = (props) => {
           <input
             className='title-input'
             defaultValue={board.title}
-            onBlur={onHandleChange}
+            onBlur={changeBoardTitle}
             onFocus={(ev) => {
               ev.currentTarget.select();
             }}
             onClick={(ev) => {
               ev.currentTarget.select();
             }}
-            onChange={(ev) => setBoardTitle(ev.target.value)}
+            onChange={(ev) => onHandleChange(ev)}
           />
         </div>
         <div className='rating-container flex align-center justify-center'>

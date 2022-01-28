@@ -58,6 +58,7 @@ export const LabelsModal = (props) => {
     const isExist = task.labels.findIndex((label) => {
       return label._id === labelId;
     });
+    // setAnchorEl(ev.currentTarget);
     if (isExist !== -1) return onRemoveLabel(labelId);
     else onAddLabel(labelId);
   };
