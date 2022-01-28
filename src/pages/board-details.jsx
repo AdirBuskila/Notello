@@ -33,6 +33,8 @@ const _BoardDetails = (props) => {
     return <Loader />;
   }
 
+
+
   return (
     <div
       className='board-page-container flex column'

@@ -332,7 +332,6 @@ function getMemberById(board, memberId) {
     const member = board.members.find((currMember) => {
         return (currMember._id === memberId)
     })
-    console.log('member in service', member);
     return member
 
 }

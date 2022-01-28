@@ -14,8 +14,6 @@ export const MembersModal = (props) => {
   const dispatch = useDispatch();
 
   const { board, group, task } = props;
-  const [currTaskMembers, setCurrTaskMembers] = React.useState(task.members);
-  // console.log('currTaskMembers', currTaskMembers);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const handleClick = (event) => {
@@ -32,12 +30,11 @@ export const MembersModal = (props) => {
   });
 
   const onAddMember = (memberId) => {
+    // console.log('ta', ta);
     let taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
-
-    if (alreadyInside) return;
     const newMember = boardService.getMemberById(board, memberId);
     const activity = boardService.addTaskActivity(
       `${newMember.fullname} joined to task ${task.title}`,
@@ -72,16 +69,15 @@ export const MembersModal = (props) => {
     taskMembers = taskMembers.filter((member) => {
       return member._id !== memberId;
     });
-    setCurrTaskMembers(taskMembers);
     board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
     const action = { type: 'SET_BOARD', board };
     dispatch(action);
   };
   const handleClassName = (member) => {
-    const isExsit = currTaskMembers.findIndex((currMember) => {
+    const isExist = task.members.findIndex((currMember) => {
       return currMember._id === member._id;
     });
-    if (isExsit === -1) return false;
+    if (isExist === -1) return false;
     else return true;
   };
   return (
