@@ -24,12 +24,14 @@ const _BoardDetails = (props) => {
     }
   };
 
-  useEffect(async () => {
-    try {
-      await onLoadBoard();
-    } catch (err) {
-      console.log('Cannot load board', err);
-    }
+  useEffect(() => {
+    (async () => {
+      try {
+        await onLoadBoard();
+      } catch (err) {
+        console.log('Cannot load board', err);
+      }
+    })();
   }, []);
 
   if (!props.board || props.board.length === 0) {
