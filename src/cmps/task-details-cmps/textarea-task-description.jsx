@@ -8,6 +8,7 @@ import { useDispatch, useSelector} from 'react-redux';
 
 
 export const AddDescription = (props) => {
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [newDescriptionTxt, setNewDescription] = useState({});
   const [isAdding, onIsAdding] = useState(false);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);

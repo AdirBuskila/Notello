@@ -62,7 +62,7 @@ export const ArchiveModal = (props) => {
       _id: utilService.makeId(),
       txt: `retrieved task - ${task.title}`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,

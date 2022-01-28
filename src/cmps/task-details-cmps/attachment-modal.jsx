@@ -9,6 +9,7 @@ import { utilService } from '../../services/util.service';
 export const AttachmentModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   let open = Boolean(anchorEl);
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [attachmentName, setAttachmentName] = React.useState('');
   const [attachmentUrl, setAttachmentUrl] = React.useState('');
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);

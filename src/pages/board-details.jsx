@@ -7,6 +7,7 @@ import { Loader } from '../cmps/loader';
 
 import { GroupList } from '../cmps/group-list.jsx';
 import { TaskDetails } from '../pages/task-details';
+import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
@@ -42,6 +43,7 @@ const _BoardDetails = (props) => {
       }}>
       <AppHeader />
       <BoardHeader onLoadBoard={onLoadBoard} board={props.board} />
+      {/* <BoardActivity board={props.board}/> */}
       <div className='board-details-container flex column '>
         <GroupList
           onLoadBoard={onLoadBoard}

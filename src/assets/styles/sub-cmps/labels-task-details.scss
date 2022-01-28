@@ -1,12 +1,12 @@
-.labels-container>* {
+.labels-main-container {
+  margin-inline-start: 2.2rem;
+  .labels-container > * {
     cursor: pointer;
-}
-
-.labels-container {
+  }
+  .labels-container {
     gap: rem(5px);
-}
-
-.label-container {
+  }
+  .label-container {
     color: #fff;
     border-radius: rem(3px);
     font-weight: 600;
@@ -15,23 +15,21 @@
     min-width: 40px;
     padding: 0 12px;
     width: auto;
-}
-
-.labels-info-container,
-.members-info-container {
+  }
+  .labels-info-container,
+  .members-info-container {
     .span-container {
-        margin-bottom: rem(4px);
+      margin-bottom: rem(4px);
     }
     span {
-        color: #5e6c84;
-        font-size: rem(12px);
-        font-weight: 600;
-        line-height: 1rem;
-        line-height: rem(20px);
+      color: #5e6c84;
+      font-size: rem(12px);
+      font-weight: 600;
+      line-height: 1rem;
+      line-height: rem(20px);
     }
-}
-
-.add-square-icon {
+  }
+  .add-square-icon {
     cursor: pointer;
     border-radius: 3px;
     background-color: #091e420a;
@@ -40,8 +38,8 @@
     line-height: 1rem;
     padding: 1rem;
     width: 1rem;
-}
-
-.add-square-icon:hover {
+  }
+  .add-square-icon:hover {
     background-color: #091e4214;
+  }
 }

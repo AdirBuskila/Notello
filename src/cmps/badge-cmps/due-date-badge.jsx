@@ -1,6 +1,6 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { boardService } from '../../services/board.service';
 
 import { utilService } from '../../services/util.service';
@@ -32,6 +32,7 @@ export const DueDateBadge = (props) => {
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
   });
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const dispatch = useDispatch();
 
@@ -42,7 +43,7 @@ export const DueDateBadge = (props) => {
       _id: utilService.makeId(),
       txt: `added due date for task ${task.title} set to (${dueDate[0].date})`,
       createdAt: Date.now(),
-      byMember: 'Guest',
+      byMember: loggedInUser,
       task: {
         _id: task._id,
         title: task.title,
