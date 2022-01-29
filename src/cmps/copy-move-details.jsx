@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { useHistory } from 'react-router-dom';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { utilService } from '../services/util.service';
+import {boardService} from '../services/board.service';
 
 export const CopyMoveModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { board, groupIdx, task, type } = props;
-  let newTask = task;
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [newCardTitle, setNewCardTitle] = useState(task.title + ' copy');
   const [keepChecklistsInitial, setKeepChecklistsInitial] = useState(true);
   const [keepLabelsInitial, setKeepLabelsInitial] = useState(true);
   const [keepGroupInitial, setKeepGroupInitial] = useState(groupIdx);
   const history = useHistory();
   const dispatch = useDispatch();
+  let newTask = task;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,8 +50,10 @@ export const CopyMoveModal = (props) => {
     newTask.checklists = keepChecklistsInitial ? task.labels : [];
     newTask.labels = keepLabelsInitial ? task.labels : [];
     board.groups[+keepGroupInitial].tasks.unshift(newTask);
+    const activity = boardService.addTaskActivity(`copied task ${task.title} group ${keepGroupInitial}`, newTask, loggedInUser)
+    board.activities.unshift(activity);
     submitChanges(board);
-    // history.push(`/b/${board._id}/${newTask._id}`);
+    history.push(`/b/${board._id}/${newTask._id}`);
   };
 
   const submitChanges = async (board) => {

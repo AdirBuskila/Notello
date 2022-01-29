@@ -1,12 +1,18 @@
 import { boardService } from '../../services/board.service';
 import { utilService } from "../../services/util.service";
 
-export function loadBoard(boardId) {
+export function loadBoard(boardId, loggedInUser) {
     return async (dispatch) => {
         try {
             const board = await boardService.getById(boardId)
-            const action = { type: 'SET_BOARD', board }
-            dispatch(action)
+            const isExist = board.members.find((member) => {
+                return (member._id === loggedInUser._id)
+            })
+            if (!isExist) {
+                board.members.push(loggedInUser);
+                dispatch({type: 'ATTACH_BOARD_USER', loggedInUser})
+            }
+            dispatch({ type: 'SET_BOARD', board })
             return board;
         } catch (err) {
             console.log('cant load board');

@@ -14,11 +14,9 @@ export const MembersModal = (props) => {
   const dispatch = useDispatch();
   
   const { board, group, task } = props;
-  const [currTaskMembers, setCurrTaskMembers] =React.useState(task.members)
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+  // const [currTaskMembers, setCurrTaskMembers] =React.useState(task.members)
 
-  const { board, group, task } = props;
-  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,7 +32,6 @@ export const MembersModal = (props) => {
   });
 
   const onAddMember = (memberId) => {
-    // console.log('ta', ta);
     let taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;

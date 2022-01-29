@@ -98,18 +98,6 @@ function save(board) {
 
 /* Front Service */
 
-// async function addActivity(activity, board) {
-//     console.log("board: ", board);
-//     console.log("activity: ", activity);
-//     try {
-//         board.activities.unshift(activity);
-//         await save(board)
-//     } catch (err) {
-//         console.log(`Cant add activity to board`);
-//     }
-// }
-
-
 function addGeneralActivity(txt, loggedInUser) {
     return {
         txt,
@@ -120,9 +108,6 @@ function addGeneralActivity(txt, loggedInUser) {
 }
 
 function addTaskActivity(txt, task, loggedInUser) {
-    // console.log("loggedInUser SERVICE: ", loggedInUser);
-    // console.log("task SERVICE: ", task);
-    // console.log("txt SERVICE: ", txt);
     return {
         txt,
         task,
@@ -134,7 +119,6 @@ function addTaskActivity(txt, task, loggedInUser) {
 
 
 async function addTask(boardId, groupId, task, activity) {
-    // async function addTask(boardId, groupId, task) {
     task._id = utilService.makeId()
     task.labels = (task.labels) ? task.labels : [];
     task.attachments = (task.attachments) ? task.attachments : [];
@@ -144,11 +128,14 @@ async function addTask(boardId, groupId, task, activity) {
     task.members = (task.members) ? task.members : [];
     task.dueDate = (task.dueDate) ? task.dueDate : [];
     activity.task = task;
+
+    console.log('TASK ACTIVITY in line 147', activity);
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board.groups[groupIdx].tasks.push(task);
         board.activities.unshift(activity)
+        console.log(board.activities);
         await save(board)
         return task
     } catch (err) {
@@ -197,10 +184,12 @@ async function addGroup(boardId, group, activity) {
     // async function addGroup(boardId, group) {
     group._id = utilService.makeId()
     group.tasks = [];
+    console.log('GROUP ACTIVITY in line 147', activity);
     try {
         let board = await getById(boardId)
         board.groups.push(group)
         board.activities.unshift(activity)
+        console.log(board.activities);
         const updatedBoard = save(board)
         return updatedBoard
     } catch (err) {
