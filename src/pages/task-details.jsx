@@ -185,7 +185,7 @@ export const TaskDetails = (props) => {
           <div className='task-main-container'>
             <div className='main-content'>
               <div className='task-info flex align-center'>
-                <MembersCmp members={selectedTask.members} />
+                <MembersCmp group={group} board={board} task={selectedTask} members={selectedTask.members} />
                 {selectedTask.dueDate.length > 0 && (
                   <DueDateCmp dueDate={selectedTask.dueDate} />
                 )}
