@@ -34,8 +34,8 @@
         width: 100%;
         button {
             position: absolute;
-            left: 45px;
-            bottom: 20px;
+            left: 0.5rem;
+            bottom: 0.5rem;
         }
     }
 }
@@ -71,6 +71,27 @@
                     text-decoration: underline;
                     font-size: rem(12px);
                     font-weight: 400;
+                }
+            }
+            .activity-individual {
+                width: 94.5%;
+                gap: 1rem;
+                .activity-header {
+                    color: #172b4d;
+                    gap: 0.5rem;
+                    font-size: rem(14px);
+                    span {
+                        font-weight: 700;
+                    }
+                    p {
+                        font-size: rem(12px);
+                        font-weight: 400;
+                    }
+                }
+                .activity-date {
+                    font-size: rem(12px);
+                    font-weight: 100;
+                    color: #5e6c84;
                 }
             }
         }
