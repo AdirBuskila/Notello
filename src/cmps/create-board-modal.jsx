@@ -1,53 +1,52 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 export const CreateBoard = (props) => {
+  const { toggleModal, setNewBoard } = props;
+
   const [boardTitle, setBoardTitle] = useState('');
   const [boardColor, setBoardColor] = useState('rgb(0, 121, 191)');
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onHandleChange = ({ target }) => {
     const value = target.value;
     setBoardTitle(value);
   };
 
-  const { toggleModal } = props;
   const handleModal = (string) => {
     const overLayClass = string;
   };
 
   const handleBoardSubmit = () => {
-      if (!boardTitle) return
-      const board = {
-            "title": boardTitle,
-            "createdAt": Date.now(),
-            "createdBy": loggedInUser,
-            "style": {
-                "bgColor": boardColor,
-                "imgUrl": ""
-            },
-        }
-        const action = {type: 'SAVE', board}
-        dispatch(action)
-  }
+    if (!boardTitle) return;
+    const board = {
+      title: boardTitle,
+      createdAt: Date.now(),
+      createdBy: loggedInUser,
+      style: {
+        bgColor: boardColor,
+        imgUrl: '',
+      },
+    };
+    const action = { type: 'SAVE', board };
+    dispatch(action);
+    setNewBoard(false);
+  };
 
-  const btnClass = (boardTitle === '') ? 'not-allowed' : 'pointer'
+  const btnClass = boardTitle === '' ? 'not-allowed' : 'pointer';
 
   return (
-    <div className='over-lay hidden'>
+    <div className='over-lay' onClick={() => setNewBoard(false)}>
       <div className='add-board-modal flex align-center column'>
         <div className='create-container flex align-center'>
           <div
             style={{ background: `${boardColor}` }}
-            className='create-board-title flex justify-center'
-          >
+            className='create-board-title flex justify-center'>
             <input
               value={boardTitle}
               onChange={onHandleChange}
-              placeholder='add board title'
-            ></input>
+              placeholder='add board title'></input>
           </div>
           <div className='create-board-colors'>
             <div
@@ -58,8 +57,7 @@ export const CreateBoard = (props) => {
             rgb(128, 208, 199) 100%
           )`)
               }
-              className='board-color-1 pointer'
-            ></div>
+              className='board-color-1 pointer'></div>
             <div
               onClick={() =>
                 setBoardColor(`linear-gradient(
@@ -68,8 +66,7 @@ export const CreateBoard = (props) => {
             rgb(224, 195, 252) 100%
           )`)
               }
-              className='board-color-2 pointer'
-            ></div>
+              className='board-color-2 pointer'></div>
             <div
               onClick={() =>
                 setBoardColor(`linear-gradient(
@@ -78,8 +75,7 @@ export const CreateBoard = (props) => {
             rgb(255, 251, 125) 100%
           )`)
               }
-              className='board-color-3 pointer'
-            ></div>
+              className='board-color-3 pointer'></div>
             <div
               onClick={() =>
                 setBoardColor(`linear-gradient(
@@ -88,8 +84,7 @@ export const CreateBoard = (props) => {
             rgb(183, 33, 255) 100%
           )`)
               }
-              className='board-color-4 pointer'
-            ></div>
+              className='board-color-4 pointer'></div>
             <div
               onClick={() =>
                 setBoardColor(`linear-gradient(
@@ -99,8 +94,7 @@ export const CreateBoard = (props) => {
             rgb(43, 134, 197) 100%
           )`)
               }
-              className='board-color-5 pointer'
-            ></div>
+              className='board-color-5 pointer'></div>
             <div
               onClick={() =>
                 setBoardColor(`linear-gradient(
@@ -109,8 +103,7 @@ export const CreateBoard = (props) => {
             rgb(221, 214, 243) 100%
           )`)
               }
-              className='board-color-6 pointer'
-            ></div>
+              className='board-color-6 pointer'></div>
             <div
               onClick={() =>
                 setBoardColor(`linear-gradient(
@@ -119,20 +112,19 @@ export const CreateBoard = (props) => {
             rgb(128, 208, 199) 100%
           )`)
               }
-              className='board-color-7 pointer'
-            ></div>
+              className='board-color-7 pointer'></div>
             <div
               onClick={() => setBoardColor(`rgb(96, 189, 79)`)}
-              className='board-color-8 pointer'
-            ></div>
+              className='board-color-8 pointer'></div>
             <div
               onClick={() => setBoardColor(`rgb(242, 214, 0)`)}
-              className='board-color-9 pointer'
-            ></div>
+              className='board-color-9 pointer'></div>
           </div>
         </div>
         <div className='create-button flex'>
-          <button className={btnClass} onClick={handleBoardSubmit} >Create Board</button>
+          <button className={btnClass} onClick={handleBoardSubmit}>
+            Create Board
+          </button>
         </div>
       </div>
     </div>

@@ -7,10 +7,10 @@ import PersonIcon from '@mui/icons-material/Person';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import { CreateBoard } from '../cmps/create-board-modal';
 
-
-
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
+  const [newBoard, setNewBoard] = useState([]);
+  console.log(newBoard);
   useEffect(() => {
     (async () => {
       try {
@@ -44,8 +44,12 @@ export const BoardWorkspaces = () => {
               </Link>
             );
           })}
-          <div className="add-board-container board flex pointer align-center justify-center">
-                  <p style={{filter: 'brightness(100%)'}} >Create New Board</p>
+          <div
+            className='add-board-container board flex pointer align-center justify-center'
+            onClick={() => {
+              setNewBoard(true);
+            }}>
+            <p style={{ filter: 'brightness(100%)' }}>Create New Board</p>
           </div>
         </div>
         <div className='stared-workspace'>
@@ -55,6 +59,7 @@ export const BoardWorkspaces = () => {
           </div>
         </div>
       </div>
+      {newBoard && <CreateBoard setNewBoard={setNewBoard} />}
     </React.Fragment>
   );
 };
