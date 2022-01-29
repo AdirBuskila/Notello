@@ -23,7 +23,6 @@
             height: rem(40px);
             padding: 0.5rem 0.75rem;
             border-color: #dfe1e6;
-            margin-inline-start: 2.2rem;
         }
         &>textarea::placeholder {
             color: #172b4d;
@@ -35,8 +34,8 @@
         width: 100%;
         button {
             position: absolute;
-            left: 45px;
-            bottom: 20px;
+            left: 0.5rem;
+            bottom: 0.5rem;
         }
     }
 }
@@ -61,7 +60,8 @@
                 &>p:not(:last-child) {
                     font-size: rem(14px);
                     font-weight: 400;
-                    width: 100%;
+                    width: 94.5%;
+                    border: 1px solid #dfe1e6;
                     padding: 0.5rem;
                     background-color: white;
                     border-radius: 3px;
@@ -71,6 +71,27 @@
                     text-decoration: underline;
                     font-size: rem(12px);
                     font-weight: 400;
+                }
+            }
+            .activity-individual {
+                width: 94.5%;
+                gap: 1rem;
+                .activity-header {
+                    color: #172b4d;
+                    gap: 0.5rem;
+                    font-size: rem(14px);
+                    span {
+                        font-weight: 700;
+                    }
+                    p {
+                        font-size: rem(12px);
+                        font-weight: 400;
+                    }
+                }
+                .activity-date {
+                    font-size: rem(12px);
+                    font-weight: 100;
+                    color: #5e6c84;
                 }
             }
         }
