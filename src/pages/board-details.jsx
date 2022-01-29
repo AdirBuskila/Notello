@@ -39,7 +39,7 @@ const _BoardDetails = (props) => {
   if (!props.board || props.board.length === 0) {
     return <Loader />;
   }
-  let boardStyle = (!props.board.style.imgUrl) ?   `${props.board.style.bgColor}` : `url(${props.board.style.imgUrl})`
+  let boardStyle = (!props.board.style?.imgUrl) ?   `${props.board.style?.bgColor}` : `url(${props.board.style?.imgUrl})`
 
 
   return (
