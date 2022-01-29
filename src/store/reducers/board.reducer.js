@@ -3,7 +3,8 @@ import { boardService } from "../../services/board.service";
 const initialState = {
     board: {},
     // activities: [],
-    isLabelsExpended: false
+    isLabelsExpended: false,
+    currBoardUser: {}
 }
 
 export function boardReducer(state = initialState, action) {
@@ -18,6 +19,9 @@ export function boardReducer(state = initialState, action) {
         case 'HANDLE_LABELS':
             const isLabelsExpended = state.isLabelsExpended;
             newState = { ...state, isLabelsExpended: !isLabelsExpended }
+            break;
+        case 'ATTACH_BOARD_USER': 
+            newState = {...state, currBoardUser: action.loggedInUser}
             break;
         // case 'SET_GENERAL_ACTIVITY':
         //     newState = { ...state, activities: [...state.activities, action.activity] }

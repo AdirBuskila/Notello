@@ -17,7 +17,6 @@ export const GoogleLoginButton = () => {
 
     const onLoginSuccess = (res) => {
         const userObj = res.profileObj
-        console.log('userObj', userObj);
         const user = {
             _id: userObj.googleId,
             username: userObj.givenName,

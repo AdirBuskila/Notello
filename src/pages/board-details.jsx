@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -13,10 +14,12 @@ import { loadBoard, saveBoard } from '../store/actions/board.action';
 
 const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
-      await props.loadBoard(id);
+      await props.loadBoard(id, loggedInUser);
     } catch (err) {
       console.log('Cant load current board');
       throw new Error(err);

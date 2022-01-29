@@ -13,7 +13,6 @@ export const MembersModal = (props) => {
   let open = Boolean(anchorEl);
   const dispatch = useDispatch();
   
-
   const { board, group, task } = props;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 

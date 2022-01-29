@@ -37,7 +37,6 @@ export const PreFeatureAdd = (props) => {
           txt: `added group ${group.title}`,
         };
         await boardService.addGroup(boardId, group, activity);
-        // await boardService.addGroup(boardId, group);
         await props.onLoadBoard();
       } catch (err) {
         console.log('Cant add new group');
@@ -53,7 +52,6 @@ export const PreFeatureAdd = (props) => {
           txt: `added task ${task.title}`,
         };
         await boardService.addTask(boardId, group._id, task, activity);
-        // await boardService.addTask(boardId, group._id, task);
         await props.onLoadBoard();
       } catch (err) {
         console.log('Cant add new task');
