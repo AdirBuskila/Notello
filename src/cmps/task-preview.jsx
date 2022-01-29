@@ -19,11 +19,6 @@ export const TaskPreview = (props) => {
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const isFull = taskCover.spread === 'full' ? true : false;
   const [isDueDateChanged, setIsDueDateChanged] = useState(false);
-  const [taskTitle, setTaskTitle] = useState(task.title);
-  const CmpClassName =
-    source === 'list'
-      ? 'task-preview-inner flex column'
-      : 'task-preview flex column';
   const coverType = taskCover
     ? utilService.isStringColor(taskCover.background)
       ? 'backgroudColor'
@@ -50,17 +45,6 @@ export const TaskPreview = (props) => {
     setIsHover(false);
   };
 
-  const onHandlePreviewClick = (ev) => {
-    ev.stopPropagation();
-    if (source !== 'list') {
-      history.push(`/b/${board._id}/${task._id}`);
-    }
-  };
-
-  const onHandleTitleChange = ({ target }) => {
-    setTaskTitle(target.value);
-  };
-
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
@@ -78,17 +62,13 @@ export const TaskPreview = (props) => {
             <div
               onMouseEnter={onHandleEnter}
               onMouseLeave={onHandleLeave}
-              onClick={(ev) => {
-                onHandlePreviewClick(ev);
-                // setOpenPopup(true)
-              }}
               className='task-preview flex column'
               ref={provided.innerRef}
               {...provided.dragHandleProps}
               {...provided.draggableProps}
               key={task._id}>
                 
-              {isHover && source !== 'list' && (
+              {isHover && (
                 <TaskPreviewHover
                   task={task}
                   board={board}
@@ -132,17 +112,8 @@ export const TaskPreview = (props) => {
                     })}
                   </ul>
                 )}
-                {source !== 'list' ? (
                   <p>{task.title}</p>
-                ) : (
-                  <textarea
-                    autoFocus
-                    // onFocus={(ev) => {
-                    //   ev.currentTarget.select();
-                    // }}
-                    defaultValue={task.title}
-                    onChange={(ev) => onHandleTitleChange(ev)}></textarea>
-                )}
+
                 {!isFull && (
                   <div className='task-info-icons flex space-between wrap'>
                     <div className='task-badges flex align-center'>
