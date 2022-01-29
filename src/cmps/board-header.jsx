@@ -16,8 +16,12 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
 export const BoardHeader = (props) => {
   const board = { ...props.board };
-  const [boardTitle, setBoardTitle] = useState(board.title);
+  const [boardTitle, setBoardTitle] = useState();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setBoardTitle(board.title);
+  }, [board]);
 
   const onHandleChange = (ev) => {
     setBoardTitle(ev.target.value);
