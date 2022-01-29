@@ -19,7 +19,7 @@ export const BoardWorkspaces = () => {
         console.log(err);
       }
     })();
-  }, [boards]);
+  }, [newBoard]);
   if (!boards || boards.length === 0) return <Loader />;
   return (
     <React.Fragment>
