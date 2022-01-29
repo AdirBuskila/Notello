@@ -13,9 +13,10 @@ export const ActivityPerTask = (props) => {
             return (
                 <React.Fragment>
                 {(activity.task && activity.task._id === task._id) && 
-                    <div className='flex'>
-                    <div className='activity-individual flex'>
+                    <div className='comment flex'>
                       {activity.byMember && (
+                        <div className="comment-creator">
+
                         <Avatar
                           alt='G'
                           src={activity.byMember.imgUrl}
@@ -23,19 +24,19 @@ export const ActivityPerTask = (props) => {
                             width: '32px',
                             height: '32px',
                           }}
-                        />
+                          />
+                          </div>
                       )}
                       <div className='flex column'>
-                        <div className='flex column wrap'>
                           <span>{activity.byMember.fullname}</span>
-                          <p>{activity.txt}</p>
-                        </div>
                         <span>
                           {utilService.fixTimestamp(activity.createdAt)}
                         </span>
+                        <div className='flex column wrap'>
+                          <p>{activity.txt}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
                 }
                 </React.Fragment>
             )

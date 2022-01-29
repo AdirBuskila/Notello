@@ -17,7 +17,7 @@ import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmps } from '../cmps/check-list-cmps';
 import { CoverModal } from '../cmps/cover-modal';
 import { Backdrop } from '../cmps/UI/backdrop';
-import {ActivityPerTask} from '../cmps/task-details-cmps/activity-per-task';
+
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action no BE';
@@ -32,7 +32,6 @@ import ArchiveSharpIcon from '@mui/icons-material/ArchiveSharp';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
-import { deepOrange } from '@mui/material/colors';
 import SubjectIcon from '@mui/icons-material/Subject';
 import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
 import { MembersModal } from '../cmps/task-details-cmps/members-modal';
@@ -269,7 +268,6 @@ export const TaskDetails = (props) => {
                     board={board}
                     group={group}
                   />
-                  <ActivityPerTask task={selectedTask} board={board} />
                 </div>
                 <div className='comments-area flex column'>
                   <CommentsSection

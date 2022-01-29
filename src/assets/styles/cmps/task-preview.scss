@@ -1,4 +1,5 @@
 .task-preview {
+  position: relative;
   border-radius: 3px;
   background-color: #fff;
   text-align: start;
@@ -13,10 +14,7 @@
     width: 100%;
     border-radius: 3px 3px 0 0;
   }
-  .task-preview:hover {
-    background-color: $clr2;
-    cursor: pointer;
-  }
+
   .labels {
     cursor: pointer;
     flex-wrap: wrap;
@@ -42,7 +40,42 @@
   p {
     cursor: pointer;
   }
+
+  textarea {
+    width: 100%;
+    height: fit-content;
+    border: none;
+    outline: none;
+    resize: none;
+  }
+
   .task-badges {
     gap: rem(12px);
   }
+
 }
+
+.save-btn {
+  position: absolute;
+  // margin-top: rem(12px);
+  border-radius: 3px;
+  width: rem(80px);
+  height: rem(32px);
+  background-color: #0079bf;
+  border: none;
+  box-shadow: none;
+  color: #fff;
+}
+
+.save-btn:hover {
+  background-color: #026aa7;
+    border: none;
+    box-shadow: none;
+    color: #fff;
+}
+
+// .task-preview:hover: {
+//   // background-color: $clr2;
+//   background-color: #091e4209;
+//   cursor: pointer;
+// }

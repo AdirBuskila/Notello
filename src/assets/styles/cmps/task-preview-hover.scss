@@ -1,0 +1,38 @@
+.preview-hover-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: rem(25px);
+  height: rem(25px);
+  top: rem(4px);
+  right: rem(4px);
+  background-color: #f4f5f774;
+  border-radius: 3px;
+
+  .edit-icon {
+    // color: #172b4d;
+    font-size: large;
+  }
+}
+
+.preview-hover-state:hover {
+  background-color: #f4f5f7;
+}
+
+.mini-menu-total {
+    position: absolute;
+    z-index: 1000;
+    display: flex;
+
+
+  .mini-menu-preview {
+    width: 100%;
+  }
+
+  .mini-menu-options {
+    width: rem(240px);
+    height: 100%;
+    background-color: green;
+  }
+}

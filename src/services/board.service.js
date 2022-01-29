@@ -61,7 +61,6 @@ function remove(boardId) {
 }
 
 function save(board) {
-    console.log("board: ", board);
     const { _id } = board
     try {
         if (_id) {

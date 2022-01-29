@@ -18,7 +18,6 @@ export function boardReducer(state = initialState, action) {
             }
             boardService.save(action.board);
             newState = { ...state, board: action.board }
-            console.log('Board activities from store', action.board.activities);
             break;
         case 'HANDLE_LABELS':
             const isLabelsExpended = state.isLabelsExpended;

@@ -3,8 +3,7 @@ import { utilService } from '../../services/util.service';
 import { useDispatch } from 'react-redux';
 import { boardService } from '../../services/board.service';
 
-
-
+import { ActivityPerTask } from './activity-per-task';
 
 export const CommentsSection = (props) => {
 
@@ -56,6 +55,7 @@ export const CommentsSection = (props) => {
           </div>
         );
       })}
+      <ActivityPerTask task={task} board={board} />
     </div>
   );
 };
