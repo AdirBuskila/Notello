@@ -2,6 +2,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AddIcon from '@mui/icons-material/Add';
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import { MembersModal } from './members-modal';
 
 import { utilService } from '../../services/util.service';
 
@@ -36,7 +37,9 @@ function stringAvatar(name) {
 }
 
 
-export const MembersCmp = ({ members }) => {
+export const MembersCmp = (props) => {
+
+  const {task, members, group, board} = props
 
   return (
     <section className='members-main-container'>
@@ -64,6 +67,7 @@ export const MembersCmp = ({ members }) => {
       })}{' '}
       <div className='add-icon flex align-center justify-center'>
         <AddIcon key={utilService.makeId()} />
+        <MembersModal task={task} board={board} group={group} / >
       </div>
       </div>
     </section>

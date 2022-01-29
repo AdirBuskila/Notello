@@ -1,4 +1,7 @@
 .login-container {
+    .MuiOutlinedInput-input {
+        height: 40px;
+    }
     .left,.right {
         max-width: 30%;
         width: rem(400px);
