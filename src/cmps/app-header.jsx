@@ -5,14 +5,13 @@ import { RecentHeaderModal } from '../cmps/recent-header-modal';
 import { StarredHeaderModal } from './starred-header-modal';
 import { TemplatesHeaderModal } from './templates-header-modal';
 import { CreateHeaderModal } from './create-header-modal';
-import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
+import {UserBadge} from './logged-in-user';
 
 
 export const AppHeader = () => {
 
   
-  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   return (
     <header className='app-header flex align-center space-between'>
       <div className="links-container flex align-center">
@@ -24,12 +23,9 @@ export const AppHeader = () => {
       <CreateHeaderModal />
       </div>
 
-      <Avatar
-        alt='NG'
-        variant='dot'
-        src={loggedInUser.imgUrl}
-        style={{ width: '32px', height: '32px', border: '0', position:'absolute', right: '10px'}}
-      />
+      <div className="logged-in-user">
+      <UserBadge/>
+      </div>
 
       <nav className='nav-links clean-list flex align-center'></nav>
     </header>
