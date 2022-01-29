@@ -41,6 +41,9 @@ export const BoardWorkspaces = () => {
               </Link>
             );
           })}
+          <div className="add-board-container board flex pointer align-center justify-center">
+                  <p style={{filter: 'brightness(100%)'}} >Create New Board</p>
+          </div>
         </div>
         <div className='stared-workspace'>
           <div className='stared-workspace-title flex align-center'>

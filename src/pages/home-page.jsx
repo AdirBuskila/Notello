@@ -6,6 +6,7 @@ import hero2 from '../assets/img/board.png';
 import hero3 from '../assets/img/view.svg';
 import logo from '../assets/img/notello-clear.png';
 import Button from '@mui/material/Button';
+import { CreateBoard } from '../cmps/create-board-modal';
 
 export class HomePage extends React.Component {
   state = {
