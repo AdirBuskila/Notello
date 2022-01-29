@@ -11,7 +11,7 @@ export const ActivityPerTask = (props) => {
           <React.Fragment>
             {activity.task && activity.task._id === task._id && (
               <div className='flex comment' key={idx}>
-                <div className='activity-individual flex'>
+                <div className='activity-individual flex' key={task._id}>
                   {activity.byMember && (
                     <Avatar
                       alt='G'
