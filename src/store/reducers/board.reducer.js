@@ -13,8 +13,12 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARD':
+            if (action.board.activities.length > 30) {
+                action.board.activities.pop();
+            }
             boardService.save(action.board);
             newState = { ...state, board: action.board }
+            console.log('Board activities from store', action.board.activities);
             break;
         case 'HANDLE_LABELS':
             const isLabelsExpended = state.isLabelsExpended;

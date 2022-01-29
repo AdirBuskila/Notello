@@ -11,7 +11,7 @@ export const CheckListModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task } = props;
-  const [checklistName, setChecklistName] = useState('');
+  const [checklistName, setChecklistName] = useState('Checklist');
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const dispatch = useDispatch();
 
@@ -27,6 +27,13 @@ export const CheckListModal = (props) => {
     const value = target.value;
     setChecklistName(value);
   };
+
+  const onHandleKeyDown = (ev) => {
+    if(ev.keyCode === 13) {
+      ev.preventDefault();
+      return onAddClick();
+    }
+  }
 
   const onAddClick = async () => {
     if (!checklistName) return; // add nice modal
@@ -45,7 +52,7 @@ export const CheckListModal = (props) => {
     } catch (err) {
       console.log(`Cant add new checklist`, err);
     }
-    setChecklistName('')
+    setChecklistName('Checklist')
     handleClose()
   }
 
@@ -73,6 +80,7 @@ export const CheckListModal = (props) => {
                 <div className='flex column'>
                   <span>Title</span>
                   <input
+                  onKeyDown={(ev) => {onHandleKeyDown(ev)}}
                     onClick={(ev) => ev.stopPropagation()}
                     defaultValue='Checklist'
                     autoFocus

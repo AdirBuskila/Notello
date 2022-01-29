@@ -25,6 +25,13 @@ export const PreFeatureAdd = (props) => {
     onNewState({ title: value });
   };
 
+  const onHandleKeyDown = (ev) => {
+    if(ev.keyCode === 13) {
+      ev.preventDefault();
+      return onAdd();
+    }
+  }
+
   const onAdd = async () => {
     if (!newState.title) return; // need to Focus on text area using refs
     if (type === 'group') {
@@ -85,12 +92,14 @@ export const PreFeatureAdd = (props) => {
         <div className='new-item flex column'>
           {props.type !== 'group' ? (
             <textarea
+            onKeyDown={(ev) => onHandleKeyDown(ev)}
               autoFocus
               onChange={onHandleChange}
               rows='5'
               placeholder={`Enter a title for this card... `}></textarea>
           ) : (
             <input
+            onKeyDown={(ev) => onHandleKeyDown(ev)}
               autoFocus
               onChange={onHandleChange}
               placeholder='Enter list title...'

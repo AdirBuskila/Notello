@@ -3,13 +3,13 @@ import {useSelector, useDispatch } from 'react-redux';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxIcon from '@mui/icons-material/CheckBoxOutlined';
-import { LinearWithValueLabel } from '../cmps/progress-bar';
-import { CheckListSection } from '../cmps/check-list-section';
+import { LinearWithValueLabel } from './progress-bar';
+import { CheckListTodos } from './check-list-todos';
 import { CheckListDelete } from './check-list-delete';
 
 import { boardService } from '../services/board.service';
 
-export const CheckList = (props) => {
+export const CheckListArea = (props) => {
   const { task, taskIdx, groupIdx, checklistIdx, board, checklist } = props;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [currTodoId, setCurrTodoId] = useState('');
@@ -79,7 +79,7 @@ export const CheckList = (props) => {
                 )}
               </div>
               {isChanging && currTodoId === td._id ? (
-                <CheckListSection
+                <CheckListTodos
                   isChanging={isChanging}
                   setIsAdding={setIsAdding}
                   type={'oldTodo'}
@@ -118,7 +118,7 @@ export const CheckList = (props) => {
           Add an item
         </button>
       ) : (
-        <CheckListSection
+        <CheckListTodos
           type={'newTodo'}
           checklistIdx={checklistIdx}
           setIsAdding={setIsAdding}

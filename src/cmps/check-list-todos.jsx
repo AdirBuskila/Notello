@@ -6,7 +6,7 @@ import { CheckListActionModal } from "./check-list-actions-modal";
 import { utilService } from "../services/util.service";
 import { boardService } from "../services/board.service";
 
-export const CheckListSection = (props) => {
+export const CheckListTodos = (props) => {
     const { todo, todoIdx, board, task, taskIdx, isChanging, groupIdx, checklistIdx } = props;
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
     const dispatch = useDispatch()

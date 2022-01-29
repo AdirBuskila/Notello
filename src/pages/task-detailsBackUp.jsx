@@ -14,7 +14,7 @@ import { ActivitySection } from '../cmps/details-activity';
 import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
-import { CheckListCmp } from '../cmps/check-list-cmp';
+import { CheckListCmps } from '../cmps/check-list-cmp';
 import { Backdrop } from '../cmps/UI/backdrop';
 ///// CMPS
 import { boardService } from '../services/board.service';
@@ -123,7 +123,7 @@ export const TaskDetails = (props) => {
                 <Textarea />
               </div>
             </div>
-            <CheckListCmp
+            <CheckListCmps
               key={utilService.makeId()}
               isCheckListAcctivated={isCheckListAcctivated}
               task={selectedTask}

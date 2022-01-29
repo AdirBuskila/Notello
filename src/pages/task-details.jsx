@@ -14,7 +14,7 @@ import { ActivitySection } from '../cmps/details-activity';
 import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
-import { CheckListCmp } from '../cmps/check-list-cmp';
+import { CheckListCmps } from '../cmps/check-list-cmps';
 import { CoverModal } from '../cmps/cover-modal';
 import { Backdrop } from '../cmps/UI/backdrop';
 ///// CMPS
@@ -221,7 +221,7 @@ export const TaskDetails = (props) => {
                   }
                 </div>
               </div>
-              <CheckListCmp
+              <CheckListCmps
                 key={utilService.makeId()}
                 task={selectedTask}
                 groupIdx={groupIdx}
