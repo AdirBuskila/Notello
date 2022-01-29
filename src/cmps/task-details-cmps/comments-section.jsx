@@ -23,7 +23,6 @@ export const CommentsSection = (props) => {
     dispatch(action);
   };
 
-  if (!comments.length) return <p></p>;
   return (
     <div className='comments-container flex column'>
       {comments.map((comment) => {
