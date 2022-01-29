@@ -27,7 +27,7 @@ export const JoinCmp = (props) => {
       return member._id === memberId;
     });
     if (alreadyInside) return;
-    const activity = boardService.addTaskActivity(`${loggedInUser.fullname} joined to task ${task.title}`, task, loggedInUser);
+    const activity = boardService.addTaskActivity(`${loggedInUser.fullname} joined to task ${task.title}`, task._id, task.title, loggedInUser);
     try {
       if (activity) board.activities.unshift(activity);
       taskMembers.push(loggedInUser);

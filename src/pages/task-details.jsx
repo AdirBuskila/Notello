@@ -102,7 +102,7 @@ export const TaskDetails = (props) => {
     const newTask = selectedTask;
     newTask.title = taskTitle;
     selectedTask.title = taskTitle;
-    const activity = boardService.addTaskActivity(`changed task ${selectedTask.title} title to - ${taskTitle}`, selectedTask, loggedInUser);
+    const activity = boardService.addTaskActivity(`changed task ${selectedTask.title} title to - ${taskTitle}`, selectedTask._id, selectedTask.title, loggedInUser);
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx] = selectedTask;

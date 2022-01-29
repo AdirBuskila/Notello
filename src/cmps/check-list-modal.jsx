@@ -42,7 +42,7 @@ export const CheckListModal = (props) => {
       title: checklistName,
       todos: [],
     };
-    const activity = boardService.addTaskActivity(`created checklist - ${checklist.title}`,task, loggedInUser)
+    const activity = boardService.addTaskActivity(`created checklist - ${checklist.title}`,task._id, task.title, loggedInUser)
     try {
       if (activity) board.activities.unshift(activity);
       task.checklists.unshift(checklist);

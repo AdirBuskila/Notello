@@ -33,7 +33,7 @@ export const CheckListTodos = (props) => {
 
     const onSave = async () => {
         if (!todoTitle) return; // add a nice modal
-        const activity = boardService.addTaskActivity(`updated todo ${todoTitle} title, at checklist - ${task.checklists[checklistIdx].title}`, task, loggedInUser)
+        const activity = boardService.addTaskActivity(`updated todo ${todoTitle} title, at checklist - ${task.checklists[checklistIdx].title}`, task._id, task.title, loggedInUser)
         try {
             if (activity) board.activities.unshift(activity);
             task.checklists[checklistIdx].todos[todoIdx].title = todoTitle;
@@ -48,7 +48,7 @@ export const CheckListTodos = (props) => {
     const onAdd = async () => {
         const newTodo = { title: todoTitle, _id: utilService.makeId(), isDone: false };
         if (!newTodo.title) return; // add a nice modal
-        const activity = boardService.addTaskActivity(`added todo ${newTodo.title}, to checklist - ${task.checklists[checklistIdx].title}`, task, loggedInUser)
+        const activity = boardService.addTaskActivity(`added todo ${newTodo.title}, to checklist - ${task.checklists[checklistIdx].title}`, task._id, task.title, loggedInUser)
         try {
             if (activity) board.activities.unshift(activity);
             task.checklists[checklistIdx].todos.push(newTodo)

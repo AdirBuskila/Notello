@@ -33,7 +33,7 @@ export const AddCommentCmp = (props) => {
     };
     const activity = boardService.addTaskActivity(
       `added comment to task ${task.title} - ${comment.txt}`,
-      task,
+      task._id, task.title,
       loggedInUser
     );
     try {

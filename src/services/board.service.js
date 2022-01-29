@@ -108,10 +108,13 @@ function addGeneralActivity(txt, loggedInUser) {
     }
 }
 
-function addTaskActivity(txt, task, loggedInUser) {
+function addTaskActivity(txt, taskId, taskTitle, loggedInUser) {
     return {
         txt,
-        task,
+        task: {
+            _id: taskId,
+            title: taskTitle
+        },
         byMember: loggedInUser,
         _id: utilService.makeId(),
         createdAt: Date.now(),
@@ -128,7 +131,10 @@ async function addTask(boardId, groupId, task, activity) {
     task.checklists = (task.checklists) ? task.checklists : [];
     task.members = (task.members) ? task.members : [];
     task.dueDate = (task.dueDate) ? task.dueDate : [];
-    activity.task = task;
+    activity.task = {
+        _id: task._id,
+        title: task.title
+    };
 
     console.log('TASK ACTIVITY in line 147', activity);
     try {

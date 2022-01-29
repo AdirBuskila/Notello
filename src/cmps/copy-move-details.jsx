@@ -50,7 +50,7 @@ export const CopyMoveModal = (props) => {
     newTask.checklists = keepChecklistsInitial ? task.labels : [];
     newTask.labels = keepLabelsInitial ? task.labels : [];
     board.groups[+keepGroupInitial].tasks.unshift(newTask);
-    const activity = boardService.addTaskActivity(`copied task ${task.title} group ${keepGroupInitial}`, newTask, loggedInUser)
+    const activity = boardService.addTaskActivity(`copied task ${task.title} group ${keepGroupInitial}`, task._id, task.title, loggedInUser)
     board.activities.unshift(activity);
     submitChanges(board);
     history.push(`/b/${board._id}/${newTask._id}`);

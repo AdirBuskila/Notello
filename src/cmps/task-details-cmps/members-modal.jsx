@@ -49,7 +49,7 @@ export const MembersModal = (props) => {
       handleAlreadyInside(alreadyInside._id, taskMembers);
 
     } else {
-      const activity = boardService.addTaskActivity(`${loggedInUser.fullname} joined to task ${task.title}`,task,loggedInUser)
+      const activity = boardService.addTaskActivity(`${loggedInUser.fullname} joined to task ${task.title}`,task._id, task.title,loggedInUser)
       if (activity) board.activities.unshift(activity);
       taskMembers.push(newMember);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;

@@ -54,7 +54,7 @@ const _BoardDetails = (props) => {
         board={props.board}
         setMenuOpen={setMenuOpen}
       />
-      {/* <BoardActivity setMenuOpen={setMenuOpen} menuOpen={menuOpen} /> */}
+      {menuOpen && <BoardActivity setMenuOpen={setMenuOpen} menuOpen={menuOpen} />}
       <div className='board-details-container flex column '>
         <GroupList
           onLoadBoard={onLoadBoard}

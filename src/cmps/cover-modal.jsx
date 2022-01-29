@@ -49,7 +49,7 @@ export const CoverModal = (props) => {
   };
 
   const submitChanges = async (task) => {
-    const activity = boardService.addTaskActivity(`updated the cover to ${task.cover.background}`, task, loggedInUser)
+    const activity = boardService.addTaskActivity(`updated the cover to ${task.cover.background}`, task._id, task.title, loggedInUser)
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx] = task;

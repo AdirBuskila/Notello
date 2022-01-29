@@ -23,7 +23,7 @@ export const CheckListArea = (props) => {
     });
     let { isDone } = task.checklists[checklistIdx].todos[todoIdx];
     const state = isDone ? 'Done' : 'In work';
-    const activity = boardService.addTaskActivity(`changed todo (${checklist.todos[todoIdx].title}) state to - ${state}`, task, loggedInUser)
+    const activity = boardService.addTaskActivity(`changed todo (${checklist.todos[todoIdx].title}) state to - ${state}`, task._id, task.title, loggedInUser)
     try {
       if (activity) board.activities.unshift(activity);
       task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;

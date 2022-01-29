@@ -1,7 +1,7 @@
 .board-activity-container {
     position: absolute;
     // transform: translate(105%);
-    // transition: ease-in-out 0.4s;
+    // transition: translate ease-in-out 0.6s;
     top: rem(44px);
     right: 0;
     bottom: 0;
@@ -15,6 +15,7 @@
     // pointer-events: none;
     .open {
         transform: translate(0%);
+        
     }
     hr {
         background-color: #091e4221;

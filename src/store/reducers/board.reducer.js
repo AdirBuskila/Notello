@@ -13,7 +13,7 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARD':
-            if (action.board.activities.length > 30) {
+            if (action.board.activities.length > 20) {
                 action.board.activities.pop();
             }
             boardService.save(action.board);
@@ -27,12 +27,6 @@ export function boardReducer(state = initialState, action) {
         case 'ATTACH_BOARD_USER': 
             newState = {...state, currBoardUser: action.loggedInUser}
             break;
-        // case 'SET_GENERAL_ACTIVITY':
-        //     newState = { ...state, activities: [...state.activities, action.activity] }
-        //     break;
-        // case 'SET_TASK_ACTIVITY':
-        //     newState = { ...state, activities: [...state.activities, action.activity] }
-        //     break;
     }
     return newState;
 }

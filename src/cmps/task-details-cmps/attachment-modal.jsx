@@ -39,7 +39,7 @@ export const AttachmentModal = (props) => {
     };
     const activity = boardService.addTaskActivity(
       `added attachment to task ${task.title} - ${attachment.url} / ${attachment.txt}`,
-      task,
+      task._id, task.title,
       loggedInUser
     );
     try {

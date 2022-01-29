@@ -21,7 +21,7 @@ export const CheckListDelete = (props) => {
     };
 
     const onDelete = async () => {
-        const activity = boardService.addTaskActivity(`deleted checklist - ${checklist.title}`, task, loggedInUser)
+        const activity = boardService.addTaskActivity(`deleted checklist - ${checklist.title}`, task._id, task.title, loggedInUser)
         try {
             if (activity) board.activities.unshift(activity);
             task.checklists.splice(checklistIdx, 1);
