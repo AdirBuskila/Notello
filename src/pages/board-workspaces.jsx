@@ -5,6 +5,9 @@ import { boardService } from '../services/board.service';
 import { Loader } from '../cmps/loader';
 import PersonIcon from '@mui/icons-material/Person';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
+import { CreateBoard } from '../cmps/create-board-modal';
+
+
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
