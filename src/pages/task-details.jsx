@@ -17,6 +17,7 @@ import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmps } from '../cmps/check-list-cmps';
 import { CoverModal } from '../cmps/cover-modal';
 import { Backdrop } from '../cmps/UI/backdrop';
+import {ActivityPerTask} from '../cmps/task-details-cmps/activity-per-task';
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action no BE';
@@ -252,7 +253,7 @@ export const TaskDetails = (props) => {
                   </div>
                   <button>Show details</button>
                 </div>
-                <div className='comment-container flex'>
+                <div className='comment-container flex column'>
                   <div className='user-container'>
                     <Avatar
                       src={loggedInUser.imgUrl}
@@ -268,6 +269,7 @@ export const TaskDetails = (props) => {
                     board={board}
                     group={group}
                   />
+                  <ActivityPerTask task={selectedTask} board={board} />
                 </div>
                 <div className='comments-area flex column'>
                   <CommentsSection
