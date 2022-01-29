@@ -51,6 +51,7 @@ export const DueDateBadge = (props) => {
     setIsDueDateChanged(!isDueDateChanged);
   };
 
+  
   const date = dueDate[0].date;
   const isDone = dueDate[0].isDone;
   const newDate = Date.parse(date);
@@ -62,18 +63,24 @@ export const DueDateBadge = (props) => {
   const day = date1.getDate();
   let clockColor = isDone ? 'white' : 'action';
   const dueDateClass = isDone
-    ? 'due-date-badge pointer flex align-center done'
-    : `due-date-badge pointer flex align-center ${isSoon} ${isOverDue}`;
+  ? 'due-date-badge pointer flex align-center done'
+  : `due-date-badge pointer flex align-center ${isSoon} ${isOverDue}`;
   if (isOverDue || isSoon) {
     clockColor = 'white';
   }
-  return (
-    <div
+  
+  const changeImg = () => {
+    console.log('im here');
+    
+  }
+    return (
+      <div 
+      onMouseEnter={changeImg}
       onClick={(ev) => {
         handleClick(ev, isDone);
       }}
       className={dueDateClass}>
-      <AccessTimeIcon fontSize='small' color={clockColor} />
+      <AccessTimeIcon id='due-date' fontSize='small' color={clockColor} />
       <span> {months[month]}</span>
       <span> {day}</span>
     </div>

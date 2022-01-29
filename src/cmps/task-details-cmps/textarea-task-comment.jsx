@@ -30,7 +30,7 @@ export const AddCommentCmp = (props) => {
       _id: utilService.makeId(),
       txt: newComment,
       createdAt: Date.now(),
-      byMember: { loggedInUser },
+      byMember:  loggedInUser,
     };
     console.log('comment', comment);
     const activity = boardService.addTaskActivity(
