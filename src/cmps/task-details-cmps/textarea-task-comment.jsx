@@ -24,13 +24,15 @@ export const AddCommentCmp = (props) => {
     setNewComment(value);
   };
 
-  const onAdd = async () => {
+  const onAdd = async (ev) => {
+    if (ev.type === 'keydown') ev.preventDefault()
     const comment = {
       _id: utilService.makeId(),
       txt: newComment,
       createdAt: Date.now(),
       byMember: { loggedInUser },
     };
+    console.log('comment', comment);
     const activity = boardService.addTaskActivity(
       `added comment to task ${task.title} - ${comment.txt}`,
       task._id,
@@ -64,7 +66,9 @@ export const AddCommentCmp = (props) => {
           placeholder={`Write a comment... `}></textarea>
         {active && (
           <div className='new-comment-actions flex align-center'>
-            <Button variant='contained' onClick={onAdd}>
+            <Button
+            variant='contained'
+            onMouseDown={onAdd}>
               Save
             </Button>
           </div>
