@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 
 export function DatePickerModal(props) {
   const classes = useStyles();
-  const { task, group, board} = props;
+  const { task, group, board } = props;
   const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
 
@@ -33,24 +33,23 @@ export function DatePickerModal(props) {
     const action = { type: 'SET_BOARD', board };
     dispatch(action);
   };
-
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <DatePicker
-        style={{
-          opacity: '0',
-          width: '100%',
-          position: 'relative',
-          right: '50px',
-        }}
-        id='date-picker'
-        margin='normal'
-        variant='modal'
-        label=''
-        format='dd MMM yyyy'
-        value={selectedDate}
-        onChange={handleDateChange}
-      />
-    </MuiPickersUtilsProvider>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <DatePicker
+          style={{
+            opacity: '0',
+            width: '100%',
+            position: 'relative',
+            right: '50px',
+          }}
+          id='date-picker'
+          margin='normal'
+          variant='modal'
+          label=''
+          format='dd MMM yyyy'
+          value={selectedDate}
+          onChange={handleDateChange}
+        />
+      </MuiPickersUtilsProvider>
   );
 }

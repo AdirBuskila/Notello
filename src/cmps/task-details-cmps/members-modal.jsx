@@ -30,36 +30,29 @@ export const MembersModal = (props) => {
   });
 
   const onAddMember = (memberId) => {
-    // console.log('ta', ta);
     let taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
+    let newMember = board.members.find((currMember) => {
+      return (currMember._id === memberId)
+  })
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
-    const newMember = boardService.getMemberById(board, memberId);
-    const activity = boardService.addTaskActivity(
-      `${newMember.fullname} joined to task ${task.title}`,
-      task,
-      loggedInUser
-    );
-    if (activity) board.activities.unshift(activity);
+
+
     if (alreadyInside) {
+      const activity = boardService.addTaskActivity(
+        `${newMember.fullname} left task ${task.title}`,
+        task,
+        loggedInUser
+        );
+    if (activity) board.activities.unshift(activity);
       handleAlreadyInside(alreadyInside._id, taskMembers);
-    } else if (!alreadyInside) {
-      const activity = {
-        _id: utilService.makeId(),
-        txt: `${loggedInUser.fullname} joined to task ${task.title}`,
-        createdAt: Date.now(),
-        byMember: loggedInUser,
-        task: {
-          _id: task._id,
-          title: task.title,
-        },
-      };
-      board.activities.unshift(activity);
-      const newMember = boardService.getMemberById(board, memberId);
+
+    } else {
+      const activity = boardService.addTaskActivity(`${loggedInUser.fullname} joined to task ${task.title}`,task,loggedInUser)
+      if (activity) board.activities.unshift(activity);
       taskMembers.push(newMember);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
-      // setCurrTaskMembers(taskMembers);
       const action = { type: 'SET_BOARD', board };
       dispatch(action);
     }
