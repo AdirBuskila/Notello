@@ -37,7 +37,7 @@ export const DueDateBadge = (props) => {
   const handleClick = async (ev, isDone) => {
     ev.stopPropagation();
     ev.preventDefault();
-    const activity = boardService.addTaskActivity(`added due date for task ${task.title} set to (${dueDate[0].date})`, task, loggedInUser)
+    const activity = boardService.addTaskActivity(`added due date for task ${task.title} set to (${dueDate[0].date})`, task._id, task.title, loggedInUser)
     try {
       if (activity) board.activities.unshift(activity);
       task.dueDate[0].isDone = !isDone;

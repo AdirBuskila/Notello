@@ -17,7 +17,8 @@ export const BoardActivity = (props) => {
 
   if (!board || board.length === 0) return <p>Loading...</p>;
   return (
-    <section className='board-activity-container'>
+    // <section className='board-activity-container'>
+    <section className={className}>
       <div className='activity-menu flex align-center'>
         <span>Menu</span>
         <ClearSharpIcon
@@ -57,10 +58,12 @@ export const BoardActivity = (props) => {
                       <span>
                         {utilService.fixTimestamp(activity.createdAt)}
                       </span>
-                      {/* {(activity.task._id) ? 
-                     <Link to={`/b/${board._id}/${activity.task._id}`}>
+                      {activity.task &&
+                     <Link onClick={() => {
+                      props.setMenuOpen(false);
+                    }} to={`/b/${board._id}/${activity.task._id}`}>
                     {!activity.txt.includes('deleted') && <q>{activity.task.title}</q>}
-                    </Link> : null} */}
+                    </Link>}
                     </div>
                   </div>
                 </div>

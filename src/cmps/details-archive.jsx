@@ -26,20 +26,20 @@ export const ArchiveModal = (props) => {
   const onHandleDeleteAction = () => {
     history.push(`/b/${board._id}`);
     board.groups[groupIdx].tasks.splice(taskIdx, 1);
-    const activity = boardService.addTaskActivity(`deleted task ${task.title}`, task, loggedInUser) 
+    const activity = boardService.addTaskActivity(`deleted task ${task.title}`, task._id, task.title, loggedInUser) 
     submitChanges(board, activity);
   }
 
   const onHandleArchiveAction = () => {
     board.groups[groupIdx].tasks[taskIdx].isArchived = true;
-    const activity = boardService.addTaskActivity(`archived task ${task.title}`, task, loggedInUser)
+    const activity = boardService.addTaskActivity(`archived task ${task.title}`, task._id, task.title, loggedInUser)
     submitChanges(board, activity);
   }
 
   const onHandleRetrieveAction = () => {
     if ( task.isArchived !== true) return
     board.groups[groupIdx].tasks[taskIdx].isArchived = false;
-    const activity = boardService.addTaskActivity(`retrieved task ${task.title}`, task, loggedInUser)
+    const activity = boardService.addTaskActivity(`retrieved task ${task.title}`, task._id, task.title, loggedInUser)
     submitChanges(board, activity);
   }
 

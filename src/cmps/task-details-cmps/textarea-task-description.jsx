@@ -32,7 +32,7 @@ export const AddDescription = (props) => {
   const onAdd = async () => {
     const activity = boardService.addTaskActivity(
       `changed ${task.title} task description to - ${newDescriptionTxt}`,
-      task,
+      task._id, task.title,
       loggedInUser
     );
     try {

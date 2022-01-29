@@ -19,7 +19,7 @@ export const AttachmentsCmp = (props) => {
     const attachmentIdx = task.attachments.findIndex((attachment) => {
       return attachmentId === attachment._id;
     });
-    const activity = boardService.addTaskActivity(`deleted ${attachments[attachmentIdx].url} / ${attachments[attachmentIdx].txt} attachment from task ${task.title}`, task, loggedInUser);
+    const activity = boardService.addTaskActivity(`deleted ${attachments[attachmentIdx].url} / ${attachments[attachmentIdx].txt} attachment from task ${task.title}`, task._id, task.title, loggedInUser);
     try {
       if (activity) board.activities.unshift(activity);
         task.attachments.splice(attachmentIdx, 1);
