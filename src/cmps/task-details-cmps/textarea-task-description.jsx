@@ -3,15 +3,12 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button';
 import { boardService } from '../../services/board.service';
 import { utilService } from '../../services/util.service';
-import { useDispatch, useSelector} from 'react-redux';
-
-
+import { useDispatch, useSelector } from 'react-redux';
 
 export const AddDescription = (props) => {
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [newDescriptionTxt, setNewDescription] = useState({});
   const [isAdding, onIsAdding] = useState(false);
-
 
   const { task, group, board } = props;
 
@@ -23,6 +20,7 @@ export const AddDescription = (props) => {
   const dispatch = useDispatch();
 
   const onHandleModal = () => {
+    console.log('here');
     onIsAdding(!isAdding);
   };
 
@@ -32,7 +30,11 @@ export const AddDescription = (props) => {
   };
 
   const onAdd = async () => {
-    const activity = boardService.addTaskActivity(`changed ${task.title} task description to - ${newDescriptionTxt}`, task, loggedInUser);
+    const activity = boardService.addTaskActivity(
+      `changed ${task.title} task description to - ${newDescriptionTxt}`,
+      task,
+      loggedInUser
+    );
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].description = newDescriptionTxt;
@@ -64,9 +66,7 @@ export const AddDescription = (props) => {
               sx={{ textTransform: 'none', minWidth: 52.5 }}>
               Save
             </Button>
-            <a href='#' onClick={onHandleModal}>
-              ✕
-            </a>
+            <button onClick={onHandleModal}>✕</button>
           </div>
         </div>
       )}

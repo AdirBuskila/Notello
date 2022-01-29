@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import { useHistory } from 'react-router-dom';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { utilService } from '../services/util.service';
-import { boardService } from '../services/board.service';
 
 export const CopyMoveModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -16,6 +15,7 @@ export const CopyMoveModal = (props) => {
   const [keepChecklistsInitial, setKeepChecklistsInitial] = useState(true);
   const [keepLabelsInitial, setKeepLabelsInitial] = useState(true);
   const [keepGroupInitial, setKeepGroupInitial] = useState(groupIdx);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
@@ -45,14 +45,16 @@ export const CopyMoveModal = (props) => {
   const onHandleSave = () => {
     newTask._id = utilService.makeId();
     newTask.title = newCardTitle;
-    newTask.labels = keepChecklistsInitial ? task.labels : [];
+    newTask.checklists = keepChecklistsInitial ? task.labels : [];
     newTask.labels = keepLabelsInitial ? task.labels : [];
-    // board.groups[+keepGroupInitial].tasks.push(newTask);
-    // submitChanges(board);
+    board.groups[+keepGroupInitial].tasks.unshift(newTask);
+    submitChanges(board);
+    // history.push(`/b/${board._id}/${newTask._id}`);
   };
 
   const submitChanges = async (board) => {
     try {
+      setNewCardTitle('');
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);
     } catch (err) {

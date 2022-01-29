@@ -23,7 +23,7 @@ export const AddCommentCmp = (props) => {
     const value = target.value;
     setNewComment(value);
   };
-  
+
   const onAdd = async () => {
     const comment = {
       _id: utilService.makeId(),
@@ -31,7 +31,11 @@ export const AddCommentCmp = (props) => {
       createdAt: Date.now(),
       byMember: { loggedInUser },
     };
-    const activity = boardService.addTaskActivity(`added comment to task ${task.title} - ${comment.txt}`, task, loggedInUser);
+    const activity = boardService.addTaskActivity(
+      `added comment to task ${task.title} - ${comment.txt}`,
+      task,
+      loggedInUser
+    );
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].comments.push(comment);
@@ -56,7 +60,7 @@ export const AddCommentCmp = (props) => {
           onChange={onHandleChange}
           rows='2'
           // defaultValue={newComment}
-          placeholder={`Add a more detailed comment `}></textarea>
+          placeholder={`Write a comment... `}></textarea>
         {active && (
           <div className='new-comment-actions flex align-center'>
             <Button variant='contained' onClick={onAdd}>
