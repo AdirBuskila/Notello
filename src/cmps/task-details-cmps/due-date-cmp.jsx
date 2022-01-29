@@ -2,8 +2,10 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AddIcon from '@mui/icons-material/Add';
 import { deepOrange, deepPurple } from '@mui/material/colors';
-
+import { boardService } from '../../services/board.service';
 import { utilService } from '../../services/util.service';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 
 function formatAMPM(date) {
@@ -16,10 +18,13 @@ function formatAMPM(date) {
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
   }
-  
 
 
-export const DueDateCmp = ({ dueDate }) => {
+export const DueDateCmp = (props) => {
+    const dispatch = useDispatch();  
+    const { dueDate, task, taskIdx, groupIdx, board} = props
+    const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+
     const months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
     const date = dueDate[0].date
@@ -48,18 +53,38 @@ export const DueDateCmp = ({ dueDate }) => {
     if (minutes === 0 ) {
         minutes = '00'
     }
+
+    const handleChange = async (ev, isDone) => {
+      ev.stopPropagation();
+      ev.preventDefault();
+      const activity = boardService.addTaskActivity(`added due date for task ${task.title} set to (${dueDate[0].date})`, task._id, task.title, loggedInUser)
+      try {
+        if (activity) board.activities.unshift(activity);
+        task.dueDate[0].isDone = !isDone;
+        board.groups[groupIdx].tasks[taskIdx] = task;
+        await boardService.save(board);
+        const action = { type: 'SET_BOARD', board };
+        await dispatch(action);
+      } catch (err) {
+        console.log('Cannot add due date to task');
+      }
+    };  
+  
+
+
+
   return (
     <section className='due-date-main-container'>
       <div className='due-date-info-container'>
           <span>Due Date</span>
-        <div className='span-container flex'>
+        <div className='span-container flex align-center'>
           <span className='due-date flex align-center' >
+          <input checked={isDone} onChange={(ev) => {handleChange(ev, isDone)}} type="checkbox" />
           {months[month]} {day} at {timeAmPm}
           {isDone && <span className='complete' >complete</span>}
           {isOverDue && <span className='over-due' >over due</span> }
           {isSoon && <span className='soon' >due soon</span> }
           </span>
-          
         </div>
       </div>
       <div className='members-avatar-container flex'>

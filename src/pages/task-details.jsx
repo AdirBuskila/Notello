@@ -197,7 +197,12 @@ export const TaskDetails = (props) => {
                   members={selectedTask.members}
                 />
                 {selectedTask.dueDate.length > 0 && (
-                  <DueDateCmp dueDate={selectedTask.dueDate} />
+                  <DueDateCmp
+                  task={selectedTask}
+                  board={board}
+                  taskIdx={taskIdx}
+                  groupIdx={groupIdx}
+                  dueDate={selectedTask.dueDate} />
                 )}
               </div>
               <LabelsCmp
