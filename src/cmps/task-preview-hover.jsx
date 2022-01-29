@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
 import { Backdrop } from './UI/backdrop';
-import { TaskPreviewNotDraggable } from './task-preview-non-draggable';
+import { TaskPreviewMiniMenu } from './task-preview-mini-menu';
 
 export const TaskPreviewHover = (props) => {
   const { task, groupIdx, board, key, index } = props;
@@ -43,26 +43,22 @@ export const TaskPreviewHover = (props) => {
           sx={{ fontSize: 'medium', color: 'action' }}
         />
       </button>
-      <div className='mini-menu-total flex'>
-        {isMiniMenuOpened && (
-          <section className='mini-menu-preview'>
-            <TaskPreviewNotDraggable
+      {isMiniMenuOpened && (
+        <section className='mini-menu-total flex'>
+          <div className='mini-menu-preview'>
+            <TaskPreviewMiniMenu
               board={board}
               groupIdx={groupIdx}
               key={key}
-              index={index}
               task={task}
               groupId={board.groups[groupIdx]._id}
-              source={'list'}
             />
-          </section>
-        )}
-        {isMiniMenuOpened && (
-          <section className='mini-menu-options'>
-            <h4>Hi</h4>
-          </section>
-        )}
-      </div>
+          </div>
+          <div className='mini-menu-options'>
+            <h4>Hi asd asd asd asd asd asd asd</h4>
+          </div>
+        </section>
+      )}
     </React.Fragment>
   );
 };
