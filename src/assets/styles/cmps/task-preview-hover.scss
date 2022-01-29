@@ -22,8 +22,8 @@
 
 .mini-menu-total {
     position: absolute;
-    z-index: 1000;
-    display: flex;
+    width: 500px;
+    z-index: 100;
 
 
   .mini-menu-preview {
@@ -31,6 +31,7 @@
   }
 
   .mini-menu-options {
+    position: relative;
     width: rem(240px);
     height: 100%;
     background-color: green;

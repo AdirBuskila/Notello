@@ -12,12 +12,15 @@ import { DueDateBadge } from './badge-cmps/due-date-badge';
 
 import { utilService } from '../services/util.service';
 
-export const TaskPreviewNotDraggable = (props) => {
+export const TaskPreviewMiniMenu = (props) => {
+  /* states */
   const { task, board, groupIdx, source } = props;
-  const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
-  const isFull = taskCover.spread === 'full' ? true : false;
   const [isDueDateChanged, setIsDueDateChanged] = useState(false);
   const [taskTitle, setTaskTitle] = useState(task.title);
+
+  /* values */
+  const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
+  const isFull = taskCover.spread === 'full' ? true : false;
   const coverType = taskCover
     ? utilService.isStringColor(taskCover.background)
       ? 'backgroudColor'
@@ -35,6 +38,11 @@ export const TaskPreviewNotDraggable = (props) => {
     ? 'flex align-center expended'
     : 'flex align-center';
 
+  const onModalClick = (ev) => {
+    ev.stopPropagation();
+    ev.preventDefault();
+  };
+
   const onHandleLablesClick = (ev) => {
     ev.stopPropagation();
     ev.preventDefault();
@@ -43,11 +51,6 @@ export const TaskPreviewNotDraggable = (props) => {
 
   const onHandleTitleChange = ({ target }) => {
     setTaskTitle(target.value);
-  };
-
-  const onModalClick = (ev) => {
-    ev.stopPropagation();
-    ev.preventDefault();
   };
 
   // const onHandlePreviewClick = (ev) => {
@@ -62,6 +65,7 @@ export const TaskPreviewNotDraggable = (props) => {
       <section
         onClick={(ev) => onModalClick(ev)}
         className='task-preview flex column'>
+        {/* Upper cover */}
         {taskCover &&
           !isFull &&
           (coverType === 'backgroudColor' ? (
@@ -76,6 +80,7 @@ export const TaskPreviewNotDraggable = (props) => {
               <img src={taskCover.background} alt='task-img' />
             </div>
           ))}
+
         <div
           style={isFull ? { backgroundColor: `${taskCover.background}` } : null}
           className='task-not-cover flex column'>
@@ -94,6 +99,8 @@ export const TaskPreviewNotDraggable = (props) => {
               })}
             </ul>
           )}
+
+          {/* Inner title with option to change */}
           <textarea
             autoFocus
             onFocus={(ev) => {
@@ -101,6 +108,7 @@ export const TaskPreviewNotDraggable = (props) => {
             }}
             defaultValue={task.title}
             onChange={(ev) => onHandleTitleChange(ev)}></textarea>
+
           {!isFull && (
             <div className='task-info-icons flex space-between'>
               <div className='task-badges flex align-center'>
