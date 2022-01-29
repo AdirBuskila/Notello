@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { utilService } from '../services/util.service';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 const clientId = "52418967336-cfdovdnof9ju47roksb5d2etem57i6ev.apps.googleusercontent.com";
@@ -12,6 +13,7 @@ export const GoogleLoginButton = () => {
     const [showlogoutButton, setShowlogoutButton] = useState(false);
     const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
     const dispatch = useDispatch();
+    const history = useHistory()
 
     const onLoginSuccess = (res) => {
         const userObj = res.profileObj
@@ -26,6 +28,7 @@ export const GoogleLoginButton = () => {
         dispatch(action)
         setShowloginButton(false);
         setShowlogoutButton(true);
+        history.push('/board')
         // alert(`Welcome To Notello ${userObj.name}!`)
     };
 

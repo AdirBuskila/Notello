@@ -114,8 +114,13 @@ export const TaskDetails = (props) => {
   };
 
   const [editMode, setEditMode] = React.useState(false);
-
+ 
+ 
   if (!selectedTask || !board) return <div className=''></div>;
+
+  const inside = selectedTask.members.find((member)=> {
+    return (member._id === loggedInUser._id)
+  })
   return (
     <React.Fragment>
       <div className='task-details-container'>
@@ -275,8 +280,8 @@ export const TaskDetails = (props) => {
               </div>
             </div>
             <div className='window-sidebar'>
-              <p className='task-actions'>Suggested</p>
-              <JoinCmp task={selectedTask} board={board} group={group} />
+              {!inside && <p className='task-actions'>Suggested</p>}
+              {!inside && <JoinCmp task={selectedTask} board={board} group={group} />}
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
               <LabelsModal
