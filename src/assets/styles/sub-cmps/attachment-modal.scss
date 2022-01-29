@@ -1,12 +1,13 @@
 .attachment-modal-container {
     overflow: hidden;
     width: rem(304px);
-    padding: 0 0.75rem;
+    // padding: 0 0.75rem;
+    padding-block-end: 3rem;
     h4 {
         font-weight: 400;
         color: #5e6c84;
         text-align: center;
-        width: 100%;
+        width: 90%;
         padding: 0.75rem;
         border-bottom: 1px solid #091e4221;
     }
@@ -20,18 +21,30 @@
     }
     .attachment-inner {
         width: 100%;
-        label {
-            color: #172b4d;
-            font-weight: 400;
-        }
         .upload-image {
-            #file-upload {
-                opacity: 0;
-                height: 0;
-                width: 0;
+            padding: 0.5rem 0;
+            form {
+                border-radius: 3px;
+                padding: 0.5rem 0;
+                width: 100%;
+                #file-upload {
+                    opacity: 0;
+                    height: 0;
+                    width: 0;
+                }
+                label {
+                    display: inline-block;
+                    cursor: pointer;
+                    height: 100%;
+                    width: 100%;
+                    color: #172b4d;
+                    font-weight: 400;
+                    padding-inline-start: 1rem;
+                }
             }
-            padding: 1rem 0;
-            border-bottom: 1px solid #091e4221;
+            form:hover {
+                background-color: #091e4214;
+            }
         }
         button {
             background-color: #091e420a;
@@ -41,6 +54,10 @@
             width: rem(74px);
         }
         &>.attach-link {
+            border-top: 1px solid #091e4221;
+            margin: auto;
+            width: 90%;
+            padding: 0.5rem 0;
             p {
                 padding-block-end: 0.5rem;
                 color: #5e6c84;
@@ -61,7 +78,6 @@
             button {
                 margin-top: 1rem;
             }
-            padding: 0.5rem 0;
         }
         .link-name {
             margin-block-start: 0.75rem;

@@ -17,6 +17,7 @@ import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmps } from '../cmps/check-list-cmps';
 import { CoverModal } from '../cmps/cover-modal';
 import { Backdrop } from '../cmps/UI/backdrop';
+import { ActivityPerTask } from '../cmps/task-details-cmps/activity-per-task';
 ///// CMPS
 import { boardService } from '../services/board.service';
 import { loadTask, saveTask } from '../store/actions/board.action no BE';
@@ -24,7 +25,7 @@ import { loadTask, saveTask } from '../store/actions/board.action no BE';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
+// import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ArchiveSharpIcon from '@mui/icons-material/ArchiveSharp';
@@ -102,7 +103,12 @@ export const TaskDetails = (props) => {
     const newTask = selectedTask;
     newTask.title = taskTitle;
     selectedTask.title = taskTitle;
-    const activity = boardService.addTaskActivity(`changed task ${selectedTask.title} title to - ${taskTitle}`, selectedTask._id, selectedTask.title, loggedInUser);
+    const activity = boardService.addTaskActivity(
+      `changed task ${selectedTask.title} title to - ${taskTitle}`,
+      selectedTask._id,
+      selectedTask.title,
+      loggedInUser
+    );
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx] = selectedTask;
@@ -114,13 +120,12 @@ export const TaskDetails = (props) => {
   };
 
   const [editMode, setEditMode] = React.useState(false);
- 
- 
+
   if (!selectedTask || !board) return <div className=''></div>;
 
-  const inside = selectedTask.members.find((member)=> {
-    return (member._id === loggedInUser._id)
-  })
+  const inside = selectedTask.members.find((member) => {
+    return member._id === loggedInUser._id;
+  });
   return (
     <React.Fragment>
       <div className='task-details-container'>
@@ -185,7 +190,12 @@ export const TaskDetails = (props) => {
           <div className='task-main-container'>
             <div className='main-content'>
               <div className='task-info flex align-center'>
-                <MembersCmp group={group} board={board} task={selectedTask} members={selectedTask.members} />
+                <MembersCmp
+                  group={group}
+                  board={board}
+                  task={selectedTask}
+                  members={selectedTask.members}
+                />
                 {selectedTask.dueDate.length > 0 && (
                   <DueDateCmp dueDate={selectedTask.dueDate} />
                 )}
@@ -202,28 +212,38 @@ export const TaskDetails = (props) => {
                 <div className='description flex'>
                   <SubjectIcon />
                   <p>Description</p>
-                  {selectedTask.description !== '' && !editMode && <div className="edit-button-container flex justify-center"><button className='edit-description-button' onClick={()=>setEditMode(true)} >Edit</button></div>} 
+                  {selectedTask.description !== '' && !editMode && (
+                    <div className='edit-button-container flex justify-center'>
+                      <button
+                        className='edit-description-button'
+                        onClick={() => setEditMode(true)}>
+                        Edit
+                      </button>
+                    </div>
+                  )}
                 </div>
                 <div className='add-description-container'>
-                  {selectedTask.description !== '' && editMode && <EditDescription
-                  task={selectedTask}
-                  board={board}
-                  setEditMode={setEditMode}
-                  group={group}
-                  description={selectedTask.description}
-                  />}
-                  {selectedTask.description === '' && 
+                  {selectedTask.description !== '' && editMode && (
+                    <EditDescription
+                      task={selectedTask}
+                      board={board}
+                      setEditMode={setEditMode}
+                      group={group}
+                      description={selectedTask.description}
+                    />
+                  )}
+                  {selectedTask.description === '' && (
                     <AddDescription
                       task={selectedTask}
                       board={board}
                       group={group}
                     />
-                   }
-                  {selectedTask.description !== '' && !editMode &&
-                    (<p className='task-description'>
+                  )}
+                  {selectedTask.description !== '' && !editMode && (
+                    <p className='task-description'>
                       {selectedTask.description}
-                    </p>)
-                  }
+                    </p>
+                  )}
                 </div>
               </div>
               <CheckListCmps
@@ -252,7 +272,7 @@ export const TaskDetails = (props) => {
                   </div>
                   <button>Show details</button>
                 </div>
-                <div className='comment-container flex'>
+                <div className='comment-container flex column'>
                   <div className='user-container'>
                     <Avatar
                       src={loggedInUser.imgUrl}
@@ -268,6 +288,7 @@ export const TaskDetails = (props) => {
                     board={board}
                     group={group}
                   />
+                  <ActivityPerTask task={selectedTask} board={board} />
                 </div>
                 <div className='comments-area flex column'>
                   <CommentsSection
@@ -281,7 +302,9 @@ export const TaskDetails = (props) => {
             </div>
             <div className='window-sidebar'>
               {!inside && <p className='task-actions'>Suggested</p>}
-              {!inside && <JoinCmp task={selectedTask} board={board} group={group} />}
+              {!inside && (
+                <JoinCmp task={selectedTask} board={board} group={group} />
+              )}
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
               <LabelsModal
@@ -296,19 +319,12 @@ export const TaskDetails = (props) => {
                 taskIdx={taskIdx}
                 task={selectedTask}
               />
-              <div
-                onClick={() => {
-                  setIsOpen(true);
-                }}
-                className='button-container flex'>
-                <QueryBuilderIcon color='action' />
-                <Typography>Dates</Typography>
-                <DatePickerModal
-                  task={selectedTask}
-                  board={board}
-                  group={group}
-                />
-              </div>
+              <DatePickerModal
+                setIsOpen={setIsOpen}
+                task={selectedTask}
+                board={board}
+                group={group}
+              />
               <AttachmentModal
                 task={selectedTask}
                 board={board}
