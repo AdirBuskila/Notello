@@ -25,7 +25,6 @@ export function DatePickerModal(props) {
 
   const handleDateChange = (selectedDate) => {
     setSelectedDate(selectedDate);
-    console.log('selectedDate', selectedDate);
     const newDueDate = { date: selectedDate, isDone: false };
     const newArray = [];
     newArray.push(newDueDate);
