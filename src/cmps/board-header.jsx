@@ -12,20 +12,12 @@ import DOWNICON from '../assets/img/down-arrow.png';
 import ADD_MEMBER from '../assets/img/add-user.png';
 import FILTER from '../assets/img/filter.svg';
 import MENU from '../assets/img/menu.png';
-import AVATAR1 from '../assets/img/avatar1.png';
-import AVATAR2 from '../assets/img/avatar2.png';
-import AVATAR3 from '../assets/img/avatar3.png';
-import AVATAR4 from '../assets/img/avatar4.png';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
 export const BoardHeader = (props) => {
   const board = { ...props.board };
-  const [boardTitle, setBoardTitle] = useState();
+  const [boardTitle, setBoardTitle] = useState(board.title);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setBoardTitle(board.title);
-  }, [board]);
 
   const onHandleChange = (ev) => {
     setBoardTitle(ev.target.value);
