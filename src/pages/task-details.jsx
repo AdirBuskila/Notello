@@ -196,11 +196,12 @@ export const TaskDetails = (props) => {
                 />
                 {selectedTask.dueDate.length > 0 && (
                   <DueDateCmp
-                  task={selectedTask}
-                  board={board}
-                  taskIdx={taskIdx}
-                  groupIdx={groupIdx}
-                  dueDate={selectedTask.dueDate} />
+                    task={selectedTask}
+                    board={board}
+                    taskIdx={taskIdx}
+                    groupIdx={groupIdx}
+                    dueDate={selectedTask.dueDate}
+                  />
                 )}
               </div>
               <LabelsCmp
@@ -275,7 +276,7 @@ export const TaskDetails = (props) => {
                   </div>
                   <button>Show details</button>
                 </div>
-                <div className='comment-container flex column'>
+                <div className='comment-container flex'>
                   <div className='user-container'>
                     <Avatar
                       src={loggedInUser.imgUrl}

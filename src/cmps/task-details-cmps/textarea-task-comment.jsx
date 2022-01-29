@@ -33,7 +33,8 @@ export const AddCommentCmp = (props) => {
     };
     const activity = boardService.addTaskActivity(
       `added comment to task ${task.title} - ${comment.txt}`,
-      task._id, task.title,
+      task._id,
+      task.title,
       loggedInUser
     );
     try {
@@ -50,7 +51,7 @@ export const AddCommentCmp = (props) => {
     <React.Fragment>
       <div className='new-comment flex column'>
         <textarea
-          style={{ resize: 'none', width: '94%' }}
+          style={{ resize: 'none', width: '100%' }}
           onFocus={() => {
             setActive(true);
           }}

@@ -23,7 +23,6 @@
             height: rem(40px);
             padding: 0.5rem 0.75rem;
             border-color: #dfe1e6;
-            margin-inline-start: 2.2rem;
         }
         &>textarea::placeholder {
             color: #172b4d;
@@ -61,7 +60,8 @@
                 &>p:not(:last-child) {
                     font-size: rem(14px);
                     font-weight: 400;
-                    width: 100%;
+                    width: 94.5%;
+                    border: 1px solid #dfe1e6;
                     padding: 0.5rem;
                     background-color: white;
                     border-radius: 3px;
