@@ -119,7 +119,8 @@
         .task-main-container {
             display: grid;
             grid-template-columns: 0.7fr 0.3fr;
-            gap: 16px;
+            gap: 1rem;
+            padding-bottom: 1rem;
         }
         .window-sidebar {
             // .MuiTypography-root {
@@ -270,11 +271,10 @@
             }
         }
         .activity-container {
-            gap: 8px;
+            gap: 1rem;
             font-size: rem(16px);
             font-weight: 600;
             .activity {
-                margin-bottom: rem(15px);
                 button {
                     background-color: #091e420a;
                     border-radius: 3px;
@@ -286,48 +286,11 @@
                     margin-inline-end: rem(10px);
                 }
             }
-            .comment {
-                font-size: 14px;
-                gap: 8px;
-                p.delete-comment {
-                    color: #5e6c84;
-                    font-size: 12px;
-                    font-weight: 400;
-                }
-            }
-            .comment-container {
-                .user-container {
-                    position: absolute;
-                    left: 0.75rem;
-                }
-                .comments-area {
-                    gap: 8px;
-                }
-                p {
-                    font-size: rem(15px);
-                }
-            }
         }
         .task-info {
             margin-top: 2rem;
             margin-left: 2rem;
             gap: rem(20px);
-        }
-        .comments-area {
-            .comments-container {
-                gap: 1rem;
-            }
-            .comment-creator {
-                position: absolute;
-                left: 0.75rem;
-            }
-            .comment {
-                border-radius: 3px;
-                margin-inline-start: 2.2rem;
-            }
-            .comment:last-child {
-                padding-block-end: rem(20px);
-            }
         }
     }
 }
