@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { boardService } from '../services/board.service';
 export const CreateBoard = (props) => {
-  const { toggleModal, setNewBoard } = props;
+  const { setNewBoard } = props;
 
   const [boardTitle, setBoardTitle] = useState('');
   const [boardColor, setBoardColor] = useState('rgb(0, 121, 191)');
@@ -12,10 +12,6 @@ export const CreateBoard = (props) => {
   const onHandleChange = ({ target }) => {
     const value = target.value;
     setBoardTitle(value);
-  };
-
-  const handleModal = (string) => {
-    const overLayClass = string;
   };
 
   const handleBoardSubmit = () => {
@@ -29,8 +25,7 @@ export const CreateBoard = (props) => {
         imgUrl: '',
       },
     };
-    const action = { type: 'SAVE', board };
-    dispatch(action);
+    boardService.save(board);
     setNewBoard(false);
   };
 
@@ -38,7 +33,9 @@ export const CreateBoard = (props) => {
 
   return (
     <div className='over-lay' onClick={() => setNewBoard(false)}>
-      <div className='add-board-modal flex align-center column'>
+      <div
+        className='add-board-modal flex align-center column'
+        onClick={(ev) => ev.stopPropagation()}>
         <div className='create-container flex align-center'>
           <div
             style={{ background: `${boardColor}` }}

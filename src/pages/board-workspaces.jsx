@@ -9,8 +9,7 @@ import { CreateBoard } from '../cmps/create-board-modal';
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
-  const [newBoard, setNewBoard] = useState([]);
-  console.log(newBoard);
+  const [newBoard, setNewBoard] = useState();
   useEffect(() => {
     (async () => {
       try {

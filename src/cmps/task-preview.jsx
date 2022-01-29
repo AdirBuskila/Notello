@@ -16,7 +16,6 @@ export const TaskPreview = (props) => {
   const { task, board, groupIdx } = props;
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const isFull = taskCover.spread === 'full' ? true : false;
-  const [openPopup, setOpenPopup] = useState(false);
   const [isDueDateChanged, setIsDueDateChanged] = useState(false);
   const coverType = taskCover
     ? utilService.isStringColor(taskCover.background)
@@ -49,9 +48,6 @@ export const TaskPreview = (props) => {
           {(provided) => (
             <div
               className='task-preview flex column'
-              onClick={() => {
-                setOpenPopup(true);
-              }}
               ref={provided.innerRef}
               {...provided.dragHandleProps}
               {...provided.draggableProps}
@@ -84,8 +80,8 @@ export const TaskPreview = (props) => {
                           className={className}
                           onClick={(ev) => onHandleLablesClick(ev)}
                           key={idx}
-                          style={{ backgroundColor: `${label.bgc}`}}>
-                          {(isLabelsExpended && label.name) && `${label.name}`}
+                          style={{ backgroundColor: `${label.bgc}` }}>
+                          {isLabelsExpended && label.name && `${label.name}`}
                         </li>
                       );
                     })}
