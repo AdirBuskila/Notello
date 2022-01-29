@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import * as React from 'react';
 import { utilService } from '../services/util.service';
-
 import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
 import { LabelsCmp } from '../cmps/task-details-cmps/labels-cmp';
 import { AddDescription } from '../cmps/task-details-cmps/textarea-task-description';
@@ -32,7 +31,6 @@ import ArchiveSharpIcon from '@mui/icons-material/ArchiveSharp';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
-import { deepOrange } from '@mui/material/colors';
 import SubjectIcon from '@mui/icons-material/Subject';
 import { DueDateCmp } from '../cmps/task-details-cmps/due-date-cmp';
 import { MembersModal } from '../cmps/task-details-cmps/members-modal';
@@ -293,7 +291,6 @@ export const TaskDetails = (props) => {
                     board={board}
                     group={group}
                   />
-                  <ActivityPerTask task={selectedTask} board={board} />
                 </div>
                 <div className='comments-area flex column'>
                   <CommentsSection
