@@ -25,10 +25,15 @@ export const TaskPreviewNotDraggable = (props) => {
     : null;
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
   );
+
+  const className = isLabelsExpended
+    ? 'flex align-center expended'
+    : 'flex align-center';
 
   const onHandleLablesClick = (ev) => {
     ev.stopPropagation();
@@ -40,13 +45,23 @@ export const TaskPreviewNotDraggable = (props) => {
     setTaskTitle(target.value);
   };
 
-  const className = isLabelsExpended
-    ? 'flex align-center expended'
-    : 'flex align-center';
+  const onModalClick = (ev) => {
+    ev.stopPropagation();
+    ev.preventDefault();
+  };
+
+  // const onHandlePreviewClick = (ev) => {
+  //   ev.stopPropagation();
+  //   if (source !== 'list') {
+  //     history.push(`/b/${board._id}/${task._id}`);
+  //   }
+  // };
 
   return (
     <React.Fragment>
-      <section className='task-preview flex column'>
+      <section
+        onClick={(ev) => onModalClick(ev)}
+        className='task-preview flex column'>
         {taskCover &&
           !isFull &&
           (coverType === 'backgroudColor' ? (
