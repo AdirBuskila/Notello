@@ -25,7 +25,8 @@ export function DatePickerModal(props) {
 
   const handleDateChange = (selectedDate) => {
     setSelectedDate(selectedDate);
-    const newDueDate = { selectedDate, isDone: false };
+    console.log('selectedDate', selectedDate);
+    const newDueDate = { date: selectedDate, isDone: false };
     const newArray = [];
     newArray.push(newDueDate);
     board.groups[groupIdx].tasks[taskIdx].dueDate = newArray;
