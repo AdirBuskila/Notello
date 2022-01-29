@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
-import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { Button, makeStyles } from '@material-ui/core';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
+import Typography from '@mui/material/Typography';
 import { boardService } from '../../services/board.service';
 import { useDispatch } from 'react-redux';
 
-const useStyles = makeStyles({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-});
-
 export function DatePickerModal(props) {
-  const classes = useStyles();
   const { task, group, board } = props;
   const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
+  const ExampleCustomInput = React.forwardRef(({ onClick }, ref) => (
+    <div onClick={onClick} ref={ref} className='button-container flex'>
+      <QueryBuilderIcon color='action' />
+      <Typography>Dates</Typography>
+    </div>
+  ));
 
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
@@ -34,22 +33,12 @@ export function DatePickerModal(props) {
     dispatch(action);
   };
   return (
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DatePicker
-          style={{
-            opacity: '0',
-            width: '100%',
-            position: 'relative',
-            right: '50px',
-          }}
-          id='date-picker'
-          margin='normal'
-          variant='modal'
-          label=''
-          format='dd MMM yyyy'
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </MuiPickersUtilsProvider>
+    <DatePicker
+      selected={selectedDate}
+      onChange={handleDateChange}
+      startDate={selectedDate}
+      customInput={<ExampleCustomInput />}
+      formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3)}
+    />
   );
 }

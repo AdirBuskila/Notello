@@ -17,14 +17,14 @@ export function boardReducer(state = initialState, action) {
                 action.board.activities.pop();
             }
             boardService.save(action.board);
-            newState = { ...state, board: action.board }
+            newState = {...state, board: action.board }
             break;
         case 'HANDLE_LABELS':
             const isLabelsExpended = state.isLabelsExpended;
-            newState = { ...state, isLabelsExpended: !isLabelsExpended }
+            newState = {...state, isLabelsExpended: !isLabelsExpended }
             break;
-        case 'ATTACH_BOARD_USER': 
-            newState = {...state, currBoardUser: action.loggedInUser}
+        case 'ATTACH_BOARD_USER':
+            newState = {...state, currBoardUser: action.loggedInUser }
             break;
     }
     return newState;

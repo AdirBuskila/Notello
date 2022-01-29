@@ -5,9 +5,11 @@ import { boardService } from '../services/board.service';
 import { Loader } from '../cmps/loader';
 import PersonIcon from '@mui/icons-material/Person';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
+import { CreateBoard } from '../cmps/create-board-modal';
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
+  const [newBoard, setNewBoard] = useState();
   useEffect(() => {
     (async () => {
       try {
@@ -17,7 +19,7 @@ export const BoardWorkspaces = () => {
         console.log(err);
       }
     })();
-  }, []);
+  }, [newBoard]);
   if (!boards || boards.length === 0) return <Loader />;
   return (
     <React.Fragment>
@@ -41,6 +43,13 @@ export const BoardWorkspaces = () => {
               </Link>
             );
           })}
+          <div
+            className='add-board-container board flex pointer align-center justify-center'
+            onClick={() => {
+              setNewBoard(true);
+            }}>
+            <p style={{ filter: 'brightness(100%)' }}>Create New Board</p>
+          </div>
         </div>
         <div className='stared-workspace'>
           <div className='stared-workspace-title flex align-center'>
@@ -49,6 +58,7 @@ export const BoardWorkspaces = () => {
           </div>
         </div>
       </div>
+      {newBoard && <CreateBoard setNewBoard={setNewBoard} />}
     </React.Fragment>
   );
 };

@@ -18,7 +18,6 @@ export const TaskPreview = (props) => {
   const [isHover, setIsHover] = useState(false);
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const isFull = taskCover.spread === 'full' ? true : false;
-  const [openPopup, setOpenPopup] = useState(false);
   const [isDueDateChanged, setIsDueDateChanged] = useState(false);
   const [taskTitle, setTaskTitle] = useState(task.title);
   const CmpClassName =
@@ -145,7 +144,7 @@ export const TaskPreview = (props) => {
                     onChange={(ev) => onHandleTitleChange(ev)}></textarea>
                 )}
                 {!isFull && (
-                  <div className='task-info-icons flex space-between'>
+                  <div className='task-info-icons flex space-between wrap'>
                     <div className='task-badges flex align-center'>
                       {task.dueDate.length > 0 && (
                         <DueDateBadge

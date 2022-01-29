@@ -9,6 +9,10 @@
     padding: rem(6px) rem(8px);
     gap: 0.25rem;
     min-height: 2rem;
+    .task-info-icons {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+  }
   }
   .task-cover {
     width: 100%;
