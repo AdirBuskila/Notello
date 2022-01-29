@@ -1,27 +1,32 @@
 .due-date {
-  padding: rem(6px) rem(12px);
-  background-color: rgba(9, 30, 66, 0.04);
-  border-radius: 3px;
-  font-weight: 400;
-  font-size: 14px;
-  color: #172b4d;
-  gap: 4px;
-  & > span {
-    display: flex;
-    align-items: center;
-    padding: 0 0.25rem;
-    border-radius: 2px;
-    font-size: 12px;
-    color: #ffffff;
-  }
-  .complete {
-    background-color: #61bd4f;
-  }
-  .soon {
+    cursor: pointer;
+    padding: rem(6px) rem(12px);
+    background-color: rgba(9, 30, 66, 0.04);
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 14px;
     color: #172b4d;
-    background-color: #f2d600;
-  }
-  .over-due {
-    background-color: #ec9488;
-  }
+    gap: 4px;
+    &>span {
+        display: flex;
+        align-items: center;
+        padding: 0 0.25rem;
+        border-radius: 2px;
+        font-size: 12px;
+        color: #ffffff;
+    }
+    .complete {
+        background-color: #61bd4f;
+    }
+    .soon {
+        color: #172b4d;
+        background-color: #f2d600;
+    }
+    .over-due {
+        background-color: #ec9488;
+    }
+}
+
+.due-date:hover {
+    background-color: rgba(9, 30, 66, 0.08);
 }

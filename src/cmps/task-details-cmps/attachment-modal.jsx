@@ -18,9 +18,7 @@ export const AttachmentModal = (props) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (event) => {
-    console.log('im here');
     open = false;
-    console.log('open', open);
     setAnchorEl(null);
   };
 
@@ -48,8 +46,7 @@ export const AttachmentModal = (props) => {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
       const cover = { background: attachmentUrl, spread: 'partial' };
-      task.cover = cover;
-      board.groups[groupIdx].tasks[taskIdx] = task;
+      board.groups[groupIdx].tasks[taskIdx].cover = cover
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);
     } catch (err) {
@@ -67,14 +64,11 @@ export const AttachmentModal = (props) => {
         url: obj.url,
         createdAt: Date.now(),
       };
-      const cover = { background: obj.url, spread: 'partial' };
-      task.cover = cover;
-      console.log('task.cover', task.cover);
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
-      console.log('added attachment');
+      const cover = { background: obj.url, spread: 'partial' };
+      board.groups[groupIdx].tasks[taskIdx].cover = cover
       const action = { type: 'SET_BOARD', board };
       await dispatch(action);
-      console.log('dispatch');
       handleClose();
     } catch (err) {
       console.log('cannot upload image', err);
