@@ -81,6 +81,7 @@ export const GroupList = (props) => {
               {board.groups &&
                 board.groups.map((group, idx) => (
                   <GroupPreview
+                  setPreview={props.setPreview}
                     onLoadBoard={props.onLoadBoard}
                     group={group}
                     key={idx}

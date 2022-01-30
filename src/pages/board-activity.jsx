@@ -10,7 +10,6 @@ import { utilService } from '../services/util.service';
 
 export const BoardActivity = (props) => {
   const board = useSelector((state) => state.boardModule.board);
-  console.log(props.menuOpen);
   const className = props.menuOpen
     ? 'board-activity-container open'
     : 'board-activity-container';

@@ -20,20 +20,16 @@
   background-color: #f4f5f7;
 }
 
-.mini-menu-total {
-    position: absolute;
-    width: 500px;
-    z-index: 100;
+.mini-menu-preview {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+}
 
-
-  .mini-menu-preview {
-    width: 100%;
-  }
-
-  .mini-menu-options {
-    position: relative;
-    width: rem(240px);
-    height: 100%;
-    background-color: green;
-  }
+.mini-menu-options {
+  // position: absolute;
+  // z-index: 100;
+  // width: rem(240px);
+  // height: rem(240px);
+  // background-color: green;
 }
