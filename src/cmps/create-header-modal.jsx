@@ -4,15 +4,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
-// import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
 import AddIcon from '@mui/icons-material/Add';
-// import SendIcon from '@mui/icons-material/Send';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import AutoAwesomeMosaicOutlinedIcon from '@mui/icons-material/AutoAwesomeMosaicOutlined';
 
 import CreateBoard from '../assets/img/create-board.svg';
 
-// import STARRED from '../assets/img/starred.svg';
 
 export const CreateHeaderModal = () => {
   const [anchorEl, setAnchorEl] = useState(null);

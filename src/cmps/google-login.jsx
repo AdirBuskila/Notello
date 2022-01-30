@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { utilService } from '../services/util.service';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 

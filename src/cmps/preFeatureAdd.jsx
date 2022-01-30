@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { boardService } from '../services/board.service';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 

@@ -7,6 +7,7 @@ import { loadBoard } from '../store/actions/board.action no BE';
 import { boardService } from '../services/board.service';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { GroupActionsModal } from './group-actions-modal';
 
 const _GroupPreview = (props) => {
   const { group, board, setPreview } = props;
@@ -63,7 +64,10 @@ const _GroupPreview = (props) => {
                   }}
                   defaultValue={group.title}></input>
               ) : null}
-              <MoreHorizIcon style={{ fill: '#6b778c' }} />
+              < GroupActionsModal 
+              groupIdx={groupIdx}
+              board={board}
+              />
             </div>
             <div className='group-data-container'>
               <Droppable
