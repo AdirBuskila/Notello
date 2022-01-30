@@ -36,11 +36,12 @@ export const BoardWorkspaces = () => {
     <React.Fragment>
       <AppHeader />
       <div className='board-container flex column '>
-        <div className='stared-workspace-title flex align-center'>
-          <StarRateRoundedIcon className='workspace-logo' />
-          <h1>Starred Boards</h1>
+        <div className='stared-workspace'>
+          <div className='stared-workspace-title flex align-center'>
+            <StarRateRoundedIcon className='workspace-logo' />
+            <h1>Starred Boards</h1>
+          </div>
         </div>
-
         <div className='boards-container flex'>
           {staredBoards.map((board) => {
             let boardStyle = !board.style.imgUrl
