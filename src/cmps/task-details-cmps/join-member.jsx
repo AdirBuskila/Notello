@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@mui/material/Typography';
 
 import { boardService } from '../../services/board.service';
-import { utilService } from '../../services/util.service';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 

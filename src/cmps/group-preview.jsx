@@ -10,6 +10,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { GroupActionsModal } from './group-actions-modal';
 
 const _GroupPreview = (props) => {
+  console.log(props);
   const { group, board, setPreview } = props;
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
   const storeTasks = props.board.groups[groupIdx].tasks;

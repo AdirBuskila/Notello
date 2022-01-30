@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button';
 import { boardService } from '../../services/board.service';
-import { utilService } from '../../services/util.service';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const AddDescription = (props) => {

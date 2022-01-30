@@ -1,9 +1,5 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import AddIcon from '@mui/icons-material/Add';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import { boardService } from '../../services/board.service';
-import { utilService } from '../../services/util.service';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -31,10 +27,8 @@ export const DueDateCmp = (props) => {
     const isDone = dueDate[0].isDone
     const newDate = Date.parse(date);
     const date1 = new Date(newDate)
-    const year = date1.getFullYear()
     const month = date1.getMonth()
     const day = date1.getDate()
-    const hours = date1.getHours()
     let minutes = date1.getMinutes()
     const timeAmPm = formatAMPM(date1)
     const Diff = newDate - Date.now()

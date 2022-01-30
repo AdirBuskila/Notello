@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AddIcon from '@mui/icons-material/Add';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import { MembersModal } from './members-modal';
 
 import { utilService } from '../../services/util.service';
