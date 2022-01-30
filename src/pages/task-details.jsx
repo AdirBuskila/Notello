@@ -121,6 +121,7 @@ export const TaskDetails = (props) => {
   const inside = selectedTask.members.find((member) => {
     return member._id === loggedInUser._id;
   });
+  const btnContent = (!activityOpen) ? 'Show Details' : 'Show Less'
   return (
     <React.Fragment>
       <div className='task-details-container'>
@@ -271,7 +272,7 @@ export const TaskDetails = (props) => {
                     <FormatListBulletedIcon />
                     <p>Activity</p>
                   </div>
-                  <button onClick={()=> setActivityOpen(!activityOpen)}>Show details</button>
+                  <button onClick={()=> setActivityOpen(!activityOpen)}>{btnContent}</button>
                 </div>
                 <div className='comment-container flex'>
                   <div className='user-container'>
