@@ -9,10 +9,10 @@ import { GroupList } from '../cmps/group-list.jsx';
 import { TaskDetails } from '../pages/task-details';
 import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
+
 const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
-  console.log(menuOpen);
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
@@ -58,6 +58,7 @@ const _BoardDetails = (props) => {
       />
       <div className='board-details-container flex column '>
         <GroupList
+          saveBoard={saveBoard}
           onLoadBoard={onLoadBoard}
           board={props.board}
           groups={props.board.groups}

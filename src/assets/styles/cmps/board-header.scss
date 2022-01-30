@@ -88,6 +88,9 @@
     .menu-container {
         min-width: rem(117px);
         gap: rem(4px);
+        button {
+            background-color: transparent;
+        }
     }
     .rating-container:hover {
         cursor: pointer;

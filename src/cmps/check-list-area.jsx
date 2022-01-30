@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import {useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxIcon from '@mui/icons-material/CheckBoxOutlined';
 import { LinearWithValueLabel } from './progress-bar';
 import { CheckListTodos } from './check-list-todos';
 import { CheckListDelete } from './check-list-delete';
+import { saveBoard } from '../store/actions/board.action';
 
 import { boardService } from '../services/board.service';
 
@@ -23,13 +24,17 @@ export const CheckListArea = (props) => {
     });
     let { isDone } = task.checklists[checklistIdx].todos[todoIdx];
     const state = isDone ? 'Done' : 'In work';
-    const activity = boardService.addTaskActivity(`changed todo (${checklist.todos[todoIdx].title}) state to - ${state}`, task._id, task.title, loggedInUser)
+    const activity = boardService.addTaskActivity(
+      `changed todo (${checklist.todos[todoIdx].title}) state to - ${state}`,
+      task._id,
+      task.title,
+      loggedInUser
+    );
     try {
       if (activity) board.activities.unshift(activity);
       task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;
       board.groups[groupIdx].tasks[taskIdx] = task;
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(props.saveBoard(board));
     } catch (err) {
       console.log('Cant change todo state', err);
     }
