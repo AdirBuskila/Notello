@@ -14,7 +14,6 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARD':
-            console.log(action.board);
             if (action.board.activities.length > 20) {
                 action.board.activities.pop();
             }

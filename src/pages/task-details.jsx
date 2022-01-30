@@ -32,6 +32,8 @@ import { ArchiveModal } from '../cmps/details-archive';
 import { CopyMoveModal } from '../cmps/copy-move-details';
 import { JoinCmp } from '../cmps/task-details-cmps/join-member';
 import { EditDescription } from '../cmps/task-details-cmps/description-edit';
+import { loadBoard, saveBoard } from '../store/actions/board.action';
+
 
 export const TaskDetails = (props) => {
   const { useState } = React;
@@ -104,8 +106,9 @@ export const TaskDetails = (props) => {
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx] = selectedTask;
-      const action = { type: 'SET_BOARD', board };
-      dispatch(action);
+      dispatch(saveBoard(board));
+      // const action = { type: 'SET_BOARD', board };
+      // dispatch(action);
     } catch (err) {
       console.log('Cannot change task title');
     }
@@ -118,7 +121,6 @@ export const TaskDetails = (props) => {
   const inside = selectedTask.members.find((member) => {
     return member._id === loggedInUser._id;
   });
-  console.log('selectedTask', selectedTask);
   return (
     <React.Fragment>
       <div className='task-details-container'>

@@ -30,7 +30,6 @@ function createSocketService() {
         },
         emit(eventName, data) {
             socket.emit(eventName, data)
-            console.log(eventName, data)
         },
         terminate() {
             socket = null
