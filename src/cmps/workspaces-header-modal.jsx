@@ -7,13 +7,17 @@ import Paper from '@mui/material/Paper';
 import { orange, blue, red } from '@mui/material/colors';
 import { Avatar } from '@mui/material';
 import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
+import { utilService } from '../services/util.service';
+import { useHistory, Link } from 'react-router-dom';
 
-import { boardService } from '../services/board.service';
 
-export const WorkspacesHeaderModal = () => {
+export const WorkspacesHeaderModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState();
+  const history = useHistory()
+
+  const { boards } = props;
 
   const handleClick = (newPlacement) => (event) => {
     setAnchorEl(event.currentTarget);
@@ -25,15 +29,18 @@ export const WorkspacesHeaderModal = () => {
     ev.preventDefault();
     setOpen(false);
   };
+  const boardsHeight = boards.length * 70 + 'px';
 
   return (
     <div
       onBlur={() => {
-        setOpen(false);
-      }}>
+        // setOpen(false);
+      }}
+    >
       <Button
         className='header-board flex'
-        onClick={handleClick('bottom-start')}>
+        onClick={handleClick('bottom-start')}
+      >
         <span>Workspaces</span>
         <img src={WhiteArrow} alt='arrow' />
       </Button>
@@ -42,13 +49,15 @@ export const WorkspacesHeaderModal = () => {
         open={open}
         anchorEl={anchorEl}
         placement={placement}
-        transition>
+        transition
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography
-                className='header-board-typography'
-                sx={{ p: 1, mt: 1, width: '290px', height: '304px' }}>
+              <div
+                className='workspace-dropdown flex column align-center'
+                style={{ height: boardsHeight }}
+              >
                 <div className='workspace-modal-title flex'>
                   Workspace
                   <a href='#' onClick={(ev) => onHandleModal(ev)}>
@@ -56,34 +65,35 @@ export const WorkspacesHeaderModal = () => {
                   </a>
                 </div>
                 <hr />
-                <h4>Current Workspace</h4>
-                <section className='flex'>
-                  <Avatar
-                    sx={{ bgcolor: red[500], borderRadius: '3px' }}
-                    variant='square'>
-                    <span>NC</span>
-                  </Avatar>
-                  <p>My Workspace</p>
-                </section>
-                <hr />
-                <h4>Your Workspaces</h4>
-                <section className='flex'>
-                  <Avatar
-                    sx={{ bgcolor: blue[500], borderRadius: '3px' }}
-                    variant='square'>
-                    <span>NG</span>
-                  </Avatar>
-                  <p>Notello</p>
-                </section>
-                <section className='flex'>
-                  <Avatar
-                    sx={{ bgcolor: orange[500], borderRadius: '3px' }}
-                    variant='square'>
-                    <span>AB</span>
-                  </Avatar>
-                  <p>MUI</p>
-                </section>
-              </Typography>
+                <div className="span-container">
+                <p >Your Boards</p>
+                </div>
+                <div className='boards-dropdown-container flex'>
+                  {boards.map((board) => {
+                    let boardsColor = utilService.stringToColor(board.title);
+                    let boardCharacter = board.title.charAt(0);
+                    let boardStyle = !board.style.imgUrl
+                      ? `${board.style.bgColor}`
+                      : `url(${board.style.imgUrl})`;
+                    console.log('board', board);
+                    return (
+                         <Link key={board._id} to={`/b/${board._id}`}>
+                      <div className='board-drop-preview flex align-center'>
+                        <div className="board-square-container">
+                        <div
+                          style={{ backgroundImage: boardStyle }}
+                          
+                          className='board-square flex align-center justify-center'
+                          >
+                          <p className='board-character'>{boardCharacter}</p>
+                        </div>
+                          </div>
+                      </div>
+                            </Link>
+                    );
+                  })}
+                </div>
+              </div>
             </Paper>
           </Fade>
         )}
