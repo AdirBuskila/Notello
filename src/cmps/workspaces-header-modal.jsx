@@ -34,7 +34,7 @@ export const WorkspacesHeaderModal = (props) => {
   return (
     <div
       onBlur={() => {
-        // setOpen(false);
+        setOpen(false);
       }}
     >
       <Button
@@ -75,7 +75,6 @@ export const WorkspacesHeaderModal = (props) => {
                     let boardStyle = !board.style.imgUrl
                       ? `${board.style.bgColor}`
                       : `url(${board.style.imgUrl})`;
-                    console.log('board', board);
                     return (
                          <Link key={board._id} to={`/b/${board._id}`}>
                       <div className='board-drop-preview flex align-center'>
