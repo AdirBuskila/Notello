@@ -118,6 +118,7 @@ export const TaskDetails = (props) => {
   const inside = selectedTask.members.find((member) => {
     return member._id === loggedInUser._id;
   });
+  console.log('selectedTask', selectedTask);
   return (
     <React.Fragment>
       <div className='task-details-container'>
