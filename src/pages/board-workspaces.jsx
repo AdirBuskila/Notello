@@ -21,16 +21,52 @@ export const BoardWorkspaces = () => {
     })();
   }, [newBoard]);
   if (!boards || boards.length === 0) return <Loader />;
+  const sttaredBoards = boards.filter((board)=> {
+    if (board.isStarred === "true") {
+      return board
+    }
+  })
+  console.log(sttaredBoards);
+  const regBoards = boards.filter((board)=>{
+    if (board.isStarred !== "true") {
+      return board
+    }
+  })
+  
   return (
     <React.Fragment>
       <AppHeader />
       <div className='board-container flex column '>
+      <div className='stared-workspace'>
+          <div className='stared-workspace-title flex align-center'>
+            <StarRateRoundedIcon className='workspace-logo' />
+            <h1>Starred Boards</h1>
+          </div>
+        </div>
+        <div className='boards-container flex'>
+          {sttaredBoards.map((board) => {
+            let boardStyle = !board.style.imgUrl
+              ? `${board.style.bgColor}`
+              : `url(${board.style.imgUrl})`;
+            if (!board) return <h1>Loading...</h1>;
+            return (
+             <Link key={board._id} to={`/b/${board._id}`}>
+                <div
+                  style={{ backgroundImage: boardStyle }}
+                  className='board flex column align-center'>
+                  <p className='board-title'>{board.title}</p>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
         <div className='board-workspace-title flex align-center'>
           <PersonIcon className='workspace-logo' />
           <h1> Your Workspaces</h1>
         </div>
         <div className='boards-container flex'>
-          {boards.map((board) => {
+          {regBoards.map((board) => {
+            // if (!board.isStarred)
             let boardStyle = !board.style.imgUrl
               ? `${board.style.bgColor}`
               : `url(${board.style.imgUrl})`;
@@ -40,7 +76,7 @@ export const BoardWorkspaces = () => {
                 <div
                   style={{ backgroundImage: boardStyle }}
                   className='board flex column align-center'>
-                  <p>{board.title}</p>
+                  <p className='board-title'>{board.title}</p>
                 </div>
               </Link>
             );
@@ -51,12 +87,6 @@ export const BoardWorkspaces = () => {
               setNewBoard(true);
             }}>
             <p style={{ filter: 'brightness(100%)' }}>Create New Board</p>
-          </div>
-        </div>
-        <div className='stared-workspace'>
-          <div className='stared-workspace-title flex align-center'>
-            <StarRateRoundedIcon className='workspace-logo' />
-            <h1>Starred Boards</h1>
           </div>
         </div>
       </div>

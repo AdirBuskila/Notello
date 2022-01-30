@@ -24,6 +24,7 @@ export const CreateBoard = (props) => {
         bgColor: boardColor,
         imgUrl: '',
       },
+      isStarred: false
     };
     boardService.save(board);
     setNewBoard(false);
