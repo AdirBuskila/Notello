@@ -21,12 +21,11 @@ export const BoardWorkspaces = () => {
     })();
   }, [newBoard]);
   if (!boards || boards.length === 0) return <Loader />;
-  const sttaredBoards = boards.filter((board) => {
+  const staredBoards = boards.filter((board) => {
     if (board.isStarred === 'true') {
       return board;
     }
   });
-  console.log(sttaredBoards);
   const regBoards = boards.filter((board) => {
     if (board.isStarred !== 'true') {
       return board;
@@ -44,7 +43,7 @@ export const BoardWorkspaces = () => {
           </div>
         </div>
         <div className='boards-container flex'>
-          {sttaredBoards.map((board) => {
+          {staredBoards.map((board) => {
             let boardStyle = !board.style.imgUrl
               ? `${board.style.bgColor}`
               : `url(${board.style.imgUrl})`;
