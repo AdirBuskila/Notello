@@ -14,6 +14,7 @@ export const WorkspacesHeaderModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState();
+  const [showAll, setShowAll] = useState(false);
   const history = useHistory();
 
   const { boards } = props;
@@ -28,7 +29,8 @@ export const WorkspacesHeaderModal = (props) => {
     ev.preventDefault();
     setOpen(false);
   };
-  const boardsHeight = 6 * 55 + 'px';
+  const boardsHeight = 6 * 60 + 'px';
+  const btnContent = (showAll) ? 'Show Less' : 'Show More'
   return (
     <div
     // onBlur={() => {
@@ -54,7 +56,7 @@ export const WorkspacesHeaderModal = (props) => {
             <Paper>
               <div
                 className='workspace-dropdown flex column align-center'
-                style={{ height: boardsHeight }}
+                // style={{ height: boardsHeight }}
               >
                 <div className='workspace-modal-title flex'>
                   Workspace
@@ -68,7 +70,7 @@ export const WorkspacesHeaderModal = (props) => {
                 </div>
                 <div className='boards-dropdown-container flex'>
                   {boards.map((board, idx) => {
-                    if (idx > 4) return
+                    if (idx > 4 && !showAll) return
                     let boardCharacter = board.title.charAt(0);
                     let boardStyle = !board.style.imgUrl
                       ? `${board.style.bgColor}`
@@ -92,6 +94,7 @@ export const WorkspacesHeaderModal = (props) => {
                     );
                   })}
                 </div>
+                <button onClick={()=> {setShowAll(!showAll)}} >{btnContent}</button>
               </div>
             </Paper>
           </Fade>
