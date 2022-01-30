@@ -41,7 +41,8 @@ export const MembersModal = (props) => {
     if (alreadyInside) {
       const activity = boardService.addTaskActivity(
         `${newMember.fullname} left task ${task.title}`,
-        task,
+        task._id,
+        task.title,
         loggedInUser
         );
     if (activity) board.activities.unshift(activity);
