@@ -28,7 +28,7 @@ export const WorkspacesHeaderModal = (props) => {
     ev.preventDefault();
     setOpen(false);
   };
-  const boardsHeight = boards.length * 60 + 'px';
+  const boardsHeight = 6 * 60 + 'px';
 
   return (
     <div
@@ -68,8 +68,8 @@ export const WorkspacesHeaderModal = (props) => {
                   <p>Your Boards</p>
                 </div>
                 <div className='boards-dropdown-container flex'>
-                  {boards.map((board) => {
-                    let boardsColor = utilService.stringToColor(board.title);
+                  {boards.map((board, idx) => {
+                    if (idx > 4) return
                     let boardCharacter = board.title.charAt(0);
                     let boardStyle = !board.style.imgUrl
                       ? `${board.style.bgColor}`
