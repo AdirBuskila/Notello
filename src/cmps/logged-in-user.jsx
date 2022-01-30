@@ -52,6 +52,7 @@ export const UserBadge =() => {
         variant='dot'
       >
         <Avatar
+        style={{ width: '34px', height: '34px', border: '0' }}
         alt={utilService.getInitials(loggedInUser.fullname)}
         src={loggedInUser.imgUrl}
         />

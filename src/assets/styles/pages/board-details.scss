@@ -20,8 +20,9 @@
 }
 
 .boards-container {
+  justify-content: start;
   flex-wrap: wrap;
-  gap: 1.8rem
+  gap: 1.1rem
 }
 
 .mini-menu-portal {
