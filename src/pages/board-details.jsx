@@ -15,7 +15,7 @@ import { loadBoard, saveBoard } from '../store/actions/board.action';
 const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
-
+  console.log(menuOpen);
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
@@ -39,8 +39,9 @@ const _BoardDetails = (props) => {
   if (!props.board || props.board.length === 0) {
     return <Loader />;
   }
-  let boardStyle = (!props.board.style?.imgUrl) ?   `${props.board.style?.bgColor}` : `url(${props.board.style?.imgUrl})`
-
+  let boardStyle = !props.board.style?.imgUrl
+    ? `${props.board.style?.bgColor}`
+    : `url(${props.board.style?.imgUrl})`;
 
   return (
     <div
@@ -56,13 +57,11 @@ const _BoardDetails = (props) => {
         board={props.board}
         setMenuOpen={setMenuOpen}
       />
-      {menuOpen && (
-        <BoardActivity
-          setMenuOpen={setMenuOpen}
-          menuOpen={menuOpen}
-          key={props.board._id}
-        />
-      )}
+      <BoardActivity
+        setMenuOpen={setMenuOpen}
+        menuOpen={menuOpen}
+        key={props.board._id}
+      />
       <div className='board-details-container flex column '>
         <GroupList
           onLoadBoard={onLoadBoard}
