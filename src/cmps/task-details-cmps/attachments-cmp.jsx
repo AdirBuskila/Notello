@@ -31,6 +31,10 @@ export const AttachmentsCmp = (props) => {
     }
   };
 
+  const EditAttachment = async (attachmentId)=> {
+    console.log('attachmentId', attachmentId);
+  }
+
   if (attachments.length === 0) return <p></p>;
   return (
     <section className='attachments-main-container'>
@@ -42,7 +46,7 @@ export const AttachmentsCmp = (props) => {
         {attachments.map((attachment, index) => {
           return (
             <div key={index} className='attachment-thumbnail flex'>
-              <a>
+              <a target='_blank' href={`${attachment.url}`}>
                 <div
                   className='attachment-image'
                   style={{ backgroundImage: `url(${attachment.url})` }}></div>
@@ -52,13 +56,23 @@ export const AttachmentsCmp = (props) => {
                 <p className='attachment-date'>
                   {utilService.fixTimestamp(attachment.createdAt)}
                 </p>
+                <div className="attachment-action flex">
                 <p
-                  className='pointer'
+                  className='action pointer'
                   onClick={() => {
                     DeleteAttachment(attachment._id);
                   }}>
                   Delete
                 </p>
+                <p>-</p>
+                <p
+                  className='action pointer'
+                  onClick={() => {
+                    EditAttachment(attachment._id);
+                  }}>
+                  Edit
+                </p>
+                    </div>
               </div>
             </div>
           );

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { boardService } from '../../services/board.service';
 import { useDispatch, useSelector } from 'react-redux';
+import DOWNICON from '../../assets/img/down-arrow.png';
+
 
 
 
@@ -78,11 +80,15 @@ export const DueDateCmp = (props) => {
           {isDone && <span className='complete' >complete</span>}
           {isOverDue && <span className='over-due' >over due</span> }
           {isSoon && <span className='soon' >due soon</span> }
+          <img
+            src={DOWNICON}
+            alt='down-icon'
+            style={{ marginInlineStart:'2px' ,width: '10px', height: '10px' }}
+          />
           </span>
         </div>
       </div>
       <div className='members-avatar-container flex'>
-
       </div>
     </section>
   );

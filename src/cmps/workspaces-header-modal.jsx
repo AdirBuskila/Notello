@@ -14,6 +14,7 @@ export const WorkspacesHeaderModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState();
+  const [showAll, setShowAll] = useState(false);
   const history = useHistory();
 
   const { boards } = props;
@@ -34,6 +35,7 @@ export const WorkspacesHeaderModal = (props) => {
   }
 
   const boardsHeight = 6 * 60 + 'px';
+  const btnContent = (showAll) ? 'Show Less' : 'Show More'
   return (
     <div
     onBlur={() => {
@@ -59,7 +61,6 @@ export const WorkspacesHeaderModal = (props) => {
             <Paper>
               <div
                 className='workspace-dropdown flex column align-center'
-                style={{ height: boardsHeight }}
               >
                 <div className='workspace-modal-title flex'>
                   Workspace
@@ -73,15 +74,15 @@ export const WorkspacesHeaderModal = (props) => {
                 </div>
                 <div className='boards-dropdown-container flex'>
                   {boards.map((board, idx) => {
-                    if (idx > 4) return
+                    if (idx > 4 && !showAll) return
                     let boardCharacter = board.title.charAt(0);
                     let boardStyle = !board.style.imgUrl
                       ? `${board.style.bgColor}`
                       : `url(${board.style.imgUrl})`;
                     return (
-                      // <Link key={board._id} to={`/b/${board._id}`}>
-                        <div key={board._id} onClick={() => onHandleForwarding(board._id)} className='board-drop-preview flex align-center'>
-                          <div className='board-square-container'>
+                      <Link key={board._id} to={`/b/${board._id}`}>
+                        <div className='board-drop-preview flex align-center'>
+                          <div className='board-square-container flex align-center'>
                             <div
                               style={{ backgroundImage: boardStyle }}
                               className='board-square flex align-center justify-center'
@@ -90,12 +91,14 @@ export const WorkspacesHeaderModal = (props) => {
                                 {boardCharacter}
                               </p>
                             </div>
+                            <p className='board-title' >{board.title}</p>
                           </div>
                         </div>
                       // </Link>
                     );
                   })}
                 </div>
+                <button onClick={()=> {setShowAll(!showAll)}} >{btnContent}</button>
               </div>
             </Paper>
           </Fade>

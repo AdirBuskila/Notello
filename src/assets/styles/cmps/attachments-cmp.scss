@@ -36,4 +36,10 @@
         font-weight: 700;
 
     }
+    .attachment-action {
+        gap: 3px;
+        .action {
+            text-decoration: underline;
+        }
+    }
 }
