@@ -286,6 +286,19 @@
                     margin-inline-end: rem(10px);
                 }
             }
+            .comment-container {
+                .user-container {
+                    position: absolute;
+                    left: 0.75rem;
+                }
+                .new-comment {
+                    textarea {
+                        margin-inline-start: 2rem;
+                        width: 94.5%;
+                        resize: none;
+                    }
+                }
+            }
         }
         .task-info {
             margin-top: 2rem;

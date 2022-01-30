@@ -24,12 +24,12 @@ export const AddCommentCmp = (props) => {
   };
 
   const onAdd = async (ev) => {
-    if (ev.type === 'keydown') ev.preventDefault()
+    if (ev.type === 'keydown') ev.preventDefault();
     const comment = {
       _id: utilService.makeId(),
       txt: newComment,
       createdAt: Date.now(),
-      byMember:  loggedInUser,
+      byMember: loggedInUser,
     };
     setNewComment('');
     const activity = boardService.addTaskActivity(
@@ -51,7 +51,6 @@ export const AddCommentCmp = (props) => {
     <React.Fragment>
       <div className='new-comment flex column'>
         <textarea
-          style={{ resize: 'none', width: '100%' }}
           onFocus={() => {
             setActive(true);
           }}
@@ -65,9 +64,7 @@ export const AddCommentCmp = (props) => {
           placeholder={`Write a comment... `}></textarea>
         {active && (
           <div className='new-comment-actions flex align-center'>
-            <Button
-            variant='contained'
-            onMouseDown={onAdd}>
+            <Button variant='contained' onMouseDown={onAdd}>
               Save
             </Button>
           </div>
