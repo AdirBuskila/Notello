@@ -23,7 +23,6 @@ export const CommentsSection = (props) => {
     dispatch(action);
   };
 
-  if (!comments.length) return <p></p>;
   return (
     <div className='comments-container flex column'>
       {comments.map((comment) => {
@@ -34,7 +33,7 @@ export const CommentsSection = (props) => {
                 src={comment.byMember.imgUrl}
                 alt={comment.byMember.fullname}
                 sx={{
-                  bgcolor: 'lightblue',
+                  bgcolor: utilService.stringToColor(comment.byMember.fullname),
                   width: 32,
                   height: 32,
                   marginInlineEnd: 1,

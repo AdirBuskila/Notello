@@ -27,5 +27,6 @@
 }
 
 .boards-container {
-  gap: 1.8rem;
+  flex-wrap: wrap;
+  gap: 1.8rem
 }

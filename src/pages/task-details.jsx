@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as React from 'react';
 import { utilService } from '../services/util.service';
 import { MembersCmp } from '../cmps/task-details-cmps/members-cmp';
@@ -9,25 +9,19 @@ import { AddCommentCmp } from '../cmps/task-details-cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal';
 import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
 import { LabelsModal } from '../cmps/details-labels';
-import { ActivitySection } from '../cmps/details-activity';
 import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';
 import { CheckListCmps } from '../cmps/check-list-cmps';
 import { CoverModal } from '../cmps/cover-modal';
 import { Backdrop } from '../cmps/UI/backdrop';
-import { ActivityPerTask } from '../cmps/task-details-cmps/activity-per-task';
 ///// CMPS
 import { boardService } from '../services/board.service';
-import { loadTask, saveTask } from '../store/actions/board.action no BE';
 ///// ICONS
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-// import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import ArchiveSharpIcon from '@mui/icons-material/ArchiveSharp';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
@@ -49,7 +43,6 @@ export const TaskDetails = (props) => {
   const taskId = params.id;
   const [board, setBoard] = useState(currBoard);
   const [group, setGroup] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
   const [selectedTask, updateTask] = useState('');
   const [groupIdx, setGroupIdx] = useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
@@ -60,7 +53,8 @@ export const TaskDetails = (props) => {
     ? selectedTask.cover.background
     : null;
 
-  React.useEffect(async () => {
+  React.useEffect( () => {
+    (async () => {
     try {
       const newBoard = await boardService.getById(boardId);
       const newGroup = boardService.getGroup(newBoard, taskId);
@@ -69,7 +63,7 @@ export const TaskDetails = (props) => {
       await onLoadTask(board, newGroup, taskId);
     } catch (err) {
       console.log('Cant load board');
-    }
+    }})();
   }, [currBoard]);
 
   const onLoadTask = async (board, group, taskId) => {
@@ -306,7 +300,10 @@ export const TaskDetails = (props) => {
             <div className='window-sidebar'>
               {!inside && <p className='task-actions'>Suggested</p>}
               {!inside && (
-                <JoinCmp task={selectedTask} board={board} group={group} />
+                <JoinCmp
+                task={selectedTask}
+                board={board}
+                group={group}/>
               )}
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
@@ -323,7 +320,6 @@ export const TaskDetails = (props) => {
                 task={selectedTask}
               />
               <DatePickerModal
-                setIsOpen={setIsOpen}
                 task={selectedTask}
                 board={board}
                 group={group}

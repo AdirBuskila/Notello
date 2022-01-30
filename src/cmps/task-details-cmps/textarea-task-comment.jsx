@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { utilService } from '../../services/util.service';
@@ -30,9 +29,9 @@ export const AddCommentCmp = (props) => {
       _id: utilService.makeId(),
       txt: newComment,
       createdAt: Date.now(),
-      byMember: { loggedInUser },
+      byMember:  loggedInUser,
     };
-    console.log('comment', comment);
+    setNewComment('');
     const activity = boardService.addTaskActivity(
       `added comment to task ${task.title} - ${comment.txt}`,
       task._id,
@@ -47,7 +46,6 @@ export const AddCommentCmp = (props) => {
     } catch (err) {
       console.log('cannot add new comment', err);
     }
-    setNewComment('');
   };
   return (
     <React.Fragment>
@@ -60,6 +58,7 @@ export const AddCommentCmp = (props) => {
           onBlur={() => {
             setActive(false);
           }}
+          value={newComment}
           onChange={onHandleChange}
           rows='2'
           // defaultValue={newComment}

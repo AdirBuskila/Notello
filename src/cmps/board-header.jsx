@@ -6,18 +6,23 @@ import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Button from '@mui/material/Button';
 // import { BoardActivity } from '../pages/board-activity';
-
 import STATS from '../assets/img/stats.svg';
 import DOWNICON from '../assets/img/down-arrow.png';
 import ADD_MEMBER from '../assets/img/add-user.png';
 import FILTER from '../assets/img/filter.svg';
 import MENU from '../assets/img/menu.png';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import { socketService } from '../services/socket.service';
 
 export const BoardHeader = (props) => {
   const board = { ...props.board };
-  const [boardTitle, setBoardTitle] = useState(board.title);
+  const [boardTitle, setBoardTitle] = useState();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setBoardTitle(board.title);
+    socketService.on('SOCKET_EVENT_BOARD_UPDATED', board);
+  }, [board]);
 
   const onHandleChange = (ev) => {
     setBoardTitle(ev.target.value);

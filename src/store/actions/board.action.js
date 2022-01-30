@@ -1,8 +1,8 @@
 import { boardService } from '../../services/board.service';
-import { utilService } from "../../services/util.service";
+import { socketService } from '../../services/socket.service'
 
 export function loadBoard(boardId, loggedInUser) {
-    return async (dispatch) => {
+    return async(dispatch) => {
         try {
             const board = await boardService.getById(boardId)
             const isExist = board.members.find((member) => {
@@ -10,8 +10,9 @@ export function loadBoard(boardId, loggedInUser) {
             })
             if (!isExist) {
                 board.members.push(loggedInUser);
-                dispatch({type: 'ATTACH_BOARD_USER', loggedInUser})
+                dispatch({ type: 'ATTACH_BOARD_USER', loggedInUser })
             }
+            socketService.on('SOCKET_EVENT_BOARD_UPDATED', board)
             dispatch({ type: 'SET_BOARD', board })
             return board;
         } catch (err) {
@@ -22,7 +23,7 @@ export function loadBoard(boardId, loggedInUser) {
 }
 
 export function saveBoard(board) {
-    return async (dispatch) => {
+    return async(dispatch) => {
         try {
             await boardService.save(board)
             const action = { type: 'SET_BOARD', board }
