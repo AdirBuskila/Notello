@@ -94,7 +94,7 @@ export const WorkspacesHeaderModal = (props) => {
                             <p className='board-title' >{board.title}</p>
                           </div>
                         </div>
-                      // </Link>
+                      </Link>
                     );
                   })}
                 </div>
