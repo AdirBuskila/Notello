@@ -5,7 +5,7 @@ import { boardService } from '../../services/board.service';
 import { ActivityPerTask } from './activity-per-task';
 
 export const CommentsSection = (props) => {
-  const { comments, task, group, board } = props;
+  const { comments, task, group, board, setActivityOpen, activityOpen } = props;
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
@@ -58,7 +58,7 @@ export const CommentsSection = (props) => {
           </div>
         );
       })}
-      <ActivityPerTask task={task} board={board} />
+      { activityOpen && <ActivityPerTask task={task} board={board} />}
     </div>
   );
 };

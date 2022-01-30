@@ -46,7 +46,7 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = useState('');
   const [groupIdx, setGroupIdx] = useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
-
+  const [activityOpen, setActivityOpen] = React.useState(false)
   // const board = useSelector((state) => state.boardModule.board);
 
   const whichBgcExist = selectedTask.cover
@@ -268,7 +268,7 @@ export const TaskDetails = (props) => {
                     <FormatListBulletedIcon />
                     <p>Activity</p>
                   </div>
-                  <button>Show details</button>
+                  <button onClick={()=> setActivityOpen(!activityOpen)}>Show details</button>
                 </div>
                 <div className='comment-container flex'>
                   <div className='user-container'>
@@ -292,6 +292,8 @@ export const TaskDetails = (props) => {
                     task={selectedTask}
                     board={board}
                     group={group}
+                    setActivityOpen={setActivityOpen}
+                    activityOpen={activityOpen}
                     comments={selectedTask.comments}
                   />
                 </div>
