@@ -9,7 +9,7 @@ export const TaskList = (props) => {
         
         return (
           (!task.isArchived) && <TaskPreview
-          setPreview={props.setPreview}
+          setPos={props.setPos}
             board={props.board}
             onLoadBoard={props.onLoadBoard}
             groupIdx={groupIdx}

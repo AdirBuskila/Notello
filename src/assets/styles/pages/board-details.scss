@@ -17,16 +17,31 @@
       background: #e2e3e480;
     }
   }
-  .mini-menu-portal {
-    position: absolute;
-    z-index: 100;
-    width: rem(240px);
-    height: rem(240px);
-    background-color: green;
-  }
 }
 
 .boards-container {
   flex-wrap: wrap;
   gap: 1.8rem
+}
+
+.mini-menu-portal {
+  z-index: 100;
+  width: fit-content;
+  height: fit-content;
+  
+  button {
+    background: #0009;
+    border-radius: 3px;
+    clear: both;
+    color: #e6e6e6;
+    float: left;
+    margin: 0 0 4px 8px;
+    padding: 6px 12px 6px 8px;
+    font-size: rem(16px);
+  }
+
+  button:hover {
+    background: rgba(0, 0, 0, 0.276);
+    color: #fefcfc;
+  }
 }

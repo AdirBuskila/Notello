@@ -9,7 +9,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const _GroupPreview = (props) => {
-  const { group, board, setPreview } = props;
+  const { group, board } = props;
   const groupIdx = boardService.getGroupIdxById(props.board, props.group._id);
   const storeTasks = props.board.groups[groupIdx].tasks;
   const [tasks, onUpdateTasks] = useState(storeTasks);
@@ -73,7 +73,7 @@ const _GroupPreview = (props) => {
                 {(provided) => (
                   <div ref={provided.innerRef} {...provided.droppableProps}>
                     <TaskList
-                    setPreview={setPreview}
+                      setPos={props.setPos}
                       board={board}
                       onLoadBoard={props.onLoadBoard}
                       groupIdx={groupIdx}

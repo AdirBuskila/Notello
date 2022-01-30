@@ -3,7 +3,7 @@
   border-radius: 3px;
   background-color: #fff;
   text-align: start;
-  width: 100%;
+  // width: 100%;
   box-shadow: 0 1px 0 #091e4240;
   .task-not-cover {
     padding: rem(6px) rem(8px);
@@ -61,7 +61,6 @@
 
 .save-btn {
   position: absolute;
-  // margin-top: rem(12px);
   border-radius: 3px;
   width: rem(80px);
   height: rem(32px);
@@ -69,6 +68,7 @@
   border: none;
   box-shadow: none;
   color: #fff;
+  z-index: 100;
 }
 
 .save-btn:hover {

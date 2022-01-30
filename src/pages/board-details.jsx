@@ -9,10 +9,14 @@ import { GroupList } from '../cmps/group-list.jsx';
 import { TaskDetails } from '../pages/task-details';
 import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
+import { TaskPreview } from '../cmps/task-preview';
+import { TaskPreviewHover } from '../cmps/task-preview-hover';
+
 const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
+  const [previewTask, setPos] = useState(null);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
-  console.log(menuOpen);
+
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
@@ -38,33 +42,43 @@ const _BoardDetails = (props) => {
     ? `${props.board.style?.bgColor}`
     : `url(${props.board.style?.imgUrl})`;
   return (
-    <div
-      className='board-page-container flex column'
-      style={{
-        backgroundImage: boardStyle,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}>
-      <AppHeader />
-      <BoardHeader
-        onLoadBoard={onLoadBoard}
-        board={props.board}
-        setMenuOpen={setMenuOpen}
-      />
-      <BoardActivity
-        setMenuOpen={setMenuOpen}
-        menuOpen={menuOpen}
-        key={props.board._id}
-      />
-      <div className='board-details-container flex column '>
-        <GroupList
+    <React.Fragment>
+      {previewTask && (
+        <TaskPreviewHover
+          board={props.board}
+          previewTask={previewTask}
+          setPos={setPos}
+        />
+      )}
+      <div
+        className='board-page-container flex column'
+        style={{
+          backgroundImage: boardStyle,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}>
+        <AppHeader />
+        <BoardHeader
           onLoadBoard={onLoadBoard}
           board={props.board}
-          groups={props.board.groups}
+          setMenuOpen={setMenuOpen}
         />
-        <Route component={TaskDetails} path={`/b/:boardId/:id`} />
+        <BoardActivity
+          setMenuOpen={setMenuOpen}
+          menuOpen={menuOpen}
+          key={props.board._id}
+        />
+        <div className='board-details-container flex column '>
+          <GroupList
+            setPos={setPos}
+            onLoadBoard={onLoadBoard}
+            board={props.board}
+            groups={props.board.groups}
+          />
+          <Route component={TaskDetails} path={`/b/:boardId/:id`} />
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 function mapStateToProps({ boardModule }) {

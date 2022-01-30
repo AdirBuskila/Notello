@@ -14,7 +14,7 @@ import { utilService } from '../services/util.service';
 
 export const TaskPreviewMiniMenu = (props) => {
   /* states */
-  const { task, board, groupIdx, source } = props;
+  const { task, board, groupIdx, taskPosition} = props;
   const [isDueDateChanged, setIsDueDateChanged] = useState(false);
   const [taskTitle, setTaskTitle] = useState(task.title);
 
@@ -28,7 +28,6 @@ export const TaskPreviewMiniMenu = (props) => {
     : null;
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
@@ -64,7 +63,7 @@ export const TaskPreviewMiniMenu = (props) => {
     <React.Fragment>
       <section
         onClick={(ev) => onModalClick(ev)}
-        className='task-preview flex column'>
+        className='task-preview flex column' style={taskPosition}>
         {/* Upper cover */}
         {taskCover &&
           !isFull &&
@@ -145,7 +144,6 @@ export const TaskPreviewMiniMenu = (props) => {
           )}
         </div>
       </section>
-      <button className='save-btn'>Save</button>
     </React.Fragment>
   );
 };

@@ -16,7 +16,7 @@ import { TaskPreviewHover } from './task-preview-hover';
 import { utilService } from '../services/util.service';
 
 export const TaskPreview = (props) => {
-  const { task, board, groupIdx, source, setPreview } = props;
+  const { task, board, groupIdx } = props;
   const [isHover, setIsHover] = useState(false);
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const isFull = taskCover.spread === 'full' ? true : false;
@@ -47,6 +47,24 @@ export const TaskPreview = (props) => {
     setIsHover(false);
   };
 
+  const handleTaskPosition = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    const parent = ev.currentTarget.parentNode;
+    const parentPos = parent.getBoundingClientRect();
+    const taskPos = {
+      left: parentPos.left,
+      top: parentPos.top,
+      width: parentPos.width,
+      height: parentPos.height
+    }
+    props.setPos({
+      taskPos,
+      task,
+      groupIdx
+    })
+  }
+
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
@@ -71,10 +89,18 @@ export const TaskPreview = (props) => {
               {...provided.draggableProps}
               key={task._id}>
 
+              {isHover && <button
+              onClick={(ev) => handleTaskPosition(ev)}
+                      className='preview-hover-state'>
+                      <CreateTwoToneIcon
+                        className='edit-icon'
+                        sx={{ fontSize: 'medium', color: 'action' }}
+                      /> </button>}
+
               
-              {isHover && (
+              {/* {isHover && (
                 <TaskPreviewHover
-                setPreview={setPreview}
+                setPreview={props.setPreview}
                   taskId={task._id}
                   task={task}
                   board={board}
@@ -82,7 +108,7 @@ export const TaskPreview = (props) => {
                   index={props.index}
                   key={task._id}
                 />
-              )}
+              )} */}
 
               {taskCover &&
                 !isFull &&
