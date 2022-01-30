@@ -28,12 +28,12 @@ export const WorkspacesHeaderModal = (props) => {
     ev.preventDefault();
     setOpen(false);
   };
-  const boardsHeight = 6 * 60 + 'px';
+  const boardsHeight = 6 * 55 + 'px';
   return (
     <div
-    onBlur={() => {
-      setOpen(false);
-    }}
+    // onBlur={() => {
+    //   setOpen(false);
+    // }}
     >
       <Button
         className='header-board flex'
@@ -76,7 +76,7 @@ export const WorkspacesHeaderModal = (props) => {
                     return (
                       <Link key={board._id} to={`/b/${board._id}`}>
                         <div className='board-drop-preview flex align-center'>
-                          <div className='board-square-container'>
+                          <div className='board-square-container flex align-center'>
                             <div
                               style={{ backgroundImage: boardStyle }}
                               className='board-square flex align-center justify-center'
@@ -85,6 +85,7 @@ export const WorkspacesHeaderModal = (props) => {
                                 {boardCharacter}
                               </p>
                             </div>
+                            <p className='board-title' >{board.title}</p>
                           </div>
                         </div>
                       </Link>
