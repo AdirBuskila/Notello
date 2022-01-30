@@ -21,7 +21,7 @@ export const BoardHeader = (props) => {
 
   useEffect(() => {
     setBoardTitle(board.title);
-    socketService.on('SOCKET_EVENT_BOARD_UPDATED', board);
+    // socketService.on('SOCKET_EVENT_BOARD_UPDATED', board);
   }, [board]);
 
   const onHandleChange = (ev) => {
@@ -136,7 +136,7 @@ export const BoardHeader = (props) => {
             alt='menu'
             style={{ width: '16px', height: '16px' }}
           />
-          {/* <BoardActivity board={board}/> */}
+          <button>Show menu</button>
         </div>
       </div>
     </section>

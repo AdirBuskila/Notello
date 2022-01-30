@@ -1,5 +1,6 @@
 import { httpService } from './http.service'
 import { utilService } from './util.service.js'
+import { socketService } from './socket.service'
 
 
 
@@ -101,19 +102,19 @@ function save(board) {
 
 function getModalPosition(clickedElementPos) {
     console.log('clickedElementPos:', clickedElementPos);
-    
+
     const position = {
         topPos: clickedElementPos.top + clickedElementPos.height + 6,
         leftPos: clickedElementPos.left
     };
     let intViewportWidth = window.innerWidth;
     console.log('window:', window.innerHeight);
-        // const isOverflowY = (window.innerHeight - height - 45) < 0
-    
-            if(intViewportWidth - position.leftPos <= 40) position.right = 0
-        else position.right = null
-        return position;
-    }
+    // const isOverflowY = (window.innerHeight - height - 45) < 0
+
+    if (intViewportWidth - position.leftPos <= 40) position.right = 0
+    else position.right = null
+    return position;
+}
 
 
 function addGeneralActivity(txt, loggedInUser) {
@@ -153,13 +154,12 @@ async function addTask(boardId, groupId, task, activity) {
         title: task.title
     };
 
-    console.log('TASK ACTIVITY in line 147', activity);
+    // console.log('TASK ACTIVITY in line 147', activity);
     try {
         let board = await getById(boardId)
         const groupIdx = getGroupIdxById(board, groupId)
         board.groups[groupIdx].tasks.push(task);
         board.activities.unshift(activity)
-        console.log(board.activities);
         await save(board)
         return task
     } catch (err) {

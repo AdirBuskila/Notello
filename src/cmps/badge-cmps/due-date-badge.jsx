@@ -37,7 +37,12 @@ export const DueDateBadge = (props) => {
   const handleClick = async (ev, isDone) => {
     ev.stopPropagation();
     ev.preventDefault();
-    const activity = boardService.addTaskActivity(`added due date for task ${task.title} set to (${dueDate[0].date})`, task._id, task.title, loggedInUser)
+    const activity = boardService.addTaskActivity(
+      `added due date for task ${task.title} set to (${dueDate[0].date})`,
+      task._id,
+      task.title,
+      loggedInUser
+    );
     try {
       if (activity) board.activities.unshift(activity);
       task.dueDate[0].isDone = !isDone;
@@ -51,7 +56,6 @@ export const DueDateBadge = (props) => {
     setIsDueDateChanged(!isDueDateChanged);
   };
 
-  
   const date = dueDate[0].date;
   const isDone = dueDate[0].isDone;
   const newDate = Date.parse(date);
@@ -63,18 +67,15 @@ export const DueDateBadge = (props) => {
   const day = date1.getDate();
   let clockColor = isDone ? 'white' : 'action';
   const dueDateClass = isDone
-  ? 'due-date-badge pointer flex align-center done'
-  : `due-date-badge pointer flex align-center ${isSoon} ${isOverDue}`;
+    ? 'due-date-badge pointer flex align-center done'
+    : `due-date-badge pointer flex align-center ${isSoon} ${isOverDue}`;
   if (isOverDue || isSoon) {
     clockColor = 'white';
   }
-  
-  const changeImg = () => {
-    console.log('im here');
-    
-  }
-    return (
-      <div 
+
+  const changeImg = () => {};
+  return (
+    <div
       onMouseEnter={changeImg}
       onClick={(ev) => {
         handleClick(ev, isDone);
