@@ -34,7 +34,7 @@ export const CheckListArea = (props) => {
       if (activity) board.activities.unshift(activity);
       task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;
       board.groups[groupIdx].tasks[taskIdx] = task;
-      dispatch(props.saveBoard(board));
+      dispatch({type: 'SET_BOARD', board});
     } catch (err) {
       console.log('Cant change todo state', err);
     }

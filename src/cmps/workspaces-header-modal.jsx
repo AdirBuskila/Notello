@@ -28,6 +28,11 @@ export const WorkspacesHeaderModal = (props) => {
     ev.preventDefault();
     setOpen(false);
   };
+
+  const onHandleForwarding = (boardId) => {
+    history.push(`/b/${boardId}`);
+  }
+
   const boardsHeight = 6 * 60 + 'px';
   return (
     <div
@@ -74,8 +79,8 @@ export const WorkspacesHeaderModal = (props) => {
                       ? `${board.style.bgColor}`
                       : `url(${board.style.imgUrl})`;
                     return (
-                      <Link key={board._id} to={`/b/${board._id}`}>
-                        <div className='board-drop-preview flex align-center'>
+                      // <Link key={board._id} to={`/b/${board._id}`}>
+                        <div key={board._id} onClick={() => onHandleForwarding(board._id)} className='board-drop-preview flex align-center'>
                           <div className='board-square-container'>
                             <div
                               style={{ backgroundImage: boardStyle }}
@@ -87,7 +92,7 @@ export const WorkspacesHeaderModal = (props) => {
                             </div>
                           </div>
                         </div>
-                      </Link>
+                      // </Link>
                     );
                   })}
                 </div>

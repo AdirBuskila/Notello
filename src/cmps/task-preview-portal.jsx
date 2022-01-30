@@ -6,14 +6,17 @@ import { DatePickerModal } from './task-details-cmps/date-picker-modal';
 import { CheckListModal } from './check-list-modal';
 import { AttachmentModal } from './task-details-cmps/attachment-modal';
 import { CoverModal } from './cover-modal';
+import { CopyMoveModal } from './copy-move-details';
+import { ArchiveModal } from './details-archive';
 
 import { useHistory } from 'react-router-dom';
 
 export const TaskPreviewPortal = (props) => {
-  const { portalPosition, board, task, groupId, groupIdx } = props;
+  const { portalPosition, board, task, groupIdx} = props;
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
   });
+
   const history = useHistory();
 
   const onHandleOpenCard = (ev) => {
@@ -35,9 +38,9 @@ export const TaskPreviewPortal = (props) => {
             taskIdx={taskIdx}
           />
         </button>
-        {/* <button>
+        <button>
            <MembersModal task={task} board={board} group={board.groups[groupIdx]} />
-           </button> */}
+           </button>
         <button>
           <CheckListModal
             board={board}
@@ -64,6 +67,23 @@ export const TaskPreviewPortal = (props) => {
         <button>
           <CoverModal
             updateTask={task}
+            board={board}
+            groupIdx={groupIdx}
+            taskIdx={taskIdx}
+            task={task}
+          />
+        </button>
+        <button>
+          <CopyMoveModal
+            type={'copy'}
+            board={board}
+            groupIdx={groupIdx}
+            taskIdx={taskIdx}
+            task={task}
+          />
+        </button>
+        <button>
+          <ArchiveModal
             board={board}
             groupIdx={groupIdx}
             taskIdx={taskIdx}

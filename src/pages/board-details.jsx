@@ -15,9 +15,10 @@ import { TaskPreviewHover } from '../cmps/task-preview-hover';
 const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
   const [previewTask, setPos] = useState(null);
+  const { id } = props.match.params;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+
   const onLoadBoard = async () => {
-    const { id } = props.match.params;
     try {
       await props.loadBoard(id, loggedInUser);
     } catch (err) {
@@ -33,7 +34,8 @@ const _BoardDetails = (props) => {
         console.log('Cannot load board', err);
       }
     })();
-  }, []);
+  }, [id]);
+
   if (!props.board || props.board.length === 0) {
     return <Loader />;
   }
@@ -47,6 +49,7 @@ const _BoardDetails = (props) => {
           board={props.board}
           previewTask={previewTask}
           setPos={setPos}
+          onLoadBoard={onLoadBoard}
         />
       )}
       <div

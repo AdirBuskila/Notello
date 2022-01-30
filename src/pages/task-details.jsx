@@ -34,7 +34,6 @@ import { JoinCmp } from '../cmps/task-details-cmps/join-member';
 import { EditDescription } from '../cmps/task-details-cmps/description-edit';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 
-
 export const TaskDetails = (props) => {
   const { useState } = React;
   const dispatch = useDispatch();
@@ -48,24 +47,24 @@ export const TaskDetails = (props) => {
   const [selectedTask, updateTask] = useState('');
   const [groupIdx, setGroupIdx] = useState('');
   const [taskIdx, setTaskIdx] = React.useState('');
-  const [activityOpen, setActivityOpen] = React.useState(false)
-  // const board = useSelector((state) => state.boardModule.board);
+  const [activityOpen, setActivityOpen] = React.useState(false);
 
   const whichBgcExist = selectedTask.cover
     ? selectedTask.cover.background
     : null;
 
-  React.useEffect( () => {
+  React.useEffect(() => {
     (async () => {
-    try {
-      const newBoard = await boardService.getById(boardId);
-      const newGroup = boardService.getGroup(newBoard, taskId);
-      setBoard(newBoard);
-      setGroup(newGroup);
-      await onLoadTask(board, newGroup, taskId);
-    } catch (err) {
-      console.log('Cant load board');
-    }})();
+      try {
+        const newBoard = await boardService.getById(boardId);
+        const newGroup = boardService.getGroup(newBoard, taskId);
+        setBoard(newBoard);
+        setGroup(newGroup);
+        await onLoadTask(board, newGroup, taskId);
+      } catch (err) {
+        console.log('Cant load board');
+      }
+    })();
   }, [currBoard]);
 
   const onLoadTask = async (board, group, taskId) => {
@@ -271,7 +270,9 @@ export const TaskDetails = (props) => {
                     <FormatListBulletedIcon />
                     <p>Activity</p>
                   </div>
-                  <button onClick={()=> setActivityOpen(!activityOpen)}>Show details</button>
+                  <button onClick={() => setActivityOpen(!activityOpen)}>
+                    Show details
+                  </button>
                 </div>
                 <div className='comment-container flex'>
                   <div className='user-container'>
@@ -305,10 +306,7 @@ export const TaskDetails = (props) => {
             <div className='window-sidebar'>
               {!inside && <p className='task-actions'>Suggested</p>}
               {!inside && (
-                <JoinCmp
-                task={selectedTask}
-                board={board}
-                group={group}/>
+                <JoinCmp task={selectedTask} board={board} group={group} />
               )}
               <p className='task-actions'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />

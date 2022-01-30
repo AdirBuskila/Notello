@@ -1,23 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
+import React, {useEffect, useState } from 'react';
 import { Backdrop } from './UI/backdrop';
 import { TaskPreviewMiniMenu } from './task-preview-mini-menu';
 import { TaskPreviewPortal } from './task-preview-portal';
-import ReactDOM from 'react-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 export const TaskPreviewHover = (props) => {
+  const board = useSelector((state) => state.boardModule.board);
   const { taskPos, task, groupIdx } = props.previewTask;
-  const { board } = props;
-  //   const [taskNewTitle, setTaskNewTitle] = useState(task.title);
+  const taskIdx = board.groups[groupIdx].tasks.find((currTask) => {
+    return (currTask._id === task._id)
+  })
+  const [taskNewTitle, setTaskNewTitle] = useState(task.title);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+  // const [board, setBoard] = useState(props.board);
+
+  useEffect(() => {
+    props.onLoadBoard()
+  }, [board]);
 
   const onBackDropClick = (ev) => {
     ev.preventDefault();
     ev.stopPropagation();
     props.setPos(null);
   };
+
+  const handleTitleChange = () => {
+    // task.title = taskNewTitle;
+    // board.groups[groupIdx].tasks[taskIdx] = task;
+    // dispatch({type: 'SET_BOARD', board})
+    props.setPos(null);
+  }
 
   const taskPosition = {
     position: 'absolute',
@@ -45,6 +58,7 @@ export const TaskPreviewHover = (props) => {
       <div>
         <section className='mini-menu-preview'>
           <TaskPreviewMiniMenu
+          setTaskNewTitle={setTaskNewTitle}
             board={board}
             key={task._id}
             groupIdx={groupIdx}
@@ -64,7 +78,7 @@ export const TaskPreviewHover = (props) => {
         portalPosition={portalPosition} />
 
         </section>
-        <button className='save-btn' style={buttonPosition}>
+        <button onClick={handleTitleChange} className='save-btn' style={buttonPosition}>
           Save
         </button>
       </div>

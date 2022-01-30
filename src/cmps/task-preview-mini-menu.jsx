@@ -14,9 +14,8 @@ import { utilService } from '../services/util.service';
 
 export const TaskPreviewMiniMenu = (props) => {
   /* states */
-  const { task, board, groupIdx, taskPosition} = props;
+  const { task, board, groupIdx, taskPosition, setTaskNewTitle} = props;
   const [isDueDateChanged, setIsDueDateChanged] = useState(false);
-  const [taskTitle, setTaskTitle] = useState(task.title);
 
   /* values */
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
@@ -49,15 +48,8 @@ export const TaskPreviewMiniMenu = (props) => {
   };
 
   const onHandleTitleChange = ({ target }) => {
-    setTaskTitle(target.value);
+    setTaskNewTitle(target)
   };
-
-  // const onHandlePreviewClick = (ev) => {
-  //   ev.stopPropagation();
-  //   if (source !== 'list') {
-  //     history.push(`/b/${board._id}/${task._id}`);
-  //   }
-  // };
 
   return (
     <React.Fragment>
