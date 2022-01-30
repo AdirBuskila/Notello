@@ -2,6 +2,7 @@ import io from 'socket.io-client'
 
 export const SOCKET_EMIT_BOARD_UPDATED = 'board-update';
 export const SOCKET_EVENT_BOARD_UPDATED = 'board-updated';
+export const SOCKET_EVENT_SET_VIEW_BOARD = 'view board';
 
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3333'

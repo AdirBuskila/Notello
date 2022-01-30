@@ -18,7 +18,7 @@ export function boardReducer(state = initialState, action) {
                 action.board.activities.pop();
             }
             boardService.save(action.board);
-            socketService.emit(SOCKET_EMIT_BOARD_UPDATED, action.board)
+            // socketService.emit(SOCKET_EMIT_BOARD_UPDATED, action.board)
             newState = {...state, board: action.board }
             break;
         case 'HANDLE_LABELS':

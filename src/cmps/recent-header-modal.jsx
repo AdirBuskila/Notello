@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
-import { orange, blue, red } from '@mui/material/colors';
 import { Avatar } from '@mui/material';
 import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
 

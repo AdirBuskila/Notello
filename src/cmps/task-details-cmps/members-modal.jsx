@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { boardService } from '../../services/board.service';
 import { utilService } from '../../services/util.service';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';

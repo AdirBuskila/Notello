@@ -10,12 +10,11 @@ import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
 import { utilService } from '../services/util.service';
 import { useHistory, Link } from 'react-router-dom';
 
-
 export const WorkspacesHeaderModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState();
-  const history = useHistory()
+  const history = useHistory();
 
   const { boards } = props;
 
@@ -29,13 +28,12 @@ export const WorkspacesHeaderModal = (props) => {
     ev.preventDefault();
     setOpen(false);
   };
-  const boardsHeight = boards.length * 70 + 'px';
-
+  const boardsHeight = 6 * 60 + 'px';
   return (
     <div
-      onBlur={() => {
-        // setOpen(false);
-      }}
+    onBlur={() => {
+      setOpen(false);
+    }}
     >
       <Button
         className='header-board flex'
@@ -65,31 +63,31 @@ export const WorkspacesHeaderModal = (props) => {
                   </a>
                 </div>
                 <hr />
-                <div className="span-container">
-                <p >Your Boards</p>
+                <div className='span-container'>
+                  <p>Your Boards</p>
                 </div>
                 <div className='boards-dropdown-container flex'>
-                  {boards.map((board) => {
-                    let boardsColor = utilService.stringToColor(board.title);
+                  {boards.map((board, idx) => {
+                    if (idx > 4) return
                     let boardCharacter = board.title.charAt(0);
                     let boardStyle = !board.style.imgUrl
                       ? `${board.style.bgColor}`
                       : `url(${board.style.imgUrl})`;
-                    console.log('board', board);
                     return (
-                         <Link key={board._id} to={`/b/${board._id}`}>
-                      <div className='board-drop-preview flex align-center'>
-                        <div className="board-square-container">
-                        <div
-                          style={{ backgroundImage: boardStyle }}
-                          
-                          className='board-square flex align-center justify-center'
-                          >
-                          <p className='board-character'>{boardCharacter}</p>
-                        </div>
+                      <Link key={board._id} to={`/b/${board._id}`}>
+                        <div className='board-drop-preview flex align-center'>
+                          <div className='board-square-container'>
+                            <div
+                              style={{ backgroundImage: boardStyle }}
+                              className='board-square flex align-center justify-center'
+                            >
+                              <p className='board-character'>
+                                {boardCharacter}
+                              </p>
+                            </div>
                           </div>
-                      </div>
-                            </Link>
+                        </div>
+                      </Link>
                     );
                   })}
                 </div>

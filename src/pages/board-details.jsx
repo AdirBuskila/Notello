@@ -16,7 +16,6 @@ const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
   const [previewTask, setPos] = useState(null);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
-
   const onLoadBoard = async () => {
     const { id } = props.match.params;
     try {
@@ -71,6 +70,7 @@ const _BoardDetails = (props) => {
         <div className='board-details-container flex column '>
           <GroupList
             setPos={setPos}
+            saveBoard={saveBoard}
             onLoadBoard={onLoadBoard}
             board={props.board}
             groups={props.board.groups}

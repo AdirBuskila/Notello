@@ -15,7 +15,10 @@ export const GroupList = (props) => {
   const board = useSelector((state) => state.boardModule.board);
 
   const onSetBoard = async (board) => {
-    const activity = boardService.addGeneralActivity(`entered to ${board.title} board`, loggedInUser) 
+    const activity = boardService.addGeneralActivity(
+      `entered to ${board.title} board`,
+      loggedInUser
+    );
     try {
       if (activity) board.activities.unshift(activity);
       const action = { type: 'SET_BOARD', board };
@@ -36,7 +39,9 @@ export const GroupList = (props) => {
       })[0];
       board.groups.splice(source.index, 1);
       board.groups.splice(destination.index, 0, draggingGroup);
-      boardService.save(board);
+      dispatch(props.saveBoard(board));
+
+      // boardService.save(board);
       onSetBoard(board);
       return;
     }

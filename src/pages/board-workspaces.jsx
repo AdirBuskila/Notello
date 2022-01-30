@@ -31,13 +31,14 @@ export const BoardWorkspaces = () => {
         </div>
         <div className='boards-container flex'>
           {boards.map((board) => {
-            let boardStyle = (!board.style.imgUrl) ?   `${board.style.bgColor}` : `url(${board.style.imgUrl})`
-            console.log(boardStyle);
+            let boardStyle = !board.style.imgUrl
+              ? `${board.style.bgColor}`
+              : `url(${board.style.imgUrl})`;
             if (!board) return <h1>Loading...</h1>;
             return (
               <Link key={board._id} to={`/b/${board._id}`}>
                 <div
-                  style={{ backgroundImage: boardStyle}}
+                  style={{ backgroundImage: boardStyle }}
                   className='board flex column align-center'>
                   <p>{board.title}</p>
                 </div>

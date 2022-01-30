@@ -21,7 +21,7 @@ export const BoardHeader = (props) => {
 
   useEffect(() => {
     setBoardTitle(board.title);
-    socketService.on('SOCKET_EVENT_BOARD_UPDATED', board);
+    // socketService.on('SOCKET_EVENT_BOARD_UPDATED', board);
   }, [board]);
 
   const onHandleChange = (ev) => {
@@ -75,7 +75,7 @@ export const BoardHeader = (props) => {
         </div>
         <span className='board-header-btn-divider'> </span>
         <div className='members-avatars'>
-          <AvatarGroup sx={{ gap: 0.5 }} max={3}>
+          <AvatarGroup sx={{ gap: 0.5 }} max={4}>
             <Avatar
               alt='NG'
               src={
@@ -94,6 +94,13 @@ export const BoardHeader = (props) => {
               alt='AB'
               src={
                 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131869/Notello/AB_pplonl.png'
+              }
+              style={{ width: '28px', height: '28px', border: '0' }}
+            />
+            <Avatar
+              alt='IG'
+              src={
+                'https://res.cloudinary.com/dubjerksn/image/upload/v1643212002/Notello/T02BJ4W8H45-U02E0QXA9PD-8469fc199211-512_a1jdtm.jpg'
               }
               style={{ width: '28px', height: '28px', border: '0' }}
             />
@@ -136,6 +143,7 @@ export const BoardHeader = (props) => {
             alt='menu'
             style={{ width: '16px', height: '16px' }}
           />
+          Show Menu
           {/* <BoardActivity board={board}/> */}
         </div>
       </div>
