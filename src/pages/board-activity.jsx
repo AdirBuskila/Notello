@@ -10,7 +10,7 @@ import { utilService } from '../services/util.service';
 
 export const BoardActivity = (props) => {
   const board = useSelector((state) => state.boardModule.board);
-
+  console.log(props.menuOpen);
   const className = props.menuOpen
     ? 'board-activity-container open'
     : 'board-activity-container';
@@ -58,12 +58,17 @@ export const BoardActivity = (props) => {
                       <span>
                         {utilService.fixTimestamp(activity.createdAt)}
                       </span>
-                      {activity.task &&
-                     <Link onClick={() => {
-                      props.setMenuOpen(false);
-                    }} to={`/b/${board._id}/${activity.task._id}`}>
-                    {!activity.txt.includes('deleted') && <q>{activity.task.title}</q>}
-                    </Link>}
+                      {activity.task && (
+                        <Link
+                          onClick={() => {
+                            props.setMenuOpen(false);
+                          }}
+                          to={`/b/${board._id}/${activity.task._id}`}>
+                          {!activity.txt.includes('deleted') && (
+                            <q>{activity.task.title}</q>
+                          )}
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
