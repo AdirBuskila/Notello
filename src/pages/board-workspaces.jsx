@@ -37,7 +37,6 @@ export const BoardWorkspaces = () => {
             return (
               <Link key={board._id} to={`/b/${board._id}`}>
                 <div
-                  
                   style={{ backgroundImage: boardStyle}}
                   className='board flex column align-center'>
                   <p>{board.title}</p>
