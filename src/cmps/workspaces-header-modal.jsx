@@ -29,12 +29,11 @@ export const WorkspacesHeaderModal = (props) => {
     setOpen(false);
   };
   const boardsHeight = 6 * 60 + 'px';
-
   return (
     <div
-    // onBlur={() => {
-    //   setOpen(false);
-    // }}
+    onBlur={() => {
+      setOpen(false);
+    }}
     >
       <Button
         className='header-board flex'
