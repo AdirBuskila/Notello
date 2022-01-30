@@ -145,7 +145,7 @@ export const TaskPreviewMiniMenu = (props) => {
           )}
         </div>
       </section>
-      {source === 'list' && <button className='save-btn'>Save</button>}
+      <button className='save-btn'>Save</button>
     </React.Fragment>
   );
 };

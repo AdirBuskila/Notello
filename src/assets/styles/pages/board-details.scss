@@ -17,8 +17,15 @@
       background: #e2e3e480;
     }
   }
+  .mini-menu-portal {
+    position: absolute;
+    z-index: 100;
+    width: rem(240px);
+    height: rem(240px);
+    background-color: green;
+  }
 }
 
 .boards-container {
-  gap: 1.8rem
+  gap: 1.8rem;
 }

@@ -11,10 +11,13 @@ import { GroupList } from '../cmps/group-list.jsx';
 import { TaskDetails } from '../pages/task-details';
 import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
+import { TaskPreviewPortal } from '../cmps/task-preview-portal';
 
 const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+  const [preview, setPreview] = useState(null);
+  // console.log('preview: ', preview);
 
   const onLoadBoard = async () => {
     const { id } = props.match.params;
@@ -41,29 +44,33 @@ const _BoardDetails = (props) => {
   }
 
   return (
-    <div
-      className='board-page-container flex column'
-      style={{
-        backgroundImage: `url(${props.board.style?.imgUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}>
-      <AppHeader />
-      <BoardHeader
-        onLoadBoard={onLoadBoard}
-        board={props.board}
-        setMenuOpen={setMenuOpen}
-      />
-      {menuOpen && <BoardActivity setMenuOpen={setMenuOpen} menuOpen={menuOpen} />}
-      <div className='board-details-container flex column '>
-        <GroupList
+      <div
+        className='board-page-container flex column'
+        style={{
+          backgroundImage: `url(${props.board.style?.imgUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}>
+      {/* {preview && <TaskPreviewPortal preview={preview} />} */}
+        <AppHeader />
+        <BoardHeader
           onLoadBoard={onLoadBoard}
           board={props.board}
-          groups={props.board.groups}
+          setMenuOpen={setMenuOpen}
         />
-        <Route component={TaskDetails} path={`/b/:boardId/:id`} />
+        {menuOpen && (
+          <BoardActivity setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+        )}
+        <div className='board-details-container flex column '>
+          <GroupList
+            setPreview={setPreview}
+            onLoadBoard={onLoadBoard}
+            board={props.board}
+            groups={props.board.groups}
+          />
+          <Route component={TaskDetails} path={`/b/:boardId/:id`} />
+        </div>
       </div>
-    </div>
   );
 };
 

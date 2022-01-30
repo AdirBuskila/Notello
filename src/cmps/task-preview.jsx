@@ -9,12 +9,14 @@ import { CommentsBadge } from './badge-cmps/comments-badge';
 import { MembersBadge } from './badge-cmps/members-badge';
 import { AttachmentsBadge } from './badge-cmps/attachments-badge';
 import { DueDateBadge } from './badge-cmps/due-date-badge';
+import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
+
 import { TaskPreviewHover } from './task-preview-hover';
 
 import { utilService } from '../services/util.service';
 
 export const TaskPreview = (props) => {
-  const { task, board, groupIdx, source } = props;
+  const { task, board, groupIdx, source, setPreview } = props;
   const [isHover, setIsHover] = useState(false);
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const isFull = taskCover.spread === 'full' ? true : false;
@@ -60,6 +62,7 @@ export const TaskPreview = (props) => {
           type='task'>
           {(provided) => (
             <div
+              id={task._id}
               onMouseEnter={onHandleEnter}
               onMouseLeave={onHandleLeave}
               className='task-preview flex column'
@@ -67,9 +70,12 @@ export const TaskPreview = (props) => {
               {...provided.dragHandleProps}
               {...provided.draggableProps}
               key={task._id}>
-                
+
+              
               {isHover && (
                 <TaskPreviewHover
+                setPreview={setPreview}
+                  taskId={task._id}
                   task={task}
                   board={board}
                   groupIdx={groupIdx}
@@ -112,7 +118,7 @@ export const TaskPreview = (props) => {
                     })}
                   </ul>
                 )}
-                  <p>{task.title}</p>
+                <p>{task.title}</p>
 
                 {!isFull && (
                   <div className='task-info-icons flex space-between wrap'>
@@ -152,7 +158,6 @@ export const TaskPreview = (props) => {
             </div>
           )}
         </Draggable>
-        {source === 'list' && <button className='save-btn'>Save</button>}
       </Link>
     </React.Fragment>
   );

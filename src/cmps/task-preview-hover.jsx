@@ -3,17 +3,29 @@ import { useDispatch } from 'react-redux';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
 import { Backdrop } from './UI/backdrop';
 import { TaskPreviewMiniMenu } from './task-preview-mini-menu';
+import { TaskPreviewPortal } from './task-preview-portal';
+import ReactDOM from 'react-dom';
 
 export const TaskPreviewHover = (props) => {
-  const { task, groupIdx, board, key, index } = props;
+  const { task, groupIdx, board, key, setPreview } = props;
+  const [pos, setPos] = useState({});
   const [taskNewTitle, setTaskNewTitle] = useState(task.title);
   const [isMiniMenuOpened, setIsMenuOpened] = useState(false);
 
   const dispatch = useDispatch();
 
+  useEffect(() => {}, []);
+
   const onHandleMiniMenu = (ev) => {
+    console.log('EV', ev);
     ev.preventDefault();
     ev.stopPropagation();
+    const pos = {
+        x: ev.clientX + 15,
+        y: ev.clientY - 15
+    }
+    setPreview(pos)
+    setPos(pos);
     setIsMenuOpened(true);
   };
 
@@ -29,6 +41,7 @@ export const TaskPreviewHover = (props) => {
       if (taskIdx !== -1) board.groups[groupIdx].tasks[taskIdx] = task;
       dispatch({ type: 'SET_BOARD', board });
     }
+    setPreview(null)
     setIsMenuOpened(false);
   };
 
@@ -44,20 +57,20 @@ export const TaskPreviewHover = (props) => {
         />
       </button>
       {isMiniMenuOpened && (
-        <section className='mini-menu-total flex'>
-          <div className='mini-menu-preview'>
+        <div>
+          <section className='mini-menu-preview'>
             <TaskPreviewMiniMenu
               board={board}
               groupIdx={groupIdx}
-              key={key}
               task={task}
               groupId={board.groups[groupIdx]._id}
             />
-          </div>
-          <div className='mini-menu-options'>
-            <h4>Hi asd asd asd asd asd asd asd</h4>
-          </div>
-        </section>
+          </section>
+          {/* {ReactDOM.createPortal(
+            <TaskPreviewPortal pos={pos} />,
+            document.getElementById('task-portal')
+          )} */}
+        </div>
       )}
     </React.Fragment>
   );
