@@ -142,7 +142,8 @@ export const BoardHeader = (props) => {
             src={MENU}
             alt='menu'
             style={{ width: '16px', height: '16px' }}
-          />
+            />
+            Show Menu
           {/* <BoardActivity board={board}/> */}
         </div>
       </div>
