@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppHeader } from '../cmps/app-header';
 import { boardService } from '../services/board.service';
-import { Loader } from '../cmps/loader';
+import { Loader } from '../cmps/UI/loader';
 import PersonIcon from '@mui/icons-material/Person';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import { CreateBoard } from '../cmps/create-board-modal';
@@ -65,7 +65,6 @@ export const BoardWorkspaces = () => {
         </div>
         <div className='boards-container flex'>
           {regBoards.map((board) => {
-            // if (!board.isStarred)
             let boardStyle = !board.style.imgUrl
               ? `${board.style.bgColor}`
               : `url(${board.style.imgUrl})`;

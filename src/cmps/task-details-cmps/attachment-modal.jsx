@@ -6,6 +6,8 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { boardService } from '../../services/board.service';
 import { utilService } from '../../services/util.service';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 export const AttachmentModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   let open = Boolean(anchorEl);
@@ -27,7 +29,7 @@ export const AttachmentModal = (props) => {
     return currTask._id === task._id;
   });
 
-  const handleSubmit = async (eve) => {
+  const handleSubmit = (eve) => {
     if (!attachmentUrl) return;
     eve.preventDefault();
     const title = !attachmentName ? 'attachment' : attachmentName;
@@ -47,15 +49,14 @@ export const AttachmentModal = (props) => {
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
       const cover = { background: attachmentUrl, spread: 'partial' };
       board.groups[groupIdx].tasks[taskIdx].cover = cover
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log('Cannot add attachment to task', err);
     }
     handleClose();
   };
 
-  const handleUploadImage = async (obj) => {
+  const handleUploadImage = (obj) => {
     try {
       const title = !attachmentName ? 'attachment' : attachmentName;
       const attachment = {
@@ -67,8 +68,7 @@ export const AttachmentModal = (props) => {
       board.groups[groupIdx].tasks[taskIdx].attachments.push(attachment);
       const cover = { background: obj.url, spread: 'partial' };
       board.groups[groupIdx].tasks[taskIdx].cover = cover
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(saveBoard(board))
       handleClose();
     } catch (err) {
       console.log('cannot upload image', err);
@@ -95,7 +95,7 @@ export const AttachmentModal = (props) => {
 
   return (
     <div className='button-container flex align-center'>
-      <AttachFileIcon onClick={handleClick} color='action' />
+      {props.from !== 'mini-menu' && <AttachFileIcon onClick={handleClick} color='action' />}
       <Typography onClick={handleClick}>Attachment</Typography>
       <Popover
         open={open}

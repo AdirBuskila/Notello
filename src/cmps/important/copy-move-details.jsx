@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import { useHistory } from "react-router-dom";
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 export const CopyMoveModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -41,13 +43,12 @@ export const CopyMoveModal = (props) => {
     setKeepGroupInitial(target.value);
   }
 
-  const submitChanges = async (board) => {
-    //     try {
-    //         const action = {type: 'SET_BOARD', board};
-    //         await dispatch(action);
-    //     } catch (err) {
-    //         console.log('Cant handle card state change:', err);
-    //     }
+  const submitChanges = (board) => {
+        // try {
+        //   dispatch(saveBoard(board))
+        // } catch (err) {
+        //     console.log('Cant handle card state change:', err);
+        // }
   }
 
   return (

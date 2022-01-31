@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { utilService } from '../services/util.service';
 import {boardService} from '../services/board.service';
+import { saveBoard } from '../store/actions/board.action';
 
 export const CopyMoveModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -56,11 +57,10 @@ export const CopyMoveModal = (props) => {
     history.push(`/b/${board._id}/${newTask._id}`);
   };
 
-  const submitChanges = async (board) => {
+  const submitChanges = (board) => {
     try {
       setNewCardTitle('');
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log('Cant handle card copy / move :', err);
     }
@@ -69,7 +69,7 @@ export const CopyMoveModal = (props) => {
   return (
     <div className='button-container flex align-center'>
       <div className='flex align-center'>
-        <ContentCopyOutlinedIcon onClick={handleClick} color='action' />
+      {props.from !== 'mini-menu' && <ContentCopyOutlinedIcon onClick={handleClick} color='action' />}
         <Typography onClick={handleClick}>Copy</Typography>
       </div>
       <Popover

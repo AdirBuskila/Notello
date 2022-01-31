@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import { useHistory } from "react-router-dom";
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 
+import { saveBoard } from '../store/actions/board.action';
+
 import { boardService } from '../services/board.service';
 
 export const ArchiveModal = (props) => {
@@ -12,6 +14,7 @@ export const ArchiveModal = (props) => {
   const open = Boolean(anchorEl);
   const { board, groupIdx, taskIdx, task } = props;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+  
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -44,11 +47,10 @@ export const ArchiveModal = (props) => {
   }
 
 
-  const submitChanges = async (board, activity) => {
+  const submitChanges = (board, activity) => {
       try {
         if (activity) board.activities.unshift(activity);
-          const action = {type: 'SET_BOARD', board};
-          await dispatch(action);
+        dispatch(saveBoard(board))
       } catch (err) {
           console.log('Cant handle card state change', err);
       }
@@ -58,7 +60,7 @@ export const ArchiveModal = (props) => {
   return (
     <div className='button-container flex align-center'>
         <div className='flex align-center'>
-        <Inventory2OutlinedIcon onClick={handleClick} color='action' />
+        {props.from !== 'mini-menu' && <Inventory2OutlinedIcon onClick={handleClick} color='action' />}
               <Typography onClick={handleClick}>Archive</Typography>
         </div>
       <Popover
@@ -82,13 +84,13 @@ export const ArchiveModal = (props) => {
                 Choose carefully.
             </p>
             <section className='archive-actions flex align-center'>
-              <button onClick={onHandleArchiveAction} className='archive-action'>Archive</button>
-              <button onClick={onHandleRetrieveAction} className='return-action'>
+              {!task.isArchived ? <button onClick={onHandleArchiveAction} className='archive-action'>Archive</button>
+               : <button onClick={onHandleRetrieveAction} className='return-action'>
               Retrieve
               {/* <div>
               <AutorenewSharpIcon className='retrieve-action' sx={{fontSize: 'small'}} />
               </div> */}
-                  </button>
+                  </button>}
               <button onClick={onHandleDeleteAction} className='delete-action'>Delete</button>
             </section>
           </div>

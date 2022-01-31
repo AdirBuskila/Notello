@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { Link, useHistory } from 'react-router-dom';
@@ -47,8 +47,8 @@ export const TaskPreviewMiniMenu = (props) => {
     dispatch({ type: 'HANDLE_LABELS' });
   };
 
-  const onHandleTitleChange = ({ target }) => {
-    setTaskNewTitle(target)
+  const onHandleTitleChange = (ev) => {
+    setTaskNewTitle(ev.target)
   };
 
   return (

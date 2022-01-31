@@ -36,9 +36,6 @@
         h3 {
             margin-bottom: rem(4px);
         }
-        .MuiBox-root {
-            padding-inline-start: rem(6px);
-        }
         .checkbox-info {
             .checkbox {
                 font-size: small;
@@ -50,6 +47,11 @@
                 margin: 4px;
                 width: 16px;
             }
+        }
+    }
+    .MuiBox-root {
+        p {
+            padding-inline-start: rem(4px);
         }
     }
 }

@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { boardService } from '../../services/board.service';
 import { ActivityPerTask } from './activity-per-task';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 export const CommentsSection = (props) => {
   const { comments, task, group, board, setActivityOpen, activityOpen } = props;
   const groupIdx = boardService.getGroupIdxById(board, group._id);
@@ -19,8 +21,7 @@ export const CommentsSection = (props) => {
     });
     task.comments.splice(commentIdx, 1);
     board.groups[groupIdx].tasks[taskIdx] = task;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+    dispatch(saveBoard(board))
   };
 
   return (

@@ -32,6 +32,8 @@
   
   button {
     background: #0009;
+    width: rem(120px);
+    text-align: start;
     border-radius: 3px;
     clear: both;
     color: #e6e6e6;
@@ -39,6 +41,7 @@
     margin: 0 0 4px 8px;
     padding: 6px 12px 6px 8px;
     font-size: rem(16px);
+    filter: brightness(85%)
   }
 
   button:hover {

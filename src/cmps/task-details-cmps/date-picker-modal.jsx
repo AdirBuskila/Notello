@@ -7,13 +7,15 @@ import Typography from '@mui/material/Typography';
 import { boardService } from '../../services/board.service';
 import { useDispatch } from 'react-redux';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 export function DatePickerModal(props) {
   const { task, group, board } = props;
   const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
   const ExampleCustomInput = React.forwardRef(({ onClick }, ref) => (
     <div onClick={onClick} ref={ref} className='button-container flex'>
-      <QueryBuilderIcon color='action' />
+      {props.from !== 'mini-menu' && <QueryBuilderIcon color='action' />}
       <Typography>Dates</Typography>
     </div>
   ));
@@ -29,8 +31,7 @@ export function DatePickerModal(props) {
     const newArray = [];
     newArray.push(newDueDate);
     board.groups[groupIdx].tasks[taskIdx].dueDate = newArray;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+    dispatch(saveBoard(board));
   };
   return (
     <DatePicker

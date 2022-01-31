@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { AppHeader } from '../cmps/app-header';
 import { BoardHeader } from '../cmps/board-header.jsx';
-import { Loader } from '../cmps/loader';
+import { Loader } from '../cmps/UI/loader';
 import { GroupList } from '../cmps/group-list.jsx';
 import { TaskDetails } from '../pages/task-details';
 import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
-import { TaskPreview } from '../cmps/task-preview';
 import { TaskPreviewHover } from '../cmps/task-preview-hover';
 import { utilService } from '../services/util.service';
 import { BoardNotifications } from './board-notifications';
@@ -20,6 +19,7 @@ const _BoardDetails = (props) => {
   const [previewTask, setPos] = useState(null);
   const { id } = props.match.params;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+
 
   const onLoadBoard = async () => {
     try {

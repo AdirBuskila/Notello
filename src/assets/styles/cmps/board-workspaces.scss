@@ -1,6 +1,7 @@
 .board-container {
     margin-inline-start: 10%;
-    max-width: 1266px;
+    margin-inline-end: 10%;
+    max-width: rem(1266px);
     padding: 20px 0 0;
     grid-template-columns: minmax(20px, 1fr) minmax(auto, 960px) minmax(20px, 1fr);
     .board-workspace-title {

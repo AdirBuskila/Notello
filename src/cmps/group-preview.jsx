@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { PreFeatureAdd } from './preFeatureAdd';
 import { TaskList } from './task-list';
-import { loadBoard } from '../store/actions/board.action no BE';
+import { loadBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -64,10 +64,7 @@ const _GroupPreview = (props) => {
                   }}
                   defaultValue={group.title}></input>
               ) : null}
-              < GroupActionsModal 
-              groupIdx={groupIdx}
-              board={board}
-              />
+              <GroupActionsModal groupIdx={groupIdx} board={board} />
             </div>
             <div className='group-data-container'>
               <Droppable

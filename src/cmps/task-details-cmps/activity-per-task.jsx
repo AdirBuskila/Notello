@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Avatar } from '@mui/material';
+
 import { utilService } from '../../services/util.service';
 
 export const ActivityPerTask = (props) => {
-  const { board, task } = props;
+  const { task } = props;
+  const board = useSelector((state) => state.boardModule.board);
   return (
     <React.Fragment>
       {board.activities.map((activity, idx) => {

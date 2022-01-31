@@ -56,14 +56,15 @@ export const TaskPreview = (props) => {
       left: parentPos.left,
       top: parentPos.top,
       width: parentPos.width,
-      height: parentPos.height
-    }
+      height: parentPos.height,
+    };
     props.setPos({
       taskPos,
       task,
-      groupIdx
-    })
-  }
+      groupIdx,
+      board,
+    });
+  };
 
   const className = isLabelsExpended
     ? 'flex align-center expended'
@@ -88,16 +89,17 @@ export const TaskPreview = (props) => {
               {...provided.dragHandleProps}
               {...provided.draggableProps}
               key={task._id}>
+              {isHover && (
+                <button
+                  onClick={(ev) => handleTaskPosition(ev)}
+                  className='preview-hover-state'>
+                  <CreateTwoToneIcon
+                    className='edit-icon'
+                    sx={{ fontSize: 'medium', color: 'action' }}
+                  />{' '}
+                </button>
+              )}
 
-              {isHover && <button
-              onClick={(ev) => handleTaskPosition(ev)}
-                      className='preview-hover-state'>
-                      <CreateTwoToneIcon
-                        className='edit-icon'
-                        sx={{ fontSize: 'medium', color: 'action' }}
-                      /> </button>}
-
-              
               {/* {isHover && (
                 <TaskPreviewHover
                 setPreview={props.setPreview}
@@ -147,7 +149,7 @@ export const TaskPreview = (props) => {
                 <p>{task.title}</p>
 
                 {!isFull && (
-                  <div className='task-info-icons flex space-between wrap'>
+                  <div className='task-info-icons'>
                     <div className='task-badges flex align-center'>
                       {task.dueDate.length > 0 && (
                         <DueDateBadge

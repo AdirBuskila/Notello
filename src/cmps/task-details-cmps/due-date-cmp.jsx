@@ -3,8 +3,7 @@ import { boardService } from '../../services/board.service';
 import { useDispatch, useSelector } from 'react-redux';
 import DOWNICON from '../../assets/img/down-arrow.png';
 
-
-
+import {saveBoard} from '../../store/actions/board.action'
 
 function formatAMPM(date) {
     var hours = date.getHours();
@@ -50,7 +49,7 @@ export const DueDateCmp = (props) => {
         minutes = '00'
     }
 
-    const handleChange = async (ev, isDone) => {
+    const handleChange = (ev, isDone) => {
       ev.stopPropagation();
       ev.preventDefault();
       const activity = boardService.addTaskActivity(`added due date for task ${task.title} set to (${dueDate[0].date})`, task._id, task.title, loggedInUser)
@@ -58,15 +57,12 @@ export const DueDateCmp = (props) => {
         if (activity) board.activities.unshift(activity);
         task.dueDate[0].isDone = !isDone;
         board.groups[groupIdx].tasks[taskIdx] = task;
-        await boardService.save(board);
-        const action = { type: 'SET_BOARD', board };
-        await dispatch(action);
+        // await boardService.save(board); // CHECK
+        dispatch(saveBoard(board))
       } catch (err) {
         console.log('Cannot add due date to task');
       }
     };  
-  
-
 
 
   return (

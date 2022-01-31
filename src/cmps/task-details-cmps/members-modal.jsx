@@ -6,12 +6,13 @@ import { boardService } from '../../services/board.service';
 import { utilService } from '../../services/util.service';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Avatar from '@mui/material/Avatar';
+import { saveBoard } from '../../store/actions/board.action';
 
 export const MembersModal = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   let open = Boolean(anchorEl);
   const dispatch = useDispatch();
-  
+
   const { board, group, task } = props;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
@@ -31,12 +32,11 @@ export const MembersModal = (props) => {
   const onAddMember = (memberId) => {
     let taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
     let newMember = board.members.find((currMember) => {
-      return (currMember._id === memberId)
-  })
+      return currMember._id === memberId;
+    });
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
     });
-
 
     if (alreadyInside) {
       const activity = boardService.addTaskActivity(
@@ -44,17 +44,20 @@ export const MembersModal = (props) => {
         task._id,
         task.title,
         loggedInUser
-        );
-    if (activity) board.activities.unshift(activity);
+      );
+      if (activity) board.activities.unshift(activity);
       handleAlreadyInside(alreadyInside._id, taskMembers);
-
     } else {
-      const activity = boardService.addTaskActivity(`${loggedInUser.fullname} joined to task ${task.title}`,task._id, task.title,loggedInUser)
+      const activity = boardService.addTaskActivity(
+        `${loggedInUser.fullname} joined to task ${task.title}`,
+        task._id,
+        task.title,
+        loggedInUser
+      );
       if (activity) board.activities.unshift(activity);
       taskMembers.push(newMember);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
-      const action = { type: 'SET_BOARD', board };
-      dispatch(action);
+      dispatch(saveBoard(board));
     }
   };
 
@@ -63,8 +66,7 @@ export const MembersModal = (props) => {
       return member._id !== memberId;
     });
     board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+    dispatch(saveBoard(board));
   };
   const handleClassName = (member) => {
     const isExist = task.members.findIndex((currMember) => {
@@ -75,7 +77,7 @@ export const MembersModal = (props) => {
   };
   return (
     <div className='button-container flex'>
-      <PersonOutlineOutlinedIcon onClick={handleClick} color='action' />
+      {props.from !== 'mini-menu' && <PersonOutlineOutlinedIcon onClick={handleClick} color='action' />}
       <Typography onClick={handleClick}>Members</Typography>
       <Popover
         open={open}

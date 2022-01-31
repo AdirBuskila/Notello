@@ -63,12 +63,12 @@ function remove(boardId) {
     try { return httpService.delete(`board/${boardId}`) } catch (err) {}
 }
 
-function save(board) {
+async function save(board) {
     const { _id } = board
     try {
         if (_id) {
-            return httpService.put(`board/${_id}`, board)
-        } else return httpService.post((`board`), board)
+            return await httpService.put(`board/${_id}`, board)
+        } else return await httpService.post((`board`), board)
     } catch (err) {
         console.log(err);
     }

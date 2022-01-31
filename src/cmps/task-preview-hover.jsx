@@ -6,18 +6,19 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export const TaskPreviewHover = (props) => {
   const board = useSelector((state) => state.boardModule.board);
-  const { taskPos, task, groupIdx } = props.previewTask;
-  const taskIdx = board.groups[groupIdx].tasks.find((currTask) => {
-    return (currTask._id === task._id)
+  const { taskPos, groupIdx } = props.previewTask;
+  const [task, setTask] = useState(props.previewTask.task)
+  const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
+    return (currTask._id === task._id);
   })
   const [taskNewTitle, setTaskNewTitle] = useState(task.title);
 
   const dispatch = useDispatch()
-  // const [board, setBoard] = useState(props.board);
 
   useEffect(() => {
-    props.onLoadBoard()
-  }, [board]);
+    setTask(board.groups[groupIdx].tasks[taskIdx])
+  }, [board])
+
 
   const onBackDropClick = (ev) => {
     ev.preventDefault();
@@ -28,9 +29,11 @@ export const TaskPreviewHover = (props) => {
   const handleTitleChange = () => {
     // task.title = taskNewTitle;
     // board.groups[groupIdx].tasks[taskIdx] = task;
-    // dispatch({type: 'SET_BOARD', board})
+    // const action = {type: 'SET_BOARD', board};
+    // dispatch(action)
     props.setPos(null);
   }
+
 
   const taskPosition = {
     position: 'absolute',
@@ -38,6 +41,7 @@ export const TaskPreviewHover = (props) => {
     left: taskPos.left + 'px',
     width: taskPos.width + 'px',
     height: taskPos.height + 'px',
+    // minHeight: '2rem'
   };
 
   const buttonPosition = {
@@ -56,7 +60,7 @@ export const TaskPreviewHover = (props) => {
     <React.Fragment>
       <Backdrop onClick={(ev) => onBackDropClick(ev)} />
       <div>
-        <section className='mini-menu-preview'>
+        <section className='mini-menu-preview flex column'>
           <TaskPreviewMiniMenu
           setTaskNewTitle={setTaskNewTitle}
             board={board}
@@ -69,6 +73,7 @@ export const TaskPreviewHover = (props) => {
           />
 
         <TaskPreviewPortal
+        onLoadBoard={props.onLoadBoard}
         board={board}
         key={board.groups[groupIdx]._id}
         groupIdx={groupIdx}

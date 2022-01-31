@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { Loader } from './loader';
+import { Loader } from './UI/loader';
+
+import { saveBoard } from '../store/actions/board.action';
 
 import { boardService } from '../services/board.service';
 
@@ -14,15 +16,14 @@ export const GroupList = (props) => {
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const board = useSelector((state) => state.boardModule.board);
 
-  const onSetBoard = async (board) => {
+  const onSetBoard = (board) => {
     const activity = boardService.addGeneralActivity(
       `entered to ${board.title} board`,
       loggedInUser
     );
     try {
       if (activity) board.activities.unshift(activity);
-      const action = { type: 'SET_BOARD', board };
-      dispatch(action);
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log(`Cannot set board ${board._id}`);
     }
@@ -63,12 +64,14 @@ export const GroupList = (props) => {
     if (source.dropabbleId === destination.droppableId) {
       sourceGroup.tasks.splice(source.index, 1);
       destinationGroup.tasks.splice(destination.index, 0, draggingTask);
-      boardService.save(board);
+      // boardService.save(board);
+      dispatch(props.saveBoard(board));
       onSetBoard(board);
     } else {
       sourceGroup.tasks.splice(source.index, 1);
       destinationGroup.tasks.splice(destination.index, 0, draggingTask);
-      boardService.save(board);
+      // boardService.save(board);
+      dispatch(props.saveBoard(board));
       onSetBoard(board);
     }
   };

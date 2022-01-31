@@ -1,6 +1,6 @@
 import React from 'react';
 import AddIcon from '@mui/icons-material/Add';
-import { LabelsModal } from '../details-labels';
+import { LabelsModal } from '../labels-modal';
 
 import { utilService } from '../../services/util.service';
 
