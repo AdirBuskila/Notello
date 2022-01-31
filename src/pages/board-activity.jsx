@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ClearSharpIcon from '@mui/icons-material/ClearSharp';
-import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { Avatar } from '@mui/material';
 
