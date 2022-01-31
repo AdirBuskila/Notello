@@ -1,12 +1,11 @@
 .board-container {
-    margin-inline-start: 10%;
-    margin-inline-end: 10%;
+    margin: auto;
+    margin-top: rem(40px);
     max-width: rem(1266px);
     padding: 20px 0 0;
     grid-template-columns: minmax(20px, 1fr) minmax(auto, 960px) minmax(20px, 1fr);
     .board-workspace-title {
-        // padding-left: 10px;
-        margin: 20px 0 20px 0;
+        margin: rem(20px) 0 20px 0;
         svg {
             margin-inline-end: rem(15px);
             width: rem(35px);
@@ -26,9 +25,10 @@
     .board {
         justify-content: center;
         border-radius: 5px;
-        width: rem(230px);
-        height: rem(125px);
+        width: rem(284px);
+        height: rem(80px);
         background-size: cover;
+        background-position: center center;
     }
     .add-board-container {
         background-color: #a0a5ad;
