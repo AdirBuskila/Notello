@@ -95,7 +95,7 @@ export const AttachmentModal = (props) => {
 
   return (
     <div className='button-container flex align-center'>
-      <AttachFileIcon onClick={handleClick} color='action' />
+      {props.from !== 'mini-menu' && <AttachFileIcon onClick={handleClick} color='action' />}
       <Typography onClick={handleClick}>Attachment</Typography>
       <Popover
         open={open}

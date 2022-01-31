@@ -75,7 +75,7 @@ export const MembersModal = (props) => {
   };
   return (
     <div className='button-container flex'>
-      <PersonOutlineOutlinedIcon onClick={handleClick} color='action' />
+      {props.from !== 'mini-menu' && <PersonOutlineOutlinedIcon onClick={handleClick} color='action' />}
       <Typography onClick={handleClick}>Members</Typography>
       <Popover
         open={open}

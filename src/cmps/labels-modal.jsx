@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -12,13 +12,14 @@ import { boardService } from '../services/board.service';
 export const LabelsModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const { board, groupIdx, taskIdx, task } = props;
-  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+  const {board, groupIdx, taskIdx, task } = props;
   const isFromInnerWindow = props.source ? true : false;
   const [isEditing, setIsEditing] = useState(false);
   const [currLabelId, setCurrLabelId] = useState(null);
   const [labelTitle, setLabelTitle] = useState('');
+  // const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const dispatch = useDispatch();
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -27,7 +28,6 @@ export const LabelsModal = (props) => {
     event.preventDefault();
     setIsEditing(false);
     setAnchorEl(null);
-
   };
 
   const onHandleLabelTitle = ({ target }) => {
@@ -102,7 +102,7 @@ export const LabelsModal = (props) => {
       <div
         className='flex align-center'
         style={isFromInnerWindow ? { opacity: '0' } : null}>
-        <LocalOfferOutlinedIcon color='action' onClick={handleClick} />
+        {props.from !== 'mini-menu' && <LocalOfferOutlinedIcon color='action' onClick={handleClick} />}
         <Typography onClick={handleClick}>Labels</Typography>
       </div>
       <Popover

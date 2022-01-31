@@ -5,19 +5,18 @@ import { TaskPreviewPortal } from './task-preview-portal';
 import { useSelector, useDispatch } from 'react-redux';
 
 export const TaskPreviewHover = (props) => {
-  const board = useSelector((state) => state.boardModule.board);
+  // const board = useSelector((state) => state.boardModule.board);
+  // console.log("board: ", board);
   const { taskPos, task, groupIdx } = props.previewTask;
-  const taskIdx = board.groups[groupIdx].tasks.find((currTask) => {
-    return (currTask._id === task._id)
-  })
+  const {board} = props;
   const [taskNewTitle, setTaskNewTitle] = useState(task.title);
 
   const dispatch = useDispatch()
-  // const [board, setBoard] = useState(props.board);
 
-  useEffect(() => {
-    props.onLoadBoard()
-  }, [board]);
+  // useEffect(() => {
+  //   console.log('Board changed in store', board);
+  // }, [board])
+
 
   const onBackDropClick = (ev) => {
     ev.preventDefault();
@@ -28,9 +27,11 @@ export const TaskPreviewHover = (props) => {
   const handleTitleChange = () => {
     // task.title = taskNewTitle;
     // board.groups[groupIdx].tasks[taskIdx] = task;
-    // dispatch({type: 'SET_BOARD', board})
+    // const action = {type: 'SET_BOARD', board};
+    // dispatch(action)
     props.setPos(null);
   }
+
 
   const taskPosition = {
     position: 'absolute',
@@ -54,6 +55,7 @@ export const TaskPreviewHover = (props) => {
 
   return (
     <React.Fragment>
+      {console.log('UPDATED!', board)}
       <Backdrop onClick={(ev) => onBackDropClick(ev)} />
       <div>
         <section className='mini-menu-preview'>
@@ -69,6 +71,7 @@ export const TaskPreviewHover = (props) => {
           />
 
         <TaskPreviewPortal
+        onLoadBoard={props.onLoadBoard}
         board={board}
         key={board.groups[groupIdx]._id}
         groupIdx={groupIdx}

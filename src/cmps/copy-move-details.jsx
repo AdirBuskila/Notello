@@ -69,7 +69,7 @@ export const CopyMoveModal = (props) => {
   return (
     <div className='button-container flex align-center'>
       <div className='flex align-center'>
-        <ContentCopyOutlinedIcon onClick={handleClick} color='action' />
+      {props.from !== 'mini-menu' && <ContentCopyOutlinedIcon onClick={handleClick} color='action' />}
         <Typography onClick={handleClick}>Copy</Typography>
       </div>
       <Popover

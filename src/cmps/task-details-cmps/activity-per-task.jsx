@@ -8,7 +8,7 @@ export const ActivityPerTask = (props) => {
     <React.Fragment>
       {board.activities.map((activity, idx) => {
         return (
-          <React.Fragment>
+          <section>
             {activity.task && activity.task._id === task._id && (
               <div className='flex comment' key={idx}>
                 <div className='activity-individual flex' key={task._id}>
@@ -36,7 +36,7 @@ export const ActivityPerTask = (props) => {
                 </div>
               </div>
             )}
-          </React.Fragment>
+          </section>
         );
       })}
     </React.Fragment>

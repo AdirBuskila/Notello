@@ -58,7 +58,7 @@ export const ArchiveModal = (props) => {
   return (
     <div className='button-container flex align-center'>
         <div className='flex align-center'>
-        <Inventory2OutlinedIcon onClick={handleClick} color='action' />
+        {props.from !== 'mini-menu' && <Inventory2OutlinedIcon onClick={handleClick} color='action' />}
               <Typography onClick={handleClick}>Archive</Typography>
         </div>
       <Popover

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import { useSelector } from 'react-redux';
 
-import { LabelsModal } from './details-labels';
+import { LabelsModal } from './labels-modal';
 import { MembersModal } from './task-details-cmps/members-modal';
 import { DatePickerModal } from './task-details-cmps/date-picker-modal';
-import { CheckListModal } from './check-list-modal';
 import { AttachmentModal } from './task-details-cmps/attachment-modal';
 import { CoverModal } from './cover-modal';
 import { CopyMoveModal } from './copy-move-details';
@@ -11,8 +12,10 @@ import { ArchiveModal } from './details-archive';
 
 import { useHistory } from 'react-router-dom';
 
-export const TaskPreviewPortal = (props) => {
-  const { portalPosition, board, task, groupIdx} = props;
+export const TaskPreviewPortal = (props) => { 
+  const board = useSelector((state) => state.boardModule.board);
+  const { portalPosition, groupIdx} = props;
+  const [task, setTask] = useState(props.task)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
   });
@@ -29,9 +32,13 @@ export const TaskPreviewPortal = (props) => {
   return (
     <React.Fragment>
       <section className='mini-menu-portal' style={portalPosition}>
-        <button onClick={(ev) => onHandleOpenCard(ev)}>Open card</button>
+        <button onClick={(ev) => onHandleOpenCard(ev)}>
+          Open card
+          </button>
         <button>
           <LabelsModal
+          from={'mini-menu'}
+          setTask={setTask}
             task={task}
             groupIdx={groupIdx}
             board={board}
@@ -39,18 +46,15 @@ export const TaskPreviewPortal = (props) => {
           />
         </button>
         <button>
-           <MembersModal task={task} board={board} group={board.groups[groupIdx]} />
+           <MembersModal 
+           from={'mini-menu'}
+           task={task} 
+           board={board} 
+           group={board.groups[groupIdx]} />
            </button>
         <button>
-          <CheckListModal
-            board={board}
-            groupIdx={groupIdx}
-            taskIdx={taskIdx}
-            task={task}
-          />
-        </button>
-        <button>
           <DatePickerModal
+          from={'mini-menu'}
             task={task}
             board={board}
             group={board.groups[groupIdx]}
@@ -58,6 +62,7 @@ export const TaskPreviewPortal = (props) => {
         </button>
         <button>
           <AttachmentModal
+          from={'mini-menu'}
             task={task}
             board={board}
             group={board.groups[groupIdx]}
@@ -66,6 +71,7 @@ export const TaskPreviewPortal = (props) => {
         </button>
         <button>
           <CoverModal
+          from={'mini-menu'}
             updateTask={task}
             board={board}
             groupIdx={groupIdx}
@@ -75,6 +81,7 @@ export const TaskPreviewPortal = (props) => {
         </button>
         <button>
           <CopyMoveModal
+          from={'mini-menu'}
             type={'copy'}
             board={board}
             groupIdx={groupIdx}
@@ -84,6 +91,7 @@ export const TaskPreviewPortal = (props) => {
         </button>
         <button>
           <ArchiveModal
+          from={'mini-menu'}
             board={board}
             groupIdx={groupIdx}
             taskIdx={taskIdx}

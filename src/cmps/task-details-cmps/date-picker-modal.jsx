@@ -13,7 +13,7 @@ export function DatePickerModal(props) {
   const dispatch = useDispatch();
   const ExampleCustomInput = React.forwardRef(({ onClick }, ref) => (
     <div onClick={onClick} ref={ref} className='button-container flex'>
-      <QueryBuilderIcon color='action' />
+      {props.from !== 'mini-menu' && <QueryBuilderIcon color='action' />}
       <Typography>Dates</Typography>
     </div>
   ));

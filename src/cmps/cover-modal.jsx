@@ -62,11 +62,11 @@ export const CoverModal = (props) => {
 
   return (
     <div className='button-container flex align-center'>
-      <VideoLabelIcon
+      {props.from !== 'mini-menu' && <VideoLabelIcon
         sx={{ fontSize: 'medium' }}
         onClick={handleClick}
         color='action'
-      />
+      />}
       <Typography onClick={handleClick}>Cover</Typography>
       <Popover
         open={open}

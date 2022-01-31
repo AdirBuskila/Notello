@@ -18,6 +18,7 @@ const _BoardDetails = (props) => {
   const { id } = props.match.params;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
+
   const onLoadBoard = async () => {
     try {
       await props.loadBoard(id, loggedInUser);

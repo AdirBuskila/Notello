@@ -61,7 +61,8 @@ export const TaskPreview = (props) => {
     props.setPos({
       taskPos,
       task,
-      groupIdx
+      groupIdx,
+      board
     })
   }
 
