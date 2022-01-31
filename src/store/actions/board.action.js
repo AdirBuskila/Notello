@@ -12,6 +12,7 @@ export function loadBoard(boardId, loggedInUser) {
                 board.members.push(loggedInUser);
                 dispatch({ type: 'ATTACH_BOARD_USER', loggedInUser })
             }
+            // console.log(board.activities.length);
             if (board.activities.length > 20) {
                 board.activities.pop();
             }
