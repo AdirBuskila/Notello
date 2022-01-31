@@ -28,38 +28,37 @@ export const BoardActivity = (props) => {
           }}
         />
       </div>
-      <div className='activity-header flex align-center'>
-        <FormatListBulletedIcon
-          style={{ color: '#42526e' }}
-          className='activity-icon'
-        />
-        <span>Activity</span>
+      <div className='activity-header-container'>
+        <div className='activity-header flex align-center'>
+          <FormatListBulletedIcon
+            style={{ color: '#42526e' }}
+            className='activity-icon'
+          />
+          <span>Activity</span>
+        </div>
       </div>
       <article className='activities-container flex column'>
         {board.activities ? (
           board.activities.map((activity) => {
             return (
               <React.Fragment>
-                <div className='flex'>
-                  <div className='activity-individual flex'>
-                    {activity.byMember && (
-                      <Avatar
-                        alt='G'
-                        src={activity.byMember.imgUrl}
-                        style={{
-                          width: '32px',
-                          height: '32px',
-                        }}
-                      />
-                    )}
-                    <div className='flex column'>
-                      <div className='flex column wrap'>
-                        <span>{activity.byMember.fullname}</span>
-                        <p>{activity.txt}</p>
-                      </div>
-                      <span>
-                        {utilService.fixTimestamp(activity.createdAt)}
-                      </span>
+                <div className='activity-individual flex'>
+                  {activity.byMember && (
+                    <Avatar
+                      alt='G'
+                      src={activity.byMember.imgUrl}
+                      style={{
+                        width: '32px',
+                        height: '32px',
+                      }}
+                    />
+                  )}
+                  <div className='flex column'>
+                    <div
+                      classname='activity-data flex'
+                      style={{ gap: '0.5rem' }}>
+                      <span>{activity.byMember.fullname}</span>
+                      <p>{activity.txt}</p>
                       {activity.task && (
                         <Link
                           onClick={() => {
@@ -72,6 +71,9 @@ export const BoardActivity = (props) => {
                         </Link>
                       )}
                     </div>
+                    <span className='activity-date'>
+                      {utilService.fixTimestamp(activity.createdAt)}
+                    </span>
                   </div>
                 </div>
               </React.Fragment>
