@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { Loader } from './loader';
+import { Loader } from './UI/loader';
 
 import { saveBoard } from '../store/actions/board.action';
 

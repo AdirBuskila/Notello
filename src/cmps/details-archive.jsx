@@ -84,13 +84,13 @@ export const ArchiveModal = (props) => {
                 Choose carefully.
             </p>
             <section className='archive-actions flex align-center'>
-              <button onClick={onHandleArchiveAction} className='archive-action'>Archive</button>
-              <button onClick={onHandleRetrieveAction} className='return-action'>
+              {!task.isArchived ? <button onClick={onHandleArchiveAction} className='archive-action'>Archive</button>
+               : <button onClick={onHandleRetrieveAction} className='return-action'>
               Retrieve
               {/* <div>
               <AutorenewSharpIcon className='retrieve-action' sx={{fontSize: 'small'}} />
               </div> */}
-                  </button>
+                  </button>}
               <button onClick={onHandleDeleteAction} className='delete-action'>Delete</button>
             </section>
           </div>
