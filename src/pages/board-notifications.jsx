@@ -14,9 +14,8 @@ export const BoardNotifications = (props) => {
   const board = useSelector((state) => state.boardModule.board);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const className = props.notificationsOpen
-  ? 'board-activity-container open'
-  : 'board-activity-container';
-
+  ? 'board-notification-container open'
+  : 'board-notification-container';
   if (!board || board.length === 0) return <p>Loading...</p>;
   console.log(loggedInUser);
 
@@ -27,7 +26,7 @@ export const BoardNotifications = (props) => {
   return (
     // <section className='board-activity-container'>
     <section className={className}>
-      <div className='activity-menu flex align-center'>
+      <div className='notification-menu flex align-center'>
         <span>Menu</span>
         <ClearSharpIcon
           className='close-btn'
@@ -38,8 +37,8 @@ export const BoardNotifications = (props) => {
         />
       </div>
       <hr />
-      <div className='activity-header flex align-center'>
-        <ChatOutlinedIcon className='activity-icon' />
+      <div className='notification-header flex align-center'>
+        <ChatOutlinedIcon className='notification-icon' />
         <span>Activity</span>
       </div>
       <article className='activities-container flex-column'>
@@ -50,8 +49,8 @@ export const BoardNotifications = (props) => {
               <React.Fragment>
                 <div className='notification-preview-container flex'>
                   <div className='dot'></div>
-                  <div className='activity-individual-container flex'>
-                    <div className='activity-individual-header flex column'>
+                  <div className='notification-individual-container flex'>
+                    <div className='notification-individual-header flex column'>
                       {/* ///////// STRING TO COLOR BACKGROUND */}
 
                       <div className='header-container'>
@@ -67,7 +66,7 @@ export const BoardNotifications = (props) => {
                         </p>
                       </div>
                     </div>
-                    <div className='activity-individual-body flex justify-center'>
+                    <div className='notification-individual-body flex justify-center'>
                       <div className='body-content-container'>
                         <div className='user-container'>
                           <Avatar
