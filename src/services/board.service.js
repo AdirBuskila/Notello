@@ -29,7 +29,8 @@ export const boardService = {
     getMemberById,
     addGeneralActivity,
     addTaskActivity,
-    getModalPosition
+    getModalPosition,
+    getNotificationMode,
     // addActivity
 }
 
@@ -76,6 +77,8 @@ async function save(board) {
 
 
 
+
+
 // function query() {
 //     return storageService.query(STORAGE_KEY)
 // }
@@ -116,6 +119,23 @@ function getModalPosition(clickedElementPos) {
     return position;
 }
 
+
+function getNotificationMode(board, activity, loggedInUser) {
+    const searchTask = getTask(board, activity.task._id)
+    const TaskMembers = searchTask.members
+    console.log('TaskMembers', TaskMembers);
+    TaskMembers.filter((member)=> {
+                return (member._id === loggedInUser._id)
+    });
+    
+    const newArr = [...TaskMembers, ...activity.wasShownTo]
+    console.log('newArr', newArr);
+    return newArr
+
+    
+    }
+
+    
 
 function addGeneralActivity(txt, loggedInUser) {
     return {

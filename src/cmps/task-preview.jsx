@@ -149,7 +149,7 @@ export const TaskPreview = (props) => {
                 <p>{task.title}</p>
 
                 {!isFull && (
-                  <div className='task-info-icons'>
+                  <div className='task-info-icons flex space-between'>
                     <div className='task-badges flex align-center'>
                       {task.dueDate.length > 0 && (
                         <DueDateBadge
