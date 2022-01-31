@@ -32,20 +32,15 @@ export const WorkspacesHeaderModal = (props) => {
 
   const onHandleForwarding = (boardId) => {
     history.push(`/b/${boardId}`);
-  }
+  };
 
   const boardsHeight = 6 * 60 + 'px';
-  const btnContent = (showAll) ? 'Show Less' : 'Show More'
+  const btnContent = showAll ? 'Show Less' : 'Show More';
   return (
-    <div
-    onBlur={() => {
-      setOpen(false);
-    }}
-    >
+    <div>
       <Button
         className='header-board flex'
-        onClick={handleClick('bottom-start')}
-      >
+        onClick={handleClick('bottom-start')}>
         <span>Workspaces</span>
         <img src={WhiteArrow} alt='arrow' />
       </Button>
@@ -54,27 +49,23 @@ export const WorkspacesHeaderModal = (props) => {
         open={open}
         anchorEl={anchorEl}
         placement={placement}
-        transition
-      >
+        transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <div
-                className='workspace-dropdown flex column align-center'
-              >
+              <div className='workspace-dropdown flex column align-center'>
                 <div className='workspace-modal-title flex'>
                   Workspace
                   <a href='#' onClick={(ev) => onHandleModal(ev)}>
                     ✕
                   </a>
                 </div>
-                <hr />
                 <div className='span-container'>
                   <p>Your Boards</p>
                 </div>
                 <div className='boards-dropdown-container flex'>
                   {boards.map((board, idx) => {
-                    if (idx > 4 && !showAll) return
+                    if (idx > 4 && !showAll) return;
                     let boardCharacter = board.title.charAt(0);
                     let boardStyle = !board.style.imgUrl
                       ? `${board.style.bgColor}`
@@ -85,20 +76,24 @@ export const WorkspacesHeaderModal = (props) => {
                           <div className='board-square-container flex align-center'>
                             <div
                               style={{ backgroundImage: boardStyle }}
-                              className='board-square flex align-center justify-center'
-                            >
+                              className='board-square flex align-center justify-center'>
                               <p className='board-character'>
                                 {boardCharacter}
                               </p>
                             </div>
-                            <p className='board-title' >{board.title}</p>
+                            <p className='board-title'>{board.title}</p>
                           </div>
                         </div>
                       </Link>
                     );
                   })}
                 </div>
-                <button onClick={()=> {setShowAll(!showAll)}} >{btnContent}</button>
+                <button
+                  onClick={() => {
+                    setShowAll(!showAll);
+                  }}>
+                  {btnContent}
+                </button>
               </div>
             </Paper>
           </Fade>
