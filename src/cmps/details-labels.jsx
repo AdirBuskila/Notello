@@ -7,7 +7,7 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import AddIcon from '@mui/icons-material/Add';
 
-import { boardService } from '../services/board.service';
+import { saveBoard } from '../store/actions/board.action';
 
 export const LabelsModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -27,7 +27,6 @@ export const LabelsModal = (props) => {
     event.preventDefault();
     setIsEditing(false);
     setAnchorEl(null);
-
   };
 
   const onHandleLabelTitle = ({ target }) => {
@@ -41,7 +40,7 @@ export const LabelsModal = (props) => {
     setCurrLabelId(labelId);
   };
 
-  const applyLabelTitle = async (index, labelId) => {
+  const applyLabelTitle = (index, labelId) => {
     board.labels[index].name = labelTitle;
     const labelIdx = task.labels.findIndex((label) => {
       return label._id === labelId;
@@ -51,8 +50,7 @@ export const LabelsModal = (props) => {
       board.groups[groupIdx].tasks[taskIdx] = task;
     }
     try {
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(saveBoard(board));
     } catch (err) {
       console.log('Cannot apply label name', err);
     }
@@ -87,11 +85,10 @@ export const LabelsModal = (props) => {
     onSaveChanges();
   };
 
-  const onSaveChanges = async () => {
+  const onSaveChanges = () => {
     try {
       board.groups[groupIdx].tasks[taskIdx] = task;
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(saveBoard(board));
     } catch (err) {
       console.log('Cant add / remove label', err);
     }
@@ -112,8 +109,7 @@ export const LabelsModal = (props) => {
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
-        }}
-        >
+        }}>
         <div sx={{ p: 0.5, width: '304px' }}>
           <div className='labels-task-modal flex justify-center'>
             Labels
@@ -124,9 +120,7 @@ export const LabelsModal = (props) => {
             <section className='labels-picker'>
               {board.labels.map((label, index) => {
                 return (
-                  <div
-                    key={index}
-                    className='color-label flex'>
+                  <div key={index} className='color-label flex'>
                     <button
                       onClick={(ev) => {
                         onHandlePick(ev, label._id);
@@ -142,17 +136,30 @@ export const LabelsModal = (props) => {
                       )}
                       {task.labels.findIndex((currLabel) => {
                         return currLabel._id === label._id;
-                      }) !== -1 && <TurnedInNotIcon sx={{fontSize: 'medium'}} />}
+                      }) !== -1 && (
+                        <TurnedInNotIcon sx={{ fontSize: 'medium' }} />
+                      )}
                     </button>
-                    <div onClick={() => {applyLabelTitle(index, label._id)}}>
-                    {(!isEditing || label._id !== currLabelId) && <CreateOutlinedIcon
-                      onClick={() => {onHandleEditing(label._id, label.name)}}
-                      sx={{ fontSize: 'large' }}
-                      />} 
-                    {(isEditing && label._id === currLabelId) && <AddIcon
-                    onClick={() => {onHandleEditing(label._id, label.name)}}
-                    sx={{ fontSize: 'large' }} 
-                    />}
+                    <div
+                      onClick={() => {
+                        applyLabelTitle(index, label._id);
+                      }}>
+                      {(!isEditing || label._id !== currLabelId) && (
+                        <CreateOutlinedIcon
+                          onClick={() => {
+                            onHandleEditing(label._id, label.name);
+                          }}
+                          sx={{ fontSize: 'large' }}
+                        />
+                      )}
+                      {isEditing && label._id === currLabelId && (
+                        <AddIcon
+                          onClick={() => {
+                            onHandleEditing(label._id, label.name);
+                          }}
+                          sx={{ fontSize: 'large' }}
+                        />
+                      )}
                     </div>
                   </div>
                 );

@@ -14,7 +14,6 @@ export function loadBoard(boardId, loggedInUser) {
             }
             socketService.emit('view board', board._id)
             socketService.on('board-update', (updatedBoard) => {
-                console.log(updatedBoard);
                 dispatch({ type: 'SET_BOARD', board: updatedBoard })
             })
             dispatch({ type: 'SET_BOARD', board })
@@ -27,12 +26,10 @@ export function loadBoard(boardId, loggedInUser) {
 }
 
 export function saveBoard(board) {
-    return async(dispatch) => {
+    return (dispatch) => {
         try {
-            console.log(board.groups);
-            await boardService.save(board)
+            boardService.save(board)
             socketService.emit('board-update', board)
-
             const action = { type: 'SET_BOARD', board }
             dispatch(action)
         } catch (err) {
