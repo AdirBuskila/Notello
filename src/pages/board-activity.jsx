@@ -54,7 +54,7 @@ export const BoardActivity = (props) => {
                     />
                   )}
                   <div className='flex column'>
-                    <div className='activity-data' style={{ gap: '0.5rem' }}>
+                    <div className='activity-data'>
                       <span>{activity.byMember.fullname}</span>
                       <p>{activity.txt}</p>
                       {activity.task && (

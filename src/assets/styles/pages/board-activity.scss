@@ -62,6 +62,8 @@
         font-weight: 400;
         gap: 4px;
         .activity-data {
+            word-break: break-all;
+            gap: 0.5rem;
             span {
                 font-weight: 700;
                 font-size: 14px;
