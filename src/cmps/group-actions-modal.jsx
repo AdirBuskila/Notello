@@ -28,12 +28,12 @@ export const GroupActionsModal = (props) => {
   };
 
     const onDelete = () => {
-        try {
-            board = board.groups.splice(groupIdx,1)[0]
-            dispatch(saveBoard(board))
-    } catch (err) {
-        console.log(`Cant delete board`, err);
-    }
+    //     try {
+    //         board = board.groups.splice(groupIdx,1)[0]
+    //         dispatch(saveBoard(board))
+    // } catch (err) {
+    //     console.log(`Cant delete board`, err);
+    // }
     setOpen(false)
 }
 
