@@ -5,10 +5,10 @@ import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import { Avatar } from '@mui/material';
 
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-import { utilService } from '../services/util.service';
-import { boardService } from '../services/board.service';
+// import { utilService } from '../services/util.service';
+// import { boardService } from '../services/board.service';
 
 export const BoardNotifications = (props) => {
   const board = useSelector((state) => state.boardModule.board);

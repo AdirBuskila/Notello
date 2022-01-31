@@ -43,6 +43,14 @@
     }
 }
 
+@media only screen and (max-width: 1250px) {
+    .board-container {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    
+}
+
 .board:hover {
     filter: brightness(85%);
 }
