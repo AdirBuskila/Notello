@@ -71,7 +71,7 @@ export const WorkspacesHeaderModal = (props) => {
                       ? `${board.style.bgColor}`
                       : `url(${board.style.imgUrl})`;
                     return (
-                      <Link key={board._id} to={`/b/${board._id}`}>
+                      <Link onClick={() => setOpen(false)} key={board._id} to={`/b/${board._id}`}>
                         <div className='board-drop-preview flex align-center'>
                           <div className='board-square-container flex align-center'>
                             <div

@@ -52,7 +52,7 @@ export const BoardWorkspaces = () => {
               <Link key={board._id} to={`/b/${board._id}`}>
                 <div
                   style={{ backgroundImage: boardStyle }}
-                  className='board flex column align-center'>
+                  className='board'>
                   <p className='board-title'>{board.title}</p>
                 </div>
               </Link>
@@ -73,7 +73,7 @@ export const BoardWorkspaces = () => {
               <Link key={board._id} to={`/b/${board._id}`}>
                 <div
                   style={{ backgroundImage: boardStyle }}
-                  className='board flex column align-center'>
+                  className='board'>
                   <p className='board-title'>{board.title}</p>
                 </div>
               </Link>
