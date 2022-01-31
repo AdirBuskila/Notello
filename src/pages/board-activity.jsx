@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import ClearSharpIcon from '@mui/icons-material/ClearSharp';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { Avatar } from '@mui/material';
 
 import { Link } from 'react-router-dom';
@@ -27,9 +28,11 @@ export const BoardActivity = (props) => {
           }}
         />
       </div>
-      <hr />
       <div className='activity-header flex align-center'>
-        <ChatOutlinedIcon className='activity-icon' />
+        <FormatListBulletedIcon
+          style={{ color: '#42526e' }}
+          className='activity-icon'
+        />
         <span>Activity</span>
       </div>
       <article className='activities-container flex column'>
