@@ -35,6 +35,7 @@ export const BoardWorkspaces = () => {
   return (
     <React.Fragment>
       <AppHeader />
+
       <div className='board-container flex column '>
         <div className='stared-workspace'>
           <div className='stared-workspace-title flex align-center'>
@@ -84,7 +85,7 @@ export const BoardWorkspaces = () => {
             onClick={() => {
               setNewBoard(true);
             }}>
-            <p style={{ filter: 'brightness(100%)' }}>Create New Board</p>
+            <p style={{ filter: 'brightness(100%)' }}></p>
           </div>
         </div>
       </div>
