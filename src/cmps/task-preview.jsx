@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { DragDropContext, Draggable } from 'react-beautiful-dnd';
-import { Link, useHistory } from 'react-router-dom';
+import { Draggable } from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
 
 import { ChecklistBadge } from './badge-cmps/checklist-badge';
 import SubjectIcon from '@mui/icons-material/Subject';
@@ -11,12 +11,9 @@ import { AttachmentsBadge } from './badge-cmps/attachments-badge';
 import { DueDateBadge } from './badge-cmps/due-date-badge';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
 
-import { TaskPreviewHover } from './task-preview-hover';
-
 import { utilService } from '../services/util.service';
 
-export const TaskPreview = (props) => {
-  const { task, board, groupIdx } = props;
+export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
   const [isHover, setIsHover] = useState(false);
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const isFull = taskCover.spread === 'full' ? true : false;
@@ -26,9 +23,7 @@ export const TaskPreview = (props) => {
       ? 'backgroudColor'
       : 'backgroundImage'
     : null;
-
   const dispatch = useDispatch();
-  const history = useHistory();
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
   );
@@ -58,7 +53,7 @@ export const TaskPreview = (props) => {
       width: parentPos.width,
       height: parentPos.height,
     };
-    props.setPos({
+    setPos({
       taskPos,
       task,
       groupIdx,
@@ -76,7 +71,7 @@ export const TaskPreview = (props) => {
         <Draggable
           Draggable='true'
           draggableId={task._id}
-          index={props.index}
+          index={index}
           key={task._id}
           type='task'>
           {(provided) => (
@@ -99,19 +94,6 @@ export const TaskPreview = (props) => {
                   />{' '}
                 </button>
               )}
-
-              {/* {isHover && (
-                <TaskPreviewHover
-                setPreview={props.setPreview}
-                  taskId={task._id}
-                  task={task}
-                  board={board}
-                  groupIdx={groupIdx}
-                  index={props.index}
-                  key={task._id}
-                />
-              )} */}
-
               {taskCover &&
                 !isFull &&
                 (coverType === 'backgroudColor' ? (
