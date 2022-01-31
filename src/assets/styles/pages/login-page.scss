@@ -1,8 +1,9 @@
 .login-container {
     .MuiOutlinedInput-input {
-        height: 40px;
+        height: rem(20px);
     }
-    .left,.right {
+    .left,
+    .right {
         max-width: 30%;
         width: rem(400px);
         position: absolute;
@@ -32,9 +33,8 @@
     }
 }
 
-
 hr {
     color: 'grey';
     background-color: 'grey';
-    width: '300px'
+    width: '300px';
 }

@@ -4,7 +4,6 @@ import ClearSharpIcon from '@mui/icons-material/ClearSharp';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import { Avatar } from '@mui/material';
 
-
 // import { Link } from 'react-router-dom';
 
 // import { utilService } from '../services/util.service';
@@ -14,10 +13,9 @@ export const BoardNotifications = (props) => {
   const board = useSelector((state) => state.boardModule.board);
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const className = props.notificationsOpen
-  ? 'board-notification-container open'
-  : 'board-notification-container';
+    ? 'board-notification-container open'
+    : 'board-notification-container';
   if (!board || board.length === 0) return <p>Loading...</p>;
-  console.log(loggedInUser);
 
   // const newAc = {...board.activities[6], wasShownTo: [{_id: '101307917284498468334', }]}
   // const noti = boardService.getNotificationMode(board ,newAc ,loggedInUser)
@@ -31,7 +29,6 @@ export const BoardNotifications = (props) => {
         <ClearSharpIcon
           className='close-btn'
           onClick={() => {
-
             props.setNotificationsOpen(false);
           }}
         />
@@ -44,10 +41,11 @@ export const BoardNotifications = (props) => {
       <article className='activities-container flex-column'>
         {board.activities ? (
           board.activities.map((activity) => {
-            
             return (
-              <React.Fragment>
-                <div className='notification-preview-container flex'>
+              <React.Fragment key={activity._id}>
+                <div
+                  className='notification-preview-container flex'
+                  key={activity._id}>
                   <div className='dot'></div>
                   <div className='notification-individual-container flex'>
                     <div className='notification-individual-header flex column'>
