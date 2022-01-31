@@ -65,7 +65,6 @@ export const BoardWorkspaces = () => {
         </div>
         <div className='boards-container flex'>
           {regBoards.map((board) => {
-            // if (!board.isStarred)
             let boardStyle = !board.style.imgUrl
               ? `${board.style.bgColor}`
               : `url(${board.style.imgUrl})`;
