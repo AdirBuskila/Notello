@@ -18,7 +18,7 @@ export const CheckListArea = (props) => {
   const [isAdding, setIsAdding] = useState(false);
   const dispatch = useDispatch();
 
-  const handleCheckBoxClick = async (todoId) => {
+  const handleCheckBoxClick = (todoId) => {
     const todoIdx = task.checklists[checklistIdx].todos.findIndex((td) => {
       return td._id === todoId;
     });
@@ -34,8 +34,7 @@ export const CheckListArea = (props) => {
       if (activity) board.activities.unshift(activity);
       task.checklists[checklistIdx].todos[todoIdx].isDone = !isDone;
       board.groups[groupIdx].tasks[taskIdx] = task;
-      const action = {type: 'SET_BOARD', board};
-      dispatch(action);
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log('Cant change todo state', err);
     }

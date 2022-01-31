@@ -5,6 +5,8 @@ import { boardService } from '../../services/board.service';
 import { utilService } from '../../services/util.service';
 import { useDispatch, useSelector} from 'react-redux';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 
 export const EditDescription = (props) => {
   const { task, group, board, description, setEditMode } = props;
@@ -29,22 +31,12 @@ export const EditDescription = (props) => {
     setNewDescription(value);
   };
 
-  const onAdd = async () => {
-    const activity = {
-      _id: utilService.makeId(),
-      txt: `changed ${task.title} task description to - ${DescriptionTxt}`,
-      createdAt: Date.now(),
-      byMember: loggedInUser,
-      task: {
-        _id: task._id,
-        title: task.title,
-      },
-    };
+  const onAdd = () => {
+    const activity = boardService.addTaskActivity(`changed ${task.title} task description to - ${DescriptionTxt}`, task._id, task.title, loggedInUser);
     try {
       board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].description = DescriptionTxt;
-      const action = { type: 'SET_BOARD', board };
-      dispatch(action);
+      dispatch(saveBoard(board))
       setEditMode(false)
     } catch (err) {
       console.log('Cannot add description to task');

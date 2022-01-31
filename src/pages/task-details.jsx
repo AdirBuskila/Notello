@@ -8,7 +8,7 @@ import { AddDescription } from '../cmps/task-details-cmps/textarea-task-descript
 import { AddCommentCmp } from '../cmps/task-details-cmps/textarea-task-comment';
 import { CheckListModal } from '../cmps/check-list-modal';
 import { CommentsSection } from '../cmps/task-details-cmps/comments-section';
-import { LabelsModal } from '../cmps/details-labels';
+import { LabelsModal } from '../cmps/labels-modal';
 import { AttachmentsCmp } from '../cmps/task-details-cmps/attachments-cmp';
 import { AttachmentModal } from '../cmps/task-details-cmps/attachment-modal';
 import { DatePickerModal } from '../cmps/task-details-cmps/date-picker-modal';

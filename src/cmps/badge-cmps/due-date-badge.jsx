@@ -3,6 +3,8 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { boardService } from '../../services/board.service';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 const months = [
   'Jan',
   'Feb',
@@ -34,7 +36,7 @@ export const DueDateBadge = (props) => {
 
   const dispatch = useDispatch();
 
-  const handleClick = async (ev, isDone) => {
+  const handleClick = (ev, isDone) => {
     ev.stopPropagation();
     ev.preventDefault();
     const activity = boardService.addTaskActivity(
@@ -47,9 +49,8 @@ export const DueDateBadge = (props) => {
       if (activity) board.activities.unshift(activity);
       task.dueDate[0].isDone = !isDone;
       board.groups[groupIdx].tasks[taskIdx] = task;
-      await boardService.save(board);
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      // await boardService.save(board); //CHECK
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log('Cannot add due date to task');
     }

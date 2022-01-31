@@ -47,8 +47,8 @@ export const TaskPreviewMiniMenu = (props) => {
     dispatch({ type: 'HANDLE_LABELS' });
   };
 
-  const onHandleTitleChange = ({ target }) => {
-    setTaskNewTitle(target)
+  const onHandleTitleChange = (ev) => {
+    setTaskNewTitle(ev.target)
   };
 
   return (

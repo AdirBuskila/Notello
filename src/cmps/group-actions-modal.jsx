@@ -5,6 +5,8 @@ import Paper from '@mui/material/Paper';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useDispatch } from 'react-redux';
 
+import { saveBoard } from '../store/actions/board.action';
+
 
 export const GroupActionsModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,23 +27,15 @@ export const GroupActionsModal = (props) => {
     setOpen(false);
   };
 
-    const onDelete = async () => {
-        debugger
+    const onDelete = () => {
         try {
-          /////////////////////////// CODE BREAKS HERE //////////////////////////////////////////////////
-          /////////////////////////// HA-CHANA LE-MAZGAN //////////////////////////////////////////////////
-            board  = board.groups.splice(groupIdx,1)[0]
-            const action = { type: 'SET_BOARD', board };
-            await dispatch(action);
-            debugger
+            board = board.groups.splice(groupIdx,1)[0]
+            dispatch(saveBoard(board))
     } catch (err) {
         console.log(`Cant delete board`, err);
     }
     setOpen(false)
 }
-
-
-
 
 
   return (

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 
+import { saveBoard } from '../store/actions/board.action';
 import { boardService } from '../services/board.service';
 
 export const CheckListDelete = (props) => {
@@ -20,14 +21,13 @@ export const CheckListDelete = (props) => {
         setAnchorEl(null);
     };
 
-    const onDelete = async () => {
+    const onDelete = () => {
         const activity = boardService.addTaskActivity(`deleted checklist - ${checklist.title}`, task._id, task.title, loggedInUser)
         try {
             if (activity) board.activities.unshift(activity);
             task.checklists.splice(checklistIdx, 1);
             board.groups[groupIdx].tasks[taskIdx] = task;
-            const action = { type: 'SET_BOARD', board };
-            await dispatch(action);
+            dispatch(saveBoard(board))
         } catch (err) {
             console.log(`Cant delete checklist`, err);
         }

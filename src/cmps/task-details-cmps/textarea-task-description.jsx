@@ -3,13 +3,13 @@ import Button from '@mui/material/Button';
 import { boardService } from '../../services/board.service';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 export const AddDescription = (props) => {
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const [newDescriptionTxt, setNewDescription] = useState({});
   const [isAdding, onIsAdding] = useState(false);
-
   const { task, group, board } = props;
-
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
@@ -18,7 +18,6 @@ export const AddDescription = (props) => {
   const dispatch = useDispatch();
 
   const onHandleModal = () => {
-    console.log('here');
     onIsAdding(!isAdding);
   };
 
@@ -27,7 +26,7 @@ export const AddDescription = (props) => {
     setNewDescription(value);
   };
 
-  const onAdd = async () => {
+  const onAdd = () => {
     const activity = boardService.addTaskActivity(
       `changed ${task.title} task description to - ${newDescriptionTxt}`,
       task._id, task.title,
@@ -36,8 +35,7 @@ export const AddDescription = (props) => {
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx].description = newDescriptionTxt;
-      const action = { type: 'SET_BOARD', board };
-      dispatch(action);
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log('Cannot add description to task');
     }

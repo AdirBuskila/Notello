@@ -14,13 +14,7 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARD':
-            if (action.board.activities.length > 20) {
-                action.board.activities.pop();
-            }
-            // boardService.save(action.board);
-            // socketService.emit(SOCKET_EMIT_BOARD_UPDATED, action.board)
             newState = {...state, board: action.board }
-            // console.log('BOARD CHANGED IN REDUCER');
             break;
         case 'HANDLE_LABELS':
             const isLabelsExpended = state.isLabelsExpended;

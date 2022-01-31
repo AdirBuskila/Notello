@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { saveBoard } from '../store/actions/board.action';
 
 import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
@@ -29,8 +30,7 @@ export const BoardHeader = (props) => {
   };
   const changeBoardTitle = () => {
     board.title = boardTitle;
-    const action = { type: 'SET_BOARD', board };
-    dispatch(action);
+    dispatch(saveBoard(board))
   };
 
   if (!board) return <h1> No board </h1>;

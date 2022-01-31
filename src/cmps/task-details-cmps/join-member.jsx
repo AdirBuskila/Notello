@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@mui/material/Typography';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 import { boardService } from '../../services/board.service';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
@@ -9,18 +11,13 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 export const JoinCmp = (props) => {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
-
-
   const { board, group, task } = props;
-
-  
-
   const groupIdx = boardService.getGroupIdxById(board, group._id);
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
     return currTask._id === task._id;
   });
 
-  const onJoin = async (memberId) => {
+  const onJoin = (memberId) => {
     const taskMembers = board.groups[groupIdx].tasks[taskIdx].members;
     const alreadyInside = taskMembers.find((member) => {
       return member._id === memberId;
@@ -31,8 +28,7 @@ export const JoinCmp = (props) => {
       if (activity) board.activities.unshift(activity);
       taskMembers.push(loggedInUser);
       board.groups[groupIdx].tasks[taskIdx].members = taskMembers;
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log('Cannot add member to task', err);
     }

@@ -5,17 +5,19 @@ import { TaskPreviewPortal } from './task-preview-portal';
 import { useSelector, useDispatch } from 'react-redux';
 
 export const TaskPreviewHover = (props) => {
-  // const board = useSelector((state) => state.boardModule.board);
-  // console.log("board: ", board);
-  const { taskPos, task, groupIdx } = props.previewTask;
-  const {board} = props;
+  const board = useSelector((state) => state.boardModule.board);
+  const { taskPos, groupIdx } = props.previewTask;
+  const [task, setTask] = useState(props.previewTask.task)
+  const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
+    return (currTask._id === task._id);
+  })
   const [taskNewTitle, setTaskNewTitle] = useState(task.title);
 
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   console.log('Board changed in store', board);
-  // }, [board])
+  useEffect(() => {
+    setTask(board.groups[groupIdx].tasks[taskIdx])
+  }, [board])
 
 
   const onBackDropClick = (ev) => {
@@ -39,6 +41,7 @@ export const TaskPreviewHover = (props) => {
     left: taskPos.left + 'px',
     width: taskPos.width + 'px',
     height: taskPos.height + 'px',
+    // minHeight: '2rem'
   };
 
   const buttonPosition = {
@@ -55,10 +58,9 @@ export const TaskPreviewHover = (props) => {
 
   return (
     <React.Fragment>
-      {console.log('UPDATED!', board)}
       <Backdrop onClick={(ev) => onBackDropClick(ev)} />
       <div>
-        <section className='mini-menu-preview'>
+        <section className='mini-menu-preview flex column'>
           <TaskPreviewMiniMenu
           setTaskNewTitle={setTaskNewTitle}
             board={board}

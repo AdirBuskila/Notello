@@ -4,6 +4,8 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 
+import { saveBoard } from '../store/actions/board.action';
+
 import { boardService } from '../services/board.service';
 
 export const CoverModal = (props) => {
@@ -48,13 +50,12 @@ export const CoverModal = (props) => {
     submitChanges(task);
   };
 
-  const submitChanges = async (task) => {
+  const submitChanges = (task) => {
     const activity = boardService.addTaskActivity(`updated the cover to ${task.cover.background}`, task._id, task.title, loggedInUser)
     try {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx] = task;
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log('Cant load cover', err);
     }

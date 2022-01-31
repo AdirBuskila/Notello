@@ -4,6 +4,8 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import CheckBoxOutlined from '@mui/icons-material/CheckBoxOutlined';
 
+import { saveBoard } from '../store/actions/board.action';
+
 import { utilService } from '../services/util.service';
 import { boardService } from '../services/board.service';
 
@@ -35,7 +37,7 @@ export const CheckListModal = (props) => {
     }
   }
 
-  const onAddClick = async () => {
+  const onAddClick = () => {
     if (!checklistName) return; // add nice modal
     const checklist = {
       _id: utilService.makeId(),
@@ -47,8 +49,7 @@ export const CheckListModal = (props) => {
       if (activity) board.activities.unshift(activity);
       task.checklists.unshift(checklist);
       board.groups[groupIdx].tasks[taskIdx] = task;
-      const action = { type: 'SET_BOARD', board };
-      await dispatch(action);
+      dispatch(saveBoard(board))
     } catch (err) {
       console.log(`Cant add new checklist`, err);
     }

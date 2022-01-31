@@ -5,6 +5,8 @@ import { utilService } from '../../services/util.service';
 import { boardService } from '../../services/board.service';
 import { useDispatch } from 'react-redux';
 
+import { saveBoard } from '../../store/actions/board.action';
+
 export const AttachmentsCmp = (props) => {
   const { attachments, task, group, board } = props;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
@@ -15,7 +17,7 @@ export const AttachmentsCmp = (props) => {
 
   const dispatch = useDispatch();
 
-  const DeleteAttachment = async (attachmentId) => {
+  const DeleteAttachment = (attachmentId) => {
     const attachmentIdx = task.attachments.findIndex((attachment) => {
       return attachmentId === attachment._id;
     });
@@ -24,8 +26,7 @@ export const AttachmentsCmp = (props) => {
       if (activity) board.activities.unshift(activity);
         task.attachments.splice(attachmentIdx, 1);
         board.groups[groupIdx].tasks[taskIdx] = task;
-        const action = { type: 'SET_BOARD', board };
-        await dispatch(action);
+        dispatch(saveBoard(board))
     } catch (err) {
         console.log('Cannot remove attachment from task');
     }
