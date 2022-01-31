@@ -54,17 +54,12 @@ export const TaskDetails = (props) => {
     : null;
 
   React.useEffect(() => {
-    (async () => {
-      try {
-        const newBoard = await boardService.getById(boardId);
-        const newGroup = boardService.getGroup(newBoard, taskId);
-        setBoard(newBoard);
-        setGroup(newGroup);
-        await onLoadTask(board, newGroup, taskId);
-      } catch (err) {
-        console.log('Cant load board');
-      }
-    })();
+    if (Object.keys(currBoard).length) {
+      const newGroup = boardService.getGroup(currBoard, taskId);
+      setBoard(currBoard);
+      setGroup(newGroup);
+      onLoadTask(currBoard, newGroup, taskId);
+    }
   }, [currBoard]);
 
   const onLoadTask = async (board, group, taskId) => {
@@ -106,8 +101,6 @@ export const TaskDetails = (props) => {
       if (activity) board.activities.unshift(activity);
       board.groups[groupIdx].tasks[taskIdx] = selectedTask;
       dispatch(saveBoard(board));
-      // const action = { type: 'SET_BOARD', board };
-      // dispatch(action);
     } catch (err) {
       console.log('Cannot change task title');
     }
@@ -120,7 +113,8 @@ export const TaskDetails = (props) => {
   const inside = selectedTask.members.find((member) => {
     return member._id === loggedInUser._id;
   });
-  const btnContent = (!activityOpen) ? 'Show Details' : 'Show Less'
+  const btnContent = !activityOpen ? 'Show Details' : 'Show Less';
+  if (!Object.keys(currBoard).length) return <></>;
   return (
     <React.Fragment>
       <div className='task-details-container'>
@@ -202,7 +196,6 @@ export const TaskDetails = (props) => {
                 )}
               </div>
               <LabelsCmp
-                // key={utilService.makeId()}
                 task={selectedTask}
                 groupIdx={groupIdx}
                 board={board}
@@ -271,7 +264,9 @@ export const TaskDetails = (props) => {
                     <FormatListBulletedIcon />
                     <p>Activity</p>
                   </div>
-                  <button onClick={()=> setActivityOpen(!activityOpen)}>{btnContent}</button>
+                  <button onClick={() => setActivityOpen(!activityOpen)}>
+                    {btnContent}
+                  </button>
                 </div>
                 <div className='comment-container flex'>
                   <div className='user-container'>

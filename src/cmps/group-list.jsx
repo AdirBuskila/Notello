@@ -63,12 +63,14 @@ export const GroupList = (props) => {
     if (source.dropabbleId === destination.droppableId) {
       sourceGroup.tasks.splice(source.index, 1);
       destinationGroup.tasks.splice(destination.index, 0, draggingTask);
-      boardService.save(board);
+      // boardService.save(board);
+      dispatch(props.saveBoard(board));
       onSetBoard(board);
     } else {
       sourceGroup.tasks.splice(source.index, 1);
       destinationGroup.tasks.splice(destination.index, 0, draggingTask);
-      boardService.save(board);
+      // boardService.save(board);
+      dispatch(props.saveBoard(board));
       onSetBoard(board);
     }
   };

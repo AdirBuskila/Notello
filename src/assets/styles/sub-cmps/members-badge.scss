@@ -1,4 +1,9 @@
-.members-badge-container {
-    gap: rem(4px);
-    flex-wrap: wrap;
+.members-badge {
+    flex-direction: row-reverse;
+    width: 100%;
+    padding-inline-end: 0.1rem;
+    .members-badge-container {
+        gap: rem(4px);
+        flex-wrap: wrap;
+    }
 }
