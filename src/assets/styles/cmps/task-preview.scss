@@ -1,81 +1,81 @@
 .task-preview {
-  position: relative;
-  border-radius: 3px;
-  background-color: #fff;
-  text-align: start;
-  box-shadow: 0 1px 0 #091e4240;
-  .task-not-cover {
-    padding: 0.2rem 0.2rem;
-    gap: 0.25rem;
-    min-height: 2rem;
-    .task-info-icons {
-      gap: 0.25rem;
+    position: relative;
+    border-radius: 3px;
+    background-color: #fff;
+    text-align: start;
+    box-shadow: 0 1px 0 #091e4240;
+    .task-not-cover {
+        padding: 0.2rem 0.2rem;
+        gap: 0.25rem;
+        min-height: 2rem;
+        .task-info-icons {
+            row-gap: 0.25rem;
+        }
     }
-  }
-  .task-cover {
-    width: 100%;
-    border-radius: 3px 3px 0 0;
-  }
-  .labels {
-    cursor: pointer;
-    flex-wrap: wrap;
-    gap: rem(4px);
-    min-width: rem(20px);
-    li {
-      cursor: pointer;
-      height: 0.5rem;
-      padding: 0 rem(6px) 0;
-      color: #fff;
-      min-width: rem(40px);
-      font-size: rem(12px);
-      line-height: rem(16px);
-      border-radius: 5px;
-      font-weight: 700;
-      transition: min-width 0.2s, height 0.2s linear 0.2s;
-      &.expended {
-        min-width: rem(56px);
-        height: 1rem;
-      }
+    .task-cover {
+        width: 100%;
+        border-radius: 3px 3px 0 0;
     }
-  }
-  p {
-    cursor: pointer;
-  }
-  textarea {
-    width: 100%;
-    overflow-wrap: break-word;
-    overflow-y: hidden;
-    border: none;
-    outline: none;
-    resize: none;
-  }
-  .task-badges {
-    gap: rem(12px);
-  }
+    .labels {
+        cursor: pointer;
+        flex-wrap: wrap;
+        gap: rem(4px);
+        min-width: rem(20px);
+        li {
+            cursor: pointer;
+            height: 0.5rem;
+            padding: 0 rem(6px) 0;
+            color: #fff;
+            min-width: rem(40px);
+            font-size: rem(12px);
+            line-height: rem(16px);
+            border-radius: 5px;
+            font-weight: 700;
+            transition: min-width 0.2s, height 0.2s linear 0.2s;
+            &.expended {
+                min-width: rem(56px);
+                height: 1rem;
+            }
+        }
+    }
+    p {
+        cursor: pointer;
+    }
+    textarea {
+        width: 100%;
+        overflow-wrap: break-word;
+        overflow-y: hidden;
+        border: none;
+        outline: none;
+        resize: none;
+    }
+    .task-badges {
+        gap: rem(12px);
+    }
 }
 
 .save-btn {
-  position: absolute;
-  border-radius: 3px;
-  width: rem(80px);
-  height: rem(32px);
-  background-color: #0079bf;
-  border: none;
-  box-shadow: none;
-  color: #fff;
-  z-index: 100;
+    position: absolute;
+    border-radius: 3px;
+    width: rem(80px);
+    height: rem(32px);
+    background-color: #0079bf;
+    border: none;
+    box-shadow: none;
+    color: #fff;
+    z-index: 100;
 }
 
 .save-btn:hover {
-  background-color: #026aa7;
-  border: none;
-  box-shadow: none;
-  color: #fff;
+    background-color: #026aa7;
+    border: none;
+    box-shadow: none;
+    color: #fff;
 }
 
 .portal-mini-menu {
-  position: relative;
-  background-color: #fff;
+    position: relative;
+    background-color: #fff;
 }
 
 // .task-preview:hover: {

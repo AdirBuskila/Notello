@@ -131,8 +131,10 @@ export const TaskDetails = (props) => {
                       backgroundColor: '#415647a6',
                     }
               }>
-              <div className='close-button flex align-center end'>
-                <CloseIcon onClick={onHandleClose} />
+              <div
+                className='close-button flex align-center end'
+                onClick={onHandleClose}>
+                <button>✕</button>
               </div>
               <CoverModal
                 updateTask={updateTask}

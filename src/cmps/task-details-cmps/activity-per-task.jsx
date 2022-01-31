@@ -1,14 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Avatar } from '@mui/material';
+
 import { utilService } from '../../services/util.service';
 
 export const ActivityPerTask = (props) => {
-  const { board, task } = props;
+  const { task } = props;
+  const board = useSelector((state) => state.boardModule.board);
   return (
     <React.Fragment>
       {board.activities.map((activity, idx) => {
         return (
-          <section>
+          <React.Fragment>
             {activity.task && activity.task._id === task._id && (
               <div className='flex comment' key={idx}>
                 <div className='activity-individual flex' key={task._id}>
@@ -36,7 +39,7 @@ export const ActivityPerTask = (props) => {
                 </div>
               </div>
             )}
-          </section>
+          </React.Fragment>
         );
       })}
     </React.Fragment>
