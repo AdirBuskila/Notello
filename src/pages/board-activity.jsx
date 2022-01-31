@@ -40,7 +40,7 @@ export const BoardActivity = (props) => {
         {board.activities ? (
           board.activities.map((activity) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={activity._id}>
                 <div className='activity-individual flex'>
                   {activity.byMember && (
                     <Avatar
@@ -53,9 +53,7 @@ export const BoardActivity = (props) => {
                     />
                   )}
                   <div className='flex column'>
-                    <div
-                      classname='activity-data flex'
-                      style={{ gap: '0.5rem' }}>
+                    <div className='activity-data'>
                       <span>{activity.byMember.fullname}</span>
                       <p>{activity.txt}</p>
                       {activity.task && (

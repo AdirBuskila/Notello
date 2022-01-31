@@ -1,51 +1,60 @@
 .board-page-container {
-  height: 100vh;
-  .board-details-container {
-    flex: 1;
-    overflow: hidden;
-    & > ::-webkit-scrollbar {
-      height: 0.75rem;
-      border-radius: 50rem;
+    height: 100vh;
+     ::-webkit-scrollbar {
+        width: 8px;
     }
-    & > ::-webkit-scrollbar-track {
-      background: #00000026;
-      border-radius: 3px;
-      margin: 25px;
+     ::-webkit-scrollbar-track {
+        background: #091e4214;
+        border-radius: 50rem;
     }
-    & > ::-webkit-scrollbar-thumb {
-      border-radius: 3px;
-      background: #e2e3e480;
+     ::-webkit-scrollbar-thumb {
+        border-radius: 50rem;
+        background: #091e4214;
     }
-  }
+    .board-details-container {
+        flex: 1;
+        overflow: hidden;
+        &> ::-webkit-scrollbar {
+            height: 0.75rem;
+            border-radius: 50rem;
+        }
+        &> ::-webkit-scrollbar-track {
+            background: #00000026;
+            border-radius: 3px;
+            margin: 25px;
+        }
+        &> ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background: #e2e3e480;
+        }
+    }
 }
 
 .boards-container {
-  justify-content: start;
-  flex-wrap: wrap;
-  gap: 1.1rem
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 1.1rem;
 }
 
 .mini-menu-portal {
-  z-index: 100;
-  width: fit-content;
-  height: fit-content;
-  
-  button {
-    background: #0009;
-    width: rem(120px);
-    text-align: start;
-    border-radius: 3px;
-    clear: both;
-    color: #e6e6e6;
-    float: left;
-    margin: 0 0 4px 8px;
-    padding: 6px 12px 6px 8px;
-    font-size: rem(16px);
-    filter: brightness(85%)
-  }
-
-  button:hover {
-    background: rgba(0, 0, 0, 0.276);
-    color: #fefcfc;
-  }
+    z-index: 100;
+    width: fit-content;
+    height: fit-content;
+    button {
+        background: #0009;
+        width: rem(120px);
+        text-align: start;
+        border-radius: 3px;
+        clear: both;
+        color: #e6e6e6;
+        float: left;
+        margin: 0 0 4px 8px;
+        padding: 6px 12px 6px 8px;
+        font-size: rem(16px);
+        filter: brightness(85%);
+    }
+    button:hover {
+        background: rgba(0, 0, 0, 0.276);
+        color: #fefcfc;
+    }
 }

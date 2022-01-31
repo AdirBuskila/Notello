@@ -43,15 +43,14 @@ export const AppHeader = () => {
             setNotificationsOpen(true);
           }}
           style={{ position: 'absolute', top: '10px', right: '60px' }}
-          className='notification-icon'
-        >
+          className='notification-icon'>
           <NotificationsNoneIcon color='white' />
         </div>
-          <BoardNotifications
-            notificationsOpen={notificationsOpen}
-            setNotificationsOpen={setNotificationsOpen}
-            key={utilService.makeId()}
-          />
+        <BoardNotifications
+          notificationsOpen={notificationsOpen}
+          setNotificationsOpen={setNotificationsOpen}
+          key={utilService.makeId()}
+        />
         <div className='logged-in-user'>
           <UserBadge />
         </div>
