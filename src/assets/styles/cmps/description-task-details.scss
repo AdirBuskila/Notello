@@ -38,7 +38,10 @@
         button:last-child {
             background-color: transparent;
             text-transform: none;
-            font-size: 14px;
+            font-family: trellicons;
+            font-weight: 700;
+            font-size: 20px;
+            color: #42526e;
         }
         button:hover:first-child {
             background-color: #026aa7;
