@@ -1,3 +1,4 @@
+/* Libraries */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
@@ -11,22 +12,27 @@ import { AttachmentsBadge } from './badge-cmps/attachments-badge';
 import { DueDateBadge } from './badge-cmps/due-date-badge';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
 
+/* Services */
 import { utilService } from '../services/util.service';
 
 export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
-  const [isHover, setIsHover] = useState(false);
   const taskCover = task.cover ? (task.cover.background ? task.cover : '') : '';
   const isFull = taskCover.spread === 'full' ? true : false;
-  const [isDueDateChanged, setIsDueDateChanged] = useState(false);
   const coverType = taskCover
     ? utilService.isStringColor(taskCover.background)
       ? 'backgroudColor'
       : 'backgroundImage'
     : null;
-  const dispatch = useDispatch();
+
+  /* Hooks From Redux */
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
   );
+  const dispatch = useDispatch();
+
+  /* Hooks From React */
+  const [isHover, setIsHover] = useState(false);
+  const [isDueDateChanged, setIsDueDateChanged] = useState(false);
 
   const onHandleLablesClick = (ev) => {
     ev.stopPropagation();
@@ -60,7 +66,7 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
       board,
     });
   };
-
+  /* ClassName For Sass */
   const className = isLabelsExpended
     ? 'flex align-center expended'
     : 'flex align-center';
@@ -117,6 +123,7 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
                   <ul className='labels flex'>
                     {task.labels.map((label, idx) => {
                       return (
+                        /* ClassName For Sass */
                         <li
                           className={className}
                           onClick={(ev) => onHandleLablesClick(ev)}
@@ -129,7 +136,6 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
                   </ul>
                 )}
                 <p>{task.title}</p>
-
                 {!isFull && (
                   <div className='task-info-icons flex space-between'>
                     <div className='task-badges flex align-center'>
