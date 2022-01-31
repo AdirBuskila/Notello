@@ -32,6 +32,7 @@ export function saveBoard(board) {
             console.log(board.groups);
             await boardService.save(board)
             socketService.emit('board-update', board)
+
             const action = { type: 'SET_BOARD', board }
             dispatch(action)
         } catch (err) {

@@ -56,11 +56,13 @@ export const TaskDetails = (props) => {
   React.useEffect(() => {
     (async () => {
       try {
-        const newBoard = await boardService.getById(boardId);
+        const newBoard = Object.keys(currBoard).length
+          ? await boardService.getById(boardId)
+          : currBoard;
         const newGroup = boardService.getGroup(newBoard, taskId);
         setBoard(newBoard);
         setGroup(newGroup);
-        await onLoadTask(board, newGroup, taskId);
+        await onLoadTask(newBoard, newGroup, taskId);
       } catch (err) {
         console.log('Cant load board');
       }
@@ -120,7 +122,7 @@ export const TaskDetails = (props) => {
   const inside = selectedTask.members.find((member) => {
     return member._id === loggedInUser._id;
   });
-  const btnContent = (!activityOpen) ? 'Show Details' : 'Show Less'
+  const btnContent = !activityOpen ? 'Show Details' : 'Show Less';
   return (
     <React.Fragment>
       <div className='task-details-container'>
@@ -271,7 +273,9 @@ export const TaskDetails = (props) => {
                     <FormatListBulletedIcon />
                     <p>Activity</p>
                   </div>
-                  <button onClick={()=> setActivityOpen(!activityOpen)}>{btnContent}</button>
+                  <button onClick={() => setActivityOpen(!activityOpen)}>
+                    {btnContent}
+                  </button>
                 </div>
                 <div className='comment-container flex'>
                   <div className='user-container'>
