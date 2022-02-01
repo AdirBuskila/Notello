@@ -12,7 +12,6 @@ export function loadBoard(boardId, loggedInUser) {
                 board.members.push(loggedInUser);
                 dispatch({ type: 'ATTACH_BOARD_USER', loggedInUser })
             }
-            // console.log(board.activities.length);
             socketService.emit('view board', board._id)
             socketService.on('board-update', (updatedBoard) => {
                 dispatch({ type: 'SET_BOARD', board: updatedBoard })
