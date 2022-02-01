@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import { useSelector } from 'react-redux';
 
 import { LabelsModal } from './labels-modal';
@@ -32,7 +32,8 @@ export const TaskPreviewPortal = (props) => {
   return (
     <React.Fragment>
       <section className='mini-menu-portal' style={portalPosition}>
-        <button onClick={(ev) => onHandleOpenCard(ev)}>
+        <button className='flex align-center' onClick={(ev) => onHandleOpenCard(ev)}>
+          <VideoLabelIcon sx={{fontSize: 'small', marginInlineEnd: '5px'}} />
           Open card
           </button>
         <button>
@@ -53,23 +54,6 @@ export const TaskPreviewPortal = (props) => {
            group={board.groups[groupIdx]} />
            </button>
         <button>
-          <DatePickerModal
-          from={'mini-menu'}
-            task={task}
-            board={board}
-            group={board.groups[groupIdx]}
-          />
-        </button>
-        <button>
-          <AttachmentModal
-          from={'mini-menu'}
-            task={task}
-            board={board}
-            group={board.groups[groupIdx]}
-            attachments={task.attachments}
-          />
-        </button>
-        <button>
           <CoverModal
           from={'mini-menu'}
             updateTask={task}
@@ -87,6 +71,14 @@ export const TaskPreviewPortal = (props) => {
             groupIdx={groupIdx}
             taskIdx={taskIdx}
             task={task}
+          />
+        </button>
+        <button>
+          <DatePickerModal
+          from={'mini-menu'}
+            task={task}
+            board={board}
+            group={board.groups[groupIdx]}
           />
         </button>
         <button>

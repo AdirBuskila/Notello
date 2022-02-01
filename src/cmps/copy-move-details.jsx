@@ -4,6 +4,8 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { useHistory } from 'react-router-dom';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { utilService } from '../services/util.service';
 import {boardService} from '../services/board.service';
 import { saveBoard } from '../store/actions/board.action';
@@ -69,7 +71,8 @@ export const CopyMoveModal = (props) => {
   return (
     <div className='button-container flex align-center'>
       <div className='flex align-center'>
-      {props.from !== 'mini-menu' && <ContentCopyOutlinedIcon onClick={handleClick} color='action' />}
+      {(props.from !== 'mini-menu') ? <ContentCopyOutlinedIcon onClick={handleClick} color='action' /> : 
+      <ContentCopyIcon sx={{fontSize: 'medium', marginInlineEnd: '5px'}} />}
         <Typography onClick={handleClick}>Copy</Typography>
       </div>
       <Popover

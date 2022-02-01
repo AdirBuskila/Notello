@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { boardService } from '../../services/board.service';
 import { utilService } from '../../services/util.service';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Avatar from '@mui/material/Avatar';
 import { saveBoard } from '../../store/actions/board.action';
 
@@ -77,8 +78,11 @@ export const MembersModal = (props) => {
   };
   return (
     <div className='button-container flex'>
-      {props.from !== 'mini-menu' && <PersonOutlineOutlinedIcon onClick={handleClick} color='action' />}
+      <div className='flex align-center'>
+      {(props.from !== 'mini-menu') ? <PersonOutlineOutlinedIcon onClick={handleClick} color='action' /> :
+      <PersonOutlineIcon sx={{fontSize: 'medium', marginInlineEnd: '5px'}} />}
       <Typography onClick={handleClick}>Members</Typography>
+      </div>
       <Popover
         open={open}
         anchorEl={anchorEl}

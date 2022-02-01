@@ -3,9 +3,14 @@ import { Backdrop } from './UI/backdrop';
 import { TaskPreviewMiniMenu } from './task-preview-mini-menu';
 import { TaskPreviewPortal } from './task-preview-portal';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 export const TaskPreviewHover = (props) => {
+  console.log('I returned here', props);
+
+  const history = useHistory()
   const board = useSelector((state) => state.boardModule.board);
+  if (!props) history.push(`/b/${board._id}`);
   const { taskPos, groupIdx } = props.previewTask;
   const [task, setTask] = useState(props.previewTask.task)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {

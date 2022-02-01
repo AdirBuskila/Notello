@@ -100,7 +100,8 @@ export const LabelsModal = (props) => {
       <div
         className='flex align-center'
         style={isFromInnerWindow ? { opacity: '0' } : null}>
-        {props.from !== 'mini-menu' && <LocalOfferOutlinedIcon color='action' onClick={handleClick} />}
+        {(props.from !== 'mini-menu') ? <LocalOfferOutlinedIcon color='action' onClick={handleClick} /> : 
+        <TurnedInNotIcon sx={{fontSize: 'medium', marginInlineEnd: '5px'}} />}
         <Typography onClick={handleClick}>Labels</Typography>
       </div>
       <Popover

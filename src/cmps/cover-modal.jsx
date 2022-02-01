@@ -3,6 +3,7 @@ import {useSelector, useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
+import PaletteIcon from '@mui/icons-material/Palette';
 
 import { saveBoard } from '../store/actions/board.action';
 
@@ -63,11 +64,14 @@ export const CoverModal = (props) => {
 
   return (
     <div className='button-container flex align-center'>
-      {props.from !== 'mini-menu' && <VideoLabelIcon
-        sx={{ fontSize: 'medium' }}
-        onClick={handleClick}
-        color='action'
-      />}
+      {(props.from !== 'mini-menu') ? <VideoLabelIcon sx={{ fontSize: 'medium' }} onClick={handleClick}
+        color='action'/> 
+        : <PaletteIcon sx={{fontSize: 'medium', marginInlineEnd: '5px'}} />}
+
+      
+
+
+
       <Typography onClick={handleClick}>Cover</Typography>
       <Popover
         open={open}

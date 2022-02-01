@@ -4,6 +4,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { useHistory } from "react-router-dom";
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import ArchiveIcon from '@mui/icons-material/Archive';
 
 import { saveBoard } from '../store/actions/board.action';
 
@@ -27,10 +28,11 @@ export const ArchiveModal = (props) => {
   };
 
   const onHandleDeleteAction = () => {
-    history.push(`/b/${board._id}`);
+    if (props.from === 'mini-menu') return; 
     board.groups[groupIdx].tasks.splice(taskIdx, 1);
     const activity = boardService.addTaskActivity(`deleted task ${task.title}`, task._id, task.title, loggedInUser) 
     submitChanges(board, activity);
+    history.push(`/b/${board._id}`);
   }
 
   const onHandleArchiveAction = () => {
@@ -60,7 +62,8 @@ export const ArchiveModal = (props) => {
   return (
     <div className='button-container flex align-center'>
         <div className='flex align-center'>
-        {props.from !== 'mini-menu' && <Inventory2OutlinedIcon onClick={handleClick} color='action' />}
+        {(props.from !== 'mini-menu') ? <Inventory2OutlinedIcon onClick={handleClick} color='action' /> : 
+        <ArchiveIcon sx={{fontSize: 'medium', marginInlineEnd: '5px'}} />}
               <Typography onClick={handleClick}>Archive</Typography>
         </div>
       <Popover
