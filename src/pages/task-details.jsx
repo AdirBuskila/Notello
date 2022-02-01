@@ -32,7 +32,8 @@ import { ArchiveModal } from '../cmps/details-archive';
 import { CopyMoveModal } from '../cmps/copy-move-details';
 import { JoinCmp } from '../cmps/task-details-cmps/join-member';
 import { EditDescription } from '../cmps/task-details-cmps/description-edit';
-import { loadBoard, saveBoard } from '../store/actions/board.action';
+import { saveBoard } from '../store/actions/board.action';
+import { Loader } from '../cmps/UI/loader';
 
 export const TaskDetails = (props) => {
   const { useState } = React;
@@ -114,7 +115,7 @@ export const TaskDetails = (props) => {
     return member._id === loggedInUser._id;
   });
   const btnContent = !activityOpen ? 'Show Details' : 'Show Less';
-  if (!Object.keys(currBoard).length) return <></>;
+  if (!Object.keys(currBoard).length) return <Loader />
   return (
     <React.Fragment>
       <div className='task-details-container'>

@@ -24,6 +24,7 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
       : 'backgroundImage'
     : null;
 
+
   /* Hooks From Redux */
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
@@ -47,6 +48,8 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
   const onHandleLeave = () => {
     setIsHover(false);
   };
+
+
 
   const handleTaskPosition = (ev) => {
     ev.preventDefault();

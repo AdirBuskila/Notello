@@ -29,6 +29,19 @@ export const GroupList = (props) => {
     }
   };
 
+  const onDragStart = (result) => {
+    const { destination, source, draggableId, type } = result;
+    if (type === 'list') return;
+    const element = document.getElementById(draggableId);
+    console.log("element: ", element);
+    if (element.classList.contains('on-move')) {
+      return element.classList.remove('on-move')
+    } 
+    element.classList.add('on-move');
+    // document.getElementById(draggableId).classList.add('on-move')
+  }
+
+
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result;
 
@@ -41,8 +54,6 @@ export const GroupList = (props) => {
       board.groups.splice(source.index, 1);
       board.groups.splice(destination.index, 0, draggingGroup);
       dispatch(props.saveBoard(board));
-
-      // boardService.save(board);
       onSetBoard(board);
       return;
     }
@@ -60,6 +71,9 @@ export const GroupList = (props) => {
     const draggingTask = sourceGroup.tasks.filter((task) => {
       return task._id === draggableId;
     })[0];
+    
+    const element = document.getElementById(draggableId);
+    element.classList.remove('on-move')
 
     if (source.dropabbleId === destination.droppableId) {
       sourceGroup.tasks.splice(source.index, 1);
@@ -79,7 +93,10 @@ export const GroupList = (props) => {
   if (!board.groups) return <Loader />;
   return (
     <React.Fragment>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext
+       
+      onDragStart={onDragStart} 
+      onDragEnd={onDragEnd}>
         <Droppable droppableId={board._id} type='list' direction='horizontal'>
           {(provided) => (
             <div
