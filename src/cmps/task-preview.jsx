@@ -24,7 +24,6 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
       : 'backgroundImage'
     : null;
 
-
   /* Hooks From Redux */
   const isLabelsExpended = useSelector(
     (state) => state.boardModule.isLabelsExpended
@@ -49,8 +48,6 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
     setIsHover(false);
   };
 
-
-
   const handleTaskPosition = (ev) => {
     ev.preventDefault();
     ev.stopPropagation();
@@ -70,12 +67,9 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
     });
   };
   /* ClassName For Sass */
-  const className = isLabelsExpended
-    ? 'flex align-center expended'
-    : 'flex align-center';
 
   return (
-    <React.Fragment>
+    <>
       <Link to={`/b/${board._id}/${task._id}`}>
         <Draggable
           Draggable='true'
@@ -128,7 +122,9 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
                       return (
                         /* ClassName For Sass */
                         <li
-                          className={className}
+                          className={`flex align-center ${
+                            isLabelsExpended ? 'expended' : ''
+                          }`}
                           onClick={(ev) => onHandleLablesClick(ev)}
                           key={idx}
                           style={{ backgroundColor: `${label.bgc}` }}>
@@ -178,6 +174,6 @@ export const TaskPreview = ({ task, board, groupIdx, setPos, index }) => {
           )}
         </Draggable>
       </Link>
-    </React.Fragment>
+    </>
   );
 };
