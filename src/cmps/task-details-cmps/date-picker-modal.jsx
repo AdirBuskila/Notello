@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
+import EventIcon from '@mui/icons-material/Event';
 import Typography from '@mui/material/Typography';
 import { boardService } from '../../services/board.service';
 import { useDispatch } from 'react-redux';
@@ -14,8 +15,9 @@ export function DatePickerModal(props) {
   const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
   const ExampleCustomInput = React.forwardRef(({ onClick }, ref) => (
-    <div onClick={onClick} ref={ref} className='button-container flex'>
-      {props.from !== 'mini-menu' && <QueryBuilderIcon color='action' />}
+    <div onClick={onClick} ref={ref} className='button-container flex align-center'>
+      {(props.from !== 'mini-menu') ? <QueryBuilderIcon color='action' /> : 
+      <EventIcon sx={{fontSize: 'medium', marginInlineEnd: '5px'}} />}
       <Typography>Dates</Typography>
     </div>
   ));
@@ -40,6 +42,6 @@ export function DatePickerModal(props) {
       startDate={selectedDate}
       customInput={<ExampleCustomInput />}
       formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3)}
-    />
+      />
   );
 }

@@ -30,7 +30,7 @@ export const DueDateBadge = (props) => {
     isDueDateChanged,
   } = props;
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => {
-    return currTask._id === task._id;
+    return (currTask._id === task._id);
   });
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
