@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Link, useHistory } from 'react-router-dom';
 import { GoogleLogin, GoogleLoginButton } from './google-login';
@@ -18,6 +19,20 @@ const theme = createTheme();
 
 export const MyLogin = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    const user = {
+      _id: 'TESTING',
+      username: 'GUESTOS',
+      fullname: 'GUESTOS',
+      imgUrl: 'https://res.cloudinary.com/dubjerksn/image/upload/v1643461769/a5pyv9qwifumfp9k8tln.png'
+  }
+  console.log(user);
+  const action = {type: 'SET_USER', user}
+  dispatch(action)
+
+}
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -93,6 +108,7 @@ export const MyLogin = () => {
             <Button
               type='submit'
               fullWidth
+              onClick={handleClick}
               variant='contained'
               color='success'
               style={{ marginTop: 3, marginBottom: 2 }}>

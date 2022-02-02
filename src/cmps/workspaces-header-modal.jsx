@@ -34,7 +34,6 @@ export const WorkspacesHeaderModal = (props) => {
     history.push(`/b/${boardId}`);
   };
 
-  const boardsHeight = 6 * 60 + 'px';
   const btnContent = showAll ? 'Show Less' : 'Show More';
   return (
     <div>

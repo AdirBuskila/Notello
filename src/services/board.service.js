@@ -1,6 +1,5 @@
 import { httpService } from './http.service'
 import { utilService } from './util.service.js'
-import { socketService } from './socket.service'
 
 
 
@@ -122,15 +121,21 @@ function getModalPosition(clickedElementPos) {
 
 function getNotificationMode(board, activity, loggedInUser) {
     const searchTask = getTask(board, activity.task._id)
-    const TaskMembers = searchTask.members
-    console.log('TaskMembers', TaskMembers);
-    TaskMembers.filter((member)=> {
-                return (member._id === loggedInUser._id)
+    const taskMembers = searchTask.members
+    console.log('TaskMembers', taskMembers);
+    taskMembers.filter((member)=> {
+        return (member._id === loggedInUser._id)
     });
     
-    const newArr = [...TaskMembers, ...activity.wasShownTo]
-    console.log('newArr', newArr);
-    return newArr
+    if (taskMembers.length === 0) return false
+
+
+    const isNoti = activity.wasShownTo.find((user)=>{
+        return (user._id === loggedInUser._id)
+    })
+    if (isNoti) return false
+    return true
+    
 
     
     }
@@ -143,9 +148,10 @@ function addGeneralActivity(txt, loggedInUser) {
         byMember: loggedInUser,
         _id: utilService.makeId(),
         createdAt: Date.now(),
+        
     }
 }
-
+///////// nt ////// label 
 function addTaskActivity(txt, taskId, taskTitle, loggedInUser) {
     return {
         txt,
@@ -156,6 +162,7 @@ function addTaskActivity(txt, taskId, taskTitle, loggedInUser) {
         byMember: loggedInUser,
         _id: utilService.makeId(),
         createdAt: Date.now(),
+        wasShownTo: [loggedInUser],
     }
 }
 

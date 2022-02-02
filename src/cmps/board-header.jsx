@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveBoard } from '../store/actions/board.action';
-
+import { CopyLinkPopper } from './copy-link-pop';
 import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-import Button from '@mui/material/Button';
 // import { BoardActivity } from '../pages/board-activity';
 import STATS from '../assets/img/stats.svg';
 import DOWNICON from '../assets/img/down-arrow.png';
-import ADD_MEMBER from '../assets/img/add-user.png';
 import FILTER from '../assets/img/filter.svg';
 import MENU from '../assets/img/menu.png';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
@@ -106,14 +104,7 @@ export const BoardHeader = (props) => {
             />
           </AvatarGroup>
         </div>
-        <Button className='new-member flex' variant='contained'>
-          <img
-            src={ADD_MEMBER}
-            alt='invite'
-            style={{ width: '12px', height: '12px' }}
-          />
-          <a>Invite</a>
-        </Button>
+        <CopyLinkPopper />
       </div>
       <div className='upper-options flex align-center'>
         <div className='board-header-btn automation flex align-center space-evenly'>
