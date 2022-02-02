@@ -67,7 +67,7 @@ const handleImgClick = (ev) => {
       />
       <div />
       <Popper
-        className='.create-board-popper'
+        className='.create-board-popper flex'
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -92,8 +92,10 @@ const handleImgClick = (ev) => {
                       </div>
                 </div>
                   </div>
+                  <div className="background-title">
+                    <p>Background</p>
+                    </div>
                 <div className='background-picker-container flex'>
-                  <p>Background</p>
                   <div className='upper-row'>
                       <button className='btn-img0'>
                     <img onClick={(ev)=> handleImgClick(ev)} style={{width: '64px'}} className='background-img0'/>
