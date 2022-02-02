@@ -81,7 +81,7 @@ export const TaskDetails = (props) => {
     }
   };
 
-  const [taskTitle, setTaskTitle] = React.useState(selectedTask.title);
+  const [taskTitle, setTaskTitle] = React.useState();
 
   const onHandleClose = () => {
     const boardLocation = '/b/' + boardId + '';
@@ -115,7 +115,7 @@ export const TaskDetails = (props) => {
     return member._id === loggedInUser._id;
   });
   const btnContent = !activityOpen ? 'Show Details' : 'Show Less';
-  if (!Object.keys(currBoard).length) return <Loader />
+  if (!Object.keys(currBoard).length) return <Loader />;
   return (
     <React.Fragment>
       <div className='task-details-container'>

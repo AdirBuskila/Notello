@@ -6,6 +6,7 @@ import { Loader } from '../cmps/UI/loader';
 import PersonIcon from '@mui/icons-material/Person';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import { CreateBoard } from '../cmps/create-board-modal';
+import { CreateBoardPopper } from '../cmps/create-board-popper';
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
@@ -80,6 +81,7 @@ export const BoardWorkspaces = () => {
               </Link>
             );
           })}
+          {/* <CreateBoardPopper /> */}
           <div
             className='add-board-container board flex pointer align-center justify-center'
             onClick={() => {
