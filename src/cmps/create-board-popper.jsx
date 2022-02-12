@@ -9,7 +9,7 @@ export const CreateBoardPopper = (props) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [placement, setPlacement] = React.useState();
-  const [preview, setPreview] = React.useState({ background: 'black' });
+  const [preview, setPreview] = React.useState('https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png');
   const [boardTitle, setBoardTitle] = React.useState('');
   const [boardStyle, setBoardStyle] = React.useState('');
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
@@ -27,8 +27,11 @@ export const CreateBoardPopper = (props) => {
       isStarred: false,
     };
     boardService.save(board);
+    setPreview('https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png')
+    setBoardTitle('')
     setNewBoard(false);
     setOpen(false)
+    
 
   };
 
@@ -42,42 +45,42 @@ export const CreateBoardPopper = (props) => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
-    getPhotosForLoad();
+    // getPhotosForLoad();
   };
   const onHandleModal = (ev) => {
     ev.preventDefault();
     setOpen(false);
   };
-  const getPhotosForLoad = async () => {
-    try {
-      const photos = await axios.get(
-        'https://api.unsplash.com/search/photos?query=work&client_id=qUk-G2PG9c7CPbC3iLZO7d7ndV_Ltk0BjU1IwkBNS7k'
-      );
-      console.log('photos.data.results', photos.data.results);
-      changeDivBackground(photos.data.results);
-    } catch (err) {
-      console.log('cannot load photos ', err);
-    }
-  };
+  // const getPhotosForLoad = async () => {
+  //   try {
+  //     const photos = await axios.get(
+  //       'https://api.unsplash.com/search/photos?query=work&client_id=qUk-G2PG9c7CPbC3iLZO7d7ndV_Ltk0BjU1IwkBNS7k'
+  //     );
+  //     console.log('photos.data.results', photos.data.results);
+  //     changeDivBackground(photos.data.results);
+  //   } catch (err) {
+  //     console.log('cannot load photos ', err);
+  //   }
+  // };
 
-  const changeDivBackground = (photos) => {
-    const PhotosObj = photos.map((photo)=> {
-      return {
-        small: photo.urls.small,
-        full: photo.urls.full,
-      }
-    })
-    PhotosObj.map((photo, index) => {
-      if (index > 3) return;
-      const div = document.getElementsByClassName(`background-img-${index}`)[0];
-      const btn = document.getElementsByClassName(`btn-img${index}`)[0]
-      div.src = `${photo.full}`;
-      btn.on =('click',setPreview(`${photo.full}`))
-    });
-  };
+  // const changeDivBackground = (photos) => {
+  //   const PhotosObj = photos.map((photo)=> {
+  //     return {
+  //       small: photo.urls.small,
+  //       full: photo.urls.full,
+  //     }
+  //   })
+  //   PhotosObj.map((photo, index) => {
+  //     if (index > 3) return;
+  //     const div = document.getElementsByClassName(`background-img-${index}`)[0];
+  //     const btn = document.getElementsByClassName(`btn-img${index}`)[0]
+  //     div.src = `${photo.full}`;
+  //     btn.on =('click',setPreview(`${photo.full}`))
+  //   });
+  // };
 
   const handleImgClick = (ev) => {
-    const newPreview = { background: `url(${ev.target.currentSrc})` };
+    const newPreview = `${ev.target.currentSrc}`;
     setPreview(newPreview);
     setBoardStyle({ imgUrl: `${ev.target.currentSrc}` });
   };
@@ -120,13 +123,13 @@ export const CreateBoardPopper = (props) => {
               </div>
               <div className='create-board-body flex column'>
                 <div className='new-board-preview-container flex'>
-                  <div style={preview} className='new-board-preview'>
-                    <div className='selected-background'>
-                      <img
-                        className='selected-background-img'
-                        src='https://a.trellocdn.com/prgb/dist/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg'
+                  <div className='new-board-preview'>
+                    <div
+                     className='selected-background'>
+                      <img 
+                      src={preview}
                       />
-                    </div>
+                        </div>
                   </div>
                 </div>
                 <div className='background-title'>
@@ -136,6 +139,7 @@ export const CreateBoardPopper = (props) => {
                   <div className='upper-row flex'>
                     <button className='btn-img-0'>
                       <img
+                        src='https://res.cloudinary.com/dubjerksn/image/upload/v1644703506/b0tj6zwxbfshuojdyim7.jpg'
                         onClick={(ev) => handleImgClick(ev)}
                         style={{
                           width: '60px',
@@ -147,6 +151,7 @@ export const CreateBoardPopper = (props) => {
                     </button>
                     <button className='btn-img-1'>
                       <img
+                        src='https://res.cloudinary.com/dubjerksn/image/upload/v1644703505/uzyztm6omrhksxpbtt80.jpg'
                         onClick={(ev) => handleImgClick(ev)}
                         style={{
                           width: '60px',
@@ -158,6 +163,7 @@ export const CreateBoardPopper = (props) => {
                     </button>
                     <button className='btn-img-2'>
                       <img
+                        src='https://res.cloudinary.com/dubjerksn/image/upload/v1644703518/qogwddfqkwhxvsbjm34q.jpg'
                         onClick={(ev) => handleImgClick(ev)}
                         style={{
                           width: '60px',
@@ -169,6 +175,7 @@ export const CreateBoardPopper = (props) => {
                     </button>
                     <button className='btn-img-3'>
                       <img
+                        src='https://res.cloudinary.com/dubjerksn/image/upload/v1644703631/jirzrw54bnq8eg7cpfpo.jpg'
                         onClick={(ev) => handleImgClick(ev)}
                         style={{
                           width: '60px',
