@@ -13,7 +13,6 @@ export const CreateBoardPopper = (props) => {
   const [boardTitle, setBoardTitle] = React.useState('');
   const [boardStyle, setBoardStyle] = React.useState('');
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
-  const dispatch = useDispatch();
 
   const handleBoardSubmit = () => {
   const { setNewBoard } = props;
@@ -31,8 +30,6 @@ export const CreateBoardPopper = (props) => {
     setBoardTitle('')
     setNewBoard(false);
     setOpen(false)
-    
-
   };
 
   const onHandleChange = ({ target }) => {
@@ -45,49 +42,16 @@ export const CreateBoardPopper = (props) => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
-    // getPhotosForLoad();
   };
   const onHandleModal = (ev) => {
     ev.preventDefault();
     setOpen(false);
   };
-  // const getPhotosForLoad = async () => {
-  //   try {
-  //     const photos = await axios.get(
-  //       'https://api.unsplash.com/search/photos?query=work&client_id=qUk-G2PG9c7CPbC3iLZO7d7ndV_Ltk0BjU1IwkBNS7k'
-  //     );
-  //     console.log('photos.data.results', photos.data.results);
-  //     changeDivBackground(photos.data.results);
-  //   } catch (err) {
-  //     console.log('cannot load photos ', err);
-  //   }
-  // };
-
-  // const changeDivBackground = (photos) => {
-  //   const PhotosObj = photos.map((photo)=> {
-  //     return {
-  //       small: photo.urls.small,
-  //       full: photo.urls.full,
-  //     }
-  //   })
-  //   PhotosObj.map((photo, index) => {
-  //     if (index > 3) return;
-  //     const div = document.getElementsByClassName(`background-img-${index}`)[0];
-  //     const btn = document.getElementsByClassName(`btn-img${index}`)[0]
-  //     div.src = `${photo.full}`;
-  //     btn.on =('click',setPreview(`${photo.full}`))
-  //   });
-  // };
 
   const handleImgClick = (ev) => {
     const newPreview = `${ev.target.currentSrc}`;
     setPreview(newPreview);
     setBoardStyle({ imgUrl: `${ev.target.currentSrc}` });
-  };
-  const handleColorClick = (color) => {
-    const newPreview = { backgroundColor: `${color}` };
-    setPreview(newPreview);
-    setBoardStyle({ bgColor: `${color}` });
   };
 
   const canBeOpen = open && Boolean(anchorEl);
@@ -188,34 +152,53 @@ export const CreateBoardPopper = (props) => {
                   </div>
                   <div className='lower-row flex'>
                     <div
-                      onClick={() => handleColorClick('#0079bf')}
-                      style={{ backgroundColor: '#0079bf' }}
+                      onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
-                    ></div>
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705588/xaussj5qb0xunt82nggr.png'
+                      />
+                    </div>
                     <div
-                      onClick={() => handleColorClick('#d29034')}
-                      style={{ backgroundColor: '#d29034' }}
+                      onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
-                    ></div>
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/sb2n9r1ouagefrnqa7vb.png'
+                      />
+                    </div>
                     <div
-                      onClick={() => handleColorClick('#519839')}
-                      style={{ backgroundColor: '#519839' }}
+                      onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
-                    ></div>
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/lljyplmcjjydimv29ph4.png'
+                      />
+                    </div>
                     <div
-                      onClick={() => handleColorClick('#b04632')}
-                      style={{ backgroundColor: '#b04632' }}
+                      onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
-                    ></div>
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ltc8ebckr7yegf3jzgax.png'
+                      />
+                    </div>
                     <div
-                      onClick={() => handleColorClick('#89609e')}
-                      style={{ backgroundColor: '#89609e' }}
+                      onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
-                    ></div>
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ijpikorqm2mw0ni99tf3.png'
+                      />
+                    </div>
                     <div
-                      style={{ backgroundColor: '#f5f6f8' }}
+                      onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
-                    ></div>
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644706132/vyrrzortjvwwdrrqxxti.png'
+                      />
+                    </div>
                   </div>
                 </div>
                 <p className='board-title'>Board Title</p>
