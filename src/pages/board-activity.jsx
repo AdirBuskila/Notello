@@ -7,9 +7,11 @@ import { Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { utilService } from '../services/util.service';
+import { boardService } from '../services/board.service';
 
 export const BoardActivity = (props) => {
   const board = useSelector((state) => state.boardModule.board);
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const className = props.menuOpen
     ? 'board-activity-container open'
     : 'board-activity-container';
