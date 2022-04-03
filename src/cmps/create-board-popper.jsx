@@ -1,21 +1,22 @@
 import * as React from 'react';
 import Popper from '@mui/material/Popper';
 import Fade from '@mui/material/Fade';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { boardService } from '../services/board.service';
 
 export const CreateBoardPopper = (props) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [placement, setPlacement] = React.useState();
-  const [preview, setPreview] = React.useState('https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png');
+  const [preview, setPreview] = React.useState(
+    'https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png'
+  );
   const [boardTitle, setBoardTitle] = React.useState('');
   const [boardStyle, setBoardStyle] = React.useState('');
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const handleBoardSubmit = () => {
-  const { setNewBoard } = props;
+    const { setNewBoard } = props;
 
     if (!boardTitle) return;
     const board = {
@@ -26,10 +27,12 @@ export const CreateBoardPopper = (props) => {
       isStarred: false,
     };
     boardService.save(board);
-    setPreview('https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png')
-    setBoardTitle('')
+    setPreview(
+      'https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png'
+    );
+    setBoardTitle('');
     setNewBoard(false);
-    setOpen(false)
+    setOpen(false);
   };
 
   const onHandleChange = ({ target }) => {
@@ -38,7 +41,7 @@ export const CreateBoardPopper = (props) => {
   };
 
   const handleClick = (newPlacement) => (event) => {
-    props.setNewBoard(true)
+    props.setNewBoard(true);
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
@@ -88,12 +91,9 @@ export const CreateBoardPopper = (props) => {
               <div className='create-board-body flex column'>
                 <div className='new-board-preview-container flex'>
                   <div className='new-board-preview'>
-                    <div
-                     className='selected-background'>
-                      <img 
-                      src={preview}
-                      />
-                        </div>
+                    <div className='selected-background'>
+                      <img src={preview} />
+                    </div>
                   </div>
                 </div>
                 <div className='background-title'>
@@ -155,49 +155,37 @@ export const CreateBoardPopper = (props) => {
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705588/xaussj5qb0xunt82nggr.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705588/xaussj5qb0xunt82nggr.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/sb2n9r1ouagefrnqa7vb.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/sb2n9r1ouagefrnqa7vb.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/lljyplmcjjydimv29ph4.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/lljyplmcjjydimv29ph4.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ltc8ebckr7yegf3jzgax.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ltc8ebckr7yegf3jzgax.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ijpikorqm2mw0ni99tf3.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ijpikorqm2mw0ni99tf3.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644706132/vyrrzortjvwwdrrqxxti.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644706132/vyrrzortjvwwdrrqxxti.png' />
                     </div>
                   </div>
                 </div>
@@ -210,7 +198,7 @@ export const CreateBoardPopper = (props) => {
                   />
                 </div>
                 <div className='create-button-container flex justify-center'>
-                  <button onClick={handleBoardSubmit} >Create</button>
+                  <button onClick={handleBoardSubmit}>Create</button>
                 </div>
               </div>
             </div>

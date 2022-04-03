@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Popper from '@mui/material/Popper';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
@@ -11,7 +10,6 @@ import AVATAR2 from '../assets/img/avatar2.png';
 import AVATAR3 from '../assets/img/avatar3.png';
 import AVATAR4 from '../assets/img/avatar4.png';
 
-import {boardService} from '../services/board.service';
 
 export const RecentHeaderModal = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,10 +31,12 @@ export const RecentHeaderModal = () => {
     <div
       onBlur={() => {
         setOpen(false);
-      }}>
+      }}
+    >
       <Button
         className='header-board flex'
-        onClick={handleClick('bottom-start')}>
+        onClick={handleClick('bottom-start')}
+      >
         <span>Recent</span>
         <img src={WhiteArrow} alt='arrow' />
       </Button>

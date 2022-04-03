@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { DragDropContext, Draggable } from 'react-beautiful-dnd';
-import { Link, useHistory } from 'react-router-dom';
 
 import { ChecklistBadge } from './badge-cmps/checklist-badge';
 import SubjectIcon from '@mui/icons-material/Subject';
@@ -14,7 +12,7 @@ import { utilService } from '../services/util.service';
 
 export const TaskPreviewMiniMenu = (props) => {
   /* states */
-  const { task, board, groupIdx, taskPosition, setTaskNewTitle} = props;
+  const { task, board, groupIdx, taskPosition, setTaskNewTitle } = props;
   const [isDueDateChanged, setIsDueDateChanged] = useState(false);
 
   /* values */
@@ -48,14 +46,16 @@ export const TaskPreviewMiniMenu = (props) => {
   };
 
   const onHandleTitleChange = (ev) => {
-    setTaskNewTitle(ev.target)
+    setTaskNewTitle(ev.target);
   };
 
   return (
     <React.Fragment>
       <section
         onClick={(ev) => onModalClick(ev)}
-        className='task-preview flex column' style={taskPosition}>
+        className='task-preview flex column'
+        style={taskPosition}
+      >
         {/* Upper cover */}
         {taskCover &&
           !isFull &&
@@ -65,7 +65,8 @@ export const TaskPreviewMiniMenu = (props) => {
               style={{
                 backgroundColor: `${taskCover.background}`,
                 height: '2rem',
-              }}></div>
+              }}
+            ></div>
           ) : (
             <div>
               <img src={taskCover.background} alt='task-img' />
@@ -74,7 +75,8 @@ export const TaskPreviewMiniMenu = (props) => {
 
         <div
           style={isFull ? { backgroundColor: `${taskCover.background}` } : null}
-          className='task-not-cover flex column'>
+          className='task-not-cover flex column'
+        >
           {task.labels && !isFull && (
             <ul className='labels flex'>
               {task.labels.map((label, idx) => {
@@ -83,7 +85,8 @@ export const TaskPreviewMiniMenu = (props) => {
                     className={className}
                     onClick={(ev) => onHandleLablesClick(ev)}
                     key={idx}
-                    style={{ backgroundColor: `${label.bgc}` }}>
+                    style={{ backgroundColor: `${label.bgc}` }}
+                  >
                     {isLabelsExpended && label.name && `${label.name}`}
                   </li>
                 );
@@ -98,7 +101,8 @@ export const TaskPreviewMiniMenu = (props) => {
               ev.currentTarget.select();
             }}
             defaultValue={task.title}
-            onChange={(ev) => onHandleTitleChange(ev)}></textarea>
+            onChange={(ev) => onHandleTitleChange(ev)}
+          ></textarea>
 
           {!isFull && (
             <div className='task-info-icons flex space-between'>

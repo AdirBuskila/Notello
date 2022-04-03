@@ -1,7 +1,6 @@
 import { HomePage } from './pages/home-page';
 import { BoardWorkspaces } from './pages/board-workspaces';
 import { BoardDetails } from './pages/board-details';
-import { ScrollDialog } from './pages/task-details';
 import { Login } from './pages/login-page';
 import { SignUp } from './pages/sign-up-page';
 

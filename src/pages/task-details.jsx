@@ -305,7 +305,7 @@ export const TaskDetails = (props) => {
               {!inside && (
                 <JoinCmp task={selectedTask} board={board} group={group} />
               )}
-              <p className='task-actions'>Add to card</p>
+              <p className='task-actions add-to-card'>Add to card</p>
               <MembersModal task={selectedTask} board={board} group={group} />
               <LabelsModal
                 task={selectedTask}
@@ -341,7 +341,7 @@ export const TaskDetails = (props) => {
                 />
               )}
               {/* } */}
-              <p className='task-actions'>Actions</p>
+              <p className='task-actions actions'>Actions</p>
               <div className='button-container flex'>
                 <ArrowForwardOutlinedIcon color='action' />
                 <Typography>Move</Typography>

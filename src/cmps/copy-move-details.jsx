@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { useHistory } from 'react-router-dom';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { utilService } from '../services/util.service';
-import {boardService} from '../services/board.service';
+import { boardService } from '../services/board.service';
 import { saveBoard } from '../store/actions/board.action';
 
 export const CopyMoveModal = (props) => {
@@ -53,7 +52,12 @@ export const CopyMoveModal = (props) => {
     newTask.checklists = keepChecklistsInitial ? task.labels : [];
     newTask.labels = keepLabelsInitial ? task.labels : [];
     board.groups[+keepGroupInitial].tasks.unshift(newTask);
-    const activity = boardService.addTaskActivity(`copied task ${task.title} group ${keepGroupInitial}`, task._id, task.title, loggedInUser)
+    const activity = boardService.addTaskActivity(
+      `copied task ${task.title} group ${keepGroupInitial}`,
+      task._id,
+      task.title,
+      loggedInUser
+    );
     board.activities.unshift(activity);
     submitChanges(board);
     history.push(`/b/${board._id}/${newTask._id}`);
@@ -62,7 +66,7 @@ export const CopyMoveModal = (props) => {
   const submitChanges = (board) => {
     try {
       setNewCardTitle('');
-      dispatch(saveBoard(board))
+      dispatch(saveBoard(board));
     } catch (err) {
       console.log('Cant handle card copy / move :', err);
     }
@@ -71,8 +75,13 @@ export const CopyMoveModal = (props) => {
   return (
     <div className='button-container flex align-center'>
       <div className='flex align-center'>
-      {(props.from !== 'mini-menu') ? <ContentCopyOutlinedIcon onClick={handleClick} color='action' /> : 
-      <ContentCopyIcon sx={{fontSize: 'medium', marginInlineEnd: '5px'}} />}
+        {props.from !== 'mini-menu' ? (
+          <ContentCopyOutlinedIcon onClick={handleClick} color='action' />
+        ) : (
+          <ContentCopyIcon
+            sx={{ fontSize: 'medium', marginInlineEnd: '5px' }}
+          />
+        )}
         <Typography onClick={handleClick}>Copy</Typography>
       </div>
       <Popover
@@ -82,7 +91,8 @@ export const CopyMoveModal = (props) => {
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
-        }}>
+        }}
+      >
         <div sx={{ p: 0.5, width: '304px' }}>
           <div className='copy-move-task-modal flex justify-center'>
             {type === 'copy' ? <p>Copy card</p> : <p>Move</p>}
@@ -93,7 +103,8 @@ export const CopyMoveModal = (props) => {
             <textarea
               autoFocus
               defaultValue={task.title + ' copy'}
-              onChange={(ev) => onHandleTitleChange(ev)}></textarea>
+              onChange={(ev) => onHandleTitleChange(ev)}
+            ></textarea>
             <span>Keep...</span>
             <section className='keep-section flex column'>
               <div className='inner-keepers flex align-center'>
