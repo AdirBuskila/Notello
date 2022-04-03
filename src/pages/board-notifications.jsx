@@ -1,17 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import ClearSharpIcon from '@mui/icons-material/ClearSharp';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
-import { Avatar } from '@mui/material';
+import {Avatar} from '@mui/material';
 
 // import { Link } from 'react-router-dom';
 
 // import { utilService } from '../services/util.service';
 // import { boardService } from '../services/board.service';
 
-export const BoardNotifications = (props) => {
-  const board = useSelector((state) => state.boardModule.board);
-  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
+export const BoardNotifications = props => {
+  const board = useSelector(state => state.boardModule.board);
+  const loggedInUser = useSelector(state => state.userModule.loggedInUser);
   const className = props.notificationsOpen
     ? 'board-notification-container open'
     : 'board-notification-container';
@@ -33,14 +33,14 @@ export const BoardNotifications = (props) => {
           }}
         />
       </div>
-      <hr />
+
       <div className='notification-header flex align-center'>
         <ChatOutlinedIcon className='notification-icon' />
         <span>Activity</span>
       </div>
       <article className='activities-container flex-column'>
         {board.activities ? (
-          board.activities.map((activity) => {
+          board.activities.map(activity => {
             return (
               <React.Fragment key={activity._id}>
                 <div
@@ -59,7 +59,7 @@ export const BoardNotifications = (props) => {
                         </div>
                       </div>
                       <div className='project-name-container'>
-                        <p style={{ color: 'white' }} className='project-name'>
+                        <p style={{color: 'white'}} className='project-name'>
                           Notello:<span className='group-name'>SCSS</span>
                         </p>
                       </div>
