@@ -35,7 +35,7 @@ export const JoinCmp = (props) => {
   };
 
   return (
-    <div className='button-container flex'>
+    <div className='button-container flex join'>
       <PersonOutlineOutlinedIcon onClick={()=> onJoin(loggedInUser._id)} color='action' />
       <Typography onClick={()=> onJoin(loggedInUser._id)}>Join</Typography>
     </div>
