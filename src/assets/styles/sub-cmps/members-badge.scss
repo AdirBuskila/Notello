@@ -4,6 +4,7 @@
     padding-inline-end: 0.1rem;
     padding-block-start: 0.2rem;
     .members-badge-container {
+        justify-content: end;
         gap: rem(4px);
         flex-wrap: wrap;
     }
