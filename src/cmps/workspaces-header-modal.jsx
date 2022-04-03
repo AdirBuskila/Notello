@@ -36,10 +36,7 @@ export const WorkspacesHeaderModal = props => {
 
   const btnContent = showAll ? 'Show Less' : 'Show More';
   return (
-    <div
-      onBlur={() => {
-        setOpen(false);
-      }}>
+    <div>
       <Button
         className='header-board flex'
         onClick={handleClick('bottom-start')}>

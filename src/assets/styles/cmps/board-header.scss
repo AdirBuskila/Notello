@@ -5,6 +5,7 @@
   row-gap: 0.5rem;
   .title-container {
     height: 2rem;
+    min-width: rem(80px);
   }
   .info-details {
     gap: 0.5rem;
@@ -29,6 +30,7 @@
       color: #172b4d;
       background-color: #fdfdfd7a;
       border-radius: rem(3px);
+      width: 100%;
     }
     .rating-container {
       background-color: #fdfdfd7a;

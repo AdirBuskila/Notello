@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {saveBoard} from '../store/actions/board.action';
 import {CopyLinkPopper} from './copy-link-pop';
 import Rating from '@mui/material/Rating';
@@ -13,21 +13,28 @@ import MENU from '../assets/img/menu.png';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
 export const BoardHeader = props => {
-  const board = {...props.board};
-  const [boardTitle, setBoardTitle] = useState();
+  const board = useSelector(state => state.boardModule.board);
+  const [boardTitle, setBoardTitle] = useState(board?.title);
+  const [boardTitleLen, setBoardTitleLen] = useState(board?.title?.length);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setBoardTitle(board.title);
-    // socketService.on('SOCKET_EVENT_BOARD_UPDATED', board);
-  }, [board]);
+    setBoardTitle(board?.title);
+    setBoardTitleLen(board?.title?.length);
+  }, [board.title]);
 
   const onHandleChange = ev => {
     setBoardTitle(ev.target.value);
+    setBoardTitleLen(boardTitle?.length);
   };
-  const changeBoardTitle = () => {
-    board.title = boardTitle;
-    dispatch(saveBoard(board));
+
+  const changeBoardTitle = ev => {
+    ev.preventDefault();
+    ev.currentTarget.nodeName === 'INPUT'
+      ? ev.currentTarget.blur()
+      : ev.currentTarget.firstChild.blur();
+    const newBoard = {...board, title: ev.target.value};
+    dispatch(saveBoard(newBoard));
   };
 
   if (!board) return <h1> No board </h1>;
@@ -44,10 +51,13 @@ export const BoardHeader = props => {
           />
         </div>
 
-        <div className='title-container'>
+        <form
+          onSubmit={changeBoardTitle}
+          className='title-container'
+          style={{width: boardTitleLen * 13 + 'px'}}>
           <input
             className='title-input'
-            defaultValue={boardTitle}
+            value={boardTitle}
             onBlur={changeBoardTitle}
             onFocus={ev => {
               ev.currentTarget.select();
@@ -55,9 +65,9 @@ export const BoardHeader = props => {
             onClick={ev => {
               ev.currentTarget.select();
             }}
-            onChange={ev => onHandleChange(ev)}
+            onChange={onHandleChange}
           />
-        </div>
+        </form>
         <div className='rating-container flex align-center justify-center'>
           <Rating name='half-rating' defaultValue={0} precision={1} max={1} />
         </div>
