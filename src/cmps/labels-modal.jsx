@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
@@ -12,14 +12,14 @@ import { saveBoard } from '../store/actions/board.action';
 export const LabelsModal = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const {board, groupIdx, taskIdx, task } = props;
+  const { board, groupIdx, taskIdx, task } = props;
   const isFromInnerWindow = props.source ? true : false;
   const [isEditing, setIsEditing] = useState(false);
   const [currLabelId, setCurrLabelId] = useState(null);
   const [labelTitle, setLabelTitle] = useState('');
   // const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
   const dispatch = useDispatch();
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -99,9 +99,15 @@ export const LabelsModal = (props) => {
     <div className='button-container flex align-center'>
       <div
         className='flex align-center'
-        style={isFromInnerWindow ? { opacity: '0' } : null}>
-        {(props.from !== 'mini-menu') ? <LocalOfferOutlinedIcon color='action' onClick={handleClick} /> : 
-        <TurnedInNotIcon sx={{fontSize: 'medium', marginInlineEnd: '5px'}} />}
+        style={isFromInnerWindow ? { opacity: '0' } : null}
+      >
+        {props.from !== 'mini-menu' ? (
+          <LocalOfferOutlinedIcon color='action' onClick={handleClick} />
+        ) : (
+          <TurnedInNotIcon
+            sx={{ fontSize: 'medium', marginInlineEnd: '5px' }}
+          />
+        )}
         <Typography onClick={handleClick}>Labels</Typography>
       </div>
       <Popover
@@ -111,7 +117,8 @@ export const LabelsModal = (props) => {
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
-        }}>
+        }}
+      >
         <div sx={{ p: 0.5, width: '304px' }}>
           <div className='labels-task-modal flex justify-center'>
             Labels
@@ -127,12 +134,14 @@ export const LabelsModal = (props) => {
                       onClick={(ev) => {
                         onHandlePick(ev, label._id);
                       }}
-                      style={{ backgroundColor: `${label.bgc}` }}>
+                      style={{ backgroundColor: `${label.bgc}` }}
+                    >
                       {isEditing && currLabelId === label._id ? (
                         <input
                           autoFocus
                           placeholder={label.name}
-                          onChange={(ev) => onHandleLabelTitle(ev)}></input>
+                          onChange={(ev) => onHandleLabelTitle(ev)}
+                        ></input>
                       ) : (
                         <p>{label.name}</p>
                       )}
@@ -145,7 +154,8 @@ export const LabelsModal = (props) => {
                     <div
                       onClick={() => {
                         applyLabelTitle(index, label._id);
-                      }}>
+                      }}
+                    >
                       {(!isEditing || label._id !== currLabelId) && (
                         <CreateOutlinedIcon
                           onClick={() => {

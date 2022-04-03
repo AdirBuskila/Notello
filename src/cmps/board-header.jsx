@@ -28,7 +28,7 @@ export const BoardHeader = (props) => {
   };
   const changeBoardTitle = () => {
     board.title = boardTitle;
-    dispatch(saveBoard(board))
+    dispatch(saveBoard(board));
   };
 
   if (!board) return <h1> No board </h1>;
@@ -128,7 +128,8 @@ export const BoardHeader = (props) => {
           className='board-header-btn menu-container flex align-center space-evenly'
           onClick={() => {
             props.setMenuOpen(true);
-          }}>
+          }}
+        >
           <img
             src={MENU}
             alt='menu'

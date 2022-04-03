@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 
 import { routes } from './routes';
-// import AppFooter from './cmps/AppFooter';
 
 export const RootCmp = () => {
   return (
@@ -18,7 +17,6 @@ export const RootCmp = () => {
             path={route.path}
           />
         ))}
-        {/* <AppFooter /> */}
       </Switch>
     </div>
   );

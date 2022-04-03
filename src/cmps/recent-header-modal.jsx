@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -10,8 +10,6 @@ import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
 import AVATAR2 from '../assets/img/avatar2.png';
 import AVATAR3 from '../assets/img/avatar3.png';
 import AVATAR4 from '../assets/img/avatar4.png';
-
-import { boardService } from '../services/board.service';
 
 export const RecentHeaderModal = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,10 +31,12 @@ export const RecentHeaderModal = () => {
     <div
       onBlur={() => {
         setOpen(false);
-      }}>
+      }}
+    >
       <Button
         className='header-board flex'
-        onClick={handleClick('bottom-start')}>
+        onClick={handleClick('bottom-start')}
+      >
         <span>Recent</span>
         <img src={WhiteArrow} alt='arrow' />
       </Button>
@@ -45,13 +45,15 @@ export const RecentHeaderModal = () => {
         open={open}
         anchorEl={anchorEl}
         placement={placement}
-        transition>
+        transition
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
               <Typography
                 className='header-board-typography'
-                sx={{ p: 1, mt: 1, width: '290px' }}>
+                sx={{ p: 1, mt: 1, width: '290px' }}
+              >
                 <div className='workspace-modal-title flex'>
                   Recent boards
                   <a href='#' onClick={(ev) => onHandleModal(ev)}>
@@ -61,12 +63,14 @@ export const RecentHeaderModal = () => {
                 <hr />
                 <section
                   className='recent-boards flex column'
-                  style={{ height: 'fit-content' }}>
+                  style={{ height: 'fit-content' }}
+                >
                   <article className='recent flex align-center'>
                     <Avatar
                       style={{ height: '32px' }}
                       sx={{ borderRadius: '3px' }}
-                      variant='square'>
+                      variant='square'
+                    >
                       <img className='avatar-img' src={AVATAR2} alt='avatar2' />
                     </Avatar>
                     <div className='avatar-details flex column'>
@@ -78,7 +82,8 @@ export const RecentHeaderModal = () => {
                     <Avatar
                       style={{ height: '32px' }}
                       sx={{ borderRadius: '3px' }}
-                      variant='square'>
+                      variant='square'
+                    >
                       <img className='avatar-img' src={AVATAR3} alt='avatar3' />
                     </Avatar>
                     <div className='recent avatar-details  flex column'>
@@ -90,7 +95,8 @@ export const RecentHeaderModal = () => {
                     <Avatar
                       style={{ height: '32px' }}
                       sx={{ borderRadius: '3px' }}
-                      variant='square'>
+                      variant='square'
+                    >
                       <img className='avatar-img' src={AVATAR4} alt='avatar4' />
                     </Avatar>
                     <div className='avatar-details  flex column'>

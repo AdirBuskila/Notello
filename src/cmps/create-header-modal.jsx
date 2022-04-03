@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Popper from '@mui/material/Popper';
 import Fade from '@mui/material/Fade';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { boardService } from '../services/board.service';
 import { Button } from '@mui/material';
 
@@ -10,13 +9,15 @@ export const CreateHeaderModal = (props) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [placement, setPlacement] = React.useState();
-  const [preview, setPreview] = React.useState('https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png');
+  const [preview, setPreview] = React.useState(
+    'https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png'
+  );
   const [boardTitle, setBoardTitle] = React.useState('');
   const [boardStyle, setBoardStyle] = React.useState('');
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
   const handleBoardSubmit = () => {
-  // const { setNewBoard } = props;
+    // const { setNewBoard } = props;
 
     if (!boardTitle) return;
     const board = {
@@ -27,10 +28,12 @@ export const CreateHeaderModal = (props) => {
       isStarred: false,
     };
     boardService.save(board);
-    setPreview('https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png')
-    setBoardTitle('')
+    setPreview(
+      'https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png'
+    );
+    setBoardTitle('');
     // setNewBoard(false);
-    setOpen(false)
+    setOpen(false);
   };
 
   const onHandleChange = ({ target }) => {
@@ -62,11 +65,13 @@ export const CreateHeaderModal = (props) => {
     <div
       onBlur={() => {
         setOpen(false);
-      }}>
+      }}
+    >
       <Button
         sx={{ width: '10px' }}
         className='header-board add-header'
-        onClick={handleClick('bottom')}>
+        onClick={handleClick('bottom')}
+      >
         <span>Create</span>
       </Button>
       <Popper
@@ -96,12 +101,9 @@ export const CreateHeaderModal = (props) => {
               <div className='create-board-body flex column'>
                 <div className='new-board-preview-container flex'>
                   <div className='new-board-preview'>
-                    <div
-                     className='selected-background'>
-                      <img 
-                      src={preview}
-                      />
-                        </div>
+                    <div className='selected-background'>
+                      <img src={preview} />
+                    </div>
                   </div>
                 </div>
                 <div className='background-title'>
@@ -163,49 +165,37 @@ export const CreateHeaderModal = (props) => {
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705588/xaussj5qb0xunt82nggr.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705588/xaussj5qb0xunt82nggr.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/sb2n9r1ouagefrnqa7vb.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/sb2n9r1ouagefrnqa7vb.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/lljyplmcjjydimv29ph4.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/lljyplmcjjydimv29ph4.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ltc8ebckr7yegf3jzgax.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ltc8ebckr7yegf3jzgax.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ijpikorqm2mw0ni99tf3.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ijpikorqm2mw0ni99tf3.png' />
                     </div>
                     <div
                       onClick={(ev) => handleImgClick(ev)}
                       className='background-color'
                     >
-                      <img 
-                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644706132/vyrrzortjvwwdrrqxxti.png'
-                      />
+                      <img src='https://res.cloudinary.com/dubjerksn/image/upload/v1644706132/vyrrzortjvwwdrrqxxti.png' />
                     </div>
                   </div>
                 </div>
@@ -218,7 +208,7 @@ export const CreateHeaderModal = (props) => {
                   />
                 </div>
                 <div className='create-button-container flex justify-center'>
-                  <button onClick={handleBoardSubmit} >Create</button>
+                  <button onClick={handleBoardSubmit}>Create</button>
                 </div>
               </div>
             </div>
