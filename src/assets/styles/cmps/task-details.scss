@@ -1,332 +1,352 @@
 .task-details-container {
-    overflow-y: auto;
-    top: 0;
-    padding: 50px;
-    height: 99%;
-    border-bottom: 3px;
-    width: 100%;
-    z-index: 50;
-    position: fixed;
-    &> ::-webkit-scrollbar {
-        height: 0.75rem;
-        border-radius: 50rem;
+  overflow-y: auto;
+  top: 0;
+  padding: 50px;
+  height: 99%;
+  border-bottom: 3px;
+  width: 100%;
+  z-index: 50;
+  position: fixed;
+  & > ::-webkit-scrollbar {
+    height: 0.75rem;
+    border-radius: 50rem;
+  }
+  & > ::-webkit-scrollbar-track {
+    background: #00000026;
+    border-radius: 3px;
+    margin: 25px;
+  }
+  & > ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #e2e3e480;
+  }
+  .task-details {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: rem(768px);
+    background-color: #f4f5f7;
+    border-radius: 3px;
+    z-index: 1000;
+    height: fit-content;
+    .close-button {
+      padding: 1rem;
+      justify-content: center;
+      height: 40px;
+      width: 40px;
+      top: 4px;
+      right: 4px;
+      button {
+        font-size: 20px;
+        background-color: transparent;
+        color: #42526e;
+        font-weight: 700;
+        font-size: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+          Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+      }
     }
-    &> ::-webkit-scrollbar-track {
-        background: #00000026;
-        border-radius: 3px;
-        margin: 25px;
+    .close-button:hover {
+      background-color: #091e4214;
     }
-    &> ::-webkit-scrollbar-thumb {
-        border-radius: 3px;
-        background: #e2e3e480;
-    }
-    .task-details {
+    .task-header-cover {
+      border-top-right-radius: 3px;
+      border-top-left-radius: 3px;
+      height: 160px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      position: relative;
+      width: 100%;
+      .button-container {
         position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-        width: rem(768px);
-        background-color: #f4f5f7;
+        right: 12px;
+        bottom: 12px;
+        background-color: #92a397a6;
         border-radius: 3px;
-        z-index: 1000;
-        height: fit-content;
-        .close-button {
-            padding: 1rem;
-            justify-content: center;
-            height: 40px;
-            width: 40px;
-            top: 4px;
-            right: 4px;
+        color: #172b4d;
+        padding: 6px 12px 6px 6px;
+        gap: rem(4px);
+        p {
+          font-size: rem(14px);
+          font-weight: 400;
+        }
+      }
+      .button-container:hover {
+        cursor: pointer;
+        background-color: #00000025;
+      }
+    }
+    .window-header {
+      min-height: 32px;
+      color: #172b4d;
+      .close-button {
+        position: relative;
+        right: 12px;
+        top: 12px;
+        width: rem(40px);
+        height: rem(40px);
+        cursor: pointer;
+        border-radius: 50%;
+      }
+      .close-button:hover {
+        background-color: #33353929;
+      }
+      .group-title {
+        p {
+          color: #5e6c84;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          font-size: rem(14px);
+          font-weight: 400;
+        }
+      }
+    }
+    .task-title {
+      padding-top: 1rem;
+      width: 100%;
+      height: rem(48px);
+      .task-title-container {
+        padding-top: 1rem;
+        width: 90%;
+        flex-wrap: wrap;
+      }
+      input {
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+          Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+        color: #172b4d;
+        font-weight: 600;
+        padding: 0.5rem;
+        border: none;
+        background-color: transparent;
+        width: 100%;
+        font-size: rem(20px);
+      }
+      p {
+        margin-inline-start: 0.5rem;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      padding-left: 1rem;
+    }
+    .task-main-container {
+      display: grid;
+      grid-template-columns: 0.7fr 0.3fr;
+      gap: 1rem;
+      padding-bottom: 1rem;
+    }
+    .window-sidebar {
+      margin-block-start: 3rem;
+      .button-container {
+        width: rem(168px);
+        height: rem(32px);
+        cursor: pointer;
+        align-items: center;
+        transition: 0.2s background-color;
+        margin-bottom: rem(8px);
+        background-color: #091e420a;
+        border-radius: rem(3px);
+        svg {
+          width: rem(16px);
+          margin-left: rem(5px);
+          margin-right: rem(5px);
+        }
+        p {
+          font-size: rem(14px);
+        }
+        & > * {
+          width: 100%;
+        }
+      }
+      .task-actions {
+        padding-bottom: rem(15px);
+        color: #5e6c84;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+      .button-container:hover {
+        background-color: #091e4214;
+      }
+    }
+    .main-content {
+      color: #172b4d;
+      display: flex;
+      flex-direction: column;
+      width: rem(568px);
+      gap: 20px;
+      padding-left: rem(16px);
+      p {
+        font-weight: 500;
+      }
+      textarea:not(:last-child) {
+        background-color: white;
+        padding: 0.5rem 0.75rem;
+        border-radius: rem(3px);
+        border: none;
+        resize: none;
+        cursor: pointer;
+        outline-color: #2684ff;
+      }
+      textarea:focus:not(:last-child) {
+        outline-color: #2684ff;
+      }
+      .description-container {
+        .description {
+          .edit-button-container {
+            width: rem(47px);
+            height: rem(31px);
+            // background-color: #091e420a;
+            color: #172b4d;
+            margin-left: 15px;
             button {
-                font-size: 20px;
-                background-color: transparent;
-                color: #42526e;
-                font-weight: 700;
-                font-size: 20px;
-                font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+              padding: 5px 10px;
+              border-radius: 3px;
+              background-color: #091e420a;
+              font-size: 14px;
+              font-weight: 400;
             }
+          }
+          margin-bottom: rem(10px);
+          svg {
+            margin-inline-end: rem(10px);
+          }
         }
-        .close-button:hover {
-            background-color: #091e4214;
+      }
+      .description-container {
+        font-size: rem(16px);
+        margin-bottom: rem(15px);
+        font-weight: 600;
+      }
+      & > section {
+        .last-btn {
+          background-color: #091e420a;
+          border-radius: 3px;
+          font-size: rem(14px);
+          padding: 8px 12px;
+          margin-inline-start: 2.2rem;
+          color: #172b4d;
         }
-        .task-header-cover {
-            border-top-right-radius: 3px;
-            border-top-left-radius: 3px;
-            height: 160px;
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center center;
-            position: relative;
-            width: 100%;
-            .button-container {
-                position: absolute;
-                right: 12px;
-                bottom: 12px;
-                background-color: #92a397a6;
-                border-radius: 3px;
-                color: #172b4d;
-                padding: 6px 12px 6px 6px;
-                gap: rem(4px);
-                p {
-                    font-size: rem(14px);
-                    font-weight: 400;
-                }
-            }
-            .button-container:hover {
-                cursor: pointer;
-                background-color: #00000025;
-            }
+      }
+    }
+    .checkbox-info {
+      margin-block-end: 0.5rem;
+      margin-block-start: 0.5rem;
+      .individual-checklist {
+        align-self: baseline;
+        padding-block-end: 0.75rem;
+        align-items: center;
+        width: 100%;
+        gap: 0.5rem;
+        section {
+          width: 100%;
         }
-        .window-header {
-            min-height: 32px;
-            color: #172b4d;
-            .close-button {
-                position: relative;
-                right: 12px;
-                top: 12px;
-                width: rem(40px);
-                height: rem(40px);
-                cursor: pointer;
-                border-radius: 50%;
-            }
-            .close-button:hover {
-                background-color: #33353929;
-            }
-            .group-title {
-                p {
-                    color: #5e6c84;
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                    font-size: rem(14px);
-                    font-weight: 400;
-                }
-            }
-        }
-        .task-title {
-            padding-top: 1rem;
-            width: 100%;
-            height: rem(48px);
-            .task-title-container {
-                padding-top: 1rem;
-                width: 90%;
-                flex-wrap: wrap;
-            }
-            input {
-                font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
-                color: #172b4d;
-                font-weight: 600;
-                padding: 0.5rem;
-                border: none;
-                background-color: transparent;
-                width: 100%;
-                font-size: rem(20px);
-            }
-            p {
-                margin-inline-start: 0.5rem;
-                font-size: 20px;
-                font-weight: 600;
-            }
-            padding-left: 1rem;
-        }
-        .task-main-container {
-            display: grid;
-            grid-template-columns: 0.7fr 0.3fr;
-            gap: 1rem;
-            padding-bottom: 1rem;
-        }
-        .window-sidebar {
-            margin-block-start: 3rem;
-            .button-container {
-                width: rem(168px);
-                height: rem(32px);
-                cursor: pointer;
-                align-items: center;
-                transition: 0.2s background-color;
-                margin-bottom: rem(8px);
-                background-color: #091e420a;
-                border-radius: rem(3px);
-                svg {
-                    width: rem(16px);
-                    margin-left: rem(5px);
-                    margin-right: rem(5px);
-                }
-                p {
-                    font-size: rem(14px);
-                }
-                &>* {
-                    width: 100%;
-                }
-            }
-            .task-actions {
-                padding-bottom: rem(15px);
-                color: #5e6c84;
-                font-size: 12px;
-                font-weight: 600;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            }
-            .button-container:hover {
-                background-color: #091e4214;
-            }
-        }
-        .main-content {
-            color: #172b4d;
-            display: flex;
-            flex-direction: column;
-            width: rem(568px);
-            gap: 20px;
-            padding-left: rem(16px);
-            p {
-                font-weight: 500;
-            }
-            textarea:not(:last-child) {
-                background-color: white;
-                padding: 0.5rem 0.75rem;
-                border-radius: rem(3px);
-                border: none;
-                resize: none;
-                cursor: pointer;
-                outline-color: #2684ff;
-            }
-            textarea:focus:not(:last-child) {
-                outline-color: #2684ff;
-            }
-            .description-container {
-                .description {
-                    .edit-button-container {
-                        width: rem(47px);
-                        height: rem(31px);
-                        // background-color: #091e420a;
-                        color: #172b4d;
-                        margin-left: 15px;
-                        button {
-                            padding: 5px 10px;
-                            border-radius: 3px;
-                            background-color: #091e420a;
-                            font-size: 14px;
-                            font-weight: 400;
-                        }
-                    }
-                    margin-bottom: rem(10px);
-                    svg {
-                        margin-inline-end: rem(10px);
-                    }
-                }
-            }
-            .description-container {
-                font-size: rem(16px);
-                margin-bottom: rem(15px);
-                font-weight: 600;
-            }
-            &>section {
-                .last-btn {
-                    background-color: #091e420a;
-                    border-radius: 3px;
-                    font-size: rem(14px);
-                    padding: 8px 12px;
-                    margin-inline-start: 2.2rem;
-                    color: #172b4d;
-                }
-            }
-        }
-        .checkbox-info {
-            margin-block-end: 0.5rem;
-            margin-block-start: 0.5rem;
-            .individual-checklist {
-                align-self: baseline;
-                padding-block-end: 0.75rem;
-                align-items: center;
-                width: 100%;
-                gap: 0.5rem;
-                section {
-                    width: 100%;
-                }
-                .todo-title {
-                    margin-inline-start: 0.2rem;
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                    color: #162b4d;
-                    font-weight: 400;
-                    font-size: 14px;
-                    line-height: 20px;
-                    padding: 6px 0;
-                }
-                .new-item {
-                    padding-inline-start: 0;
-                    width: 100%;
-                }
-                .self-top {
-                    align-self: baseline;
-                }
-                p {
-                    font-weight: 400;
-                }
-            }
-            .individual-checklist:hover {
-                background-color: #091e420a;
-                border-radius: 3px;
-                cursor: pointer;
-            }
+        .todo-title {
+          margin-inline-start: 0.2rem;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          color: #162b4d;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          padding: 6px 0;
         }
         .new-item {
-            gap: 0.5rem;
-            padding-inline-start: 2.2rem;
-            padding-bottom: rem(9px);
-            border-radius: 3px;
-            .new-item-actions {
-                gap: 0.5rem;
-                a {
-                    color: #42526e;
-                    font-weight: 700;
-                    font-size: rem(20px);
-                    flex: 1;
-                }
-            }
-            button {
-                padding: 6px 12px;
-                background-color: #0179bf;
-                color: white;
-                border-radius: 3px;
-            }
+          padding-inline-start: 0;
+          width: 100%;
         }
-        .activity-container {
-            gap: 1rem;
-            font-size: rem(16px);
-            font-weight: 600;
-            .activity {
-                button {
-                    background-color: #091e420a;
-                    border-radius: 3px;
-                    font-size: rem(14px);
-                    padding: 8px 12px;
-                    color: #172b4d;
-                }
-                svg {
-                    margin-inline-end: rem(10px);
-                }
-            }
-            .comment-container {
-                .user-container {
-                    position: absolute;
-                    left: 0.75rem;
-                }
-                .new-comment {
-                    textarea {
-                        margin-inline-start: 2rem;
-                        width: 94.5%;
-                        resize: none;
-                    }
-                }
-            }
+        .self-top {
+          align-self: baseline;
         }
-        .task-info {
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            margin-left: 2rem;
-            gap: rem(20px);
-            font-weight: 500;
-            color: #5e6c84;
-            font-size: rem(12px);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            .due-date-main-container {
-                min-width: rem(240px);
-            }
+        p {
+          font-weight: 400;
         }
+      }
+      .individual-checklist:hover {
+        background-color: #091e420a;
+        border-radius: 3px;
+        cursor: pointer;
+      }
     }
+    .new-item {
+      gap: 0.5rem;
+      padding-inline-start: 2.2rem;
+      padding-bottom: rem(9px);
+      border-radius: 3px;
+      .new-item-actions {
+        gap: 0.5rem;
+        a {
+          color: #42526e;
+          font-weight: 700;
+          font-size: rem(20px);
+          flex: 1;
+        }
+      }
+      button {
+        padding: 6px 12px;
+        background-color: #0179bf;
+        color: white;
+        border-radius: 3px;
+      }
+    }
+    .activity-container {
+      gap: 1rem;
+      font-size: rem(16px);
+      font-weight: 600;
+      .activity {
+        button {
+          background-color: #091e420a;
+          border-radius: 3px;
+          font-size: rem(14px);
+          padding: 8px 12px;
+          color: #172b4d;
+        }
+        svg {
+          margin-inline-end: rem(10px);
+        }
+      }
+      .comment-container {
+        .user-container {
+          position: absolute;
+          left: 0.75rem;
+        }
+        .new-comment {
+          textarea {
+            margin-inline-start: 2rem;
+            width: 94.5%;
+            resize: none;
+          }
+        }
+      }
+    }
+    .task-info {
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      margin-left: 2rem;
+      gap: rem(20px);
+      font-weight: 500;
+      color: #5e6c84;
+      font-size: rem(12px);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      .due-date-main-container {
+        min-width: rem(240px);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .task-details-container {
+      padding: 0;
+    .task-details {
+        width: auto;
+        margin: auto;
+      .task-main-container {
+        justify-items: center;
+        grid-template-columns: 1fr;
+      }
+    }
+  }
 }

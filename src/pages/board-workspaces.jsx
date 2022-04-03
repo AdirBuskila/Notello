@@ -81,17 +81,19 @@ export const BoardWorkspaces = () => {
               </Link>
             );
           })}
-          {/* <CreateBoardPopper /> */}
-          <div
+          <CreateBoardPopper 
+          setNewBoard={setNewBoard}
+           />
+          {/* <div
             className='add-board-container board flex pointer align-center justify-center'
             onClick={() => {
               setNewBoard(true);
             }}>
             <p style={{ filter: 'brightness(100%)' }}></p>
-          </div>
+          </div> */}
         </div>
       </div>
-      {newBoard && <CreateBoard setNewBoard={setNewBoard} />}
+      {/* {newBoard && <CreateBoard setNewBoard={setNewBoard} />} */}
     </React.Fragment>
   );
 };

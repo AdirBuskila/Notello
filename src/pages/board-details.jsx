@@ -10,7 +10,7 @@ import { TaskDetails } from '../pages/task-details';
 import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 import { TaskPreviewHover } from '../cmps/task-preview-hover';
-import { utilService } from '../services/util.service';
+
 // import { BoardNotifications } from './board-notifications';
 
 const _BoardDetails = (props) => {

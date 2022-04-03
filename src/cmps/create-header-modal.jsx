@@ -1,31 +1,62 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import Popper from '@mui/material/Popper';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
-import Paper from '@mui/material/Paper';
-import AddIcon from '@mui/icons-material/Add';
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import AutoAwesomeMosaicOutlinedIcon from '@mui/icons-material/AutoAwesomeMosaicOutlined';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { boardService } from '../services/board.service';
+import { Button } from '@mui/material';
 
-import CreateBoard from '../assets/img/create-board.svg';
+export const CreateHeaderModal = (props) => {
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [placement, setPlacement] = React.useState();
+  const [preview, setPreview] = React.useState('https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png');
+  const [boardTitle, setBoardTitle] = React.useState('');
+  const [boardStyle, setBoardStyle] = React.useState('');
+  const loggedInUser = useSelector((state) => state.userModule.loggedInUser);
 
+  const handleBoardSubmit = () => {
+  // const { setNewBoard } = props;
 
-export const CreateHeaderModal = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState();
+    if (!boardTitle) return;
+    const board = {
+      title: boardTitle,
+      createdAt: Date.now(),
+      createdBy: loggedInUser,
+      style: boardStyle,
+      isStarred: false,
+    };
+    boardService.save(board);
+    setPreview('https://res.cloudinary.com/dubjerksn/image/upload/v1643708669/fd0r56qqxrphaea8g7k3.png')
+    setBoardTitle('')
+    // setNewBoard(false);
+    setOpen(false)
+  };
+
+  const onHandleChange = ({ target }) => {
+    const value = target.value;
+    setBoardTitle(value);
+  };
 
   const handleClick = (newPlacement) => (event) => {
+    // props.setNewBoard(true)
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
   };
-
   const onHandleModal = (ev) => {
     ev.preventDefault();
     setOpen(false);
   };
+
+  const handleImgClick = (ev) => {
+    const newPreview = `${ev.target.currentSrc}`;
+    setPreview(newPreview);
+    setBoardStyle({ imgUrl: `${ev.target.currentSrc}` });
+  };
+
+  const canBeOpen = open && Boolean(anchorEl);
+  const id = canBeOpen ? 'transition-popper' : undefined;
 
   return (
     <div
@@ -35,61 +66,162 @@ export const CreateHeaderModal = () => {
       <Button
         sx={{ width: '10px' }}
         className='header-board add-header'
-        onClick={handleClick('bottom-start')}>
+        onClick={handleClick('bottom')}>
         <span>Create</span>
       </Button>
       <Popper
-        className='popper'
+        className='.create-board-popper flex justify-center'
+        id={id}
+        style={{
+          backgroundColor: '#ffff',
+          width: '300px',
+          height: '450px',
+          borderRadius: '3px',
+          boxShadow:
+            '0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%)',
+        }}
         open={open}
         anchorEl={anchorEl}
-        placement={placement}
-        transition>
+        transition
+      >
         {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Paper>
-              <Typography
-                className='header-board-typography'
-                sx={{ mt: 1, width: '304px', height: '284px' }}>
-                <div className='workspace-modal-create-title flex space-between'>
-                  Create
-                  <a href='#' onClick={(ev) => onHandleModal(ev)}>
-                    ✕
-                  </a>
+          <Fade {...TransitionProps} timeout={2}>
+            <div className='create-board-container flex column'>
+              <div className='create-board-header flex row'>
+                <p>Create Board</p>
+                <a href='#' onClick={(ev) => onHandleModal(ev)}>
+                  ✕
+                </a>
+              </div>
+              <div className='create-board-body flex column'>
+                <div className='new-board-preview-container flex'>
+                  <div className='new-board-preview'>
+                    <div
+                     className='selected-background'>
+                      <img 
+                      src={preview}
+                      />
+                        </div>
+                  </div>
                 </div>
-                <hr />
-                <section
-                  className='starred-boards create flex column'
-                  style={{ height: 'fit-content' }}>
-                  <article>
-                    <div className='upper-actions'>
-                      <img src={CreateBoard} alt='create-board' />
-                      <h4>Create board</h4>
+                <div className='background-title'>
+                  <p>Background</p>
+                </div>
+                <div className='background-picker-container flex'>
+                  <div className='upper-row flex'>
+                    <button className='btn-img-0'>
+                      <img
+                        src='https://res.cloudinary.com/dubjerksn/image/upload/v1644703506/b0tj6zwxbfshuojdyim7.jpg'
+                        onClick={(ev) => handleImgClick(ev)}
+                        style={{
+                          width: '60px',
+                          height: '40',
+                          backgroundSize: 'contain',
+                        }}
+                        className='background-img-0'
+                      />
+                    </button>
+                    <button className='btn-img-1'>
+                      <img
+                        src='https://res.cloudinary.com/dubjerksn/image/upload/v1644703505/uzyztm6omrhksxpbtt80.jpg'
+                        onClick={(ev) => handleImgClick(ev)}
+                        style={{
+                          width: '60px',
+                          height: '40',
+                          backgroundSize: 'contain',
+                        }}
+                        className='background-img-1'
+                      />
+                    </button>
+                    <button className='btn-img-2'>
+                      <img
+                        src='https://res.cloudinary.com/dubjerksn/image/upload/v1644703518/qogwddfqkwhxvsbjm34q.jpg'
+                        onClick={(ev) => handleImgClick(ev)}
+                        style={{
+                          width: '60px',
+                          height: '40',
+                          backgroundSize: 'contain',
+                        }}
+                        className='background-img-2'
+                      />
+                    </button>
+                    <button className='btn-img-3'>
+                      <img
+                        src='https://res.cloudinary.com/dubjerksn/image/upload/v1644703631/jirzrw54bnq8eg7cpfpo.jpg'
+                        onClick={(ev) => handleImgClick(ev)}
+                        style={{
+                          width: '60px',
+                          height: '40',
+                          backgroundSize: 'contain',
+                        }}
+                        className='background-img-3'
+                      />
+                    </button>
+                  </div>
+                  <div className='lower-row flex'>
+                    <div
+                      onClick={(ev) => handleImgClick(ev)}
+                      className='background-color'
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705588/xaussj5qb0xunt82nggr.png'
+                      />
                     </div>
-                    <p>
-                      A board is made up of cards ordered on lists. Use it to
-                      manage projects, track information, or organize anything.
-                    </p>
-                  </article>
-                  <article>
-                    <div className='upper-actions'>
-                      <AutoAwesomeMosaicOutlinedIcon />
-                      <h4>Start with a template</h4>
+                    <div
+                      onClick={(ev) => handleImgClick(ev)}
+                      className='background-color'
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/sb2n9r1ouagefrnqa7vb.png'
+                      />
                     </div>
-                    <p>Get started faster with a board template.</p>
-                  </article>
-                  <article>
-                    <div className='upper-actions'>
-                      <PeopleAltOutlinedIcon />
-                      <h4>Create Workspace</h4>
+                    <div
+                      onClick={(ev) => handleImgClick(ev)}
+                      className='background-color'
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/lljyplmcjjydimv29ph4.png'
+                      />
                     </div>
-                    <p>
-                      A Workspace is a group of boards and people. Use it to
-                      organize your company, side hustle, family or friends.
-                    </p>
-                  </article>
-                </section>
-              </Typography>
-            </Paper>
+                    <div
+                      onClick={(ev) => handleImgClick(ev)}
+                      className='background-color'
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ltc8ebckr7yegf3jzgax.png'
+                      />
+                    </div>
+                    <div
+                      onClick={(ev) => handleImgClick(ev)}
+                      className='background-color'
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644705587/ijpikorqm2mw0ni99tf3.png'
+                      />
+                    </div>
+                    <div
+                      onClick={(ev) => handleImgClick(ev)}
+                      className='background-color'
+                    >
+                      <img 
+                      src='https://res.cloudinary.com/dubjerksn/image/upload/v1644706132/vyrrzortjvwwdrrqxxti.png'
+                      />
+                    </div>
+                  </div>
+                </div>
+                <p className='board-title'>Board Title</p>
+                <div className='input-container'>
+                  <input
+                    value={boardTitle}
+                    onChange={onHandleChange}
+                    type='text'
+                  />
+                </div>
+                <div className='create-button-container flex justify-center'>
+                  <button onClick={handleBoardSubmit} >Create</button>
+                </div>
+              </div>
+            </div>
           </Fade>
         )}
       </Popper>

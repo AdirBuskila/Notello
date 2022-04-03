@@ -59,7 +59,7 @@ function getById(boardId) {
 }
 
 function remove(boardId) {
-    try { return httpService.delete(`board/${boardId}`) } catch (err) {}
+    try { return httpService.delete(`board/${boardId}`) } catch (err) { }
 }
 
 async function save(board) {
@@ -109,14 +109,12 @@ function getNotificationMode(board, activity, loggedInUser) {
 
     if (taskMembers.length === 0) return false
 
-
     const isNoti = activity.wasShownTo.find((user) => {
         return (user._id === loggedInUser._id)
     })
     if (isNoti) return false
+    console.log('NEW NOTIFICATION');
     return true
-
-
 
 }
 
