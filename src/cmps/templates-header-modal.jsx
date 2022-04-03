@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
-import { Avatar } from '@mui/material';
+import {Avatar} from '@mui/material';
 import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
 
 import Template1 from '../assets/img/templates/template1.jpg';
@@ -19,20 +19,20 @@ import Template7 from '../assets/img/templates/template7.jpg';
 // import AVATAR3 from '../assets/img/avatar3.png';
 // import AVATAR4 from '../assets/img/avatar4.png';
 
-import { boardService } from '../services/board.service';
+import {boardService} from '../services/board.service';
 
 export const TemplatesHeaderModal = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState();
 
-  const handleClick = (newPlacement) => (event) => {
+  const handleClick = newPlacement => event => {
     setAnchorEl(event.currentTarget);
-    setOpen((prev) => placement !== newPlacement || !prev);
+    setOpen(prev => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
   };
 
-  const onHandleModal = (ev) => {
+  const onHandleModal = ev => {
     ev.preventDefault();
     setOpen(false);
   };
@@ -54,26 +54,24 @@ export const TemplatesHeaderModal = () => {
         anchorEl={anchorEl}
         placement={placement}
         transition>
-        {({ TransitionProps }) => (
+        {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography
-                className='header-board-typography'
-                sx={{ p: 1, mt: 1, width: '290px' }}>
-                <div className='workspace-modal-title flex'>
+              <Typography className='header-board-typography header-dropdown'>
+                <div className='drop-down-title flex'>
                   Templates
-                  <a href='#' onClick={(ev) => onHandleModal(ev)}>
+                  <a href='#' onClick={ev => onHandleModal(ev)}>
                     ✕
                   </a>
                 </div>
-                <hr />
+
                 <section
                   className='recent-boards flex column'
-                  style={{ height: 'fit-content' }}>
+                  style={{height: 'fit-content'}}>
                   <article className='recent flex align-center'>
                     <Avatar
-                      style={{ height: '32px' }}
-                      sx={{ borderRadius: '3px' }}
+                      style={{height: '32px'}}
+                      sx={{borderRadius: '3px'}}
                       variant='square'>
                       <img
                         className='avatar-img'
@@ -87,8 +85,8 @@ export const TemplatesHeaderModal = () => {
                   </article>
                   <article className='recent flex align-center'>
                     <Avatar
-                      style={{ height: '32px' }}
-                      sx={{ borderRadius: '3px' }}
+                      style={{height: '32px'}}
+                      sx={{borderRadius: '3px'}}
                       variant='square'>
                       <img
                         className='avatar-img'
@@ -102,8 +100,8 @@ export const TemplatesHeaderModal = () => {
                   </article>
                   <article className='recent flex align-center'>
                     <Avatar
-                      style={{ height: '32px' }}
-                      sx={{ borderRadius: '3px' }}
+                      style={{height: '32px'}}
+                      sx={{borderRadius: '3px'}}
                       variant='square'>
                       <img
                         className='avatar-img'
@@ -117,8 +115,8 @@ export const TemplatesHeaderModal = () => {
                   </article>
                   <article className='recent flex align-center'>
                     <Avatar
-                      style={{ height: '32px' }}
-                      sx={{ borderRadius: '3px' }}
+                      style={{height: '32px'}}
+                      sx={{borderRadius: '3px'}}
                       variant='square'>
                       <img
                         className='avatar-img'
@@ -132,8 +130,8 @@ export const TemplatesHeaderModal = () => {
                   </article>
                   <article className='recent flex align-center'>
                     <Avatar
-                      style={{ height: '32px' }}
-                      sx={{ borderRadius: '3px' }}
+                      style={{height: '32px'}}
+                      sx={{borderRadius: '3px'}}
                       variant='square'>
                       <img
                         className='avatar-img'
@@ -147,8 +145,8 @@ export const TemplatesHeaderModal = () => {
                   </article>
                   <article className='recent flex align-center'>
                     <Avatar
-                      style={{ height: '32px' }}
-                      sx={{ borderRadius: '3px' }}
+                      style={{height: '32px'}}
+                      sx={{borderRadius: '3px'}}
                       variant='square'>
                       <img
                         className='avatar-img'
@@ -162,8 +160,8 @@ export const TemplatesHeaderModal = () => {
                   </article>
                   <article className='recent flex align-center'>
                     <Avatar
-                      style={{ height: '32px' }}
-                      sx={{ borderRadius: '3px' }}
+                      style={{height: '32px'}}
+                      sx={{borderRadius: '3px'}}
                       variant='square'>
                       <img
                         className='avatar-img'

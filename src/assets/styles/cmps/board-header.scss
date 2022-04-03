@@ -4,12 +4,13 @@
   flex-wrap: wrap;
   row-gap: 0.5rem;
   .title-container {
-    height: 100%;
+    height: 2rem;
   }
   .info-details {
     gap: 0.5rem;
     flex: 1;
     justify-content: flex-start;
+    flex-wrap: wrap;
     .board-stats {
       width: rem(92px);
       img {
@@ -82,6 +83,10 @@
   }
   .upper-options {
     gap: 0.25rem;
+    align-self: baseline;
+    & > * {
+      height: 2rem;
+    }
   }
   .automation {
     width: rem(120px);
@@ -99,56 +104,5 @@
   .rating-container:hover {
     cursor: pointer;
     background-color: #00000029;
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .upper-header {
-    width: 100vw;
-    .big {
-    }
-    .title-container {
-      width: 150px;
-    }
-    .info-details {
-      .board-stats{
-        display: none;
-      }
-    }
-    input {
-    }
-    .rating-container {
-    }
-    .workspace-type {
-      button {
-      }
-    }
-  }
-
-  .board-header-btn,
-  .workspace-type {
-  }
-
-  input:hover {
-  }
-  .new-member {
-    a {
-    }
-  }
-  .new-member:hover {
-  }
-  .board-header-btn-divider {
-  }
-  .upper-options {
-  }
-  .automation {
-  }
-  .filter {
-  }
-  .menu-container {
-    button {
-    }
-  }
-  .rating-container:hover {
   }
 }

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { saveBoard } from '../store/actions/board.action';
-import { CopyLinkPopper } from './copy-link-pop';
+import React, {useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {saveBoard} from '../store/actions/board.action';
+import {CopyLinkPopper} from './copy-link-pop';
 import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
@@ -11,10 +11,9 @@ import DOWNICON from '../assets/img/down-arrow.png';
 import FILTER from '../assets/img/filter.svg';
 import MENU from '../assets/img/menu.png';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import { socketService } from '../services/socket.service';
 
-export const BoardHeader = (props) => {
-  const board = { ...props.board };
+export const BoardHeader = props => {
+  const board = {...props.board};
   const [boardTitle, setBoardTitle] = useState();
   const dispatch = useDispatch();
 
@@ -23,7 +22,7 @@ export const BoardHeader = (props) => {
     // socketService.on('SOCKET_EVENT_BOARD_UPDATED', board);
   }, [board]);
 
-  const onHandleChange = (ev) => {
+  const onHandleChange = ev => {
     setBoardTitle(ev.target.value);
   };
   const changeBoardTitle = () => {
@@ -41,7 +40,7 @@ export const BoardHeader = (props) => {
           <img
             src={DOWNICON}
             alt='down-icon'
-            style={{ width: '10px', height: '10px' }}
+            style={{width: '10px', height: '10px'}}
           />
         </div>
 
@@ -50,13 +49,13 @@ export const BoardHeader = (props) => {
             className='title-input'
             defaultValue={boardTitle}
             onBlur={changeBoardTitle}
-            onFocus={(ev) => {
+            onFocus={ev => {
               ev.currentTarget.select();
             }}
-            onClick={(ev) => {
+            onClick={ev => {
               ev.currentTarget.select();
             }}
-            onChange={(ev) => onHandleChange(ev)}
+            onChange={ev => onHandleChange(ev)}
           />
         </div>
         <div className='rating-container flex align-center justify-center'>
@@ -73,34 +72,34 @@ export const BoardHeader = (props) => {
         </div>
         <span className='board-header-btn-divider'> </span>
         <div className='members-avatars'>
-          <AvatarGroup sx={{ gap: 0.5 }} max={4}>
+          <AvatarGroup sx={{gap: 0.5}} max={4}>
             <Avatar
               alt='NG'
               src={
                 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131873/Notello/NG_e1fglp.png'
               }
-              style={{ width: '28px', height: '28px', border: '0' }}
+              style={{width: '28px', height: '28px', border: '0'}}
             />
             <Avatar
               alt='NC'
               src={
                 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131867/Notello/NC_foadck.png'
               }
-              style={{ width: '28px', height: '28px', border: '0' }}
+              style={{width: '28px', height: '28px', border: '0'}}
             />
             <Avatar
               alt='AB'
               src={
                 'https://res.cloudinary.com/dubjerksn/image/upload/v1643131869/Notello/AB_pplonl.png'
               }
-              style={{ width: '28px', height: '28px', border: '0' }}
+              style={{width: '28px', height: '28px', border: '0'}}
             />
             <Avatar
               alt='IG'
               src={
                 'https://res.cloudinary.com/dubjerksn/image/upload/v1643212002/Notello/T02BJ4W8H45-U02E0QXA9PD-8469fc199211-512_a1jdtm.jpg'
               }
-              style={{ width: '28px', height: '28px', border: '0' }}
+              style={{width: '28px', height: '28px', border: '0'}}
             />
           </AvatarGroup>
         </div>
@@ -111,7 +110,7 @@ export const BoardHeader = (props) => {
           <img
             src='https://a.trellocdn.com/prgb/dist/images/butler/automation-dark.8548e886880fadc385da.svg'
             alt='automation'
-            style={{ width: '16px', height: '16px' }}
+            style={{width: '16px', height: '16px'}}
           />
           <span>Automation</span>
         </div>
@@ -120,7 +119,7 @@ export const BoardHeader = (props) => {
           <img
             src={FILTER}
             alt='filter'
-            style={{ width: '16px', height: '16px' }}
+            style={{width: '16px', height: '16px'}}
           />
           <span>Filter</span>
         </div>
@@ -128,13 +127,8 @@ export const BoardHeader = (props) => {
           className='board-header-btn menu-container flex align-center space-evenly'
           onClick={() => {
             props.setMenuOpen(true);
-          }}
-        >
-          <img
-            src={MENU}
-            alt='menu'
-            style={{ width: '16px', height: '16px' }}
-          />
+          }}>
+          <img src={MENU} alt='menu' style={{width: '16px', height: '16px'}} />
           <p>Show menu</p>
           {/* <BoardActivity board={board}/> */}
         </div>

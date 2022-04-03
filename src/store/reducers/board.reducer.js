@@ -1,9 +1,5 @@
-import { boardService } from "../../services/board.service";
-import { socketService, SOCKET_EMIT_BOARD_UPDATED } from '../../services/socket.service'
-
 const initialState = {
     board: {},
-    // activities: [],
     isLabelsExpended: false,
     currBoardUser: {}
 }
@@ -26,10 +22,3 @@ export function boardReducer(state = initialState, action) {
     }
     return newState;
 }
-
-
-// case 'ADD_TASK':
-//     let { groups } = state.board;
-//     groups[action.addAction.idx].tasks.push(action.addAction.task)
-//     newState = {...state, board: {...state.board, groups } }
-//     break;

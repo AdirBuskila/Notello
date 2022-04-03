@@ -1,42 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
-import { orange, blue, red } from '@mui/material/colors';
-import { Avatar } from '@mui/material';
+import {orange, blue, red} from '@mui/material/colors';
+import {Avatar} from '@mui/material';
 import WhiteArrow from '../assets/img/white-bold-arrow-down.png';
-import { utilService } from '../services/util.service';
-import { useHistory, Link } from 'react-router-dom';
+import {utilService} from '../services/util.service';
+import {useHistory, Link} from 'react-router-dom';
 
-export const WorkspacesHeaderModal = (props) => {
+export const WorkspacesHeaderModal = props => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState();
   const [showAll, setShowAll] = useState(false);
   const history = useHistory();
 
-  const { boards } = props;
+  const {boards} = props;
 
-  const handleClick = (newPlacement) => (event) => {
+  const handleClick = newPlacement => event => {
     setAnchorEl(event.currentTarget);
-    setOpen((prev) => placement !== newPlacement || !prev);
+    setOpen(prev => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
   };
 
-  const onHandleModal = (ev) => {
+  const onHandleModal = ev => {
     ev.preventDefault();
     setOpen(false);
   };
 
-  const onHandleForwarding = (boardId) => {
+  const onHandleForwarding = boardId => {
     history.push(`/b/${boardId}`);
   };
 
   const btnContent = showAll ? 'Show Less' : 'Show More';
   return (
-    <div>
+    <div
+      onBlur={() => {
+        setOpen(false);
+      }}>
       <Button
         className='header-board flex'
         onClick={handleClick('bottom-start')}>
@@ -49,13 +52,13 @@ export const WorkspacesHeaderModal = (props) => {
         anchorEl={anchorEl}
         placement={placement}
         transition>
-        {({ TransitionProps }) => (
+        {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <div className='workspace-dropdown flex column align-center'>
-                <div className='workspace-modal-title flex'>
+              <div className='workspace-dropdown header-dropdown flex column align-center'>
+                <div className='workspace-modal-title drop-down-title flex'>
                   Workspace
-                  <a href='#' onClick={(ev) => onHandleModal(ev)}>
+                  <a href='#' onClick={ev => onHandleModal(ev)}>
                     ✕
                   </a>
                 </div>
@@ -70,11 +73,14 @@ export const WorkspacesHeaderModal = (props) => {
                       ? `${board.style.bgColor}`
                       : `url(${board.style.imgUrl})`;
                     return (
-                      <Link onClick={() => setOpen(false)} key={board._id} to={`/b/${board._id}`}>
+                      <Link
+                        onClick={() => setOpen(false)}
+                        key={board._id}
+                        to={`/b/${board._id}`}>
                         <div className='board-drop-preview flex align-center'>
                           <div className='board-square-container flex align-center'>
                             <div
-                              style={{ backgroundImage: boardStyle }}
+                              style={{backgroundImage: boardStyle}}
                               className='board-square flex align-center justify-center'>
                               <p className='board-character'>
                                 {boardCharacter}

@@ -78,26 +78,6 @@ async function save(board) {
 
 
 
-// function query() {
-//     return storageService.query(STORAGE_KEY)
-// }
-
-// function getById(boardId) {
-//     return storageService.get(STORAGE_KEY, boardId)
-// }
-
-// function removeBoard(boardId) {
-//     return storageService.remove(STORAGE_KEY, boardId)
-// }
-
-// function save(board) {
-//     if (board._id) {
-//         return storageService.put(STORAGE_KEY, board)
-//     } else {
-//         return storageService.post(STORAGE_KEY, board)
-//     }
-// }
-
 
 
 /* Front Service */
@@ -230,10 +210,10 @@ async function getTaskById(boardId, groupId, taskId) {
 }
 
 async function addGroup(boardId, group, activity) {
-    // async function addGroup(boardId, group) {
+
     group._id = utilService.makeId()
     group.tasks = [];
-    console.log('GROUP ACTIVITY in line 147', activity);
+    // console.log('GROUP ACTIVITY in line 147', activity);
     try {
         let board = await getById(boardId)
         board.groups.push(group)
