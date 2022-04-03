@@ -83,6 +83,10 @@
   }
   .upper-options {
     gap: 0.25rem;
+    align-self: baseline;
+    & > * {
+      height: 2rem;
+    }
   }
   .automation {
     width: rem(120px);

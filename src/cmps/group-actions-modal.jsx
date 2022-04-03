@@ -55,9 +55,9 @@ export const GroupActionsModal = props => {
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
               <div
-                className='workspace-dropdown flex column align-center'
+                className='workspace-dropdown header-dropdown flex column align-center'
                 style={{height: '200px'}}>
-                <div className='workspace-modal-title flex'>
+                <div className='workspace-modal-title drop-down-title  flex'>
                   List Actions
                   <a href='#' onClick={ev => onHandleModal(ev)}>
                     ✕
