@@ -20,7 +20,7 @@ export const BoardHeader = props => {
 
   useEffect(() => {
     setBoardTitle(board?.title);
-    setBoardTitleLen(board?.title?.length);
+    setBoardTitleLen(board.title?.length);
   }, [board.title]);
 
   const onHandleChange = ev => {
@@ -54,7 +54,7 @@ export const BoardHeader = props => {
         <form
           onSubmit={changeBoardTitle}
           className='title-container'
-          style={{width: boardTitleLen * 13 + 'px'}}>
+          style={{width: boardTitleLen * 14.2 + 'px'}}>
           <input
             className='title-input'
             value={boardTitle}
