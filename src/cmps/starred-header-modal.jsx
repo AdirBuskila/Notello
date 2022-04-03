@@ -29,10 +29,10 @@ export const StarredHeaderModal = () => {
   return (
     <div
       onBlur={() => {
-        setOpen(false);
+        // setOpen(false);
       }}>
       <Button
-        className='header-board flex'
+        className='header-board  flex'
         onClick={handleClick('bottom-start')}>
         <span>Starred</span>
         <img src={WhiteArrow} alt='arrow' />
@@ -46,10 +46,8 @@ export const StarredHeaderModal = () => {
         {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography
-                className='header-board-typography'
-                sx={{p: 1, mt: 1, width: '304px', height: '260px'}}>
-                <div className='workspace-modal-title flex'>
+              <div className='header-board-typography header-dropdown'>
+                <div className='workspace-modal-title drop-down-title flex'>
                   Starred boards
                   <a href='#' onClick={ev => onHandleModal(ev)}>
                     ✕
@@ -57,14 +55,14 @@ export const StarredHeaderModal = () => {
                 </div>
 
                 <section
-                  className='starred-boards flex column'
+                  className='starred-boards header-dropdown flex column'
                   style={{height: 'fit-content'}}>
                   <img src={STARRED} alt='starred' />
                   <h6>
                     Star important boards to access them quickly and easily.
                   </h6>
                 </section>
-              </Typography>
+              </div>
             </Paper>
           </Fade>
         )}

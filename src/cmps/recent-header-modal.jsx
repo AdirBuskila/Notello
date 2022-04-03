@@ -49,10 +49,8 @@ export const RecentHeaderModal = () => {
         {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography
-                className='header-board-typography'
-                sx={{p: 1, mt: 1, width: '290px'}}>
-                <div className='workspace-modal-title flex'>
+              <div className='header-board-typography header-dropdown'>
+                <div className='drop-down-title  flex'>
                   Recent boards
                   <a href='#' onClick={ev => onHandleModal(ev)}>
                     ✕
@@ -60,7 +58,7 @@ export const RecentHeaderModal = () => {
                 </div>
 
                 <section
-                  className='recent-boards flex column'
+                  className='recent-boards  flex column'
                   style={{height: 'fit-content'}}>
                   <article className='recent flex align-center'>
                     <Avatar
@@ -99,7 +97,7 @@ export const RecentHeaderModal = () => {
                     </div>
                   </article>
                 </section>
-              </Typography>
+              </div>
             </Paper>
           </Fade>
         )}
