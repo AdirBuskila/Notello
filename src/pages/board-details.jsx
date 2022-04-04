@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import { AppHeader } from '../cmps/app-header';
+import { AppHeader } from '../cmps/header/app-header';
 import { BoardHeader } from '../cmps/board-header.jsx';
 import { Loader } from '../cmps/UI/loader';
 import { GroupList } from '../cmps/group-list.jsx';
@@ -11,11 +11,9 @@ import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
 import { TaskPreviewHover } from '../cmps/task-preview-hover';
 
-// import { BoardNotifications } from './board-notifications';
 
 const _BoardDetails = (props) => {
   const [menuOpen, setMenuOpen] = useState();
-  // const [NotificationOpen, setNotificationOpen] = useState();
   const [previewTask, setPos] = useState(null);
   const { id } = props.match.params;
   const loggedInUser = useSelector((state) => state.userModule.loggedInUser);

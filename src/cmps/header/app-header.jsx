@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { WorkspacesHeaderModal } from '../cmps/workspaces-header-modal';
-import { RecentHeaderModal } from '../cmps/recent-header-modal';
-import { StarredHeaderModal } from './starred-header-modal';
-import { TemplatesHeaderModal } from './templates-header-modal';
-import { CreateHeaderModal } from './create-header-modal';
-import { UserBadge } from './logged-in-user';
+import { WorkspacesHeaderModal } from '../workspaces-header-modal';
+import { RecentHeaderModal } from '../recent-header-modal';
+import { StarredHeaderModal } from '../starred-header-modal';
+import { TemplatesHeaderModal } from '../templates-header-modal';
+import { CreateHeaderModal } from '../create-header-modal';
+import { UserBadge } from '../logged-in-user';
 import { useEffect } from 'react';
-import { boardService } from '../services/board.service';
-import { BoardNotifications } from '../pages/board-notifications';
+import { boardService } from '../../services/board.service';
+import { BoardNotifications } from '../../pages/board-notifications';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import { utilService } from '../services/util.service';
+import { utilService } from '../../services/util.service';
 
 export const AppHeader = () => {
   const [boards, setBoards] = useState([]);

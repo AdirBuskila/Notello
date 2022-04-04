@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppHeader } from '../cmps/app-header';
+import { AppHeader } from '../cmps/header/app-header';
 import { boardService } from '../services/board.service';
 import { Loader } from '../cmps/UI/loader';
 import PersonIcon from '@mui/icons-material/Person';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
-import { CreateBoard } from '../cmps/create-board-modal';
 import { CreateBoardPopper } from '../cmps/create-board-popper';
 
 export const BoardWorkspaces = () => {
@@ -52,9 +51,7 @@ export const BoardWorkspaces = () => {
             if (!board) return <h1>Loading...</h1>;
             return (
               <Link key={board._id} to={`/b/${board._id}`}>
-                <div
-                  style={{ backgroundImage: boardStyle }}
-                  className='board'>
+                <div style={{ backgroundImage: boardStyle }} className='board'>
                   <p className='board-title'>{board.title}</p>
                 </div>
               </Link>
@@ -73,27 +70,15 @@ export const BoardWorkspaces = () => {
             if (!board) return <h1>Loading...</h1>;
             return (
               <Link key={board._id} to={`/b/${board._id}`}>
-                <div
-                  style={{ backgroundImage: boardStyle }}
-                  className='board'>
+                <div style={{ backgroundImage: boardStyle }} className='board'>
                   <p className='board-title'>{board.title}</p>
                 </div>
               </Link>
             );
           })}
-          <CreateBoardPopper 
-          setNewBoard={setNewBoard}
-           />
-          {/* <div
-            className='add-board-container board flex pointer align-center justify-center'
-            onClick={() => {
-              setNewBoard(true);
-            }}>
-            <p style={{ filter: 'brightness(100%)' }}></p>
-          </div> */}
+          <CreateBoardPopper setNewBoard={setNewBoard} />
         </div>
       </div>
-      {/* {newBoard && <CreateBoard setNewBoard={setNewBoard} />} */}
     </React.Fragment>
   );
 };
