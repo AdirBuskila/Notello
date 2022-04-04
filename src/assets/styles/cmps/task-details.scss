@@ -339,45 +339,49 @@
 
 @media only screen and (max-width: 700px) {
   .task-details-container {
-      padding: 15px 0 10px 0;
+    padding: 15px 0 10px 0;
     .task-details {
-        width: auto;
-        margin: auto;
-        left: 50%;
+      width: auto;
+      margin: auto;
+      left: 50%;
       .task-main-container {
         width: 95vw;
         justify-items: center;
         grid-template-columns: 1fr;
-        .main-content{
+        .main-content {
           width: 100%;
-          .description-container{
-            .add-description-container{
+          padding-inline-end: 10px;
+
+          .description-container {
+            .add-description-container {
               width: 340px;
             }
           }
-          .activity-container{
-            .comment-container{
-              textarea{
+          .activity-container {
+            .comment-container {
+              textarea {
                 width: 310px;
               }
             }
           }
+          .attachments-thumbnail-container {
+            flex-direction: column;
+          }
         }
       }
-      .window-sidebar{
-        width: 100%;  
+      .window-sidebar {
+        width: 100%;
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 1fr 1fr;
         margin: 0;
         padding: 0 10px 0 10px;
-        .join{
+        .join {
           grid-column: 1;
         }
-        .add-to-card{
+        .add-to-card {
           grid-column: 1;
-
         }
-        .actions{
+        .actions {
           display: none;
         }
       }

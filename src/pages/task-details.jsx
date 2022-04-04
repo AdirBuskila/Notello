@@ -131,10 +131,12 @@ export const TaskDetails = (props) => {
                       backgroundImage: `url(${whichBgcExist})`,
                       backgroundColor: '#415647a6',
                     }
-              }>
+              }
+            >
               <div
                 className='close-button flex align-center end'
-                onClick={onHandleClose}>
+                onClick={onHandleClose}
+              >
                 <button>✕</button>
               </div>
               <CoverModal
@@ -213,7 +215,8 @@ export const TaskDetails = (props) => {
                     <div className='edit-button-container flex justify-center'>
                       <button
                         className='edit-description-button'
-                        onClick={() => setEditMode(true)}>
+                        onClick={() => setEditMode(true)}
+                      >
                         Edit
                       </button>
                     </div>
@@ -278,7 +281,8 @@ export const TaskDetails = (props) => {
                       sx={{
                         width: 32,
                         height: 32,
-                      }}>
+                      }}
+                    >
                       <p>{utilService.getInitials(loggedInUser.fullname)}</p>
                     </Avatar>
                   </div>
