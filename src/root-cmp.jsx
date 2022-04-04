@@ -5,7 +5,7 @@ import { routes } from './routes';
 
 export const RootCmp = () => {
   return (
-    <div className='page-contianer flex column'>
+    <div className='page-container flex column'>
       <Switch>
         <Route path='/' exact>
           <Redirect to='/home' />

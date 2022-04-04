@@ -39,10 +39,10 @@ export class HomePage extends React.Component {
             </NavLink>
             <nav className='nav-links clean-list flex align-center'>
               <NavLink to='/login'>
-                <Button variant='text'>Log in</Button>
+                <Button variant='contained'>Log in</Button>
               </NavLink>
               <NavLink to='/signup'>
-                <Button variant='contained'>Sign Up</Button>
+                <Button variant='text'>Sign Up</Button>
               </NavLink>
             </nav>
           </header>
