@@ -16,8 +16,9 @@ export const BoardHeader = props => {
   const board = useSelector(state => state.boardModule.board);
   const [boardTitle, setBoardTitle] = useState(board?.title);
   const [boardTitleLen, setBoardTitleLen] = useState(board?.title?.length);
-  const dispatch = useDispatch();
+  const [value, setValue] = useState(+board?.starred);
 
+  const dispatch = useDispatch();
   useEffect(() => {
     setBoardTitle(board?.title);
     setBoardTitleLen(board.title?.length);
@@ -69,7 +70,16 @@ export const BoardHeader = props => {
           />
         </form>
         <div className='rating-container flex align-center justify-center'>
-          <Rating name='half-rating' defaultValue={0} precision={1} max={1} />
+          {/* <Rating name='half-rating' value={null} precision={1} max={1} />           */}
+          <Rating
+            name='simple-controlled'
+            value={value}
+            max={1}
+            onChange={(_, newValue) => {
+              board.starred = !board.starred;
+              setValue(newValue);
+            }}
+          />
         </div>
         <span className='board-header-btn-divider'></span>
         <button className='board-header-btn flex align-center'>
