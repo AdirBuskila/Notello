@@ -58,7 +58,7 @@ export const BoardHeader = props => {
           style={{width: boardTitleLen * 14.2 + 'px'}}>
           <input
             className='title-input'
-            defaultValue={boardTitle}
+            value={boardTitle}
             onBlur={changeBoardTitle}
             onFocus={ev => {
               ev.currentTarget.select();
@@ -70,9 +70,8 @@ export const BoardHeader = props => {
           />
         </form>
         <div className='rating-container flex align-center justify-center'>
-          {/* <Rating name='half-rating' value={null} precision={1} max={1} />           */}
           <Rating
-            name='simple-controlled'
+            name='controlled'
             value={value}
             max={1}
             onChange={(_, newValue) => {

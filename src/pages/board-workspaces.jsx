@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AppHeader } from '../cmps/app-header';
-import { boardService } from '../services/board.service';
-import { Loader } from '../cmps/UI/loader';
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {AppHeader} from '../cmps/app-header';
+import {boardService} from '../services/board.service';
+import {Loader} from '../cmps/UI/loader';
 import PersonIcon from '@mui/icons-material/Person';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
-import { CreateBoard } from '../cmps/create-board-modal';
-import { CreateBoardPopper } from '../cmps/create-board-popper';
+import {CreateBoard} from '../cmps/create-board-modal';
+import {CreateBoardPopper} from '../cmps/create-board-popper';
 
 export const BoardWorkspaces = () => {
   const [boards, setBoards] = useState([]);
@@ -22,13 +22,13 @@ export const BoardWorkspaces = () => {
     })();
   }, [newBoard]);
   if (!boards || boards.length === 0) return <Loader />;
-  const staredBoards = boards.filter((board) => {
-    if (board.isStarred === 'true') {
+  const staredBoards = boards.filter(board => {
+    if (board.isStarred) {
       return board;
     }
   });
-  const regBoards = boards.filter((board) => {
-    if (board.isStarred !== 'true') {
+  const regBoards = boards.filter(board => {
+    if (!board.isStarred) {
       return board;
     }
   });
@@ -45,16 +45,14 @@ export const BoardWorkspaces = () => {
           </div>
         </div>
         <div className='boards-container flex'>
-          {staredBoards.map((board) => {
+          {staredBoards.map(board => {
             let boardStyle = !board.style.imgUrl
               ? `${board.style.bgColor}`
               : `url(${board.style.imgUrl})`;
             if (!board) return <h1>Loading...</h1>;
             return (
               <Link key={board._id} to={`/b/${board._id}`}>
-                <div
-                  style={{ backgroundImage: boardStyle }}
-                  className='board'>
+                <div style={{backgroundImage: boardStyle}} className='board'>
                   <p className='board-title'>{board.title}</p>
                 </div>
               </Link>
@@ -66,24 +64,20 @@ export const BoardWorkspaces = () => {
           <h1> Your Workspaces</h1>
         </div>
         <div className='boards-container flex'>
-          {regBoards.map((board) => {
+          {regBoards.map(board => {
             let boardStyle = !board.style.imgUrl
               ? `${board.style.bgColor}`
               : `url(${board.style.imgUrl})`;
             if (!board) return <h1>Loading...</h1>;
             return (
               <Link key={board._id} to={`/b/${board._id}`}>
-                <div
-                  style={{ backgroundImage: boardStyle }}
-                  className='board'>
+                <div style={{backgroundImage: boardStyle}} className='board'>
                   <p className='board-title'>{board.title}</p>
                 </div>
               </Link>
             );
           })}
-          <CreateBoardPopper 
-          setNewBoard={setNewBoard}
-           />
+          <CreateBoardPopper setNewBoard={setNewBoard} />
           {/* <div
             className='add-board-container board flex pointer align-center justify-center'
             onClick={() => {
