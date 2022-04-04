@@ -57,7 +57,7 @@ export const TemplatesHeaderModal = () => {
         {({TransitionProps}) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography className='header-board-typography header-dropdown'>
+              <div className='header-board-typography header-dropdown'>
                 <div className='drop-down-title flex'>
                   Templates
                   <a href='#' onClick={ev => onHandleModal(ev)}>
@@ -174,7 +174,7 @@ export const TemplatesHeaderModal = () => {
                     </div>
                   </article>
                 </section>
-              </Typography>
+              </div>
             </Paper>
           </Fade>
         )}

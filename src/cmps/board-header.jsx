@@ -57,7 +57,7 @@ export const BoardHeader = props => {
           style={{width: boardTitleLen * 14.2 + 'px'}}>
           <input
             className='title-input'
-            value={boardTitle}
+            defaultValue={boardTitle}
             onBlur={changeBoardTitle}
             onFocus={ev => {
               ev.currentTarget.select();
