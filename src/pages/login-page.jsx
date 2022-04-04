@@ -1,7 +1,7 @@
 import React from 'react';
 import left from '../assets/img/left.svg';
 import right from '../assets/img/right.svg';
-import { MyLogin } from '../cmps/login.jsx';
+import { MyLogin } from '../cmps/login-cmps/login.jsx';
 import logo from '../assets/img/notello-clear.png';
 import { Link } from 'react-router-dom';
 

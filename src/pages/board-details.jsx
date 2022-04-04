@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { AppHeader } from '../cmps/header/app-header';
-import { BoardHeader } from '../cmps/board-header.jsx';
+import { BoardHeader } from '../cmps/header/board-header.jsx';
 import { Loader } from '../cmps/UI/loader';
-import { GroupList } from '../cmps/group-list.jsx';
+import { GroupList } from '../cmps/group-cmps/group-list';
 import { TaskDetails } from '../pages/task-details';
 import { BoardActivity } from './board-activity';
 import { loadBoard, saveBoard } from '../store/actions/board.action';
-import { TaskPreviewHover } from '../cmps/task-preview-hover';
+import { TaskPreviewHover } from '../cmps/task-preview-cmps/task-preview-hover';
 
 
 const _BoardDetails = (props) => {

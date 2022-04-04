@@ -1,12 +1,12 @@
 import React from 'react';
 import AddIcon from '@mui/icons-material/Add';
-import { LabelsModal } from '../labels-modal';
+import { LabelsModal } from './labels-modal';
 
 import { utilService } from '../../services/util.service';
 
 
 export const LabelsCmp = (props) => {
-  const {task, groupIdx, board, taskIdx, labels} = props;
+  const {groupIdx, board, taskIdx, labels} = props;
   
   // const [isModalOpen, setIsModalOpen] = useState(false);
   
