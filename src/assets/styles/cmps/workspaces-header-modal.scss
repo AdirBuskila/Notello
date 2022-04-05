@@ -51,9 +51,12 @@
     color: #5e6c84;
     padding: 0.75rem 0;
     border-bottom: 1px solid #091e4221;
-    justify-content: end;
+    justify-content: center;
+    position: relative;
     a {
-      padding-inline-start: 33%;
+      position: absolute;
+      top: 0.75rem;
+      right: 0;
       color: #42526e;
       font-weight: 500;
       font-size: 14px;
