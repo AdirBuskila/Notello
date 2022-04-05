@@ -15,12 +15,13 @@ export const BoardHeader = props => {
   const board = useSelector(state => state.boardModule.board);
   const [boardTitle, setBoardTitle] = useState(board?.title);
   const [boardTitleLen, setBoardTitleLen] = useState(board?.title?.length);
-  const [value, setValue] = useState(+board?.starred);
+  const [starred, setStarred] = useState(+board?.starred);
 
   const dispatch = useDispatch();
   useEffect(() => {
     setBoardTitle(board?.title);
     setBoardTitleLen(board.title?.length);
+    setStarred(+board?.starred);
   }, [board.title]);
 
   const onHandleChange = ev => {
@@ -71,11 +72,12 @@ export const BoardHeader = props => {
         <div className='rating-container flex align-center justify-center'>
           <Rating
             name='controlled'
-            value={value}
+            value={starred}
             max={1}
             onChange={(_, newValue) => {
               board.starred = !board.starred;
-              setValue(newValue);
+              setStarred(newValue);
+              dispatch(saveBoard(board));
             }}
           />
         </div>
