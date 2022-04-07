@@ -5,7 +5,6 @@ import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
 import WhiteArrow from '../../assets/img/white-bold-arrow-down.png';
 
-
 import STARRED from '../../assets/img/starred.svg';
 
 export const StarredHeaderModal = () => {
@@ -27,7 +26,7 @@ export const StarredHeaderModal = () => {
   return (
     <div
       onBlur={() => {
-        // setOpen(false);
+        setOpen(false);
       }}>
       <Button
         className='header-board  flex'
